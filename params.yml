@@ -1,0 +1,37 @@
+# imf = [ 
+#        < 1000 = Salpeter, 
+#          1979 = Miller,
+#          1998 = Ferrini,
+#          1999 = Starburst,
+#          2002 = Kroupa,
+#          2003 = Chabrier,
+#          2012 = Maschberger 
+#       ]
+
+# sol_ab = [
+#            ag89 = Anders & Grevesse 1989,
+#            gs98 = Grevesse & Sauval 1998,
+#            as05 = Asplund et al. 2005,
+#            as09 = Asplund et al. 2009,
+#            he10 = Heger 2010
+#          ]
+
+# sn_ia_selection = [ 
+#                     1 = SNIa Matteucci
+#                     2 = SNIa Tornambe
+#                     3 = SNIa Ruiz-Lapuente
+#                     4 = SNIa Kobayashi09
+#                   ]
+
+input_params: 
+  z: 0.0200
+  lim_yields: GAV
+  massive_yields: CLI
+  sol_ab: ag89
+  fe_coef: 1
+  imf: 2002
+  imf_m_up: 40
+  alpha_bin_stars: 0.05
+  sn_ia_selection: 3
+
+
