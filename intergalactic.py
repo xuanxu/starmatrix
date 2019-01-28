@@ -3,6 +3,7 @@
 import json
 from sys import exit
 from intergalactic.functions import select_imf, abundances
+import intergalactic.constants as constants
 
 def print_params(name, p):
   print("**********************************")
@@ -42,6 +43,11 @@ for option in imf_options:
 solar_abundances = abundances(input_params["sol_ab"], float(input_params["z"]))
 print_params("Abundancias solares", solar_abundances)
 
+
+print("Binaries info:")
+print("Fraction: %s"%constants.ALF)
+print("Gamma: %s"%constants.GAMMA)
+print("Total integration time: %s"%constants.TTOT)
 
 
 
