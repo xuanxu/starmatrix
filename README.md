@@ -43,8 +43,8 @@ __Evolution models:__
 Ferrini,1992,ApJ,387,138
 Portinari,1998,AA,334,505
 Renzini (1980)
-Mercedes mollá 
-Marta gavilán 
+Mercedes Mollá 
+Marta Gavilán 
 
 __Initial mass functions__
 Salpeter, 1955 
