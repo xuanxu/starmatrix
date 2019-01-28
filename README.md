@@ -11,6 +11,7 @@ It computes the contribution matrix of 15 elements:
 * C13
 * N
 * O
+* n.r.
 * Ne
 * Mg
 * Si
