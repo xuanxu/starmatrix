@@ -43,9 +43,6 @@ class Salpeter(IMF):
     def alpha(self):
         return self.params["alpha"]
 
-    def set_params(self):
-        self.params["alpha"] = float(self.params["imf"])
-
     def description(self):
         return "IMF from Salpeter 1955"
 

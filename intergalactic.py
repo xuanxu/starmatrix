@@ -1,53 +1,35 @@
 #!/usr/bin/env python
 
 import json
-from sys import exit
 from intergalactic.functions import select_imf, abundances
 import intergalactic.constants as constants
+import intergalactic.settings as settings
 
 def print_params(name, p):
-  print("**********************************")
+  #print("**********************************")
   print("%s:"%name)
   for param in p:
     print("   " + param + " = " + str(p[param]))
   print("**********************************")
 
-
-
 with open("params.json", "r") as params_file:
     input_params = json.load(params_file)
-    print_params("Input params", input_params)
 
+settings = input_params # merge with**defaults
+if settings["massive_yields"] in ["WOW", "CLI", "KOB"]:
+    settings["m_max"] = settings["imf_m_up"]
 
-imf_options = [
-               "salpeter",
-               "miller_scalo",
-               "ferrini",
-               "starburst",
-               "kroupa",
-               "chabrier",
-               "maschberger"
-              ]
+print_params("Settings", settings)
 
-
-for option in imf_options:
-    i = select_imf(option, input_params)
-    print(i.description())
-    print(i.for_mass(0.01))
-    print(i.for_mass(0.6))
-    print(i.for_mass(5))
-    print(i.for_mass(42))
-    print("___________________________")
-
+initial_mass_function = select_imf(settings["imf"], input_params)
+print_params("IMF", {"initial_mass_function": initial_mass_function.description()})
 
 solar_abundances = abundances(input_params["sol_ab"], float(input_params["z"]))
-print_params("Abundancias solares", solar_abundances)
+print_params("Solar abundances", solar_abundances)
+
+print_params("Binaries info", {"Fraction": constants.ALF, "Gamma": constants.GAMMA, "Total integration time": constants.TTOT})
 
 
-print("Binaries info:")
-print("Fraction: %s"%constants.ALF)
-print("Gamma: %s"%constants.GAMMA)
-print("Total integration time: %s"%constants.TTOT)
 
 
 
