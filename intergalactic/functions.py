@@ -26,12 +26,4 @@ def abundances(option, z):
            "he10": Heger2010
           }
 
-    abundances = abundandes_data[option](z)
-    solar_abundances = {}
-    solar_abundances["x1"] = abundances.x1()
-    solar_abundances["x4"] = abundances.x4()
-    solar_abundances["feh"] = abundances.feh()
-    solar_abundances["data origin"] = abundances.description()
-
-    return solar_abundances
-
+    return abundandes_data[option](z)
