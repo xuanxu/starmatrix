@@ -52,6 +52,8 @@ class AndersGrevesse1989(Abundances):
                     "Ca":    6.000e-5,
                     "Fe":    1.200e-3
                }
+    def description(self):
+        return "Anders & Grevesse 1989"
 
 
 class GrevesseSauval1998(Abundances):
@@ -64,6 +66,9 @@ class GrevesseSauval1998(Abundances):
     def feh_z_non_zero(self):
         return math.log10(self.z / 0.02)
 
+    def description(self):
+        return "Grevesse & Sauval 1998"
+
 
 class Asplund2005(Abundances):
     def x1(self):
@@ -74,6 +79,9 @@ class Asplund2005(Abundances):
 
     def feh_z_non_zero(self):
         return math.log10(self.z / 0.012)
+
+    def description(self):
+        return "Asplund et al. 2005"
 
 
 class Asplund2009(Abundances):
@@ -86,6 +94,9 @@ class Asplund2009(Abundances):
     def feh_z_non_zero(self):
         return math.log10(self.z / 0.0134)
 
+    def description(self):
+        return "Asplund et al. 2009"
+
 
 class Heger2010(Abundances):
     def x1(self):
@@ -96,6 +107,9 @@ class Heger2010(Abundances):
 
     def feh_z_non_zero(self):
         return math.log10(self.z / 0.015)
+
+    def description(self):
+        return "Heger 2010"
 
 
 """
