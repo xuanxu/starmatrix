@@ -24,14 +24,9 @@ print_params("Settings", settings)
 initial_mass_function = select_imf(settings["imf"], input_params)
 print_params("IMF", {"initial_mass_function": initial_mass_function.description()})
 
-solar_abundances = abundances(input_params["sol_ab"], float(input_params["z"]))
-print_params("Solar abundances", solar_abundances.elements())
+abundances = abundances(input_params["sol_ab"], float(input_params["z"]))
+elements=abundances.abundance()
+print_params("Solar abundances (%s)" % abundances.description(), elements)
 
 print_params("Binaries info", {"Fraction": constants.ALF, "Gamma": constants.GAMMA, "Total integration time": constants.TTOT})
-
-
-
-
-
-
 

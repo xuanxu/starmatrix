@@ -24,7 +24,7 @@
 #                   ]
 
 input_params: 
-  z: 0.0200
+  z: 0.02
   lim_yields: GAV
   massive_yields: CLI
   sol_ab: ag89
