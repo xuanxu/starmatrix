@@ -16,7 +16,6 @@ def select_imf(name, params = {}):
            }
     return imfs[name](params)
 
-
 def abundances(option, z):
     abundandes_data = {
            "ag89": AndersGrevesse1989,
@@ -51,4 +50,30 @@ def tau(emme, z):
         ltau = 10.18
 
     return (10 ** ltau) / 1.e9
+
+def emme(tau, z):
+    if tau > 15.13 : return None
+    if tau < 3.325e-3 : return 100
+
+    ltau = 9 + math.log10(tau)
+    if ltau <= 6.48 : return 100
+
+    ltau = min([ltau, 10.18])
+
+    if z < 0.00025:
+        x = -16.1673 + 8.1573 * ltau - 1.51164 * (ltau ** 2) + 0.119703 * (ltau ** 3) - 3.2797e-3 * (ltau ** 4)
+    elif 0.00025 <= z < 0.00126:
+        x = -18.18504 + 9.132649 * ltau - 1.68782 * (ltau ** 2) + 0.133889 * (ltau ** 3) - 3.71372e-3 * (ltau ** 4)
+    elif 0.00126 <= z < 0.0056:
+        x = -25.38213 + 12.52873 * ltau - 2.282687 * (ltau ** 2) + 0.1799017 * (ltau ** 3) - 5.049336e-3 * (ltau ** 4)
+    elif 0.0056 <= z < 0.0126:
+        x = -26.24297 + 12.86747 * ltau - 2.330858 * (ltau ** 2) + 0.1829501 * (ltau ** 3) - 5.130008e-3 * (ltau ** 4)
+    elif 0.0126 <= z:
+        x = -25.09745 + 12.14146 * ltau - 2.170348 * (ltau ** 2) + 0.1681194 * (ltau ** 3) - 4.645682e-3 * (ltau ** 4)
+
+    emme = 1 / x
+    if emme < 0.15 : emme = 0.15
+    if emme > 100 : emme = 100
+
+    return emme
 
