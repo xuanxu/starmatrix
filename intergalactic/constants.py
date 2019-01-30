@@ -1,3 +1,18 @@
+#DEFINED IN COMPFQ14.F BLOCK DATA. MOVE OUT:
+IMAX = 15
+IRID = 10
+JMAX = 9
+IC = 0
+MMAX = 100.0
+MMIN = 0.8
+RM = 1.4
+BETA = 0.6
+ERRE = 8.0
+NW = 7
+W = [41.0, 216.0, 27.0, 272.0, 27.0, 216.0, 41.0, 0.0, 0.0, 0.0]
+
+
+# FROM PARGRA
 IW = 1
 IC = 1
 LM2 = 164       
