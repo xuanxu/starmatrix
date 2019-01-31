@@ -78,7 +78,13 @@ def emme(tau, z):
 
 def ennea(t):
     if t == 0 : return 0.0
-    a, b = math.log10(t), -1.4
-    if a > b : return 0.003252 * (a - b)
+    logt, b = math.log10(t), -1.4
+    if logt > b : return 0.003252 * (logt - b)
+    return 0.0
+
+def enneb(t):
+    if t == 0 : return 0.0
+    logt, b = min(math.log10(t), -0.1), -1.2
+    if logt > b : return 0.02497 * (logt - b)
     return 0.0
 
