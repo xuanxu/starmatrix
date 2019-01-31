@@ -97,3 +97,14 @@ def etout(t):
     else:
         return 8.67e3 * t
 
+def supernova_rate_ruiz_lapuente(t):
+    if t <= 0 : return 0.0
+    logt = math.log10(t) + 9
+    if logt < 7.8 : return 0.0
+    f1 = 0.17e-11  * math.exp(-0.5 * ((logt - 7.744) / 0.08198) ** 2)
+    f2 = 0.338e-11 * math.exp(-0.5 * ((logt - 7.9867) / 0.12489) ** 2)
+    f3 = 0.115e-11 * math.exp(-0.5 * ((logt - 8.3477) / 0.14675) ** 2)
+    f4 = 0.16e-11  * math.exp(-0.5 * ((logt - 9.08) / 0.23) ** 2)
+    f5 = 0.2e-12   * math.exp(-0.5 * ((logt - 9.58) / 0.17) ** 2)
+    return((f1 + f2 + f3 + f4 + f5) * 1e9)
+
