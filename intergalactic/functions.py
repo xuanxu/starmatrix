@@ -3,27 +3,26 @@ import math
 from intergalactic.imfs import Chabrier, Ferrini, Salpeter, Kroupa, MillerScalo, Maschberger, Starburst
 from intergalactic.abundances import AndersGrevesse1989, GrevesseSauval1998, Asplund2005, Asplund2009, Heger2010
 
-
 def select_imf(name, params = {}):
     imfs = {
-             "salpeter": Salpeter,
-             "chabrier": Chabrier,
-             "ferrini": Ferrini,
-             "kroupa": Kroupa,
-             "miller_scalo": MillerScalo,
-             "starburst": Starburst,
-             "maschberger": Maschberger
-           }
+        "salpeter": Salpeter,
+        "chabrier": Chabrier,
+        "ferrini": Ferrini,
+        "kroupa": Kroupa,
+        "miller_scalo": MillerScalo,
+        "starburst": Starburst,
+        "maschberger": Maschberger
+    }
     return imfs[name](params)
 
 def abundances(option, z):
     abundandes_data = {
-           "ag89": AndersGrevesse1989,
-           "gs98": GrevesseSauval1998,
-           "as05": Asplund2005,
-           "as09": Asplund2009,
-           "he10": Heger2010
-          }
+        "ag89": AndersGrevesse1989,
+        "gs98": GrevesseSauval1998,
+        "as05": Asplund2005,
+        "as09": Asplund2009,
+        "he10": Heger2010
+    }
 
     return abundandes_data[option](z)
 
@@ -76,4 +75,10 @@ def emme(tau, z):
     if emme > 100 : emme = 100
 
     return emme
+
+def ennea(t):
+    if t == 0 : return 0.0
+    a, b = math.log10(t), -1.4
+    if a > b : return 0.003252 * (a - b)
+    return 0.0
 
