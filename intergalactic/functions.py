@@ -77,19 +77,19 @@ def emme(tau, z):
     return emme
 
 def ennea(t):
-    if t == 0 : return 0.0
+    if t <= 0 : return 0.0
     logt, b = math.log10(t), -1.4
     if logt > b : return 0.003252 * (logt - b)
     return 0.0
 
 def enneb(t):
-    if t == 0 : return 0.0
+    if t <= 0 : return 0.0
     logt, b = min(math.log10(t), -0.1), -1.2
     if logt > b : return 0.02497 * (logt - b)
     return 0.0
 
 def etout(t):
-    if t == 0 : return 0.0
+    if t <= 0 : return 0.0
     tc = 5.3e-5
     if t > tc:
         rt = (tc / t) * 0.4
