@@ -2,6 +2,7 @@ import math
 
 from intergalactic.imfs import Chabrier, Ferrini, Salpeter, Kroupa, MillerScalo, Maschberger, Starburst
 from intergalactic.abundances import AndersGrevesse1989, GrevesseSauval1998, Asplund2005, Asplund2009, Heger2010
+import intergalactic.constants as constants
 
 def select_imf(name, params = {}):
     imfs = {
@@ -25,6 +26,9 @@ def abundances(option, z):
     }
 
     return abundandes_data[option](z)
+
+def effe(rmu):
+    return constants.COSTFMU * rmu * constants.GAMMA
 
 def tau(emme, z):
     if emme <= 0.15 : emme = 0.15
