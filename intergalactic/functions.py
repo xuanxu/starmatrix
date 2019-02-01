@@ -47,7 +47,7 @@ def tau(emme, z):
     elif 0.0126 <= z:
         ltau = 6.4326 + 11.676 * x - 20.353 * (x ** 2) + 18.775 * (x ** 3) - 6.4300 * (x ** 4)
 
-    ltau = min(max(6.48, ltau), 10.18)
+    ltau = value_in_interval(ltau, [6.48, 10.18])
 
     return (10 ** ltau) / 1.e9
 
@@ -71,7 +71,7 @@ def emme(tau, z):
     elif 0.0126 <= z:
         x = -25.09745 + 12.14146 * ltau - 2.170348 * (ltau ** 2) + 0.1681194 * (ltau ** 3) - 4.645682e-3 * (ltau ** 4)
 
-    return min(max(0.15, 1 / x), 100.0)
+    return value_in_interval(1 / x, [0.15, 100.0])
 
 def ennea(t):
     if t <= 0 : return 0.0
@@ -94,7 +94,10 @@ def etout(t):
     else:
         return 8.67e3 * t
 
-def supernova_rate_ruiz_lapuente(t):
+def value_in_interval(value, interval = []):
+    return min(max(interval[0], value), interval[1])
+
+def sn_rate_ruiz_lapuente(t):
     if t <= 0 : return 0.0
     logt = math.log10(t) + 9
     if logt < 7.8 : return 0.0
