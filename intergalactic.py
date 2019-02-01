@@ -72,7 +72,7 @@ print("eta = " + str(eta))
 # Read ejected masses file. By mass (1st column) 
 ejected_elements_names = ["h", "d", "he3", "he4", "c12", "o16", "n14p", "c13", "n.r.", "ne", "mg", "si", "s", "ca", "fe", "remanents", "c13s", "n14s"]
 ejected_masses = {}
-ejected_data = open("exp", "r")
+ejected_data = open("expelled_elements", "r")
 for line in ejected_data:
     data_row = [float(data) for data in line.split()]
     data_row = [0.0 if data < 0 else data for data in data_row]
@@ -153,7 +153,6 @@ for interval in range(1, lm1 + 1):
                           + f'  {sn_rate[ii - 1]:.11f}'
                           + '\n'
                          )
-
 
 mass_intervals_file.close()
 supernovas_file.close()
