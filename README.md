@@ -1,6 +1,9 @@
 # Intergalactic
 
-Intergalactic is a model for chemical evolution of galaxies. 
+Intergalactic is a model for chemical evolution of galaxies.
+
+_Current status of the project: exploratory/undocumented/pre-alpha_
+
 It computes the contribution matrix of 15 elements:
 
 * H
@@ -24,7 +27,7 @@ It computes the contribution matrix of 15 elements:
 Intergalactic reads an initial params file where several options must be set:
 
 ```yaml
-input_params: 
+input_params:
   z: 0.0200
   lim_yields: GAV
   massive_yields: CLI
@@ -34,37 +37,66 @@ input_params:
   imf_m_up: 40
   alpha_bin_stars: 0.05
   sn_ia_selection: 3
-``` 
+```
 
 ## Credits
 
 Intergalactic is built upon a long list of previous works from different authors/papers, some of those are:
 
 __Evolution models:__
+
 Ferrini,1992,ApJ,387,138
+
 Portinari,1998,AA,334,505
+
 Renzini (1980)
-Mercedes Mollá 
-Marta Gavilán 
+
+Mercedes Mollá
+
+Marta Gavilán
+
 
 __Initial mass functions__
-Salpeter, 1955 
+
+Salpeter, 1955
+
 Miller, 1979
+
 Ferrini, 1998
+
 Starburst, 1999
+
 Kroupa, 2002
+
 Chabrier, 2003
+
 Maschberger, 2012
 
+
 __Solar abundances__
+
 Anders & Grevesse 1989,
+
 Grevesse & Sauval 1998,
+
 Asplund et al. 2005,
+
 Asplund et al. 2009,
+
 Heger 2010
 
+
 __Supernovas Ia contributions__
+
 Matteucci
+
 Tornambe
+
 Ruiz-Lapuente
+
 Kobayashi 09
+
+
+## License
+
+Copyright © 2019 Juanjo Bazán, released under the [MIT license](MIT-LICENSE.txt)
