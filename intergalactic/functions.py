@@ -28,10 +28,10 @@ def abundances(option, z):
     return abundandes_data[option](z)
 
 """
-Distribution function of the mass fraction of the secondary in binary systems/ SNI
+Distribution function of the mass fraction of the secondary in binary systems / SNI
 mu = Mass_secondary / Mass_binary_system
 From: Matteucci, F., & Greggio, L. 1986, A&A, 154, 279
-with gamma = 2 as Greggio, L., Renzini, A.: 1983a, Astron. Astrophys. 118, 217
+with Gamma = 2 as Greggio, L., Renzini, A.: 1983a, Astron. Astrophys. 118, 217
 """
 def secondary_mass_fraction(mu):
     gamma = 2.0
@@ -115,3 +115,21 @@ def sn_rate_ruiz_lapuente(t):
     f5 = 0.2e-12   * math.exp(-0.5 * ((logt - 9.58) / 0.17) ** 2)
     return((f1 + f2 + f3 + f4 + f5) * 1e9)
 
+"""
+Initial mass function for primary stars of binary systems
+"""
+def imf_binary_primary(m, imf):
+    b_inf = max(constants.BMIN, m)
+    b_sup = min(constants.BMAX, m * 2)
+    stm = (b_sup - b_inf) / (constants.NW - 1)
+    if stm <= 0 : return 0.0
+
+    imf_bin_1 = 0.0
+    for i in range(0, constants.NW):
+        binary_mass = b_inf + (i * stm)
+        imf_bin_1 += constants.W[i + 1] * \
+                     secondary_mass_fraction(1.0 - (m / binary_mass)) * \
+                     imf.for_mass(m) * \
+                     m / (binary_mass ** 2)
+
+    return imf_bin_1 * stm * constants.ALF
