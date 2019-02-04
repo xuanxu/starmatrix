@@ -120,7 +120,8 @@ Initial mass function for primary stars of binary systems
 """
 def imf_binary_primary(m, imf):
     b_inf = max(constants.BMIN, m)
-    b_sup = min(constants.BMAX, m * 2)
+    b_sup = min(constants.BMAX, 2 * m)
+
     stm = (b_sup - b_inf) / (constants.NW - 1)
     if stm <= 0 : return 0.0
 
@@ -129,11 +130,32 @@ def imf_binary_primary(m, imf):
         binary_mass = b_inf + (i * stm)
         imf_bin_1 += constants.W[i + 1] * \
                      secondary_mass_fraction(1.0 - (m / binary_mass)) * \
-                     imf.for_mass(m) * \
+                     imf.for_mass(binary_mass) * \
                      m / (binary_mass ** 2)
 
     return imf_bin_1 * stm * constants.ALF
 
+"""
+Initial mass function for secondary stars of binary systems
+Optionally ocurring Supernova I events
+"""
+def imf_binary_secondary(m, imf, SNI_events = False):
+    b_inf = max(constants.BMIN, 2 * m)
+    b_sup = constants.BMAX
+    if SNI_events : b_sup = min(constants.BMAX, constants.MSN2 + m)
+
+    stm = (b_sup - b_inf) / (constants.NW - 1)
+    if stm <= 0 : return 0.0
+
+    imf_bin_2 = 0.0
+    for i in range(0, constants.NW):
+        binary_mass = b_inf + (i * stm)
+        imf_bin_2 += constants.W[i + 1] * \
+                     secondary_mass_fraction(m / binary_mass) * \
+                     imf.for_mass(binary_mass) * \
+                     m / (binary_mass ** 2)
+
+    return imf_bin_2 * stm * constants.ALF
 
 """
 Initial mass function for normal stars plus primaries of binaries
