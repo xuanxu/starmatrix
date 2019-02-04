@@ -41,7 +41,6 @@ delt    = tsep / constants.LM2
 delt1   = constants.LBLK * delt
 lm1     = int(1 + (constants.LM2 * constants.TTOT) / (tsep * constants.LBLK))
 bmaxm   = constants.BMAX / 2
-umalf   = 1.0 - constants.ALF
 sw      = (constants.NW - 1) / sum(constants.W)
 w       = [i * sw for i in constants.W]
 
@@ -51,7 +50,6 @@ print("delt = " + str(delt))
 print("delt1 = " + str(delt1))
 print("lm1 = " + str(lm1))
 print("bmaxm = " + str(bmaxm))
-print("umalf = " + str(umalf))
 print("sw = " + str(sw))
 print("w = " + str(w))
 
