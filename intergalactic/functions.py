@@ -27,14 +27,21 @@ def abundances(option, z):
 
     return abundandes_data[option](z)
 
-def effe(rmu):
-    return constants.COSTFMU * rmu * constants.GAMMA
+"""
+Distribution function of the mass fraction of the secondary in binary systems/ SNI
+mu = Mass_secondary / Mass_binary_system
+From: Matteucci, F., & Greggio, L. 1986, A&A, 154, 279
+with gamma = 2 as Greggio, L., Renzini, A.: 1983a, Astron. Astrophys. 118, 217
+"""
+def secondary_mass_fraction(mu):
+    gamma = 2.0
+    return (2.0 ** (1.0 + gamma)) * (1.0 + gamma) * (mu ** gamma)
 
-def tau(emme, z):
-    if emme <= 0.15 : emme = 0.15
-    x = 1 / emme
+def mean_lifetime(stellar_m, z):
+    if stellar_m <= 0.15 : stellar_m = 0.15
+    x = 1 / stellar_m
 
-    if emme > 100:
+    if stellar_m > 100:
         ltau = 6.48
     elif z < 0.00025:
         ltau = 6.4976 + 11.103 * x - 20.424 * (x ** 2) + 18.792 * (x ** 3) - 6.1625 * (x ** 4)
@@ -51,11 +58,11 @@ def tau(emme, z):
 
     return (10 ** ltau) / 1.e9
 
-def emme(tau, z):
-    if tau > 15.13 : return None
-    if tau < 3.325e-3 : return 100
+def stellar_mass(lifetime, z):
+    if lifetime > 15.13 : return None
+    if lifetime < 3.325e-3 : return 100
 
-    ltau = 9 + math.log10(tau)
+    ltau = 9 + math.log10(lifetime)
     if ltau <= 6.48 : return 100
 
     ltau = min([ltau, 10.18])
@@ -73,19 +80,19 @@ def emme(tau, z):
 
     return value_in_interval(1 / x, [0.15, 100.0])
 
-def ennea(t):
+def supernovas_a_rate(t):
     if t <= 0 : return 0.0
     logt, b = math.log10(t), -1.4
     if logt > b : return 0.003252 * (logt - b)
     return 0.0
 
-def enneb(t):
+def supernovas_b_rate(t):
     if t <= 0 : return 0.0
     logt, b = min(math.log10(t), -0.1), -1.2
     if logt > b : return 0.02497 * (logt - b)
     return 0.0
 
-def etout(t):
+def total_energy_ejected(t):
     if t <= 0 : return 0.0
     tc = 5.3e-5
     if t > tc:

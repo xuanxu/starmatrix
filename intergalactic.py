@@ -2,7 +2,8 @@
 
 import json
 from intergalactic.functions import select_imf, abundances
-from intergalactic.functions import tau, effe, emme, ennea, enneb, etout
+from intergalactic.functions import mean_lifetime, stellar_mass, supernovas_a_rate, supernovas_b_rate
+from intergalactic.functions import secondary_mass_fraction, total_energy_ejected
 from intergalactic.functions import sn_rate_ruiz_lapuente, value_in_interval
 import intergalactic.constants as constants
 import intergalactic.settings as settings
@@ -35,7 +36,7 @@ print_params("Binaries info", {"Fraction": constants.ALF, "Gamma": constants.GAM
 
 #[TEMP] AUX VARIABLES
 imax1   = constants.IRID if constants.IC == 0 else constants.IMAX
-tsep    = tau(constants.MSEP, 0.02)
+tsep    = mean_lifetime(constants.MSEP, 0.02)
 delt    = tsep / constants.LM2
 delt1   = constants.LBLK * delt
 lm1     = int(1 + (constants.LM2 * constants.TTOT) / (tsep * constants.LBLK))
@@ -94,28 +95,28 @@ mass_intervals_file.write("\n".join([line_1, line_2]))
 supernovas_file = open("supernovas", "w")
 
 m_inf = settings["m_max"]
-t_sup = tau(settings["m_max"], settings["z"])
+t_sup = mean_lifetime(settings["m_max"], settings["z"])
 
 for interval in range(1, constants.LM2 + 1):
     m_sup = m_inf
-    m_inf = emme(delt * interval, settings["z"])
+    m_inf = stellar_mass(delt * interval, settings["z"])
     m_inf = value_in_interval(m_inf, [constants.MSEP, settings["m_max"]])
     mass_intervals_file.write('\n' + f'{m_sup:14.10f}  ' + f'{m_inf:14.10f}  ' + str(interval))
     mass_intervals.append([m_inf, m_sup])
 
     t_inf = t_sup
     t_sup = delt * interval
-    vna.append((ennea(t_sup) - ennea(t_inf)) * eta)
-    vnb.append((enneb(t_sup) - enneb(t_inf)) * eta)
+    vna.append((supernovas_a_rate(t_sup) - supernovas_a_rate(t_inf)) * eta)
+    vnb.append((supernovas_b_rate(t_sup) - supernovas_b_rate(t_inf)) * eta)
 
-    et.append(etout(t_sup) - etout(t_inf))
+    et.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
     sn_rate.append(cs * 0.5 * (sn_rate_ruiz_lapuente(t_sup) + sn_rate_ruiz_lapuente(t_inf)) * delt)
 
     supernovas_file.write(f'{interval}'.ljust(5)
                           + f'  {t_inf:.10f}'
                           + f'  {t_sup:.10f}'
-                          + f'  {ennea(t_inf):.10f}'
-                          + f'  {enneb(t_inf):.10f}'
+                          + f'  {supernovas_a_rate(t_inf):.10f}'
+                          + f'  {supernovas_b_rate(t_inf):.10f}'
                           + f'  {vna[interval - 1]:.10f}'
                           + f'  {vnb[interval - 1]:.10f}'
                           + f'  {sn_rate_ruiz_lapuente(t_inf):.10f}'
@@ -127,7 +128,7 @@ m_inf = constants.MSEP
 for interval in range(1, lm1 + 1):
     m_sup = m_inf
     t_inf = t_sup
-    m_inf = emme(delt1 * interval, settings["z"])
+    m_inf = stellar_mass(delt1 * interval, settings["z"])
     if m_inf >= constants.MSEP : m_inf = m_sup
     mass_intervals_file.write('\n' + f'{m_sup:14.10f}  ' + f'{m_inf:14.10f}  ' + str(interval))
     mass_intervals.append([m_inf, m_sup])
@@ -135,18 +136,18 @@ for interval in range(1, lm1 + 1):
     t_sup = delt1 * interval
     if t_sup <= t_inf : t_sup = t_inf
 
-    vna.append((ennea(t_sup) - ennea(t_inf)) * eta)
-    vnb.append((enneb(t_sup) - enneb(t_inf)) * eta)
+    vna.append((supernovas_a_rate(t_sup) - supernovas_a_rate(t_inf)) * eta)
+    vnb.append((supernovas_b_rate(t_sup) - supernovas_b_rate(t_inf)) * eta)
 
-    et.append(etout(t_sup) - etout(t_inf))
+    et.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
     sn_rate.append(cs * 0.5 * (sn_rate_ruiz_lapuente(t_sup) + sn_rate_ruiz_lapuente(t_inf)) * delt1)
 
     ii = constants.LM2 + interval
     supernovas_file.write(f'{ii}'.ljust(5)
                           + f'  {t_inf:.10f}'
                           + f'  {t_sup:.10f}'
-                          + f'  {ennea(t_inf):.10f}'
-                          + f'  {enneb(t_inf):.10f}'
+                          + f'  {supernovas_a_rate(t_inf):.10f}'
+                          + f'  {supernovas_b_rate(t_inf):.10f}'
                           + f'  {vna[ii - 1]:.10f}'
                           + f'  {vnb[ii - 1]:.10f}'
                           + f'  {sn_rate_ruiz_lapuente(t_inf):.10f}'
