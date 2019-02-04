@@ -133,3 +133,13 @@ def imf_binary_primary(m, imf):
                      m / (binary_mass ** 2)
 
     return imf_bin_1 * stm * constants.ALF
+
+
+"""
+Initial mass function for normal stars plus primaries of binaries
+"""
+def imf_plus_primaries(m, imf):
+    if constants.BMIN <= m <= constants.BMAX:
+        return imf.for_mass(m) * (1.0 - constants.ALF) + imf_binary_primary(m, imf)
+    else:
+        return imf.for_mass(m) + imf_binary_primary(m, imf)
