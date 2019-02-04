@@ -24,7 +24,3 @@ BMAX = 16.0   # Upper limit for binaries in Supernovas I
 ALF = 0.05    # Fraction of binaries                          
 GAMMA = 2.0   # Parameter for distribution of binaries                 
 TTOT = 13.25  # Total integration time in Gigayears
-
-# FROM AUX VARS
-COSTFMU = (1.0 + GAMMA) * 2.0 ** (1.0 + GAMMA)
-
