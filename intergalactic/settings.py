@@ -1,6 +1,7 @@
 """Default settings and initial parameters
 All the values set here can be overwritten by the user in the input file: params.json
 """
+from intergalactic import constants as constants
 
 default = {
     "z": 0.02,
@@ -11,5 +12,6 @@ default = {
     "imf": 2.35,
     "imf_mup": 40.0,
     "alpha_bin_stars": 0.05,
-    "sn_ia_selection": 3
+    "sn_ia_selection": 3,
+    "m_max": constants.MMAX
 }
