@@ -32,7 +32,7 @@ abundances = abundances(settings["sol_ab"], float(settings["z"]))
 elements=abundances.abundance()
 print_params("Solar abundances (%s)" % abundances.description(), elements)
 
-print_params("Binaries info", {"Fraction": constants.ALF, "Gamma": constants.GAMMA, "Total integration time": constants.TTOT})
+print_params("Binaries info", {"Fraction": constants.ALF, "Total integration time": constants.TTOT})
 
 #[TEMP] AUX VARIABLES
 imax1   = constants.IRID if constants.IC == 0 else constants.IMAX
