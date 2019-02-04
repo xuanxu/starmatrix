@@ -19,7 +19,7 @@ with open("params.json", "r") as params_file:
     input_params = json.load(params_file)
 
 settings = {**settings.default, **input_params}
-settings["m_max"] = constants.MMAX
+
 if settings["massive_yields"] in ["WOW", "CLI", "KOB"]:
     settings["m_max"] = settings["imf_m_up"]
 
@@ -70,7 +70,7 @@ eta = cs * stm * eta
 print("eta = " + str(eta))
 
 
-# Read ejected masses file. By mass (1st column) 
+# Read ejected masses file. By mass (1st column)
 ejected_elements_names = ["h", "d", "he3", "he4", "c12", "o16", "n14p", "c13", "n.r.", "ne", "mg", "si", "s", "ca", "fe", "remanents", "c13s", "n14s"]
 ejected_masses = {}
 ejected_data = open("expelled_elements", "r")
