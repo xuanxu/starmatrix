@@ -15,7 +15,7 @@ and a way to define new functions subclassing IMF
 import math
 
 class IMF:
-    def __init__(self, params):
+    def __init__(self, params = {}):
         self.params = params
         self.set_params()
 
