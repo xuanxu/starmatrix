@@ -2,11 +2,13 @@ from bisect import bisect
 
 class Expelled:
 
-    element_list = ["h", "d", "he3", "he4", "c12", "o16", "n14p", "c13", "n.r.", "ne", "mg", "si", "s", "ca", "fe", "remnants", "c13s", "n14s"]
+    element_list = ["h", "d", "he3", "he4", "c12", "o16",
+                    "n14p", "c13", "n.r.", "ne", "mg", "si",
+                    "s", "ca", "fe", "remnants", "c13s", "n14s"]
     mass_points = []
     by_mass = {}
 
-    def __init__(self, expelled_elements_filename):
+    def __init__(self, expelled_elements_filename = "expelled_elements"):
         self.read_expelled_elements_file(expelled_elements_filename)
 
     def read_expelled_elements_file(self, filename):
