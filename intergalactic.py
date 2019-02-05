@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
 import yaml
+import intergalactic.constants as constants
+import intergalactic.settings as settings
+import intergalactic.elements as elements
 from intergalactic.functions import select_imf, abundances
 from intergalactic.functions import mean_lifetime, stellar_mass, supernovas_a_rate, supernovas_b_rate
 from intergalactic.functions import secondary_mass_fraction, total_energy_ejected
 from intergalactic.functions import sn_rate_ruiz_lapuente, value_in_interval
-import intergalactic.constants as constants
-import intergalactic.settings as settings
-import intergalactic.elements as elements
 
 def print_params(name, p):
   print("%s:"%name)
@@ -67,7 +67,7 @@ for i in range(0, constants.NW):
 eta = cs * stm * eta
 print("eta = " + str(eta))
 
-print(elements.Expelled().for_mass(62))
+print_params("Expelled elements for m=62", elements.Expelled().for_mass(62))
 
 
 # Explosive nucleosynthesis:
