@@ -7,6 +7,7 @@ from intergalactic.functions import secondary_mass_fraction, total_energy_ejecte
 from intergalactic.functions import sn_rate_ruiz_lapuente, value_in_interval
 import intergalactic.constants as constants
 import intergalactic.settings as settings
+import intergalactic.elements as elements
 
 def print_params(name, p):
   print("%s:"%name)
@@ -28,8 +29,8 @@ initial_mass_function = select_imf(settings["imf"], settings)
 print_params("IMF", {"initial_mass_function": initial_mass_function.description()})
 
 abundances = abundances(settings["sol_ab"], float(settings["z"]))
-elements=abundances.abundance()
-print_params("Solar abundances (%s)" % abundances.description(), elements)
+abundance=abundances.abundance()
+print_params("Solar abundances (%s)" % abundances.description(), abundance)
 
 print_params("Binaries info", {"Fraction": constants.ALF, "Total integration time": constants.TTOT})
 
@@ -68,17 +69,9 @@ print("eta = " + str(eta))
 
 
 # Read ejected masses file. By mass (1st column)
-ejected_elements_names = ["h", "d", "he3", "he4", "c12", "o16", "n14p", "c13", "n.r.", "ne", "mg", "si", "s", "ca", "fe", "remnants", "c13s", "n14s"]
-ejected_masses = {}
-ejected_data = open("expelled_elements", "r")
-for line in ejected_data:
-    data_row = [float(data) for data in line.split()]
-    data_row = [0.0 if data < 0 else data for data in data_row]
-    mass = data_row.pop(0) # the first column is the mass
-
-    ejected_masses[mass] = dict(zip(ejected_elements_names, data_row))
-ejected_data.close()
-#print_params("Ejected masses", ejected_masses)
+expelled = elements.Expelled("expelled_elements")
+#print_params("Ejected masses", expelled.by_mass)
+print(expelled.for_mass(62))
 
 
 # Explosive nucleosynthesis:
