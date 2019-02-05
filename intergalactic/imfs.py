@@ -21,6 +21,7 @@ class IMF:
 
     def for_mass(self, m):
         self.m = m
+        if m <= 0 : return 0.0
         return self.imf()
 
     def logm(self):
