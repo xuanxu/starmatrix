@@ -12,7 +12,7 @@ def print_params(name, p):
   #print("**********************************")
   print("%s:"%name)
   for param in p:
-    print("   " + str(param) + " = " + str(p[param])[:80])
+    print("   " + str(param) + " = " + str(p[param]))
   print("**********************************")
 
 with open("params.json", "r") as params_file:
@@ -69,7 +69,7 @@ print("eta = " + str(eta))
 
 
 # Read ejected masses file. By mass (1st column)
-ejected_elements_names = ["h", "d", "he3", "he4", "c12", "o16", "n14p", "c13", "n.r.", "ne", "mg", "si", "s", "ca", "fe", "remanents", "c13s", "n14s"]
+ejected_elements_names = ["h", "d", "he3", "he4", "c12", "o16", "n14p", "c13", "n.r.", "ne", "mg", "si", "s", "ca", "fe", "remnants", "c13s", "n14s"]
 ejected_masses = {}
 ejected_data = open("expelled_elements", "r")
 for line in ejected_data:
