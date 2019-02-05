@@ -23,16 +23,15 @@
 #                     4 = SNIa Kobayashi09
 #                   ]
 
-input_params: 
-  z: 0.02
-  lim_yields: GAV
-  massive_yields: CLI
-  sol_ab: ag89
-  fe_coef: 1
-  imf: kroupa
-  imf_alpha: 2.35
-  imf_m_up: 40
-  alpha_bin_stars: 0.05
-  sn_ia_selection: 3
+z: 0.02
+lim_yields: GAV
+massive_yields: CLI
+sol_ab: ag89
+fe_coef: 1
+imf: kroupa
+imf_alpha: 2.35
+imf_m_up: 40
+alpha_bin_stars: 0.05
+sn_ia_selection: 3
 
 

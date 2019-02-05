@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import json
+import yaml
 from intergalactic.functions import select_imf, abundances
 from intergalactic.functions import mean_lifetime, stellar_mass, supernovas_a_rate, supernovas_b_rate
 from intergalactic.functions import secondary_mass_fraction, total_energy_ejected
@@ -15,8 +15,8 @@ def print_params(name, p):
     print("   " + str(param) + " = " + str(p[param]))
   print("**********************************")
 
-with open("params.json", "r") as params_file:
-    input_params = json.load(params_file)
+with open("params.yml", "r") as params_file:
+    input_params = yaml.load(params_file)
 
 settings = {**settings.default, **input_params}
 

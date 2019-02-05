@@ -10,7 +10,7 @@ default = {
     "sol_ab": "ag89",
     "fe_coef": 1,
     "imf": 2.35,
-    "imf_mup": 40.0,
+    "imf_m_up": 40.0,
     "alpha_bin_stars": 0.05,
     "sn_ia_selection": 3,
     "m_max": constants.MMAX
