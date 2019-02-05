@@ -3,6 +3,7 @@ import math
 from intergalactic.imfs import Chabrier, Ferrini, Salpeter, Kroupa, MillerScalo, Maschberger, Starburst
 from intergalactic.abundances import AndersGrevesse1989, GrevesseSauval1998, Asplund2005, Asplund2009, Heger2010
 import intergalactic.constants as constants
+import intergalactic.elements as elements
 
 def select_imf(name, params = {}):
     imfs = {
@@ -119,6 +120,7 @@ def sn_rate_ruiz_lapuente(t):
 Initial mass function for primary stars of binary systems
 """
 def imf_binary_primary(m, imf):
+    if m <= 0 : return 0.0
     b_inf = max(constants.BMIN, m)
     b_sup = min(constants.BMAX, 2 * m)
 
@@ -140,6 +142,7 @@ Initial mass function for secondary stars of binary systems
 Optionally ocurring Supernova I events
 """
 def imf_binary_secondary(m, imf, SNI_events = False):
+    if m <= 0 : return 0.0
     b_inf = max(constants.BMIN, 2 * m)
     b_sup = constants.BMAX
     if SNI_events : b_sup = min(constants.BMAX, constants.MSN2 + m)
@@ -158,6 +161,30 @@ def imf_binary_secondary(m, imf, SNI_events = False):
     return imf_bin_2 * stm * constants.ALF
 
 """
+Initial mass function of remnants of primaries
+as a function of mass of the secondaries
+"""
+def imf_remnants(m, imf):
+    if m <= 0 : return 0.0
+    b_inf = max(constants.BMIN, 2 * m)
+    b_sup = min(constants.BMAX, constants.MSN2 + m)
+
+    stm = (b_sup - b_inf) / (constants.NW - 1)
+    if stm <= 0 : return 0.0
+
+    imf_remn = 0.0
+    for i in range(0, constants.NW):
+        binary_mass = b_inf + (i * stm)
+        expelled = elements.Expelled().for_mass(binary_mass - m)
+        imf_remn += constants.W[i + 1] * \
+                     secondary_mass_fraction(m / binary_mass) * \
+                     imf.for_mass(binary_mass) * \
+                     expelled["remnants"] * \
+                     (binary_mass - m) / (binary_mass ** 2)
+
+    return imf_remn * stm * constants.ALF
+
+"""
 Initial mass function for normal stars plus primaries of binaries
 """
 def imf_plus_primaries(m, imf):
@@ -165,3 +192,4 @@ def imf_plus_primaries(m, imf):
         return imf.for_mass(m) * (1.0 - constants.ALF) + imf_binary_primary(m, imf)
     else:
         return imf.for_mass(m) + imf_binary_primary(m, imf)
+
