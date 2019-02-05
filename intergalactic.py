@@ -9,14 +9,13 @@ import intergalactic.constants as constants
 import intergalactic.settings as settings
 
 def print_params(name, p):
-  #print("**********************************")
   print("%s:"%name)
   for param in p:
     print("   " + str(param) + " = " + str(p[param]))
   print("**********************************")
 
 with open("params.yml", "r") as params_file:
-    input_params = yaml.load(params_file)
+    input_params = yaml.safe_load(params_file)
 
 settings = {**settings.default, **input_params}
 
