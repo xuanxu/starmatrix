@@ -67,11 +67,7 @@ for i in range(0, constants.NW):
 eta = cs * stm * eta
 print("eta = " + str(eta))
 
-
-# Read ejected masses file. By mass (1st column)
-expelled = elements.Expelled("expelled_elements")
-#print_params("Ejected masses", expelled.by_mass)
-print(expelled.for_mass(62))
+print(elements.Expelled().for_mass(62))
 
 
 # Explosive nucleosynthesis:
