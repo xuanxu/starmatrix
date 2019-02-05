@@ -1,11 +1,11 @@
-# imf = [ 
-#        < 1000 = Salpeter, 
-#          1979 = Miller,
-#          1998 = Ferrini,
-#          1999 = Starburst,
-#          2002 = Kroupa,
-#          2003 = Chabrier,
-#          2012 = Maschberger 
+# imf = [
+#         salpeter     = Salpeter 1955,
+#         chabrier     = Chabrier 2003,
+#         ferrini      = Ferrini, Palla & Penco 1998,
+#         kroupa       = Kroupa 2002,
+#         miller_scalo = Miller & Scalo 1979,
+#         starburst    = Starburst 1999,
+#         maschberger  = Maschberger 2012
 #       ]
 
 # sol_ab = [
@@ -16,7 +16,7 @@
 #            he10 = Heger 2010
 #          ]
 
-# sn_ia_selection = [ 
+# sn_ia_selection = [
 #                     1 = SNIa Matteucci
 #                     2 = SNIa Tornambe
 #                     3 = SNIa Ruiz-Lapuente
@@ -33,5 +33,3 @@ imf_alpha: 2.35
 imf_m_up: 40
 alpha_bin_stars: 0.05
 sn_ia_selection: 3
-
-
