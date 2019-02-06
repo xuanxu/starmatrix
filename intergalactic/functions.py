@@ -28,13 +28,13 @@ def abundances(option, z):
 
     return abundandes_data[option](z)
 
-"""
-Distribution function of the mass fraction of the secondary in binary systems / SNI
-mu = Mass_secondary / Mass_binary_system
-From: Matteucci, F., & Greggio, L. 1986, A&A, 154, 279
-with Gamma = 2 as Greggio, L., Renzini, A.: 1983a, Astron. Astrophys. 118, 217
-"""
 def secondary_mass_fraction(mu):
+    """
+    Distribution function of the mass fraction of the secondary in binary systems / SNI
+    mu = Mass_secondary / Mass_binary_system
+    From: Matteucci, F., & Greggio, L. 1986, A&A, 154, 279
+    with Gamma = 2 as Greggio, L., Renzini, A.: 1983a, Astron. Astrophys. 118, 217
+    """
     gamma = 2.0
     return (2.0 ** (1.0 + gamma)) * (1.0 + gamma) * (mu ** gamma)
 
@@ -116,10 +116,10 @@ def sn_rate_ruiz_lapuente(t):
     f5 = 0.2e-12   * math.exp(-0.5 * ((logt - 9.58) / 0.17) ** 2)
     return((f1 + f2 + f3 + f4 + f5) * 1e9)
 
-"""
-Initial mass function for primary stars of binary systems
-"""
 def imf_binary_primary(m, imf):
+    """
+    Initial mass function for primary stars of binary systems
+    """
     if m <= 0 : return 0.0
     b_inf = max(constants.BMIN, m)
     b_sup = min(constants.BMAX, 2 * m)
@@ -137,11 +137,11 @@ def imf_binary_primary(m, imf):
 
     return imf_bin_1 * stm * constants.ALF
 
-"""
-Initial mass function for secondary stars of binary systems
-Optionally ocurring Supernova I events
-"""
 def imf_binary_secondary(m, imf, SNI_events = False):
+    """
+    Initial mass function for secondary stars of binary systems
+    Optionally ocurring Supernova I events
+    """
     if m <= 0 : return 0.0
     b_inf = max(constants.BMIN, 2 * m)
     b_sup = constants.BMAX
@@ -160,11 +160,12 @@ def imf_binary_secondary(m, imf, SNI_events = False):
 
     return imf_bin_2 * stm * constants.ALF
 
-"""
-Initial mass function of remnants of primaries
-as a function of mass of the secondaries
-"""
+
 def imf_remnants(m, imf):
+    """
+    Initial mass function of remnants of primaries
+    as a function of mass of the secondaries
+    """
     if m <= 0 : return 0.0
     b_inf = max(constants.BMIN, 2 * m)
     b_sup = min(constants.BMAX, constants.MSN2 + m)
@@ -184,10 +185,10 @@ def imf_remnants(m, imf):
 
     return imf_remn * stm * constants.ALF
 
-"""
-Initial mass function for normal stars plus primaries of binaries
-"""
 def imf_plus_primaries(m, imf):
+    """
+    Initial mass function for normal stars plus primaries of binaries
+    """
     if constants.BMIN <= m <= constants.BMAX:
         return imf.for_mass(m) * (1.0 - constants.ALF) + imf_binary_primary(m, imf)
     else:
