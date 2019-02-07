@@ -4,7 +4,7 @@ import yaml
 import intergalactic.constants as constants
 import intergalactic.settings as settings
 import intergalactic.elements as elements
-from intergalactic.functions import select_imf, abundances
+from intergalactic.functions import select_imf, select_abundances
 from intergalactic.functions import mean_lifetime, stellar_mass, supernovas_a_rate, supernovas_b_rate
 from intergalactic.functions import secondary_mass_fraction, total_energy_ejected
 from intergalactic.functions import sn_rate_ruiz_lapuente, value_in_interval
@@ -28,7 +28,7 @@ print_params("Settings", settings)
 initial_mass_function = select_imf(settings["imf"], settings)
 print_params("IMF", {"initial_mass_function": initial_mass_function.description()})
 
-abundances = abundances(settings["sol_ab"], float(settings["z"]))
+abundances = select_abundances(settings["sol_ab"], float(settings["z"]))
 abundance=abundances.abundance()
 print_params("Solar abundances (%s)" % abundances.description(), abundance)
 

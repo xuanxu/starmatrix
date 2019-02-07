@@ -1,6 +1,10 @@
-"""Default settings and initial parameters
-All the values set here can be overwritten by the user in the input file: params.json
 """
+Default settings and initial parameters
+
+All the values set here can be overwritten via the input file: params.yml
+
+"""
+
 from intergalactic import constants as constants
 
 default = {

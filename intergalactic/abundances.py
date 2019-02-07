@@ -1,4 +1,5 @@
-"""Initial Mass Functions
+"""
+Chemical Abundances
 
 Contains solar abundances from different papers/authors:
 
@@ -9,7 +10,9 @@ Contains solar abundances from different papers/authors:
 * Heger 2010
 
 and a way to define new abundances subclassing Abundances
+
 """
+
 import math
 
 class Abundances:
@@ -24,7 +27,7 @@ class Abundances:
             return -20
         else:
             return self.feh_z_non_zero()
-    
+
     def abundance(self):
         return {
             "H":   self.h(),
@@ -42,6 +45,7 @@ class Abundances:
             "Ca":  self.elements()["Ca"] * (10 ** self.feh()),
             "Fe":  self.elements()["Fe"] * (10 ** self.feh())
         }
+
 
 class AndersGrevesse1989(Abundances):
     def h(self):
@@ -201,4 +205,3 @@ class Heger2010(Abundances):
 
     def description(self):
         return "Heger 2010"
-

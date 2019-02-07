@@ -1,4 +1,5 @@
-"""Initial Mass Functions
+"""
+Initial Mass Functions
 
 Contains some predefined IMFs from different papers/authors:
 
@@ -11,6 +12,7 @@ Contains some predefined IMFs from different papers/authors:
 * Maschberger 2012
 
 and a way to define new functions subclassing IMF
+
 """
 import math
 
@@ -138,4 +140,3 @@ class Maschberger(IMF):
 
     def description(self):
         return "IMF from Maschberger 2012"
-
