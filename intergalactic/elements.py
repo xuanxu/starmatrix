@@ -20,8 +20,8 @@ class Expelled:
             - 2nd to 19th columns: expelled mass of element i
                 where i is in this list:
                 ["H", "D", "He3", "He4", "C12", "O16",
-                 "N14p", "C13", "n.r.", "Ne", "Mg", "Si",
-                 "S", "Ca", "Fe", "remnants", "C13s", "N14s"]
+                 "N14primary", "C13", "n.r.", "Ne", "Mg", "Si",
+                 "S", "Ca", "Fe", "remnants", "C13secondary", "N14secondary"]
 
         """
 

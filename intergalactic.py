@@ -4,6 +4,7 @@ import yaml
 import intergalactic.constants as constants
 import intergalactic.settings as settings
 import intergalactic.elements as elements
+import intergalactic.matrix as matrix
 from intergalactic.functions import select_imf, select_abundances
 from intergalactic.functions import mean_lifetime, stellar_mass, supernovas_a_rate, supernovas_b_rate
 from intergalactic.functions import secondary_mass_fraction, total_energy_ejected
@@ -29,8 +30,8 @@ initial_mass_function = select_imf(settings["imf"], settings)
 print_params("IMF", {"initial_mass_function": initial_mass_function.description()})
 
 abundances = select_abundances(settings["sol_ab"], float(settings["z"]))
-abundance=abundances.abundance()
-print_params("Solar abundances (%s)" % abundances.description(), abundance)
+settings["abundances"] = abundances.abundance()
+print_params("Solar abundances (%s)" % abundances.description(), settings["abundances"])
 
 print_params("Binaries info", {"Fraction": constants.ALF, "Total integration time": constants.TTOT})
 
@@ -143,3 +144,7 @@ for interval in range(1, lm1 + 1):
 
 mass_intervals_file.close()
 supernovas_file.close()
+
+
+settings["expelled"] = elements.Expelled()
+matrix.q(8, settings)
