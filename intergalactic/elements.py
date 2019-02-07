@@ -12,6 +12,19 @@ class Expelled:
         self.read_expelled_elements_file(expelled_elements_filename)
 
     def read_expelled_elements_file(self, filename):
+        """
+        Reads a file of expelled elements per stellar mass.
+        The file should inclñude a row of data for each stellar mass.
+        Structure of each row should be:
+            - First column: stellar mass
+            - 2nd to 19th columns: expelled mass of element i
+                where i is in this list:
+                ["h", "d", "he3", "he4", "c12", "o16",
+                 "n14p", "c13", "n.r.", "ne", "mg", "si",
+                 "s", "ca", "fe", "remnants", "c13s", "n14s"]
+
+        """
+
         expelled_data = open(filename, "r")
 
         for line in expelled_data:
@@ -23,6 +36,12 @@ class Expelled:
         expelled_data.close()
 
     def for_mass(self, m):
+        """
+        Interpolates expelled mass for all elements for a given stellar mass,
+        using the data from the class' expelled_elements input file.
+
+        """
+
         if m in self.mass_points : return self.by_mass[m]
 
         index = bisect(self.mass_points, m)
