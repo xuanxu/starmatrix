@@ -2,9 +2,9 @@ from bisect import bisect
 
 class Expelled:
 
-    element_list = ["h", "d", "he3", "he4", "c12", "o16",
-                    "n14p", "c13", "n.r.", "ne", "mg", "si",
-                    "s", "ca", "fe", "remnants", "c13s", "n14s"]
+    elements_list = ["H", "D", "He3", "He4", "C12", "O16",
+                    "N14p", "C13", "n.r.", "Ne", "Mg", "Si",
+                    "S", "Ca", "Fe", "remnants", "C13s", "N14s"]
     mass_points = []
     by_mass = {}
 
@@ -14,14 +14,14 @@ class Expelled:
     def read_expelled_elements_file(self, filename):
         """
         Reads a file of expelled elements per stellar mass.
-        The file should inclñude a row of data for each stellar mass.
+        The file should include a row of data for each stellar mass.
         Structure of each row should be:
             - First column: stellar mass
             - 2nd to 19th columns: expelled mass of element i
                 where i is in this list:
-                ["h", "d", "he3", "he4", "c12", "o16",
-                 "n14p", "c13", "n.r.", "ne", "mg", "si",
-                 "s", "ca", "fe", "remnants", "c13s", "n14s"]
+                ["H", "D", "He3", "He4", "C12", "O16",
+                 "N14p", "C13", "n.r.", "Ne", "Mg", "Si",
+                 "S", "Ca", "Fe", "remnants", "C13s", "N14s"]
 
         """
 
@@ -31,7 +31,7 @@ class Expelled:
             data_row = [max(0.0, float(data)) for data in line.split()]
             mass = data_row.pop(0) # the first column is the mass
             self.mass_points.append(mass)
-            self.by_mass[mass] = dict(zip(self.element_list, data_row))
+            self.by_mass[mass] = dict(zip(self.elements_list, data_row))
 
         expelled_data.close()
 
@@ -52,7 +52,7 @@ class Expelled:
 
         interpolations = {"mass": m}
         p = (mass_next - m) / (mass_next - mass_prev)
-        for element  in self.element_list:
+        for element  in self.elements_list:
             d = elements_next[element] - elements_prev[element]
             interpolations[element] = (elements_next[element] - (p * d) ) / m
 
