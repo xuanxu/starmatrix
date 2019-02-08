@@ -1,5 +1,6 @@
 import numpy as np
 import intergalactic.constants as constants
+import intergalactic.functions as functions
 import intergalactic.settings as settings
 import intergalactic.elements as elements
 
@@ -46,6 +47,8 @@ def q(m, settings = {}):
     new_metals_ejected = max(co_core - remnant, 0.0)
 
     fractional_abundances = {
+        "D":   0.0,
+        "He3": 0.0,
         "N":   0.0,
         "C":   0.0,
         "C13": 0.0,
@@ -98,3 +101,38 @@ def q(m, settings = {}):
                     (elements[element] - ((1 - remnant) * abundances[element])) /
                     (h_he * new_metals_ejected)
                 )
+
+    # Make sure all values are in [0, 1] and normalize:
+    for key, value in fractional_abundances.items():
+        fractional_abundances[key] = functions.value_in_interval(value, [0, 1])
+
+    total_abundances = sum(fractional_abundances.values())
+    if total_abundances > 1:
+        for key, value in fractional_abundances.items():
+            fractional_abundances[key] = value / total
+
+    # He3 core:
+    if m <= 3:
+        he3_core = he_core
+    elif 3 < m <= 8:
+        he3_core = 0.282 + 0.026 * m
+    elif 8 < m <= 15:
+        he3_core = 0.33 + 0.02 * m
+    elif 15 < m <= 25:
+        he3_core = 0.525 + 0.007 * m
+    elif 25 < m <= 50:
+        he3_core = 0.63 + 0.00288 * m
+    elif 50 < m:
+        he3_core = 0.73 + 0.0008 * m
+
+    # Omega He3:
+    if constants.MMIN <= m < 2:
+        w3 = -3.47 - (4 * m) + 7.79e-4
+    elif 2 <= m <= 3:
+        w3 = -4.43 - (5 * m) + 1.74e-4
+    elif 3 <= m <= 5:
+        w3 = -1.15 - (5 * m) + 7.53e-5
+    else:
+        w3 = 0
+
+    fractional_abundances["He3"] = w3 * (1 - remnant) / abundances["H"]
