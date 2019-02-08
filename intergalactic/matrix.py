@@ -30,6 +30,27 @@ def q(m, settings = {}):
     """
     Compute the Q Matrix of elements for a given mass
 
+    The element production matrix has this structure:
+        H  D  He3  He4  C12  O16  N14  C13  nr  Ne  Mg  Si  S  Ca  Fe
+    H
+    D
+    He3
+    He4
+    C12
+    O16
+    N14
+    C13
+    nr
+    Ne
+    Mg
+    Si
+    S
+    Ca
+    Fe
+
+    So element Q(1,1) (internally q(0,0) as numpy index starts at 0) is the H produced from H,
+    and Q(14,4) is the Calcium created from Helium 4.
+
     """
 
     q = np.zeros((15, 15))
@@ -136,3 +157,45 @@ def q(m, settings = {}):
         w3 = 0
 
     fractional_abundances["He3"] = w3 * (1 - remnant) / abundances["H"]
+
+    # Q(i,j) values:
+    q_1_1 = 1 - he_core - fractional_abundances["He3"]
+    q_1_2 = -0.5 * (1 - remnant)
+    q_3_1 = fractional_abundances["He3"]
+    q_3_2 = 1.5 * (1 - he3_core)
+    q_3_3 = 1 - he3_core
+    q_4_1 = he_core - co_core
+    q_4_2 = 1.5 * (he3_core - co_core)
+    q_4_3 = he3_core - co_core
+    q_4_4 = 1 - co_core
+    q_5_1 = fractional_abundances["C"] * new_metals_ejected
+    q_5_2 = 1.5 * q_5_1
+    q_6_1 = fractional_abundances["O"] * new_metals_ejected
+    q_6_2 = 1.5 * q_6_1
+    q_7_1 = fractional_abundances["N"] * new_metals_ejected
+    q_7_2 = 1.5 * q_7_1
+    q_8_1 = fractional_abundances["C13"] * new_metals_ejected
+    q_8_2 = 1.5 * q_8_1
+
+    q_9_5 = new_metals_ejected
+    q_9_9 = 1- remnant
+
+    q_10_1 = fractional_abundances["Ne"] * new_metals_ejected
+    q_10_2 = 1.5 * q_10_1
+    q_11_1 = fractional_abundances["Mg"] * new_metals_ejected
+    q_11_2 = 1.5 * q_11_1
+    q_12_1 = fractional_abundances["Si"] * new_metals_ejected
+    q_12_2 = 1.5 * q_12_1
+    q_13_1 = fractional_abundances["S"] * new_metals_ejected
+    q_13_2 = 1.5 * q_13_1
+    q_14_1 = fractional_abundances["Ca"] * new_metals_ejected
+    q_14_2 = 1.5 * q_14_1
+    q_15_1 = fractional_abundances["Fe"] * new_metals_ejected
+    q_15_2 = 1.5 * q_15_1
+
+    #C-N-O cycle:
+    q_5_5 = 1 - secondary_c13_core
+    q_6_6 = 1 - secondary_n_core
+    q_7_7 = 1 - co_core
+    q_7_5 = secondary_n_core - co_core
+    q_8_5 = secondary_c13_core - secondary_n_core
