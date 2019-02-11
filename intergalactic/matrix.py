@@ -197,9 +197,10 @@ def q(m, settings = {}):
     q[6, 4] = secondary_n_core - co_core
     q[7, 4] = secondary_c13_core - secondary_n_core
 
-    # No negative values allowed except for H-D:
+    # No negative values allowed except for H-D (q(0,1)):
     for i in range(0, 15):
         for j in range(0, 15):
-            if q[i, j] < 0.0 and (i != 0 and j != 1) : q[i, j] = 0.0
+            if q[i, j] <= 0.0 and (i != 0 and j != 1) : q[i, j] = 0.0
 
     return q
+
