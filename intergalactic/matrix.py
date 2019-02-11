@@ -159,43 +159,47 @@ def q(m, settings = {}):
     fractional_abundances["He3"] = w3 * (1 - remnant) / abundances["H"]
 
     # Q(i,j) values:
-    q_1_1 = 1 - he_core - fractional_abundances["He3"]
-    q_1_2 = -0.5 * (1 - remnant)
-    q_3_1 = fractional_abundances["He3"]
-    q_3_2 = 1.5 * (1 - he3_core)
-    q_3_3 = 1 - he3_core
-    q_4_1 = he_core - co_core
-    q_4_2 = 1.5 * (he3_core - co_core)
-    q_4_3 = he3_core - co_core
-    q_4_4 = 1 - co_core
-    q_5_1 = fractional_abundances["C"] * new_metals_ejected
-    q_5_2 = 1.5 * q_5_1
-    q_6_1 = fractional_abundances["O"] * new_metals_ejected
-    q_6_2 = 1.5 * q_6_1
-    q_7_1 = fractional_abundances["N"] * new_metals_ejected
-    q_7_2 = 1.5 * q_7_1
-    q_8_1 = fractional_abundances["C13"] * new_metals_ejected
-    q_8_2 = 1.5 * q_8_1
+    q[0, 0] = 1 - he_core - fractional_abundances["He3"]
+    q[0, 1] = -0.5 * (1 - remnant)
+    q[2, 0] = fractional_abundances["He3"]
+    q[2, 1] = 1.5 * (1 - he3_core)
+    q[2, 2] = 1 - he3_core
+    q[3, 0] = he_core - co_core
+    q[3, 1] = 1.5 * (he3_core - co_core)
+    q[3, 2] = he3_core - co_core
+    q[3, 3] = 1 - co_core
 
-    q_9_5 = new_metals_ejected
-    q_9_9 = 1- remnant
+    q[4, 0] = fractional_abundances["C"] * new_metals_ejected
+    q[5, 0] = fractional_abundances["O"] * new_metals_ejected
+    q[6, 0] = fractional_abundances["N"] * new_metals_ejected
+    q[7, 0] = fractional_abundances["C13"] * new_metals_ejected
 
-    q_10_1 = fractional_abundances["Ne"] * new_metals_ejected
-    q_10_2 = 1.5 * q_10_1
-    q_11_1 = fractional_abundances["Mg"] * new_metals_ejected
-    q_11_2 = 1.5 * q_11_1
-    q_12_1 = fractional_abundances["Si"] * new_metals_ejected
-    q_12_2 = 1.5 * q_12_1
-    q_13_1 = fractional_abundances["S"] * new_metals_ejected
-    q_13_2 = 1.5 * q_13_1
-    q_14_1 = fractional_abundances["Ca"] * new_metals_ejected
-    q_14_2 = 1.5 * q_14_1
-    q_15_1 = fractional_abundances["Fe"] * new_metals_ejected
-    q_15_2 = 1.5 * q_15_1
+    q[9, 0]  = fractional_abundances["Ne"] * new_metals_ejected
+    q[10, 0] = fractional_abundances["Mg"] * new_metals_ejected
+    q[11, 0] = fractional_abundances["Si"] * new_metals_ejected
+    q[12, 0] = fractional_abundances["S"] * new_metals_ejected
+    q[13, 0] = fractional_abundances["Ca"] * new_metals_ejected
+    q[14, 0] = fractional_abundances["Fe"] * new_metals_ejected
 
-    #C-N-O cycle:
-    q_5_5 = 1 - secondary_c13_core
-    q_6_6 = 1 - secondary_n_core
-    q_7_7 = 1 - co_core
-    q_7_5 = secondary_n_core - co_core
-    q_8_5 = secondary_c13_core - secondary_n_core
+    for i in [4, 5, 6, 7, 9, 10, 11, 12, 13, 14]:
+        q[i, 1] = 1.5 * q[i, 0]
+        q[i, 2] = q[i, 0]
+        q[i, 3] = q[i, 0]
+
+    # n.r.:
+    q[8][4] = new_metals_ejected
+    q[8][8] = 1 - remnant
+
+    # C-N-O cycle:
+    q[4, 4] = 1 - secondary_c13_core
+    q[5, 5] = 1 - secondary_n_core
+    q[6, 6] = 1 - co_core
+    q[6, 4] = secondary_n_core - co_core
+    q[7, 4] = secondary_c13_core - secondary_n_core
+
+    # No negative values allowed except for H-D:
+    for i in range(0, 15):
+        for j in range(0, 15):
+            if q[i, j] < 0.0 and (i != 0 and j != 1) : q[i, j] = 0.0
+
+    return q
