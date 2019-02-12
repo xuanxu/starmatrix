@@ -234,7 +234,7 @@ def q_sn(m, feh=0.0, sn_type="sn_ia"):
         for i in range(0, 4):
             q[q_index(element), i] = ejected[element]
 
-    # Remnants = Chandrasekhar limit - Ejected mass
+    # Remnants = Stellar mass - Ejected mass
     remnant = (m - sum(ejected.values())) / m
     remnant = functions.value_in_interval(remnant, [0.0, 1.0])
 
