@@ -17,12 +17,12 @@ Supernova Ib data source: Ferrini, F., Poggianti, B. 1993 ApJ 410, 44
 """
 
 sn_ejections_low_z = {
-    "sn_ia": dict(zip(sn_elements_list, [0.0, 0.051, 0.133, 0.0, 0.0, 0.00229, 0.0158, 0.142, 0.0914, 0.0181, 0.68])),
+    "sn_ia": dict(zip(sn_elements_list, [0.0, 0.0508, 0.133, 3.31e-8, 1.56e-9, 0.00229, 0.0158, 0.142, 0.0914, 0.0181, 0.68])),
     "sn_ib": dict(zip(sn_elements_list, [1.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3]))
 }
 
 sn_ejections_high_z = {
-    "sn_ia": dict(zip(sn_elements_list, [0.0, 0.0483, 0.143, 0.0, 0.0, 0.00202, 0.0085, 0.154, 0.0846, 0.0119, 0.626])),
+    "sn_ia": dict(zip(sn_elements_list, [0.0, 0.0483, 0.143, 1.16e-6, 1.40e-6, 0.00202, 0.0085, 0.154, 0.0846, 0.0119, 0.626])),
     "sn_ib": dict(zip(sn_elements_list, [1.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3]))
 }
 
