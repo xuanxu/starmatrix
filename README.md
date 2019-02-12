@@ -86,7 +86,11 @@ Asplund et al. 2009,
 Heger 2010
 
 
-__Supernovas Ia contributions__
+__Supernovae contributions__
+
+Iwamoto, K. et al. 1999 ApJ 125, 439
+
+Ferrini, F., Poggianti, B. 1993 ApJ 410, 44
 
 Matteucci
 

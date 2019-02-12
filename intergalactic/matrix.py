@@ -215,7 +215,7 @@ def q(m, settings = {}):
 def q_sn(m, feh=0.0, sn_type="sn_ia"):
     """
     Compute the Q Matrix of elements coming from Supernova events
-    Supernova's type can be specified and be one of: [sn_ia, sn_ib]
+    Supernovae type can be specified as one of: [sn_ia, sn_ib]
 
     """
 
