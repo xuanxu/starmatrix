@@ -1,12 +1,9 @@
 import numpy as np
 import intergalactic.constants as constants
 import intergalactic.functions as functions
-import intergalactic.settings as settings
-import intergalactic.elements as elements
 
 
-
-elements_list = ["H", "He4", "C", "O", "N", "Ne", "Mg", "Si", "S", "Ca", "Fe"]
+sn_elements_list = ["He4", "C", "O", "N", "C13", "Ne", "Mg", "Si", "S", "Ca", "Fe"]
 
 """
 Datasets of Supernova ejections for different metallicities:
@@ -14,21 +11,27 @@ There's a dataset for lower metallicities (Z=0.004, Z=0.0004)
 and another one for higher metalicity values (Z=0.008, Z=0.02 y Z= 0.0317).
 In both cases there's data for SN of Ia and Ib types.
 
+Supernova Ia data source: Iwamoto, K. et al. 1999 ApJ 125, 439
+Supernova Ib data source: Ferrini, F., Poggianti, B. 1993 ApJ 410, 44
+
 """
 
 sn_ejections_low_z = {
-    "sn_ia": dict(zip(elements_list, [0.0, 0.051, 0.133, 0.0, 0.0, 0.00229, 0.0158, 0.142, 0.0914, 0.0181, 0.68])),
-    "sn_ib": dict(zip(elements_list, [1.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3]))
+    "sn_ia": dict(zip(sn_elements_list, [0.0, 0.051, 0.133, 0.0, 0.0, 0.00229, 0.0158, 0.142, 0.0914, 0.0181, 0.68])),
+    "sn_ib": dict(zip(sn_elements_list, [1.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3]))
 }
 
 sn_ejections_high_z = {
-    "sn_ia": dict(zip(elements_list, [0.0, 0.0483, 0.143, 0.0, 0.0, 0.00202, 0.0085, 0.154, 0.0846, 0.0119, 0.626])),
-    "sn_ib": dict(zip(elements_list, [1.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3]))
+    "sn_ia": dict(zip(sn_elements_list, [0.0, 0.0483, 0.143, 0.0, 0.0, 0.00202, 0.0085, 0.154, 0.0846, 0.0119, 0.626])),
+    "sn_ib": dict(zip(sn_elements_list, [1.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3]))
 }
+
+def empty_q_matrix():
+    return np.zeros((15, 15))
 
 def q(m, settings = {}):
     """
-    Compute the Q Matrix of elements for a given mass
+    Compute the Q Matrix of elements for a given mass (without supernovas)
 
     The element production matrix has this structure:
         H  D  He3  He4  C12  O16  N14  C13  nr  Ne  Mg  Si  S  Ca  Fe
@@ -53,11 +56,11 @@ def q(m, settings = {}):
 
     """
 
-    q = np.zeros((15, 15))
+    q = empty_q_matrix()
     if m < constants.MMIN : return q
 
     z          = settings["z"]
-    abundances = settings["abundances"]
+    abundances = settings["abundances"].abundance()
     expelled   = settings["expelled"]
     elements = expelled.for_mass(m)
 
@@ -203,4 +206,3 @@ def q(m, settings = {}):
             if q[i, j] <= 0.0 and (i != 0 and j != 1) : q[i, j] = 0.0
 
     return q
-

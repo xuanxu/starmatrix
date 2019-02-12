@@ -30,8 +30,9 @@ initial_mass_function = select_imf(settings["imf"], settings)
 print_params("IMF", {"initial_mass_function": initial_mass_function.description()})
 
 abundances = select_abundances(settings["sol_ab"], float(settings["z"]))
-settings["abundances"] = abundances.abundance()
-print_params("Solar abundances (%s)" % abundances.description(), settings["abundances"])
+print_params("Solar abundances (%s)" % abundances.description(), abundances.abundance())
+settings["abundances"] = abundances
+
 
 print_params("Binaries info", {"Fraction": constants.ALF, "Total integration time": constants.TTOT})
 
@@ -147,4 +148,6 @@ supernovas_file.close()
 
 
 settings["expelled"] = elements.Expelled()
-matrix.q(8, settings)
+print(matrix.q(8, settings))
+
+print(matrix.q_sn(8, settings = settings))
