@@ -146,8 +146,11 @@ for interval in range(1, lm1 + 1):
 mass_intervals_file.close()
 supernovas_file.close()
 
-
 settings["expelled"] = elements.Expelled()
-print(matrix.q(8, settings))
 
-print(matrix.q_sn(8, settings = settings))
+q       = matrix.q(5, settings)
+# Chandrasekhar limit = 1.4
+q_sn_ia = matrix.q_sn(1.4, feh = settings["abundances"].feh())
+q_sn_ib = matrix.q_sn(1.4, feh = settings["abundances"].feh(), sn_type = "sn_ib")
+print("Q Matrix: ********************************")
+print(q + q_sn_ia + q_sn_ib)

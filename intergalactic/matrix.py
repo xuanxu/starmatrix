@@ -3,7 +3,7 @@ import intergalactic.constants as constants
 import intergalactic.functions as functions
 
 
-sn_elements_list = ["He4", "C", "O", "N", "C13", "Ne", "Mg", "Si", "S", "Ca", "Fe"]
+sn_elements_list = ["He4", "C12", "O16", "N14", "C13", "Ne", "Mg", "Si", "S", "Ca", "Fe"]
 
 """
 Datasets of Supernova ejections for different metallicities:
@@ -28,6 +28,10 @@ sn_ejections_high_z = {
 
 def empty_q_matrix():
     return np.zeros((15, 15))
+
+def q_index(element):
+    q_elements = ["H", "D", "He3", "He4", "C12", "O16", "N14", "C13", "nr", "Ne", "Mg", "Si", "S", "Ca", "Fe"]
+    return q_elements.index(element)
 
 def q(m, settings = {}):
     """
@@ -128,7 +132,7 @@ def q(m, settings = {}):
 
     # Make sure all values are in [0, 1] and normalize:
     for key, value in fractional_abundances.items():
-        fractional_abundances[key] = functions.value_in_interval(value, [0, 1])
+        fractional_abundances[key] = functions.value_in_interval(value, [0.0, 1.0])
 
     total_abundances = sum(fractional_abundances.values())
     if total_abundances > 1:
@@ -184,6 +188,7 @@ def q(m, settings = {}):
     q[13, 0] = fractional_abundances["Ca"] * new_metals_ejected
     q[14, 0] = fractional_abundances["Fe"] * new_metals_ejected
 
+    # C12  O16  N14  C13  Ne  Mg  Si  S  Ca  Fe
     for i in [4, 5, 6, 7, 9, 10, 11, 12, 13, 14]:
         q[i, 1] = 1.5 * q[i, 0]
         q[i, 2] = q[i, 0]
@@ -204,5 +209,37 @@ def q(m, settings = {}):
     for i in range(0, 15):
         for j in range(0, 15):
             if q[i, j] <= 0.0 and (i != 0 and j != 1) : q[i, j] = 0.0
+
+    return q
+
+def q_sn(m, feh=0.0, sn_type="sn_ia"):
+    """
+    Compute the Q Matrix of elements coming from Supernova events
+    Supernova's type can be specified and be one of: [sn_ia, sn_ib]
+
+    """
+
+    q = empty_q_matrix()
+    if m < constants.MMIN : return q
+
+    if feh < -0.3:
+        sn_ejections = sn_ejections_low_z[sn_type]
+    else:
+        sn_ejections = sn_ejections_high_z[sn_type]
+
+    den = 0.99 * m
+    ejected = dict(zip(sn_elements_list, [0.0 for i in range(11)]))
+    for element in sn_elements_list:
+        ejected[element] = sn_ejections[element] / den
+        for i in range(0, 4):
+            q[q_index(element), i] = ejected[element]
+
+    # Remnants = Chandrasekhar limit - Ejected mass
+    remnant = (m - sum(ejected.values())) / m
+    remnant = functions.value_in_interval(remnant, [0.0, 1.0])
+
+    # diagonal for [nr  Ne  Mg  Si  S  Ca  Fe]
+    for i in range(8, 15):
+        q[i, i] = 1.0 - remnant
 
     return q
