@@ -17,19 +17,14 @@
 #          ]
 
 # sn_ia_selection = [
-#                     1 = SNIa Matteucci
-#                     2 = SNIa Tornambe
-#                     3 = SNIa Ruiz-Lapuente
-#                     4 = SNIa Kobayashi09
+#                     matteucci = SNIa Matteucci
+#                     tornambe  = SNIa Tornambe
+#                     rlp = SNIa Ruiz-Lapuente
 #                   ]
 
 z: 0.02
-lim_yields: GAV
-massive_yields: CLI
 sol_ab: ag89
 fe_coef: 1
 imf: kroupa
-imf_alpha: 2.35
-imf_m_up: 40
 alpha_bin_stars: 0.05
-sn_ia_selection: 3
+sn_ia_selection: rlp

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import yaml
+import numpy as np
 import intergalactic.constants as constants
 import intergalactic.settings as settings
 import intergalactic.elements as elements
@@ -20,9 +21,6 @@ with open("params.yml", "r") as params_file:
     input_params = yaml.safe_load(params_file)
 
 settings = {**settings.default, **input_params}
-
-if settings["massive_yields"] in ["WOW", "CLI", "KOB"]:
-    settings["m_max"] = settings["imf_m_up"]
 
 print_params("Settings", settings)
 
@@ -61,7 +59,7 @@ print("w = " + str(w))
 eta = 0.0
 cs  = settings["alpha_bin_stars"]
 stm = (constants.BMAX - constants.BMIN) / (constants.NW - 1)
-# for 1=1:nw
+
 for i in range(0, constants.NW):
     bm = constants.BMIN + i * stm
     eta += w[i] * initial_mass_function.for_mass(bm) / bm
@@ -148,9 +146,7 @@ supernovas_file.close()
 
 settings["expelled"] = elements.Expelled()
 
-q       = matrix.q(5, settings)
 # Chandrasekhar limit = 1.4
-q_sn_ia = matrix.q_sn(1.4, feh = settings["abundances"].feh())
-q_sn_ib = matrix.q_sn(1.4, feh = settings["abundances"].feh(), sn_type = "sn_ib")
-print("Q Matrix: ********************************")
-print(q + q_sn_ia + q_sn_ib)
+feh = settings["abundances"].feh()
+q_sn_ia = matrix.q_sn(1.4, feh, sn_type = "sn_ia")
+q_sn_ib = matrix.q_sn(1.4, feh, sn_type = "sn_ib")
