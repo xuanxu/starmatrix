@@ -1,25 +1,25 @@
 # imf = [
-#         salpeter     = Salpeter 1955,
-#         chabrier     = Chabrier 2003,
-#         ferrini      = Ferrini, Palla & Penco 1998,
-#         kroupa       = Kroupa 2002,
-#         miller_scalo = Miller & Scalo 1979,
-#         starburst    = Starburst 1999,
+#         salpeter     = Salpeter 1955
+#         chabrier     = Chabrier 2003
+#         ferrini      = Ferrini, Palla & Penco 1998
+#         kroupa       = Kroupa 2002 (default)
+#         miller_scalo = Miller & Scalo 1979
+#         starburst    = Starburst 1999
 #         maschberger  = Maschberger 2012
 #       ]
 
 # sol_ab = [
-#            ag89 = Anders & Grevesse 1989,
-#            gs98 = Grevesse & Sauval 1998,
-#            as05 = Asplund et al. 2005,
-#            as09 = Asplund et al. 2009,
+#            ag89 = Anders & Grevesse 1989
+#            gs98 = Grevesse & Sauval 1998
+#            as05 = Asplund et al. 2005
+#            as09 = Asplund et al. 2009 (default)
 #            he10 = Heger 2010
 #          ]
 
 # sn_ia_selection = [
 #                     matteucci = SNIa Matteucci
 #                     tornambe  = SNIa Tornambe
-#                     rlp = SNIa Ruiz-Lapuente
+#                     rlp = SNIa Ruiz-Lapuente (default)
 #                   ]
 
 z: 0.02

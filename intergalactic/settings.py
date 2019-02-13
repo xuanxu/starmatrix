@@ -17,3 +17,21 @@ default = {
     "alpha_bin_stars": 0.05,
     "sn_ia_selection": "rlp"
 }
+
+
+valid_values = {
+    "imf": ["salpeter", "chabrier", "ferrini", "kroupa", "miller_scalo", "starburst", "maschberger"],
+    "sn_ia_selection": ["matteucci", "tornambe", "rlp"],
+    "sol_ab": ["ag89", "gs98", "as05", "as09", "he10"],
+}
+
+def validate(params):
+    params = {**default, **params}
+    for param in valid_values.keys():
+        if params[param] not in valid_values[param]:
+            print(f"Provided value for {param} is incorrect.")
+            print(f"  Valid values for {param} are: {valid_values[param]}")
+            print(f"  Using default value: {default[param]}")
+            params[param] = default[param]
+
+    return params

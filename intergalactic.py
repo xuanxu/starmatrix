@@ -5,6 +5,7 @@ import numpy as np
 import intergalactic.constants as constants
 import intergalactic.settings as settings
 import intergalactic.elements as elements
+import intergalactic.functions as functions
 import intergalactic.matrix as matrix
 from intergalactic.functions import select_imf, select_abundances
 from intergalactic.functions import mean_lifetime, stellar_mass, supernovas_a_rate, supernovas_b_rate
@@ -20,7 +21,7 @@ def print_params(name, p):
 with open("params.yml", "r") as params_file:
     input_params = yaml.safe_load(params_file)
 
-settings = {**settings.default, **input_params}
+settings = settings.validate(input_params)
 
 print_params("Settings", settings)
 

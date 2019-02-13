@@ -238,7 +238,7 @@ def q_sn(m, feh=0.0, sn_type="sn_ia"):
     remnant = (m - sum(ejected.values())) / m
     remnant = functions.value_in_interval(remnant, [0.0, 1.0])
 
-    # diagonal for [nr  Ne  Mg  Si  S  Ca  Fe]
+    # Diagonal for [nr  Ne  Mg  Si  S  Ca  Fe]
     for i in range(8, 15):
         q[i, i] = 1.0 - remnant
 
