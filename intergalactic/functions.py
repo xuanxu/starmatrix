@@ -3,7 +3,6 @@ import math
 from intergalactic.imfs import Chabrier, Ferrini, Salpeter, Kroupa, MillerScalo, Maschberger, Starburst
 from intergalactic.abundances import AndersGrevesse1989, GrevesseSauval1998, Asplund2005, Asplund2009, Heger2010
 import intergalactic.constants as constants
-import intergalactic.elements as elements
 
 def select_imf(name, params = {}):
     imfs = {
@@ -166,7 +165,7 @@ def imf_binary_secondary(m, imf, SNI_events = False):
 
     return imf_bin_2 * stm * constants.ALF
 
-def imf_remnants(m, imf):
+def imf_remnants(m, imf, expelled_data):
     """
     Initial mass function of remnants of primaries
     as a function of mass of the secondaries
@@ -183,7 +182,7 @@ def imf_remnants(m, imf):
     imf_remn = 0.0
     for i in range(0, constants.NW):
         binary_mass = b_inf + (i * stm)
-        expelled = elements.Expelled().for_mass(binary_mass - m)
+        expelled = expelled_data.for_mass(binary_mass - m)
         imf_remn += constants.W[i + 1] * \
                      secondary_mass_fraction(m / binary_mass) * \
                      imf.for_mass(binary_mass) * \
