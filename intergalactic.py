@@ -149,5 +149,53 @@ settings["expelled"] = elements.Expelled()
 
 # Chandrasekhar limit = 1.4
 feh = settings["abundances"].feh()
-q_sn_ia = matrix.q_sn(1.4, feh, sn_type = "sn_ia")
-q_sn_ib = matrix.q_sn(1.4, feh, sn_type = "sn_ib")
+q_sn_ia = matrix.q_sn(1.4, feh, sn_type = "sn_ia")[0:15, 0:9]
+q_sn_ib = matrix.q_sn(1.4, feh, sn_type = "sn_ib")[0:15, 0:9]
+
+def print_matrix_file(matrix):
+    pass
+
+for i in range(0, constants.LM2 + lm1):
+    m_inf, m_sup = mass_intervals[i]
+
+    mass_step = (m_sup - m_inf) / (constants.NW - 1)
+
+    q = np.zeros((imax1, constants.JMAX))
+
+    if m_sup <= constants.MMIN or mass_step == 0:
+        print_matrix_file(q)
+        continue
+
+    fik, fisik_a, fisiik = 0.0, 0.0, 0.0
+    vnak = 1e6 * vna[i]
+    vnbk = 1e6 * vnb[i]
+    etk  = 1e6 * et[i]
+    sn_ratek = 1e6 * sn_rate[i]
+
+    for ip in range(0, constants.NW):
+        m = m_inf +(mass_step * ip)
+        qm = matrix.q(m, settings)[0:15, 0:9]
+
+        # Initial mass functions:
+        f = 1e6 * w[ip] * mass_step
+        fm1 = f * functions.imf_plus_primaries(m, initial_mass_function)
+        fm12 = fm1 + f * functions.imf_binary_secondary(m, initial_mass_function, SNI_events = False)
+        fm2s = f * functions.imf_binary_secondary(m, initial_mass_function, SNI_events = True)
+        fmr = f * functions.imf_remnants(m, initial_mass_function, settings["expelled"])
+        fik += fm12
+        if m > constants.MSN2 : fisiik += fm1/m
+
+        if settings["sn_ia_selection"] == "matteucci":
+            fisik_a += fm2s/m
+            fisik_b = 0
+        elif settings["sn_ia_selection"] == "tornambe":
+            fisik_a = vnak
+            fisik_b = vnbk
+        elif settings["sn_ia_selection"] == "rlp":
+            fisik_a = sn_ratek
+            fisik_b = 0
+
+        q = q + fm12 * qm
+
+        if m < bmaxm:
+            q = q + fisik_a * q_sn_ia + fisik_b * q_sn_ib
