@@ -42,17 +42,15 @@ class Expelled:
 
         """
 
-        if m in self.mass_points : return self.by_mass[m]
-
         index = bisect(self.mass_points, m)
         mass_prev = self.mass_points[index - 1]
         mass_next = self.mass_points[index]
         elements_prev = self.by_mass[mass_prev]
         elements_next = self.by_mass[mass_next]
-
         interpolations = {"mass": m}
         p = (mass_next - m) / (mass_next - mass_prev)
-        for element  in self.elements_list:
+
+        for element in self.elements_list:
             d = elements_next[element] - elements_prev[element]
             interpolations[element] = (elements_next[element] - (p * d) ) / m
 
