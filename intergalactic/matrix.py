@@ -196,13 +196,22 @@ def q(m, settings = {}):
 
     # n.r.:
     q[8][4] = new_metals_ejected
-    q[8][8] = 1 - remnant
+    q[8][5] = new_metals_ejected
+    q[8][6] = new_metals_ejected
+    q[8][7] = new_metals_ejected
+
+    # Diagonal
+    for i in range(8, 15):
+        q[i][i] = 1 - remnant
 
     # C-N-O cycle:
     q[4, 4] = 1 - secondary_c13_core
     q[5, 5] = 1 - secondary_n_core
     q[6, 6] = 1 - co_core
+    q[7, 7] = 1 - secondary_n_core
     q[6, 4] = secondary_n_core - co_core
+    q[6, 5] = secondary_n_core - co_core
+    q[6, 7] = secondary_n_core - co_core
     q[7, 4] = secondary_c13_core - secondary_n_core
 
     # No negative values allowed except for H-D (q(0,1)):
