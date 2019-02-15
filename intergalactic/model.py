@@ -24,13 +24,13 @@ class Model:
         self.et = []
         self.sn_rate = []
 
-        self.imax1   = constants.IRID if constants.IC == 0 else constants.IMAX
-        self.tsep    = mean_lifetime(constants.MSEP, 0.02)
-        self.delt    = self.tsep / constants.LM2
-        self.delt1   = constants.LBLK * self.delt
-        self.lm1     = int(1 + (constants.LM2 * constants.TTOT) / (self.tsep * constants.LBLK))
-        self.bmaxm   = constants.BMAX / 2
         sw           = (constants.NW - 1) / sum(constants.W)
+        tsep         = mean_lifetime(constants.MSEP, 0.02)
+        self.imax1   = constants.IRID if constants.IC == 0 else constants.IMAX
+        self.delt    = tsep / constants.LM2
+        self.delt1   = constants.LBLK * self.delt
+        self.lm1     = int(1 + (constants.LM2 * constants.TTOT) / (tsep * constants.LBLK))
+        self.bmaxm   = constants.BMAX / 2
         self.w       = [i * sw for i in constants.W]
 
     def run(self):
@@ -45,7 +45,7 @@ class Model:
         q_sn_ia = matrix.q_sn(1.4, feh, sn_type = "sn_ia")[0:15, 0:9]
         q_sn_ib = matrix.q_sn(1.4, feh, sn_type = "sn_ib")[0:15, 0:9]
 
-        imf_sn_file = open(f"imf_supernova_rates", "w")
+        imf_sn_file = open(f"{self.context['output_dir']}/imf_supernova_rates", "w+")
         for i in range(0, constants.LM2 + self.lm1):
             m_inf, m_sup = self.mass_intervals[i]
             mass_step = (m_sup - m_inf) / (constants.NW - 1)
@@ -88,8 +88,6 @@ class Model:
                     if m < self.bmaxm:
                        q += (fisik_a * q_sn_ia) + (fisik_b * q_sn_ib)
 
-
-
             imf_sn_file.write(f'{fik:.4f}'
                               + f'  {fisiik:.4f}'
                               + f'  {fisik_a:.4f}'
@@ -101,7 +99,6 @@ class Model:
 
             self.write_matrix_file(m_inf, m_sup, q)
         imf_sn_file.close()
-
 
     def eta(self):
         # ETA Computation:  Proportion of stars with mass in [bmin, bmax] * alpha_bin_stars
@@ -117,7 +114,7 @@ class Model:
 
     def explosive_nucleosynthesis(self):
 
-        mass_intervals_file = open("mass_intervals", "w")
+        mass_intervals_file = open(f"{self.context['output_dir']}/mass_intervals", "w+")
         line_1 = " ".join([str(i) for i in [constants.LM2, constants.LBLK, self.lm1]])
         line_2 = " ".join([str(i) for i in [self.delt, self.lm1*self.delt1]])
         mass_intervals_file.write("\n".join([line_1, line_2]))
@@ -165,7 +162,7 @@ class Model:
         mass_intervals_file.close()
 
     def write_matrix_file(self, m_inf, m_sup, matrix):
-        matrix_file = open(f"q-matrices/q_{m_inf}_{m_sup}", "w")
+        matrix_file = open(f"{self.context['output_dir']}/q-matrices/q_{m_inf}_{m_sup}", "w+")
         with np.printoptions(suppress=True, linewidth=500):
             matrix_file.write(str(matrix))
         matrix_file.close()

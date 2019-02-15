@@ -15,7 +15,8 @@ default = {
     "imf_alpha": 2.35,
     "m_max": 100.0,
     "alpha_bin_stars": 0.05,
-    "sn_ia_selection": "rlp"
+    "sn_ia_selection": "rlp",
+    "output_dir": "results"
 }
 
 
