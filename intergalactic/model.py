@@ -122,8 +122,6 @@ class Model:
         line_2 = " ".join([str(i) for i in [self.delt, self.lm1*self.delt1]])
         mass_intervals_file.write("\n".join([line_1, line_2]))
 
-        supernovas_file = open("supernovas", "w")
-
         m_inf = self.context["m_max"]
         t_sup = mean_lifetime(self.context["m_max"], self.context["z"])
 
@@ -142,18 +140,6 @@ class Model:
             self.et.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
             self.sn_rate.append(self.context["alpha_bin_stars"] * 0.5 *
                 (sn_rate_ruiz_lapuente(t_sup) + sn_rate_ruiz_lapuente(t_inf)) * self.delt)
-
-            supernovas_file.write(f'{interval}'.ljust(5)
-                                  + f'  {t_inf:.10f}'
-                                  + f'  {t_sup:.10f}'
-                                  + f'  {supernovas_a_rate(t_inf):.10f}'
-                                  + f'  {supernovas_b_rate(t_inf):.10f}'
-                                  + f'  {self.vna[interval - 1]:.10f}'
-                                  + f'  {self.vnb[interval - 1]:.10f}'
-                                  + f'  {sn_rate_ruiz_lapuente(t_inf):.10f}'
-                                  + f'  {self.sn_rate[interval - 1]:.10f}'
-                                  + '\n'
-                                 )
 
         m_inf = constants.MSEP
         for interval in range(1, self.lm1 + 1):
@@ -175,20 +161,8 @@ class Model:
                 (sn_rate_ruiz_lapuente(t_sup) + sn_rate_ruiz_lapuente(t_inf)) * self.delt1)
 
             ii = constants.LM2 + interval
-            supernovas_file.write(f'{ii}'.ljust(5)
-                                  + f'  {t_inf:.10f}'
-                                  + f'  {t_sup:.10f}'
-                                  + f'  {supernovas_a_rate(t_inf):.10f}'
-                                  + f'  {supernovas_b_rate(t_inf):.10f}'
-                                  + f'  {self.vna[ii - 1]:.10f}'
-                                  + f'  {self.vnb[ii - 1]:.10f}'
-                                  + f'  {sn_rate_ruiz_lapuente(t_inf):.10f}'
-                                  + f'  {self.sn_rate[ii - 1]:.11f}'
-                                  + '\n'
-                                 )
 
         mass_intervals_file.close()
-        supernovas_file.close()
 
     def write_matrix_file(self, m_inf, m_sup, matrix):
         matrix_file = open(f"q-matrices/q_{m_inf}_{m_sup}", "w")
