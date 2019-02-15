@@ -13,7 +13,7 @@ default = {
     "fe_coef": 1,
     "imf": "kroupa",
     "imf_alpha": 2.35,
-    "m_max": constants.MMAX,
+    "m_max": 100.0,
     "alpha_bin_stars": 0.05,
     "sn_ia_selection": "rlp"
 }
@@ -23,6 +23,7 @@ valid_values = {
     "imf": ["salpeter", "chabrier", "ferrini", "kroupa", "miller_scalo", "starburst", "maschberger"],
     "sn_ia_selection": ["matteucci", "tornambe", "rlp"],
     "sol_ab": ["ag89", "gs98", "as05", "as09", "he10"],
+    "m_max": [40.0, 100.0]
 }
 
 def validate(params):

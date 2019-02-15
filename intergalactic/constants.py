@@ -3,7 +3,6 @@ IMAX = 15
 IRID = 10
 JMAX = 9
 IC = 0
-MMAX = 100.0
 MMIN = 0.8
 RM = 1.4
 BETA = 0.6
