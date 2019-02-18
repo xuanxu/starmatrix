@@ -104,7 +104,8 @@ def q(m, settings = {}):
     else:
         secondary_n_core = (
             (elements["N14s"] / (abundances["C"] + abundances["C13"] + abundances["O"])) -
-            ((1 - co_core) * abundances["N"] / (abundances["C"] + abundances["C13"] + abundances["O"]))
+            ((1 - co_core) * abundances["N"] / (abundances["C"] + abundances["C13"] + abundances["O"])) +
+            co_core
         )
         secondary_c13_core = (
             (elements["C13s"] / abundances["C"]) -
@@ -137,7 +138,7 @@ def q(m, settings = {}):
     total_abundances = sum(fractional_abundances.values())
     if total_abundances > 1:
         for key, value in fractional_abundances.items():
-            fractional_abundances[key] = value / total
+            fractional_abundances[key] = value / total_abundances
 
     # He3 core:
     if m <= 3:
@@ -155,13 +156,13 @@ def q(m, settings = {}):
 
     # Omega He3:
     if constants.MMIN <= m < 2:
-        w3 = -3.47 - (4 * m) + 7.79e-4
+        w3 = (-3.47e-4 * m) + 7.79e-4
     elif 2 <= m <= 3:
-        w3 = -4.43 - (5 * m) + 1.74e-4
+        w3 = (-4.43e-5 * m) + 1.74e-4
     elif 3 <= m <= 5:
-        w3 = -1.15 - (5 * m) + 7.53e-5
+        w3 = (-1.15e-5 * m) + 7.53e-5
     else:
-        w3 = 0
+        w3 = 0.
 
     fractional_abundances["He3"] = w3 * (1 - remnant) / abundances["H"]
 

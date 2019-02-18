@@ -18,7 +18,7 @@ class Expelled:
         Structure of each row should be:
             - First column: stellar mass
             - 2nd to 19th columns: expelled mass of element i
-                where i is in this list:
+                where i is in this ordered list:
                 ["H", "D", "He3", "He4", "C12", "O16",
                  "N14primary", "C13", "n.r.", "Ne", "Mg", "Si",
                  "S", "Ca", "Fe", "remnants", "C13secondary", "N14secondary"]
@@ -37,8 +37,8 @@ class Expelled:
 
     def for_mass(self, m):
         """
-        Interpolates expelled mass for all elements for a given stellar mass,
-        using the data from the class' expelled_elements input file.
+        Interpolates expelled mass (per solar mass) for all elements for a given
+        stellar mass, using the data from the class' expelled_elements input file.
 
         """
 
@@ -52,6 +52,6 @@ class Expelled:
 
         for element in self.elements_list:
             d = elements_next[element] - elements_prev[element]
-            interpolations[element] = (elements_next[element] - (p * d) ) / m
+            interpolations[element] = (elements_next[element] - (p * d)) / m
 
         return interpolations
