@@ -162,7 +162,6 @@ class Model:
         mass_intervals_file.close()
 
     def write_matrix_file(self, m_inf, m_sup, matrix):
-        matrix_file = open(f"{self.context['output_dir']}/q-matrices/q_{m_inf}_{m_sup}", "w+")
-        with np.printoptions(suppress=True, linewidth=500):
-            matrix_file.write(str(matrix))
-        matrix_file.close()
+        header = f"Q matrix for mass range: [{m_inf}, {m_sup}]"
+        file_name = f"{self.context['output_dir']}/q-matrices/q_{m_inf}_{m_sup}"
+        np.savetxt(file_name, matrix, fmt="%15.8f", header=header)
