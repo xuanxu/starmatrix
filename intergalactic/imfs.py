@@ -50,6 +50,13 @@ class Salpeter(IMF):
         return "IMF from Salpeter 1955"
 
 
+class Starburst(IMF):
+    def imf(self):
+        return self.m * (self.m**-2.35)/2.28707
+
+    def description(self):
+        return "IMF from Starburst 1999"
+
 
 class MillerScalo(IMF):
     def imf(self):
@@ -67,15 +74,6 @@ class Ferrini(IMF):
         return "IMF Ferrini, Palla & Penco 1998"
 
 
-
-class Starburst(IMF):
-    def imf(self):
-        return self.m * (self.m**-2.35)/2.28707
-
-    def description(self):
-        return "IMF from Starburst 1999"
-
-
 class Kroupa(IMF):
     def imf(self):
         if self.m >= 0.01 and self.m < 0.08:
@@ -85,7 +83,7 @@ class Kroupa(IMF):
         elif self.m >= 0.5 and self.m < 1.0:
             return self.m * 7.945 * 0.04 * (self.m ** -2.3)
         elif self.m >= 1:
-            return  self.m * 7.945 * 0.05 * (self.m ** -2.7)
+            return self.m * 7.945 * 0.04 * (self.m ** -2.7)
 
     def description(self):
         return "IMF from Kroupa 2002"
