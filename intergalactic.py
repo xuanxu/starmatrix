@@ -20,7 +20,6 @@ def create_output_folder(output_dir):
     shutil.rmtree(output_dir, ignore_errors=True)
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
-        os.makedirs(f"{output_dir}/q-matrices")
 
 
 settings = load_settings()

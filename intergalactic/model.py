@@ -43,6 +43,8 @@ class Model:
         q_sn_ib = matrix.q_sn(1.4, feh, sn_type = "sn_ib")[0:15, 0:9]
 
         imf_sn_file = open(f"{self.context['output_dir']}/imf_supernova_rates", "w+")
+        matrices_file =  open(f"{self.context['output_dir']}/qm-matrices", "w+")
+
         for i in range(0, constants.LM2 + self.lm1):
             m_inf, m_sup = self.mass_intervals[i]
             mass_step = (m_sup - m_inf) / (constants.NW - 1)
@@ -85,6 +87,7 @@ class Model:
                     if m < self.bmaxm:
                        q += (fisik_a * q_sn_ia) + (fisik_b * q_sn_ib)
 
+            np.savetxt(matrices_file, q, fmt="%15.8f", header=f"Q matrix for mass range: [{m_inf}, {m_sup}]")
             imf_sn_file.write(f'{fik:.4f}'
                               + f'  {fisiik:.4f}'
                               + f'  {fisik_a:.4f}'
@@ -94,7 +97,7 @@ class Model:
                               + '\n'
                              )
 
-            self.write_matrix_file(m_inf, m_sup, q)
+        matrices_file.close()
         imf_sn_file.close()
 
     def eta(self):
@@ -157,8 +160,3 @@ class Model:
             ii = constants.LM2 + interval
 
         mass_intervals_file.close()
-
-    def write_matrix_file(self, m_inf, m_sup, matrix):
-        header = f"Q matrix for mass range: [{m_inf}, {m_sup}]"
-        file_name = f"{self.context['output_dir']}/q-matrices/q_{m_inf}_{m_sup}"
-        np.savetxt(file_name, matrix, fmt="%15.8f", header=header)
