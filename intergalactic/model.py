@@ -25,7 +25,6 @@ class Model:
         self.sn_rates = []
 
         tsep         = mean_lifetime(constants.MSEP, 0.02)
-        self.imax1   = constants.IRID if constants.IC == 0 else constants.IMAX
         self.delt    = tsep / constants.LM2
         self.delt1   = constants.LBLK * self.delt
         self.lm1     = int(1 + (constants.LM2 * constants.TTOT) / (tsep * constants.LBLK))
@@ -48,7 +47,7 @@ class Model:
             m_inf, m_sup = self.mass_intervals[i]
             mass_step = (m_sup - m_inf) / (constants.NW - 1)
 
-            q = np.zeros((self.imax1, constants.JMAX))
+            q = np.zeros((constants.Q_MATRIX_ROWS, constants.Q_MATRIX_COLUMNS))
 
             fik, fisik_a, fisik_b, fisiik = 0.0, 0.0, 0.0, 0.0
             sn_a_rates_k = 1e6 * self.sn_a_rates[i]

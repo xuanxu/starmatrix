@@ -1,12 +1,9 @@
-#DEFINED IN COMPFQ14.F BLOCK DATA. MOVE OUT:
-IMAX = 15
-IRID = 10
-JMAX = 9
-IC = 0
-MMIN = 0.8
+Q_MATRIX_ROWS = 15
+Q_MATRIX_COLUMNS = 9
 NW = 7
-W = [41.0, 216.0, 27.0, 272.0, 27.0, 216.0, 41.0, 0.0, 0.0, 0.0]
-W_NW = [i * (NW - 1) / sum(W) for i in W]
+IMF_WEIGHTS = [41.0, 216.0, 27.0, 272.0, 27.0, 216.0, 41.0, 0.0, 0.0, 0.0]
+W_NW = [i * (NW - 1) / sum(IMF_WEIGHTS) for i in IMF_WEIGHTS]
+MMIN = 0.8
 
 # FROM PARGRA
 IC = 1
