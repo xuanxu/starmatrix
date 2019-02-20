@@ -24,7 +24,6 @@
 
 z: 0.02
 sol_ab: ag89
-fe_coef: 1
 imf: kroupa
 m_max: 40.0
 alpha_bin_stars: 0.05

@@ -28,15 +28,12 @@ Intergalactic reads an initial params file where several options must be set:
 
 ```yaml
 input_params:
-  z: 0.0200
-  lim_yields: GAV
-  massive_yields: CLI
-  sol_ab: ag89
-  fe_coef: 1
-  imf: 2002
-  imf_m_up: 40
-  alpha_bin_stars: 0.05
-  sn_ia_selection: 3
+  z: 0.0200               # metallicity
+  sol_ab: ag89            # solar abundances
+  imf: 2002               # initial mass function
+  m_max: 40               # max value for stellar mass
+  alpha_bin_stars: 0.05   # rate of binary stars
+  sn_ia_selection: rpl    # supernova imf
 ```
 
 ## Credits

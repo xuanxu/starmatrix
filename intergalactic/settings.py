@@ -10,7 +10,6 @@ from intergalactic import constants as constants
 default = {
     "z": 0.02,
     "sol_ab": "as09",
-    "fe_coef": 1,
     "imf": "kroupa",
     "imf_alpha": 2.35,
     "m_max": 100.0,
