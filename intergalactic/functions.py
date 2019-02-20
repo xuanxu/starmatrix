@@ -136,7 +136,7 @@ def imf_binary_primary(m, imf):
     imf_bin_1 = 0.0
     for i in range(0, constants.NW):
         binary_mass = b_inf + (i * stm)
-        imf_bin_1 += constants.W[i + 1] * \
+        imf_bin_1 += constants.W[i] * \
                      secondary_mass_fraction(1.0 - (m / binary_mass)) * \
                      imf.for_mass(binary_mass) * \
                      m / (binary_mass ** 2)
@@ -161,7 +161,7 @@ def imf_binary_secondary(m, imf, SNI_events = False):
     imf_bin_2 = 0.0
     for i in range(0, constants.NW):
         binary_mass = b_inf + (i * stm)
-        imf_bin_2 += constants.W[i + 1] * \
+        imf_bin_2 += constants.W[i] * \
                      secondary_mass_fraction(m / binary_mass) * \
                      imf.for_mass(binary_mass) * \
                      m / (binary_mass ** 2)
@@ -186,7 +186,7 @@ def imf_remnants(m, imf, expelled_data):
     for i in range(0, constants.NW):
         binary_mass = b_inf + (i * stm)
         expelled = expelled_data.for_mass(binary_mass - m)
-        imf_remn += constants.W[i + 1] * \
+        imf_remn += constants.W[i] * \
                      secondary_mass_fraction(m / binary_mass) * \
                      imf.for_mass(binary_mass) * \
                      expelled["remnants"] * \
