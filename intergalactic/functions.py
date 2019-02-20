@@ -48,7 +48,7 @@ def mean_lifetime(stellar_m, z):
     elif z < 0.00025:
         a = [6.4976, 11.103, -20.424, 18.792, -6.1625]
     elif 0.00025 <= z < 0.00126:
-        a = [6.4899, 11.327, -21.124, 19.818, -6.649]
+        a = [6.4899, 11.327, -21.124, 19.818, -6.6490]
     elif 0.00126 <= z < 0.0056:
         a = [6.4711, 11.776, -22.155, 21.184, -7.3164]
     elif 0.0056 <= z < 0.0126:
@@ -117,7 +117,7 @@ def sn_rate_ruiz_lapuente(t):
     f2 = 0.338e-11 * math.exp(-0.5 * ((logt - 7.9867) / 0.12489) ** 2)
     f3 = 0.115e-11 * math.exp(-0.5 * ((logt - 8.3477) / 0.14675) ** 2)
     f4 = 0.16e-11  * math.exp(-0.5 * ((logt - 9.08) / 0.23) ** 2)
-    f5 = 0.2e-12   * math.exp(-0.5 * ((logt - 9.58) / 0.17) ** 2)
+    f5 = 0.02e-11  * math.exp(-0.5 * ((logt - 9.58) / 0.17) ** 2)
     return((f1 + f2 + f3 + f4 + f5) * 1e9)
 
 def imf_binary_primary(m, imf):
@@ -187,10 +187,10 @@ def imf_remnants(m, imf, expelled_data):
         binary_mass = b_inf + (i * stm)
         expelled = expelled_data.for_mass(binary_mass - m)
         imf_remn += constants.W[i] * \
-                     secondary_mass_fraction(m / binary_mass) * \
-                     imf.for_mass(binary_mass) * \
-                     expelled["remnants"] * \
-                     (binary_mass - m) / (binary_mass ** 2)
+                    secondary_mass_fraction(m / binary_mass) * \
+                    imf.for_mass(binary_mass) * \
+                    expelled["remnants"] * \
+                    (binary_mass - m) / (binary_mass ** 2)
 
     return imf_remn * stm * constants.ALF
 

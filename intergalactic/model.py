@@ -19,10 +19,10 @@ class Model:
         self.context["expelled"] = elements.Expelled()
 
         self.mass_intervals = []
-        self.vna = []
-        self.vnb = []
-        self.et = []
-        self.sn_rate = []
+        self.sn_a_rates = []
+        self.sn_b_rates = []
+        self.energies = []
+        self.sn_rates = []
 
         sw           = (constants.NW - 1) / sum(constants.W)
         tsep         = mean_lifetime(constants.MSEP, 0.02)
@@ -53,10 +53,10 @@ class Model:
             q = np.zeros((self.imax1, constants.JMAX))
 
             fik, fisik_a, fisik_b, fisiik = 0.0, 0.0, 0.0, 0.0
-            vnak = 1e6 * self.vna[i]
-            vnbk = 1e6 * self.vnb[i]
-            etk  = 1e6 * self.et[i]
-            sn_ratek = 1e6 * self.sn_rate[i]
+            sn_a_rates_k = 1e6 * self.sn_a_rates[i]
+            sn_b_rates_k = 1e6 * self.sn_b_rates[i]
+            energies_k  = 1e6 * self.energies[i]
+            sn_rates_k = 1e6 * self.sn_rates[i]
 
             if m_sup > constants.MMIN and mass_step != 0:
 
@@ -77,10 +77,10 @@ class Model:
                         fisik_a += fm2s/m
                         fisik_b = 0
                     elif self.context["sn_ia_selection"] == "tornambe":
-                        fisik_a = vnak
-                        fisik_b = vnbk
+                        fisik_a = sn_a_rates_k
+                        fisik_b = sn_b_rates_k
                     elif self.context["sn_ia_selection"] == "rlp":
-                        fisik_a = sn_ratek
+                        fisik_a = sn_rates_k
                         fisik_b = 0
 
                     q += fm12 * qm
@@ -92,8 +92,8 @@ class Model:
                               + f'  {fisiik:.4f}'
                               + f'  {fisik_a:.4f}'
                               + f'  {fisik_b:.4f}'
-                              + f'  {vnbk:.4f}'
-                              + f'  {etk:.4f}'
+                              + f'  {sn_b_rates_k:.4f}'
+                              + f'  {energies_k:.4f}'
                               + '\n'
                              )
 
@@ -131,11 +131,11 @@ class Model:
 
             t_inf = t_sup
             t_sup = self.delt * interval
-            self.vna.append((supernovas_a_rate(t_sup) - supernovas_a_rate(t_inf)) * self.eta)
-            self.vnb.append((supernovas_b_rate(t_sup) - supernovas_b_rate(t_inf)) * self.eta)
+            self.sn_a_rates.append((supernovas_a_rate(t_sup) - supernovas_a_rate(t_inf)) * self.eta)
+            self.sn_b_rates.append((supernovas_b_rate(t_sup) - supernovas_b_rate(t_inf)) * self.eta)
 
-            self.et.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
-            self.sn_rate.append(self.context["alpha_bin_stars"] * 0.5 *
+            self.energies.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
+            self.sn_rates.append(self.context["alpha_bin_stars"] * 0.5 *
                 (sn_rate_ruiz_lapuente(t_sup) + sn_rate_ruiz_lapuente(t_inf)) * self.delt)
 
         m_inf = constants.MSEP
@@ -150,11 +150,11 @@ class Model:
             t_sup = self.delt1 * interval
             if t_sup <= t_inf : t_sup = t_inf
 
-            self.vna.append((supernovas_a_rate(t_sup) - supernovas_a_rate(t_inf)) * self.eta)
-            self.vnb.append((supernovas_b_rate(t_sup) - supernovas_b_rate(t_inf)) * self.eta)
+            self.sn_a_rates.append((supernovas_a_rate(t_sup) - supernovas_a_rate(t_inf)) * self.eta)
+            self.sn_b_rates.append((supernovas_b_rate(t_sup) - supernovas_b_rate(t_inf)) * self.eta)
 
-            self.et.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
-            self.sn_rate.append(self.context["alpha_bin_stars"] * 0.5 *
+            self.energies.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
+            self.sn_rates.append(self.context["alpha_bin_stars"] * 0.5 *
                 (sn_rate_ruiz_lapuente(t_sup) + sn_rate_ruiz_lapuente(t_inf)) * self.delt1)
 
             ii = constants.LM2 + interval
