@@ -27,7 +27,6 @@ print_params("Running model with settings", settings)
 
 create_output_folder(settings['output_dir'])
 
-model = model.Model(settings)
-model.run()
+model.Model(settings).run()
 
 print(f"Done. Output files ready in '{settings['output_dir']}' directory.")

@@ -47,7 +47,7 @@ class Model:
 
         for i in range(0, constants.LM2 + self.lm1):
             m_inf, m_sup = self.mass_intervals[i]
-            mass_step = (m_sup - m_inf) / (constants.NW - 1)
+            mass_step = (m_sup - m_inf) / (constants.N_INTERVALS)
 
             q = np.zeros((constants.Q_MATRIX_ROWS, constants.Q_MATRIX_COLUMNS))
 
@@ -59,12 +59,12 @@ class Model:
 
             if m_sup > constants.MMIN and mass_step != 0:
 
-                for ip in range(0, constants.NW):
+                for ip in range(0, constants.N_POINTS):
                     m = m_inf +(mass_step * ip)
-                    qm = matrix.q(m, self.context)[0:15, 0:9]
+                    qm = matrix.q(m, self.context)[0:constants.Q_MATRIX_ROWS, 0:constants.Q_MATRIX_COLUMNS]
 
                     # Initial mass functions:
-                    f = 1e6 * constants.W_NW[ip] * mass_step
+                    f = 1e6 * constants.WEIGHTS_N[ip] * mass_step
                     fm1 = f * imf_plus_primaries(m, self.initial_mass_function)
                     fm12 = fm1 + f * imf_binary_secondary(m, self.initial_mass_function, SNI_events = False)
                     fm2s = f * imf_binary_secondary(m, self.initial_mass_function, SNI_events = True)
@@ -87,7 +87,7 @@ class Model:
                     if m < self.bmaxm:
                        q += (fisik_a * q_sn_ia) + (fisik_b * q_sn_ib)
 
-            np.savetxt(matrices_file, q, fmt="%15.8f", header=f"Q matrix for mass range: [{m_inf}, {m_sup}]")
+            np.savetxt(matrices_file, q, fmt="%15.8f", header=f"Q matrix for mass interval: [{m_sup}, {m_inf}]")
             imf_sn_file.write(f'{fik:.4f}'
                               + f'  {fisiik:.4f}'
                               + f'  {fisik_a:.4f}'
@@ -104,11 +104,11 @@ class Model:
         # ETA Computation:  Proportion of stars with mass in [bmin, bmax] * alpha_bin_stars
         # In the end ETA is the number of binary systems
         eta = 0.0
-        stm = (constants.BMAX - constants.BMIN) / (constants.NW - 1)
+        stm = (constants.BMAX - constants.BMIN) / (constants.N_INTERVALS)
 
-        for i in range(0, constants.NW):
+        for i in range(0, constants.N_POINTS):
             bm = constants.BMIN + i * stm
-            eta += constants.W_NW[i] * self.initial_mass_function.for_mass(bm) / bm
+            eta += constants.WEIGHTS_N[i] * self.initial_mass_function.for_mass(bm) / bm
 
         return self.context["alpha_bin_stars"] * stm * eta
 
