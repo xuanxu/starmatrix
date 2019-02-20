@@ -24,14 +24,12 @@ class Model:
         self.energies = []
         self.sn_rates = []
 
-        sw           = (constants.NW - 1) / sum(constants.W)
         tsep         = mean_lifetime(constants.MSEP, 0.02)
         self.imax1   = constants.IRID if constants.IC == 0 else constants.IMAX
         self.delt    = tsep / constants.LM2
         self.delt1   = constants.LBLK * self.delt
         self.lm1     = int(1 + (constants.LM2 * constants.TTOT) / (tsep * constants.LBLK))
         self.bmaxm   = constants.BMAX / 2
-        self.w       = [i * sw for i in constants.W]
 
     def run(self):
 
@@ -65,11 +63,11 @@ class Model:
                     qm = matrix.q(m, self.context)[0:15, 0:9]
 
                     # Initial mass functions:
-                    f = 1e6 * self.w[ip] * mass_step
+                    f = 1e6 * constants.W_NW[ip] * mass_step
                     fm1 = f * imf_plus_primaries(m, self.initial_mass_function)
                     fm12 = fm1 + f * imf_binary_secondary(m, self.initial_mass_function, SNI_events = False)
                     fm2s = f * imf_binary_secondary(m, self.initial_mass_function, SNI_events = True)
-                    fmr = f * imf_remnants(m, self.initial_mass_function, self.context["expelled"])
+                    # fmr = f * imf_remnants(m, self.initial_mass_function, self.context["expelled"])
                     fik += fm12
                     if m > constants.MSN2 : fisiik += fm1/m
 
@@ -108,7 +106,7 @@ class Model:
 
         for i in range(0, constants.NW):
             bm = constants.BMIN + i * stm
-            eta += self.w[i] * self.initial_mass_function.for_mass(bm) / bm
+            eta += constants.W_NW[i] * self.initial_mass_function.for_mass(bm) / bm
 
         return self.context["alpha_bin_stars"] * stm * eta
 
