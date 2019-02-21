@@ -71,7 +71,7 @@ def q(m, settings = {}):
     h_he = abundances["H"] + abundances["He4"]
     remnant = elements["remnants"]
     he_core = 1 - (elements["H"] / abundances["H"])
-    co_core = (((he_core * abundances["H"]) + abundances["He4"] - elements["He4"]) / h_he)
+    co_core = ((he_core * abundances["H"]) + abundances["He4"] - elements["He4"]) / h_he
     new_metals_ejected = max(co_core - remnant, 0.0)
 
     fractional_abundances = {

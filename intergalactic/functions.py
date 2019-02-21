@@ -130,7 +130,7 @@ def imf_binary_primary(m, imf):
     b_inf = max(constants.BMIN, m)
     b_sup = min(constants.BMAX, 2 * m)
 
-    stm = (b_sup - b_inf) / (constants.N_INTERVALS)
+    stm = (b_sup - b_inf) / constants.N_INTERVALS
     if stm <= 0 : return 0.0
 
     imf_bin_1 = 0.0
@@ -155,7 +155,7 @@ def imf_binary_secondary(m, imf, SNI_events = False):
     b_sup = constants.BMAX
     if SNI_events : b_sup = min(constants.BMAX, constants.MSN2 + m)
 
-    stm = (b_sup - b_inf) / (constants.N_INTERVALS)
+    stm = (b_sup - b_inf) / constants.N_INTERVALS
     if stm <= 0 : return 0.0
 
     imf_bin_2 = 0.0
@@ -179,7 +179,7 @@ def imf_remnants(m, imf, expelled_data):
     b_inf = max(constants.BMIN, 2 * m)
     b_sup = min(constants.BMAX, constants.MSN2 + m)
 
-    stm = (b_sup - b_inf) / (constants.N_INTERVALS)
+    stm = (b_sup - b_inf) / constants.N_INTERVALS
     if stm <= 0 : return 0.0
 
     imf_remn = 0.0

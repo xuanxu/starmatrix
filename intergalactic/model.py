@@ -47,7 +47,7 @@ class Model:
 
         for i in range(0, constants.LM2 + self.lm1):
             m_inf, m_sup = self.mass_intervals[i]
-            mass_step = (m_sup - m_inf) / (constants.N_INTERVALS)
+            mass_step = (m_sup - m_inf) / constants.N_INTERVALS
 
             q = np.zeros((constants.Q_MATRIX_ROWS, constants.Q_MATRIX_COLUMNS))
 
@@ -104,7 +104,7 @@ class Model:
         # ETA Computation:  Proportion of stars with mass in [bmin, bmax] * alpha_bin_stars
         # In the end ETA is the number of binary systems
         eta = 0.0
-        stm = (constants.BMAX - constants.BMIN) / (constants.N_INTERVALS)
+        stm = (constants.BMAX - constants.BMIN) / constants.N_INTERVALS
 
         for i in range(0, constants.N_POINTS):
             bm = constants.BMIN + i * stm
