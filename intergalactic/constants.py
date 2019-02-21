@@ -21,4 +21,4 @@ ALF  = 0.05    # Fraction of binaries
 # Model params:
 LM2 = 164
 LBLK = 82
-TTOT = 13.25  # Total integration time in Gigayears
+TOTAL_TIME = 13.25  # Total integration time in Gigayears

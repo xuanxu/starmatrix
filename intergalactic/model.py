@@ -27,7 +27,7 @@ class Model:
         tsep         = mean_lifetime(constants.MSEP, 0.02)
         self.delt    = tsep / constants.LM2
         self.delt1   = constants.LBLK * self.delt
-        self.lm1     = int(1 + (constants.LM2 * constants.TTOT) / (tsep * constants.LBLK))
+        self.lm1     = int(1 + (constants.LM2 * constants.TOTAL_TIME) / (tsep * constants.LBLK))
         self.bmaxm   = constants.BMAX / 2
 
     def run(self):
