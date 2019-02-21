@@ -101,7 +101,7 @@ def total_energy_ejected(t):
     if t <= 0 : return 0.0
     tc = 5.3e-5
     if t > tc:
-        rt = (tc / t) * 0.4
+        rt = (tc / t) ** 0.4
         return 1 - 0.44 * (rt ** 2) * (1 - 0.41 * rt) - 0.22 * (rt ** 2)
     else:
         return 8.67e3 * t
