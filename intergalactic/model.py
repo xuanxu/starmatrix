@@ -157,6 +157,6 @@ class Model:
             self.sn_rates.append(self.context["alpha_bin_stars"] * 0.5 *
                 (sn_rate_ruiz_lapuente(t_sup) + sn_rate_ruiz_lapuente(t_inf)) * self.delt1)
 
-            ii = constants.LM2 + interval
+
 
         mass_intervals_file.close()
