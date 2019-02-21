@@ -67,12 +67,12 @@ class Model:
                     f = 1e6 * constants.WEIGHTS_N[ip] * mass_step
                     fm1 = f * imf_plus_primaries(m, self.initial_mass_function)
                     fm12 = fm1 + f * imf_binary_secondary(m, self.initial_mass_function, SNI_events = False)
-                    fm2s = f * imf_binary_secondary(m, self.initial_mass_function, SNI_events = True)
                     # fmr = f * imf_remnants(m, self.initial_mass_function, self.context["expelled"])
                     fik += fm12
                     if m > constants.MSN2 : fisiik += fm1/m
 
                     if self.context["sn_ia_selection"] == "matteucci":
+                        fm2s = f * imf_binary_secondary(m, self.initial_mass_function, SNI_events = True)
                         fisik_a += fm2s/m
                         fisik_b = 0
                     elif self.context["sn_ia_selection"] == "tornambe":
