@@ -2,8 +2,8 @@ from bisect import bisect
 
 class Expelled:
 
-    elements_list = ["H", "D", "He3", "He4", "C12", "O16",
-                    "N14p", "C13", "n.r.", "Ne", "Mg", "Si",
+    elements_list = ["H", "D", "He3", "He4", "C12", "C13",
+                    "N14p", "n.r.", "O16", "Ne", "Mg", "Si",
                     "S", "Ca", "Fe", "remnants", "C13s", "N14s"]
     mass_points = []
     by_mass = {}
@@ -19,8 +19,8 @@ class Expelled:
             - First column: stellar mass
             - 2nd to 19th columns: expelled mass of element i
                 where i is in this ordered list:
-                ["H", "D", "He3", "He4", "C12", "O16",
-                 "N14primary", "C13", "n.r.", "Ne", "Mg", "Si",
+                ["H", "D", "He3", "He4", "C12", "C13",
+                 "N14primary", "n.r.", "O16", "Ne", "Mg", "Si",
                  "S", "Ca", "Fe", "remnants", "C13secondary", "N14secondary"]
 
         """
