@@ -30,7 +30,7 @@ Intergalactic reads an initial params file where several options must be set:
 input_params:
   z: 0.0200               # metallicity
   sol_ab: ag89            # solar abundances
-  imf: 2002               # initial mass function
+  imf: kroupa             # initial mass function
   m_max: 40               # max value for stellar mass
   alpha_bin_stars: 0.05   # rate of binary stars
   sn_ia_selection: rpl    # supernova imf
