@@ -13,7 +13,7 @@ default = {
     "imf": "kroupa",
     "imf_alpha": 2.35,
     "m_max": 100.0,
-    "alpha_bin_stars": constants.ALF,
+    "binary_fraction": constants.BIN_FRACTION,
     "sn_ia_selection": "rlp",
     "output_dir": "results"
 }

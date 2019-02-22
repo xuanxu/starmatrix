@@ -65,14 +65,14 @@ class Model:
 
                     # Initial mass functions:
                     f = 1e6 * constants.WEIGHTS_N[ip] * mass_step
-                    fm1 = f * imf_plus_primaries(m, self.initial_mass_function)
-                    fm12 = fm1 + f * imf_binary_secondary(m, self.initial_mass_function, SNI_events = False)
-                    # fmr = f * imf_remnants(m, self.initial_mass_function, self.context["expelled"])
+                    fm1 = f * imf_plus_primaries(m, self.initial_mass_function, self.context["binary_fraction"])
+                    fm12 = fm1 + f * imf_binary_secondary(m, self.initial_mass_function, SNI_events = False, binary_fraction=self.context["binary_fraction"])
+                    # fmr = f * imf_remnants(m, self.initial_mass_function, self.context["expelled"], binary_fraction=self.context["binary_fraction"])
                     fik += fm12
                     if m > constants.MSN2 : fisiik += fm1/m
 
                     if self.context["sn_ia_selection"] == "matteucci":
-                        fm2s = f * imf_binary_secondary(m, self.initial_mass_function, SNI_events = True)
+                        fm2s = f * imf_binary_secondary(m, self.initial_mass_function, SNI_events = True, binary_fraction=self.context["binary_fraction"])
                         fisik_a += fm2s/m
                         fisik_b = 0
                     elif self.context["sn_ia_selection"] == "tornambe":
@@ -101,7 +101,7 @@ class Model:
         imf_sn_file.close()
 
     def eta(self):
-        # ETA Computation:  Proportion of stars with mass in [bmin, bmax] * alpha_bin_stars
+        # ETA Computation:  Proportion of stars with mass in [bmin, bmax] * binary_fraction
         # In the end ETA is the number of binary systems
         eta = 0.0
         stm = (constants.BMAX - constants.BMIN) / constants.N_INTERVALS
@@ -110,7 +110,7 @@ class Model:
             bm = constants.BMIN + i * stm
             eta += constants.WEIGHTS_N[i] * self.initial_mass_function.for_mass(bm) / bm
 
-        return self.context["alpha_bin_stars"] * stm * eta
+        return self.context["binary_fraction"] * stm * eta
 
     def explosive_nucleosynthesis(self):
 
@@ -135,18 +135,18 @@ class Model:
             self.sn_b_rates.append((supernovas_b_rate(t_sup) - supernovas_b_rate(t_inf)) * self.eta)
 
             self.energies.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
-            self.sn_rates.append(self.context["alpha_bin_stars"] * 0.5 *
+            self.sn_rates.append(self.context["binary_fraction"] * 0.5 *
                 (sn_rate_ruiz_lapuente(t_sup) + sn_rate_ruiz_lapuente(t_inf)) * self.delt)
 
         m_inf = constants.MSEP
         for interval in range(1, self.lm1 + 1):
             m_sup = m_inf
-            t_inf = t_sup
             m_inf = stellar_mass(self.delt1 * interval, self.context["z"])
             if m_inf >= constants.MSEP : m_inf = m_sup
             mass_intervals_file.write('\n' + f'{m_sup:14.10f}  ' + f'{m_inf:14.10f}  ' + str(interval))
             self.mass_intervals.append([m_inf, m_sup])
 
+            t_inf = t_sup
             t_sup = self.delt1 * interval
             if t_sup <= t_inf : t_sup = t_inf
 
@@ -154,7 +154,7 @@ class Model:
             self.sn_b_rates.append((supernovas_b_rate(t_sup) - supernovas_b_rate(t_inf)) * self.eta)
 
             self.energies.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
-            self.sn_rates.append(self.context["alpha_bin_stars"] * 0.5 *
+            self.sn_rates.append(self.context["binary_fraction"] * 0.5 *
                 (sn_rate_ruiz_lapuente(t_sup) + sn_rate_ruiz_lapuente(t_inf)) * self.delt1)
 
 

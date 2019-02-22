@@ -32,7 +32,7 @@ input_params:
   sol_ab: ag89            # solar abundances
   imf: kroupa             # initial mass function
   m_max: 40               # max value for stellar mass
-  alpha_bin_stars: 0.05   # rate of binary stars
+  binary_fraction: 0.05   # rate of binary stars
   sn_ia_selection: rpl    # supernova imf
 ```
 

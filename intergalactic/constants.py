@@ -16,7 +16,7 @@ MSEP = 4.0    # Limit mass value between small and massive stars
 MSN2 = 8.0    # Lower limit for binaries in Supernovas II
 BMIN = 3.0    # Lower limit for binaries in Supernovas I
 BMAX = 16.0   # Upper limit for binaries in Supernovas I
-ALF  = 0.05    # Fraction of binaries
+BIN_FRACTION  = 0.05   # Fraction of binaries
 
 # Model params:
 LM2 = 164
