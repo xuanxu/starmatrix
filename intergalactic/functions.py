@@ -127,8 +127,8 @@ def imf_binary_primary(m, imf, binary_fraction=constants.BIN_FRACTION):
     """
 
     if m <= 0 : return 0.0
-    b_inf = max(constants.BMIN, m)
-    b_sup = min(constants.BMAX, 2 * m)
+    b_inf = max(constants.B_MIN, m)
+    b_sup = min(constants.B_MAX, 2 * m)
 
     stm = (b_sup - b_inf) / constants.N_INTERVALS
     if stm <= 0 : return 0.0
@@ -151,9 +151,9 @@ def imf_binary_secondary(m, imf, SNI_events = False, binary_fraction=constants.B
     """
 
     if m <= 0 : return 0.0
-    b_inf = max(constants.BMIN, 2 * m)
-    b_sup = constants.BMAX
-    if SNI_events : b_sup = min(constants.BMAX, constants.MSN2 + m)
+    b_inf = max(constants.B_MIN, 2 * m)
+    b_sup = constants.B_MAX
+    if SNI_events : b_sup = min(constants.B_MAX, constants.M_SNII + m)
 
     stm = (b_sup - b_inf) / constants.N_INTERVALS
     if stm <= 0 : return 0.0
@@ -176,8 +176,8 @@ def imf_remnants(m, imf, expelled_data, binary_fraction=constants.BIN_FRACTION):
     """
 
     if m <= 0 : return 0.0
-    b_inf = max(constants.BMIN, 2 * m)
-    b_sup = min(constants.BMAX, constants.MSN2 + m)
+    b_inf = max(constants.B_MIN, 2 * m)
+    b_sup = min(constants.B_MAX, constants.M_SNII + m)
 
     stm = (b_sup - b_inf) / constants.N_INTERVALS
     if stm <= 0 : return 0.0
@@ -200,7 +200,7 @@ def imf_plus_primaries(m, imf, binary_fraction=constants.BIN_FRACTION):
 
     """
 
-    if constants.BMIN <= m <= constants.BMAX:
+    if constants.B_MIN <= m <= constants.B_MAX:
         return imf.for_mass(m) * (1.0 - binary_fraction) + imf_binary_primary(m, imf)
     else:
         return imf.for_mass(m) + imf_binary_primary(m, imf)

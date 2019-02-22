@@ -61,7 +61,7 @@ def q(m, settings = {}):
     """
 
     q = empty_q_matrix()
-    if m < constants.MMIN : return q
+    if m < constants.M_MIN : return q
 
     z          = settings["z"]
     abundances = settings["abundances"].abundance()
@@ -155,7 +155,7 @@ def q(m, settings = {}):
         he3_core = 0.73 + 0.0008 * m
 
     # Omega He3:
-    if constants.MMIN <= m < 2:
+    if constants.M_MIN <= m < 2:
         w3 = (-3.47e-4 * m) + 7.79e-4
     elif 2 <= m <= 3:
         w3 = (-4.43e-5 * m) + 1.74e-4
@@ -230,7 +230,7 @@ def q_sn(m, feh=0.0, sn_type="sn_ia"):
     """
 
     q = empty_q_matrix()
-    if m < constants.MMIN : return q
+    if m < constants.M_MIN : return q
 
     if feh < -0.3:
         sn_ejections = sn_ejections_low_z[sn_type]

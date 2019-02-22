@@ -24,11 +24,11 @@ class Model:
         self.energies = []
         self.sn_rates = []
 
-        tsep         = mean_lifetime(constants.MSEP, 0.02)
-        self.delt    = tsep / constants.LM2
-        self.delt1   = constants.LBLK * self.delt
-        self.lm1     = int(1 + (constants.LM2 * constants.TOTAL_TIME) / (tsep * constants.LBLK))
-        self.bmaxm   = constants.BMAX / 2
+        tsep         = mean_lifetime(constants.M_SEP, 0.02)
+        self.delta   = tsep / constants.M_STEP
+        self.delta_low_m   = constants.LOW_M_STEP * self.delta
+        self.lm1     = int(1 + (constants.M_STEP * constants.TOTAL_TIME) / (tsep * constants.LOW_M_STEP))
+        self.bmaxm   = constants.B_MAX / 2
 
     def run(self):
 
@@ -45,7 +45,7 @@ class Model:
         imf_sn_file = open(f"{self.context['output_dir']}/imf_supernova_rates", "w+")
         matrices_file =  open(f"{self.context['output_dir']}/qm-matrices", "w+")
 
-        for i in range(0, constants.LM2 + self.lm1):
+        for i in range(0, constants.M_STEP + self.lm1):
             m_inf, m_sup = self.mass_intervals[i]
             mass_step = (m_sup - m_inf) / constants.N_INTERVALS
 
@@ -57,7 +57,7 @@ class Model:
             energies_k  = 1e6 * self.energies[i]
             sn_rates_k = 1e6 * self.sn_rates[i]
 
-            if m_sup > constants.MMIN and mass_step != 0:
+            if m_sup > constants.M_MIN and mass_step != 0:
 
                 for ip in range(0, constants.N_POINTS):
                     m = m_inf +(mass_step * ip)
@@ -69,7 +69,7 @@ class Model:
                     fm12 = fm1 + f * imf_binary_secondary(m, self.initial_mass_function, SNI_events = False, binary_fraction=self.context["binary_fraction"])
                     # fmr = f * imf_remnants(m, self.initial_mass_function, self.context["expelled"], binary_fraction=self.context["binary_fraction"])
                     fik += fm12
-                    if m > constants.MSN2 : fisiik += fm1/m
+                    if m > constants.M_SNII : fisiik += fm1/m
 
                     if self.context["sn_ia_selection"] == "matteucci":
                         fm2s = f * imf_binary_secondary(m, self.initial_mass_function, SNI_events = True, binary_fraction=self.context["binary_fraction"])
@@ -104,10 +104,10 @@ class Model:
         # ETA Computation:  Proportion of stars with mass in [bmin, bmax] * binary_fraction
         # In the end ETA is the number of binary systems
         eta = 0.0
-        stm = (constants.BMAX - constants.BMIN) / constants.N_INTERVALS
+        stm = (constants.B_MAX - constants.B_MIN) / constants.N_INTERVALS
 
         for i in range(0, constants.N_POINTS):
-            bm = constants.BMIN + i * stm
+            bm = constants.B_MIN + i * stm
             eta += constants.WEIGHTS_N[i] * self.initial_mass_function.for_mass(bm) / bm
 
         return self.context["binary_fraction"] * stm * eta
@@ -115,39 +115,40 @@ class Model:
     def explosive_nucleosynthesis(self):
 
         mass_intervals_file = open(f"{self.context['output_dir']}/mass_intervals", "w+")
-        line_1 = " ".join([str(i) for i in [constants.LM2, constants.LBLK, self.lm1]])
-        line_2 = " ".join([str(i) for i in [self.delt, self.lm1*self.delt1]])
+        line_1 = " ".join([str(i) for i in [constants.M_STEP, constants.LOW_M_STEP, self.lm1]])
+        line_2 = " ".join([str(i) for i in [self.delta, self.lm1*self.delta_low_m]])
         mass_intervals_file.write("\n".join([line_1, line_2]))
 
         m_inf = self.context["m_max"]
         t_sup = mean_lifetime(self.context["m_max"], self.context["z"])
 
-        for interval in range(1, constants.LM2 + 1):
+        for interval in range(1, constants.M_STEP + 1):
             m_sup = m_inf
-            m_inf = stellar_mass(self.delt * interval, self.context["z"])
-            m_inf = value_in_interval(m_inf, [constants.MSEP, self.context["m_max"]])
+            m_inf = stellar_mass(self.delta * interval, self.context["z"])
+            m_inf = value_in_interval(m_inf, [constants.M_SEP, self.context["m_max"]])
             mass_intervals_file.write('\n' + f'{m_sup:14.10f}  ' + f'{m_inf:14.10f}  ' + str(interval))
             self.mass_intervals.append([m_inf, m_sup])
 
             t_inf = t_sup
-            t_sup = self.delt * interval
+            t_sup = self.delta * interval
             self.sn_a_rates.append((supernovas_a_rate(t_sup) - supernovas_a_rate(t_inf)) * self.eta)
             self.sn_b_rates.append((supernovas_b_rate(t_sup) - supernovas_b_rate(t_inf)) * self.eta)
 
             self.energies.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
             self.sn_rates.append(self.context["binary_fraction"] * 0.5 *
-                (sn_rate_ruiz_lapuente(t_sup) + sn_rate_ruiz_lapuente(t_inf)) * self.delt)
+                (sn_rate_ruiz_lapuente(t_sup) + sn_rate_ruiz_lapuente(t_inf)) * self.delta)
 
-        m_inf = constants.MSEP
+
+        m_inf = constants.M_SEP
         for interval in range(1, self.lm1 + 1):
             m_sup = m_inf
-            m_inf = stellar_mass(self.delt1 * interval, self.context["z"])
-            if m_inf >= constants.MSEP : m_inf = m_sup
+            m_inf = stellar_mass(self.delta_low_m * interval, self.context["z"])
+            if m_inf >= constants.M_SEP : m_inf = m_sup
             mass_intervals_file.write('\n' + f'{m_sup:14.10f}  ' + f'{m_inf:14.10f}  ' + str(interval))
             self.mass_intervals.append([m_inf, m_sup])
 
             t_inf = t_sup
-            t_sup = self.delt1 * interval
+            t_sup = self.delta_low_m * interval
             if t_sup <= t_inf : t_sup = t_inf
 
             self.sn_a_rates.append((supernovas_a_rate(t_sup) - supernovas_a_rate(t_inf)) * self.eta)
@@ -155,7 +156,7 @@ class Model:
 
             self.energies.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
             self.sn_rates.append(self.context["binary_fraction"] * 0.5 *
-                (sn_rate_ruiz_lapuente(t_sup) + sn_rate_ruiz_lapuente(t_inf)) * self.delt1)
+                (sn_rate_ruiz_lapuente(t_sup) + sn_rate_ruiz_lapuente(t_inf)) * self.delta_low_m)
 
 
 
