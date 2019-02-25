@@ -15,7 +15,8 @@ default = {
     "m_max": 100.0,
     "binary_fraction": constants.BIN_FRACTION,
     "sn_ia_selection": "rlp",
-    "output_dir": "results"
+    "output_dir": "results",
+    "expelled_elements_filename": "expelled_elements"
 }
 
 

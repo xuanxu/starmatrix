@@ -16,7 +16,7 @@ class Model:
     def init_variables(self):
         self.initial_mass_function = select_imf(self.context["imf"], self.context)
         self.context["abundances"] = select_abundances(self.context["sol_ab"], float(self.context["z"]))
-        self.context["expelled"] = elements.Expelled()
+        self.context["expelled"] = elements.Expelled(expelled_elements_filename=self.context["expelled_elements_filename"])
 
         self.mass_intervals = []
         self.sn_a_rates = []
