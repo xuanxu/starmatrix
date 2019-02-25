@@ -44,7 +44,7 @@ class Salpeter(IMF):
         return self.m * 0.20080261 * (self.m ** -(self.alpha()))
 
     def alpha(self):
-        return self.params["alpha"]
+        return self.params["imf_alpha"]
 
     def description(self):
         return "IMF from Salpeter 1955"
