@@ -15,7 +15,7 @@ with open("README.md", encoding="utf-8") as readme_file:
 
 # http://blog.ionelmc.ro/2014/05/25/python-packaging/
 setup(
-    name="integalactic",
+    name="intergalactic",
     version=version["__version__"],
     description="Galactic chemical evolution models",
     author="Juanjo Bazán",
@@ -30,6 +30,7 @@ setup(
     ],
     python_requires=">=3.6",
     install_requires=[
+        "pyyaml",
         "numpy",
     ],
     extras_require={

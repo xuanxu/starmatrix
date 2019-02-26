@@ -6,11 +6,12 @@ import intergalactic.model as model
 
 def main():
     parser = argparse.ArgumentParser(
-        prog="Intergalactic",
+        prog="intergalactic",
         description="Command line tools for the intergalactic Python library.",
+        epilog="Another dimension, new Galaxy!",
     )
-    parser.add_argument("--version", action="version", version=intergalactic.__version__)
-    parser.add_argument("--config", help="configuration file with model initial params")
+    parser.add_argument("-v", "--version", action="version", version=intergalactic.__version__)
+    parser.add_argument("--config", metavar="FILENAME", help="configuration file to use containing model initial params")
 
     args = parser.parse_args()
 
