@@ -42,7 +42,7 @@ setup(
     package_dir={"": "src"},
     entry_points={"console_scripts": ["intergalactic = intergalactic.cli:main"]},
     classifiers=[
-        "Development Status :: 4 - Beta",
+        "Development Status :: 3 - Alpha",
         "Intended Audience :: Education",
         "Intended Audience :: Science/Research",
         "License :: OSI Approved :: MIT License",
