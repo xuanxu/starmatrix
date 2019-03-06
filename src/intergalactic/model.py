@@ -118,6 +118,8 @@ class Model:
         line_2 = " ".join([str(i) for i in [self.delta, self.lm1*self.delta_low_m]])
         mass_intervals_file.write("\n".join([line_1, line_2]))
 
+        supernovas_file = open(f"{self.context['output_dir']}/supernovas", "w+")
+
         m_inf = self.context["m_max"]
         t_sup = mean_lifetime(self.context["m_max"], self.context["z"])
 
@@ -138,6 +140,18 @@ class Model:
                 (sn_rate_ruiz_lapuente(t_sup) + sn_rate_ruiz_lapuente(t_inf)) * self.delta)
 
 
+            supernovas_file.write(f'{interval}'.ljust(5)
+                                  + f'  {t_inf:.10f}'
+                                  + f'  {t_sup:.10f}'
+                                  + f'  {supernovas_a_rate(t_inf):.10f}'
+                                  + f'  {supernovas_b_rate(t_inf):.10f}'
+                                  + f'  {self.sn_a_rates[interval - 1]:.10f}'
+                                  + f'  {self.sn_b_rates[interval - 1]:.10f}'
+                                  + f'  {sn_rate_ruiz_lapuente(t_inf):.10f}'
+                                  + f'  {self.sn_rates[interval - 1]:.10f}'
+                                  + '\n'
+                                 )
+
         m_inf = constants.M_SEP
         for interval in range(1, self.lm1 + 1):
             m_sup = m_inf
@@ -157,6 +171,18 @@ class Model:
             self.sn_rates.append(self.context["binary_fraction"] * 0.5 *
                 (sn_rate_ruiz_lapuente(t_sup) + sn_rate_ruiz_lapuente(t_inf)) * self.delta_low_m)
 
-
+            ii = constants.M_STEP + interval
+            supernovas_file.write(f'{ii}'.ljust(5)
+                                  + f'  {t_inf:.10f}'
+                                  + f'  {t_sup:.10f}'
+                                  + f'  {supernovas_a_rate(t_inf):.10f}'
+                                  + f'  {supernovas_b_rate(t_inf):.10f}'
+                                  + f'  {self.sn_a_rates[ii - 1]:.10f}'
+                                  + f'  {self.sn_b_rates[ii - 1]:.10f}'
+                                  + f'  {sn_rate_ruiz_lapuente(t_inf):.10f}'
+                                  + f'  {self.sn_rates[ii - 1]:.11f}'
+                                  + '\n'
+                                 )
 
         mass_intervals_file.close()
+        supernovas_file.close()
