@@ -4,7 +4,7 @@ Default settings and initial parameters
 All the values set here can be overwritten via the input file: params.yml
 
 """
-
+from os.path import dirname, join
 from intergalactic import constants as constants
 
 default = {
@@ -12,11 +12,11 @@ default = {
     "sol_ab": "as09",
     "imf": "kroupa",
     "imf_alpha": 2.35,
-    "m_max": 100.0,
+    "m_max": 40.0,
     "binary_fraction": constants.BIN_FRACTION,
     "sn_ia_selection": "rlp",
     "output_dir": "results",
-    "expelled_elements_filename": "expelled_elements"
+    "expelled_elements_filename":  join(dirname(__file__),"sample_input", "expelled_elements")
 }
 
 
