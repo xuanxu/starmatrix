@@ -6,7 +6,6 @@ from intergalactic.functions import select_imf, select_abundances
 from intergalactic.functions import mean_lifetime, stellar_mass, supernovas_a_rate, supernovas_b_rate
 from intergalactic.functions import total_energy_ejected, sn_rate_ruiz_lapuente, value_in_interval
 from intergalactic.functions import imf_plus_primaries, imf_binary_secondary, imf_remnants
-#from prettytable import PrettyTable
 
 class Model:
     def __init__(self, settings = {}):
