@@ -1,0 +1,18 @@
+language: python
+sudo: false
+
+python:
+  - "3.6"
+  - "3.7"
+
+before_install:
+  - python -m venv venv
+  - source venv/bin/activate
+  - python -m pip install --upgrade pip
+
+install:
+  - pip install .  # Test installation correctness
+  - pip install .[dev]  # Test development dependencies
+
+script:
+  - pytest -v  # Test against installed code
