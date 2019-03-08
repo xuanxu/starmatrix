@@ -1,9 +1,10 @@
+dist: xenial
 language: python
 sudo: false
 
 python:
-  - "3.6.8"
-  - "3.7.2"
+  - "3.6"
+  - "3.7"
 
 before_install:
   - python -m venv venv
