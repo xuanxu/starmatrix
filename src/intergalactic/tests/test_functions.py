@@ -19,3 +19,7 @@ def test_select_abundances():
         abundance_instance = functions.select_abundances(strings[i], 0.033)
         assert type(abundance_instance) == classes[i]
         assert abundance_instance.z == 0.033
+
+def test_secondary_mass_fraction():
+    for m in [0.33, 3.33, 33.7, 73.0]:
+        assert functions.secondary_mass_fraction(m) == 24 * m ** 2
