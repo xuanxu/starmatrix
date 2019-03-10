@@ -6,7 +6,9 @@ Based on explicit values for solar abundances, z and IMF, Intergalactic calculat
 
 _Current status of the project: alpha_
 
-It computes the contribution matrix of 15 elements:
+[![Build Status](https://travis-ci.org/xuanxu/intergalactic.svg?branch=master)](https://travis-ci.org/xuanxu/intergalactic)
+
+Intergalactic computes the contribution matrix of 15 elements:
 
 * H
 * D
