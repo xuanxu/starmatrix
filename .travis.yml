@@ -3,8 +3,13 @@ language: python
 sudo: false
 
 python:
-  - "3.6"
-  - "3.7"
+  - 3.6
+  - 3.7
+  - nightly
+
+matrix:
+  allow-failure:
+    - python: nightly
 
 install:
   - pip install .  # Test installation correctness
