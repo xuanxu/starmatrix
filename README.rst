@@ -98,10 +98,24 @@ The default value is ``as09``. If you want to use your own abundances data you c
 
 .. _`Abundances class`: https://github.com/xuanxu/intergalactic/blob/master/src/intergalactic/abundances.py#L18-L47
 
-
 License
 =======
 
 *Copyright* © 2019 Juanjo Bazán, released under the `MIT license`_.
 
 .. _`MIT license`: https://github.com/xuanxu/intergalactic/blob/master/LICENSE
+
+Credits
+=======
+
+Intergalactic is built upon a long list of previous works from different authors/papers:
+
+* *Ferrini et al.*,1992, ApJ, 387, 138
+* *Ferrini & Poggiantti*, 1993, ApJ, 410, 44F
+* *Portinari, Chiosi & Bressan.*,1998,AA,334,505P
+* *Galli et al.*, 1995, ApJ, 443, 536G
+* *Mollá et al*, 2015, MNRAS, 451, 3693-3708
+* *Iwamoto et al*, 1999, ApJS, 125, 439
+* *Matteucci & Greggio*, 1986, A&A, 154, 279M
+* *Mollá et al*, 2017, MNRAS, 468, 305-318
+* *Gavilan, Mollá & Buell*, 2006, A&A, 450, 509
