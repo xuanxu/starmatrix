@@ -4,7 +4,7 @@
    :target: https://travis-ci.org/xuanxu/intergalactic
    :alt: Build status
 .. |license| image:: https://img.shields.io/badge/license-MIT-blue.svg
-   :target: License
+   :target: https://github.com/xuanxu/intergalactic/blob/master/LICENSE
    :alt: MIT License
 .. |status| image:: https://img.shields.io/badge/status-alpha-orange.svg
    :alt: Project status: alpha
@@ -71,4 +71,4 @@ License
 
 *Copyright* © 2019 Juanjo Bazán, released under the `MIT license`_.
 
-.. _`MIT license`: LICENSE
+.. _`MIT license`: https://github.com/xuanxu/intergalactic/blob/master/LICENSE
