@@ -60,7 +60,7 @@ def test_no_negative_time_values():
 def test_imf_plus_primaries():
     m_in_binaries_range = 5.0
     m = constants.B_MIN - 0.5
-    imf = functions.select_imf(np.random.choice(settings.valid_values["imf"]))
+    imf = functions.select_imf(np.random.choice(settings.valid_values["imf"]), settings.default)
 
     assert functions.imf_plus_primaries(m, imf) == imf.for_mass(m) + functions.imf_binary_primary(m, imf)
 

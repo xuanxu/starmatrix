@@ -24,7 +24,6 @@ def select_abundances(option, z):
         "as09": Asplund2009,
         "he10": Heger2010
     }
-
     return abundandes_data[option](z)
 
 def secondary_mass_fraction(mu):
