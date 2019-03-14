@@ -9,7 +9,7 @@ with open(os.path.join("src", "intergalactic", "__init__.py")) as version_file:
     exec(version_file.read(), version)
 
 
-with open("README.md") as readme_file:
+with open("README.rst") as readme_file:
     long_description = readme_file.read()
 
 
@@ -17,7 +17,7 @@ with open("README.md") as readme_file:
 setup(
     name="intergalactic",
     version=version["__version__"],
-    description="Galactic chemical evolution models",
+    description="Galactic elements Q-Matrix generator",
     author="Juanjo Bazán",
     author_email="hello@juanjobazan.com",
     url="https://github.com/xuanxu/intergalactic",
