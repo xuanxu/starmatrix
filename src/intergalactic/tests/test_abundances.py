@@ -14,7 +14,7 @@ def test_abundances_classes_presence(available_abundances):
 
 def test_description_presence(available_abundances):
     for abundance in available_abundances:
-        assert functions.select_abundances(abundance, 0.02).description() != Abundances(0.02).description
+        assert functions.select_abundances(abundance, 0.02).description() != Abundances(0.02).description()
 
 def test_feh_with_z_zero():
     assert Abundances(0).feh() == -20
