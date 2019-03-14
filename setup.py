@@ -40,6 +40,7 @@ setup(
     },
     packages=find_packages("src"),
     package_dir={"": "src"},
+    package_data={"": ["sample_input/*"]},
     entry_points={"console_scripts": ["intergalactic = intergalactic.cli:main"]},
     classifiers=[
         "Development Status :: 3 - Alpha",
