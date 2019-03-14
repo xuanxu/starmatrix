@@ -32,6 +32,7 @@ def test_elements_value_presence(available_abundances):
     for abundance in available_abundances:
         elements = np.array(list(functions.select_abundances(abundance, 0.025).elements().values()))
         assert np.all(elements > 0.0)
+        assert np.all(elements < 1.0)
 
 def test_abundance_values_presence(available_abundances):
     for abundance in available_abundances:
