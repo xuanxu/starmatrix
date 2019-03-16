@@ -65,6 +65,12 @@ Intergalactic reads a config file where several options can be set in yaml forma
 
 If no values are provided Intergalactic will use its internal default values for all params.
 
+If you want to use an existent configuration file as template for your own, you can run::
+
+    $ intergalactic --generate-config
+
+That command will create a ``config-example.yml`` file in the current dir.
+
 
 Initial mass function
 ---------------------
