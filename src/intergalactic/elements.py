@@ -9,6 +9,8 @@ class Expelled:
     by_mass = {}
 
     def __init__(self, expelled_elements_filename = "expelled_elements"):
+        self.mass_points = []
+        self.by_mass = {}
         self.read_expelled_elements_file(expelled_elements_filename)
 
     def read_expelled_elements_file(self, filename):
