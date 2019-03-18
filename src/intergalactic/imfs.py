@@ -15,6 +15,7 @@ and a way to define new functions subclassing IMF
 
 """
 import math
+import intergalactic.settings as settings
 
 class IMF:
     def __init__(self, params = {}):
@@ -44,7 +45,10 @@ class Salpeter(IMF):
         return self.m * 0.20080261 * (self.m ** -(self.alpha()))
 
     def alpha(self):
-        return self.params["imf_alpha"]
+        if "imf_alpha" in self.params:
+            return self.params["imf_alpha"]
+        else:
+            return settings.default["imf_alpha"]
 
     def description(self):
         return "IMF from Salpeter 1955"
