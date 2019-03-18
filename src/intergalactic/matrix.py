@@ -8,7 +8,7 @@ sn_elements_list = ["He4", "C12", "O16", "N14", "C13", "Ne", "Mg", "Si", "S", "C
 """
 Datasets of Supernova ejections for different metallicities:
 There's a dataset for lower metallicities (Z=0.004, Z=0.0004)
-and another one for higher metalicity values (Z=0.008, Z=0.02 y Z= 0.0317).
+and another one for higher metalicity values (Z=0.008, Z=0.02 and Z= 0.0317).
 In both cases there's data for SN of Ia and Ib types.
 
 Supernova Ia data source: Iwamoto, K. et al. 1999 ApJ 125, 439
