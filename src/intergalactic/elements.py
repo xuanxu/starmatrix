@@ -45,8 +45,13 @@ class Expelled:
         """
 
         index = bisect(self.mass_points, m)
-        mass_prev = self.mass_points[index - 1]
-        mass_next = self.mass_points[index]
+
+        if index == len(self.mass_points):
+            mass_prev = self.mass_points[index - 2]
+            mass_next = self.mass_points[index - 1]
+        else:
+            mass_prev = self.mass_points[index - 1]
+            mass_next = self.mass_points[index]
         elements_prev = self.by_mass[mass_prev]
         elements_next = self.by_mass[mass_next]
         interpolations = {"mass": m}
