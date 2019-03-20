@@ -61,7 +61,6 @@ class Model:
                     f = 1e6 * constants.WEIGHTS_N[ip] * mass_step
                     fm1 = f * imf_plus_primaries(m, self.initial_mass_function, self.context["binary_fraction"])
                     fm12 = fm1 + f * imf_binary_secondary(m, self.initial_mass_function, SNI_events = False, binary_fraction=self.context["binary_fraction"])
-                    # fmr = f * imf_remnants(m, self.initial_mass_function, self.context["expelled"], binary_fraction=self.context["binary_fraction"])
                     fik += fm12
                     if m > constants.M_SNII : fisiik += fm1/m
 

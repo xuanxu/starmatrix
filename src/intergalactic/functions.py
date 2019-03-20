@@ -170,32 +170,6 @@ def imf_binary_secondary(m, imf, SNI_events = False, binary_fraction=constants.B
 
     return imf_bin_2 * stm * binary_fraction
 
-def imf_remnants(m, imf, expelled_data, binary_fraction=constants.BIN_FRACTION):
-    """
-    Initial mass function of remnants of primaries
-    as a function of mass of the secondaries
-
-    """
-
-    if m <= 0 : return 0.0
-    b_inf = max(constants.B_MIN, 2 * m)
-    b_sup = min(constants.B_MAX, constants.M_SNII + m)
-
-    stm = (b_sup - b_inf) / constants.N_INTERVALS
-    if stm <= 0 : return 0.0
-
-    imf_remn = 0.0
-    for i in range(0, constants.N_POINTS):
-        binary_mass = b_inf + (i * stm)
-        expelled = expelled_data.for_mass(binary_mass - m)
-        imf_remn += constants.WEIGHTS_N[i] * \
-                    secondary_mass_fraction(m / binary_mass) * \
-                    imf.for_mass(binary_mass) * \
-                    expelled["remnants"] * \
-                    (binary_mass - m) / (binary_mass ** 2)
-
-    return imf_remn * stm * binary_fraction
-
 def imf_plus_primaries(m, imf, binary_fraction=constants.BIN_FRACTION):
     """
     Initial mass function for normal stars plus primaries of binaries
