@@ -119,6 +119,21 @@ def sn_rate_ruiz_lapuente(t):
     f5 = 0.02e-11  * math.exp(-0.5 * ((logt - 9.58) / 0.17) ** 2)
     return((f1 + f2 + f3 + f4 + f5) * 1e9)
 
+def dtd_mannucci_della_valle_panagia(t):
+    """
+    Delay Time Distribution (DTD) from Mannucci, Della Valle, Panagia (2006)
+
+    """
+
+    logt = math.log10(t) + 9
+
+    if logt <= 7.93:
+        logDTD = 1.4 - 50.0 * (logt - 7.7)**2
+    else:
+        logDTD = -0.8 - 0.9 * (logt - 8.7)**2
+
+    return logDTD
+
 def imf_binary_primary(m, imf, binary_fraction=constants.BIN_FRACTION):
     """
     Initial mass function for primary stars of binary systems
