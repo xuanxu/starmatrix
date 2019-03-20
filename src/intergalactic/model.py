@@ -28,8 +28,6 @@ class Model:
         self.bmaxm   = constants.B_MAX / 2
 
     def run(self):
-
-        self.eta = self.eta()
         self.explosive_nucleosynthesis()
         self.create_q_matrices()
 
@@ -47,7 +45,7 @@ class Model:
 
             q = np.zeros((constants.Q_MATRIX_ROWS, constants.Q_MATRIX_COLUMNS))
 
-            fik, fisik_a, fisiik = 0.0, 0.0, 0.0
+            fisik_a = 0.0
             energies_k  = 1e6 * self.energies[i]
             sn_rates_k = 1e6 * self.sn_rates[i]
 
@@ -61,8 +59,6 @@ class Model:
                     f = 1e6 * constants.WEIGHTS_N[ip] * mass_step
                     fm1 = f * imf_plus_primaries(m, self.initial_mass_function, self.context["binary_fraction"])
                     fm12 = fm1 + f * imf_binary_secondary(m, self.initial_mass_function, SNI_events = False, binary_fraction=self.context["binary_fraction"])
-                    fik += fm12
-                    if m > constants.M_SNII : fisiik += fm1/m
 
                     if self.context["sn_ia_selection"] == "rlp":
                         fisik_a = sn_rates_k
@@ -73,27 +69,13 @@ class Model:
                        q += (fisik_a * q_sn_ia)
 
             np.savetxt(matrices_file, q, fmt="%15.8f", header=f"Q matrix for mass interval: [{m_sup}, {m_inf}]")
-            imf_sn_file.write(f'{fik:.4f}'
-                              + f'  {fisiik:.4f}'
-                              + f'  {fisik_a:.4f}'
+            imf_sn_file.write(f'  {fisik_a:.4f}'
                               + f'  {energies_k:.4f}'
                               + '\n'
                              )
 
         matrices_file.close()
         imf_sn_file.close()
-
-    def eta(self):
-        # ETA Computation:  Proportion of stars with mass in [bmin, bmax] * binary_fraction
-        # In the end ETA is the number of binary systems
-        eta = 0.0
-        stm = (constants.B_MAX - constants.B_MIN) / constants.N_INTERVALS
-
-        for i in range(0, constants.N_POINTS):
-            bm = constants.B_MIN + i * stm
-            eta += constants.WEIGHTS_N[i] * self.initial_mass_function.for_mass(bm) / bm
-
-        return self.context["binary_fraction"] * stm * eta
 
     def explosive_nucleosynthesis(self):
 
