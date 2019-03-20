@@ -84,18 +84,6 @@ def stellar_mass(lifetime, z):
 
     return value_in_interval(1 / p, [0.15, 100.0])
 
-def supernovas_a_rate(t):
-    if t <= 0 : return 0.0
-    logt, b = math.log10(t), -1.4
-    if logt > b : return 0.003252 * (logt - b)
-    return 0.0
-
-def supernovas_b_rate(t):
-    if t <= 0 : return 0.0
-    logt, b = min(math.log10(t), -0.1), -1.2
-    if logt > b : return 0.02497 * (logt - b)
-    return 0.0
-
 def total_energy_ejected(t):
     if t <= 0 : return 0.0
     tc = 5.3e-5

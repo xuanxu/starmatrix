@@ -3,7 +3,7 @@ import intergalactic.constants as constants
 import intergalactic.elements as elements
 import intergalactic.matrix as matrix
 from intergalactic.functions import select_imf, select_abundances
-from intergalactic.functions import mean_lifetime, stellar_mass, supernovas_a_rate, supernovas_b_rate
+from intergalactic.functions import mean_lifetime, stellar_mass
 from intergalactic.functions import total_energy_ejected, sn_rate_ruiz_lapuente, value_in_interval
 from intergalactic.functions import imf_plus_primaries, imf_binary_secondary, imf_remnants
 
@@ -18,8 +18,6 @@ class Model:
         self.context["expelled"] = elements.Expelled(expelled_elements_filename=self.context["expelled_elements_filename"])
 
         self.mass_intervals = []
-        self.sn_a_rates = []
-        self.sn_b_rates = []
         self.energies = []
         self.sn_rates = []
 
@@ -39,7 +37,6 @@ class Model:
         # Chandrasekhar limit = 1.4
         feh = self.context["abundances"].feh()
         q_sn_ia = matrix.q_sn(1.4, feh, sn_type = "sn_ia")[0:constants.Q_MATRIX_ROWS, 0:constants.Q_MATRIX_COLUMNS]
-        q_sn_ib = matrix.q_sn(1.4, feh, sn_type = "sn_ib")[0:constants.Q_MATRIX_ROWS, 0:constants.Q_MATRIX_COLUMNS]
 
         imf_sn_file = open(f"{self.context['output_dir']}/imf_supernova_rates", "w+")
         matrices_file =  open(f"{self.context['output_dir']}/qm-matrices", "w+")
@@ -50,9 +47,7 @@ class Model:
 
             q = np.zeros((constants.Q_MATRIX_ROWS, constants.Q_MATRIX_COLUMNS))
 
-            fik, fisik_a, fisik_b, fisiik = 0.0, 0.0, 0.0, 0.0
-            sn_a_rates_k = 1e6 * self.sn_a_rates[i]
-            sn_b_rates_k = 1e6 * self.sn_b_rates[i]
+            fik, fisik_a, fisiik = 0.0, 0.0, 0.0
             energies_k  = 1e6 * self.energies[i]
             sn_rates_k = 1e6 * self.sn_rates[i]
 
@@ -70,28 +65,18 @@ class Model:
                     fik += fm12
                     if m > constants.M_SNII : fisiik += fm1/m
 
-                    if self.context["sn_ia_selection"] == "matteucci":
-                        fm2s = f * imf_binary_secondary(m, self.initial_mass_function, SNI_events = True, binary_fraction=self.context["binary_fraction"])
-                        fisik_a += fm2s/m
-                        fisik_b = 0
-                    elif self.context["sn_ia_selection"] == "tornambe":
-                        fisik_a = sn_a_rates_k
-                        fisik_b = sn_b_rates_k
-                    elif self.context["sn_ia_selection"] == "rlp":
+                    if self.context["sn_ia_selection"] == "rlp":
                         fisik_a = sn_rates_k
-                        fisik_b = 0
 
                     q += fm12 * qm
 
                     if m < self.bmaxm:
-                       q += (fisik_a * q_sn_ia) + (fisik_b * q_sn_ib)
+                       q += (fisik_a * q_sn_ia)
 
             np.savetxt(matrices_file, q, fmt="%15.8f", header=f"Q matrix for mass interval: [{m_sup}, {m_inf}]")
             imf_sn_file.write(f'{fik:.4f}'
                               + f'  {fisiik:.4f}'
                               + f'  {fisik_a:.4f}'
-                              + f'  {fisik_b:.4f}'
-                              + f'  {sn_b_rates_k:.4f}'
                               + f'  {energies_k:.4f}'
                               + '\n'
                              )
@@ -130,8 +115,6 @@ class Model:
 
             t_inf = t_sup
             t_sup = self.delta * interval
-            self.sn_a_rates.append((supernovas_a_rate(t_sup) - supernovas_a_rate(t_inf)) * self.eta)
-            self.sn_b_rates.append((supernovas_b_rate(t_sup) - supernovas_b_rate(t_inf)) * self.eta)
 
             self.energies.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
             self.sn_rates.append(self.context["binary_fraction"] * 0.5 *
@@ -149,9 +132,6 @@ class Model:
             t_inf = t_sup
             t_sup = self.delta_low_m * interval
             if t_sup <= t_inf : t_sup = t_inf
-
-            self.sn_a_rates.append((supernovas_a_rate(t_sup) - supernovas_a_rate(t_inf)) * self.eta)
-            self.sn_b_rates.append((supernovas_b_rate(t_sup) - supernovas_b_rate(t_inf)) * self.eta)
 
             self.energies.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
             self.sn_rates.append(self.context["binary_fraction"] * 0.5 *

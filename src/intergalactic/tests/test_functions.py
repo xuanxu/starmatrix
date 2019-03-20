@@ -52,8 +52,6 @@ def test_value_in_interval():
 
 def test_no_negative_time_values():
     t = -1
-    assert functions.supernovas_a_rate(t) == 0.0
-    assert functions.supernovas_b_rate(t) == 0.0
     assert functions.total_energy_ejected(t) == 0.0
     assert functions.sn_rate_ruiz_lapuente(t) == 0.0
 
