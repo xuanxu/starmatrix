@@ -120,7 +120,7 @@ def dtd_mannucci_della_valle_panagia(t):
     else:
         logDTD = -0.8 - 0.9 * (logt - 8.7)**2
 
-    return logDTD
+    return math.exp(logDTD)
 
 def imf_binary_primary(m, imf, binary_fraction=constants.BIN_FRACTION):
     """
