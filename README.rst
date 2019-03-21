@@ -87,7 +87,7 @@ The ``imf`` param in the config file can be set to use any of the predefined IMF
 
 The default value is ``kroupa``. If you want to use your own IMF you can do so subclassing the `IMF class`_.
 
-.. _`IMF class`: https://github.com/xuanxu/intergalactic/blob/master/src/intergalactic/imfs.py#L19-L39
+.. _`IMF class`: https://github.com/xuanxu/intergalactic/blob/master/src/intergalactic/imfs.py#L20-L40
 
 Solar abundances
 ----------------
