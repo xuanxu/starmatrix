@@ -43,7 +43,7 @@ setup(
     package_data={"": ["sample_input/*"]},
     entry_points={"console_scripts": ["intergalactic = intergalactic.cli:main"]},
     classifiers=[
-        "Development Status :: 3 - Alpha",
+        "Development Status :: 4 - Beta",
         "Intended Audience :: Education",
         "Intended Audience :: Science/Research",
         "License :: OSI Approved :: MIT License",
