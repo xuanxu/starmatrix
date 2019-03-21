@@ -1,3 +1,4 @@
+import math
 import numpy as np
 import intergalactic.constants as constants
 import intergalactic.elements as elements
@@ -5,7 +6,7 @@ import intergalactic.matrix as matrix
 from intergalactic.functions import select_imf, select_abundances
 from intergalactic.functions import mean_lifetime, stellar_mass
 from intergalactic.functions import total_energy_ejected, sn_rate_ruiz_lapuente, value_in_interval
-from intergalactic.functions import imf_plus_primaries, imf_binary_secondary, imf_remnants
+from intergalactic.functions import imf_plus_primaries, imf_binary_secondary
 
 class Model:
     def __init__(self, settings = {}):
@@ -20,6 +21,12 @@ class Model:
         self.mass_intervals = []
         self.energies = []
         self.sn_rates = []
+
+        self.m_min = self.context["m_min"]
+        self.m_max = self.context["m_max"]
+        self.z = self.context["z"]
+        self.total_time_steps = 300
+
 
         tsep         = mean_lifetime(constants.M_SEP, 0.02)
         self.delta   = tsep / constants.M_STEP
@@ -39,7 +46,7 @@ class Model:
         imf_sn_file = open(f"{self.context['output_dir']}/imf_supernova_rates", "w+")
         matrices_file =  open(f"{self.context['output_dir']}/qm-matrices", "w+")
 
-        for i in range(0, constants.M_STEP + self.lm1):
+        for i in range(0, self.total_time_steps):
             m_inf, m_sup = self.mass_intervals[i]
             mass_step = (m_sup - m_inf) / constants.N_INTERVALS
 
@@ -78,6 +85,38 @@ class Model:
         imf_sn_file.close()
 
     def explosive_nucleosynthesis(self):
+
+        t_ini = mean_lifetime(self.m_max, self.z)
+        t_end = min(mean_lifetime(self.m_min, self.z), constants.TOTAL_TIME)
+        t_ini_log = math.log10(t_ini * 1e9)
+        t_end_log = math.log10(t_end * 1e9)
+
+        delta_t_log = (t_end_log - t_ini_log) / self.total_time_steps
+
+        mass_intervals_file = open(f"{self.context['output_dir']}/mass_intervals", "w+")
+        mass_intervals_file.write(" ".join([str(i) for i in [t_ini, t_end, self.total_time_steps, delta_t_log]]))
+
+        for step in range(0, self.total_time_steps):
+            t_inf_log = t_ini_log + (delta_t_log * step)
+            t_sup_log = t_ini_log + (delta_t_log * (step + 1))
+
+            t_inf = math.pow(10, t_inf_log - 9)
+            t_sup = math.pow(10, t_sup_log - 9)
+
+            m_inf = stellar_mass(t_sup, self.z)
+            m_sup = stellar_mass(t_inf, self.z)
+
+            mass_intervals_file.write('\n' + f'{m_sup:14.10f}  ' + f'{m_inf:14.10f}  ' + str(step + 1))
+
+            self.mass_intervals.append([m_inf, m_sup])
+            self.energies.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
+            self.sn_rates.append(self.context["binary_fraction"] * 0.5 * (t_sup - t_inf) * (sn_rate_ruiz_lapuente(t_sup) + sn_rate_ruiz_lapuente(t_inf)))
+
+        mass_intervals_file.close()
+
+
+
+    def explosive_nucleosynthesis_old(self):
 
         mass_intervals_file = open(f"{self.context['output_dir']}/mass_intervals", "w+")
         line_1 = " ".join([str(i) for i in [constants.M_STEP, constants.LOW_M_STEP, self.lm1]])
