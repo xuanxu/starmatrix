@@ -12,6 +12,7 @@ default = {
     "sol_ab": "as09",
     "imf": "kroupa",
     "imf_alpha": 2.35,
+    "m_min": 0.98,
     "m_max": 40.0,
     "binary_fraction": constants.BIN_FRACTION,
     "sn_ia_selection": "rlp",
