@@ -26,11 +26,14 @@ def select_abundances(option, z):
     }
     return abundandes_data[option](z)
 
+def value_in_interval(value, interval = []):
+    return min(max(interval[0], value), interval[1])
+
 def secondary_mass_fraction(mu):
     """
     Distribution function of the mass fraction of the secondary in binary systems / SNI
     mu = Mass_secondary / Mass_binary_system
-    From: Matteucci, F., & Greggio, L. 1986, A&A, 154, 279
+    From: Matteucci, F. & Greggio, L. 1986, A&A, 154, 279
     with Gamma = 2 as Greggio, L., Renzini, A.: 1983a, Astron. Astrophys. 118, 217
 
     """
@@ -92,9 +95,6 @@ def total_energy_ejected(t):
         return 1 - 0.44 * (rt ** 2) * (1 - 0.41 * rt) - 0.22 * (rt ** 2)
     else:
         return 8.67e3 * t
-
-def value_in_interval(value, interval = []):
-    return min(max(interval[0], value), interval[1])
 
 def sn_rate_ruiz_lapuente(t):
     if t <= 0 : return 0.0
