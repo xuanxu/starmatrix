@@ -27,11 +27,6 @@ class Model:
         self.z = self.context["z"]
         self.total_time_steps = 300
 
-
-        tsep         = mean_lifetime(constants.M_SEP, 0.02)
-        self.delta   = tsep / constants.M_STEP
-        self.delta_low_m   = constants.LOW_M_STEP * self.delta
-        self.lm1     = int(1 + (constants.M_STEP * constants.TOTAL_TIME) / (tsep * constants.LOW_M_STEP))
         self.bmaxm   = constants.B_MAX / 2
 
     def run(self):
