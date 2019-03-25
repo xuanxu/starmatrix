@@ -21,7 +21,6 @@ default = {
     "expelled_elements_filename":  join(dirname(__file__),"sample_input", "expelled_elements")
 }
 
-
 valid_values = {
     "imf": ["salpeter", "chabrier", "ferrini", "kroupa", "miller_scalo", "starburst", "maschberger"],
     "sn_ia_selection": ["matteucci", "tornambe", "rlp"],

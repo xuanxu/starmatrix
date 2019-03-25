@@ -1,28 +1,28 @@
 import math
 
-from intergalactic.imfs import Chabrier, Ferrini, Salpeter, Kroupa, MillerScalo, Maschberger, Starburst
-from intergalactic.abundances import AndersGrevesse1989, GrevesseSauval1998, Asplund2005, Asplund2009, Heger2010
+import intergalactic.imfs as imf
+import intergalactic.abundances as ab
 import intergalactic.constants as constants
 
 def select_imf(name, params = {}):
     imfs = {
-        "salpeter": Salpeter,
-        "chabrier": Chabrier,
-        "ferrini": Ferrini,
-        "kroupa": Kroupa,
-        "miller_scalo": MillerScalo,
-        "starburst": Starburst,
-        "maschberger": Maschberger
+        "salpeter": imf.Salpeter,
+        "chabrier": imf.Chabrier,
+        "ferrini": imf.Ferrini,
+        "kroupa": imf.Kroupa,
+        "miller_scalo": imf.MillerScalo,
+        "starburst": imf.Starburst,
+        "maschberger": imf.Maschberger
     }
     return imfs[name](params)
 
 def select_abundances(option, z):
     abundandes_data = {
-        "ag89": AndersGrevesse1989,
-        "gs98": GrevesseSauval1998,
-        "as05": Asplund2005,
-        "as09": Asplund2009,
-        "he10": Heger2010
+        "ag89": ab.AndersGrevesse1989,
+        "gs98": ab.GrevesseSauval1998,
+        "as05": ab.Asplund2005,
+        "as09": ab.Asplund2009,
+        "he10": ab.Heger2010
     }
     return abundandes_data[option](z)
 
