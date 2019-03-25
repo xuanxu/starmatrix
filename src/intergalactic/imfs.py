@@ -111,9 +111,9 @@ class Maschberger(IMF):
                ((1 + (self.m_mu() ** (1 - self.aalfa()))) ** (-self.beta()))
 
     def factor(self):
-        if self.params["m_max"] == 40:
+        if self.params["m_max"] <= 40:
             return 1.31
-        elif self.params["m_max"] == 100:
+        else:
             return 1.22
 
     def m_mu(self):
@@ -138,7 +138,8 @@ class Maschberger(IMF):
         return 1.4
 
     def set_params(self):
-        self.params["m_max"] = 40
+        if "m_max" not in self.params:
+            self.params["m_max"] = 40
 
     def description(self):
         return "IMF from Maschberger 2012"
