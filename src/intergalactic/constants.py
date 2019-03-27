@@ -19,6 +19,4 @@ IMF_WEIGHTS = [41.0, 216.0, 27.0, 272.0, 27.0, 216.0, 41.0, 0.0, 0.0, 0.0]
 WEIGHTS_N = [i * (N_POINTS - 1) / sum(IMF_WEIGHTS) for i in IMF_WEIGHTS]
 
 # Model calculations params:
-M_STEP     = 164    # step size for mass intervals of massive stars
-LOW_M_STEP = 82     # number of steps for mass intervals of low mass stars
 TOTAL_TIME = 13.25  # Total integration time in Gigayears

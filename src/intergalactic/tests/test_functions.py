@@ -33,10 +33,10 @@ def test_mean_lifetime_stellar_mass_relation():
     lifetime_test     = 0.15
 
     stellar_mass      = functions.stellar_mass(lifetime_test, z)
-    lifetime          = functions.mean_lifetime(stellar_mass_test, z)
+    lifetime          = functions.stellar_lifetime(stellar_mass_test, z)
 
-    assert np.isclose(functions.stellar_mass(lifetime, z), stellar_mass_test,  rtol = 0.05)
-    assert np.isclose(functions.mean_lifetime(stellar_mass, z), lifetime_test, rtol = 0.05)
+    assert np.isclose(functions.stellar_mass(lifetime, z), stellar_mass_test,  rtol = 0.005)
+    assert np.isclose(functions.stellar_lifetime(stellar_mass, z), lifetime_test, rtol = 0.005)
 
 def test_value_in_interval():
     interval_min  = 1.0
@@ -52,8 +52,6 @@ def test_value_in_interval():
 
 def test_no_negative_time_values():
     t = -1
-    assert functions.supernovas_a_rate(t) == 0.0
-    assert functions.supernovas_b_rate(t) == 0.0
     assert functions.total_energy_ejected(t) == 0.0
     assert functions.sn_rate_ruiz_lapuente(t) == 0.0
 

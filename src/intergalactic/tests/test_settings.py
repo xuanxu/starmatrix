@@ -1,5 +1,6 @@
 import pytest
 import intergalactic.settings as settings
+from intergalactic.functions import max_mass_allowed
 
 def test_defaults():
     assert settings.default != None
@@ -33,6 +34,15 @@ def test_validate_with_invalid_values():
 
     params = settings.validate(invalid_values)
 
-    for param in ["imf", "sn_ia_selection", "sol_ab", "m_max"]:
+    for param in ["imf", "sn_ia_selection", "sol_ab"]:
         assert params[param] != invalid_values[param]
         assert params[param] == settings.default[param]
+
+def test_validate_max_mass_with_valid_values():
+    params = settings.validate({"m_max": 33})
+    assert params["m_max"] == 33
+
+def test_validate_max_mass_with_invalid_values():
+    for z in [0.001, 0.008, 0.2, 0.33, 0.5]:
+        params = settings.validate({"m_max": 300, "z": z})
+        assert params["m_max"] == max_mass_allowed(z)

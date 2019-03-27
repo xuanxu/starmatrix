@@ -1,7 +1,7 @@
 import pytest
 import numpy as np
-import intergalactic.functions as functions
 import intergalactic.settings as settings
+import intergalactic.functions as functions
 from intergalactic.abundances import Abundances
 
 @pytest.fixture
