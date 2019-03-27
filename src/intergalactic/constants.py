@@ -4,7 +4,6 @@ Q_MATRIX_COLUMNS = 9
 
 # Mass range config:
 M_MIN = 0.8         # Minimum mass
-M_SEP = 4.0         # Limit mass value between small and massive stars
 
 # Binaries params:
 M_SNII = 8.0        # Lower limit for binaries in Supernovas II
