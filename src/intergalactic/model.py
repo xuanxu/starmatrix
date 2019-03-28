@@ -5,7 +5,7 @@ import intergalactic.elements as elements
 import intergalactic.matrix as matrix
 from intergalactic.functions import select_imf, select_abundances
 from intergalactic.functions import stellar_mass, stellar_lifetime, max_mass_allowed
-from intergalactic.functions import total_energy_ejected, sn_rate_ruiz_lapuente, value_in_interval
+from intergalactic.functions import total_energy_ejected, dtd_ruiz_lapuente, value_in_interval
 from intergalactic.functions import imf_plus_primaries, imf_binary_secondary
 
 class Model:
@@ -105,6 +105,6 @@ class Model:
 
             self.mass_intervals.append([m_inf, m_sup])
             self.energies.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
-            self.sn_rates.append(self.context["binary_fraction"] * 0.5 * (t_sup - t_inf) * (sn_rate_ruiz_lapuente(t_sup) + sn_rate_ruiz_lapuente(t_inf)))
+            self.sn_rates.append(self.context["binary_fraction"] * 0.5 * (t_sup - t_inf) * (dtd_ruiz_lapuente(t_sup) + dtd_ruiz_lapuente(t_inf)))
 
         mass_intervals_file.close()

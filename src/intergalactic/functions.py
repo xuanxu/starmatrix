@@ -105,7 +105,7 @@ def total_energy_ejected(t):
     else:
         return 8.67e3 * t
 
-def sn_rate_ruiz_lapuente(t):
+def dtd_ruiz_lapuente(t):
     if t <= 0 : return 0.0
     logt = math.log10(t) + 9
     if logt < 7.8 : return 0.0
@@ -121,9 +121,8 @@ def dtd_mannucci_della_valle_panagia(t):
     Delay Time Distribution (DTD) from Mannucci, Della Valle, Panagia (2006)
 
     """
-
+    if t <= 0 : return 0.0
     logt = math.log10(t) + 9
-
     if logt <= 7.93:
         logDTD = 1.4 - 50.0 * (logt - 7.7)**2
     else:

@@ -53,7 +53,8 @@ def test_value_in_interval():
 def test_no_negative_time_values():
     t = -1
     assert functions.total_energy_ejected(t) == 0.0
-    assert functions.sn_rate_ruiz_lapuente(t) == 0.0
+    assert functions.dtd_ruiz_lapuente(t) == 0.0
+    assert functions.dtd_mannucci_della_valle_panagia(t) == 0.0
 
 def test_imf_plus_primaries():
     m_in_binaries_range = 5.0
