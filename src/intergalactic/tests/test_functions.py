@@ -23,6 +23,14 @@ def test_select_abundances():
         assert type(abundance_instance) == classes[i]
         assert abundance_instance.z == 0.033
 
+def test_select_dtd():
+    strings = ["rlp", "mdvp"]
+    dtds = [functions.dtd_ruiz_lapuente, functions.dtd_mannucci_della_valle_panagia]
+
+    for i in range(len(strings)):
+        for time in np.random.rand(5) * 900 * 0.01:
+            assert functions.select_dtd(strings[i])(time) == dtds[i](time)
+
 def test_secondary_mass_fraction():
     for m in [0.33, 3.33, 33.7, 73.0]:
         assert functions.secondary_mass_fraction(m) == 24 * m ** 2

@@ -26,6 +26,13 @@ def select_abundances(option, z):
     }
     return abundandes_data[option](z)
 
+def select_dtd(option):
+    dtds = {
+        "rlp": dtd_ruiz_lapuente,
+        "mdvp": dtd_mannucci_della_valle_panagia
+    }
+    return dtds[option]
+
 def value_in_interval(value, interval = []):
     return min(max(interval[0], value), interval[1])
 
@@ -106,6 +113,10 @@ def total_energy_ejected(t):
         return 8.67e3 * t
 
 def dtd_ruiz_lapuente(t):
+    """
+    Delay Time Distribution (DTD) from Ruiz Lapuente
+
+    """
     if t <= 0 : return 0.0
     logt = math.log10(t) + 9
     if logt < 7.8 : return 0.0

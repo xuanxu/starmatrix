@@ -61,7 +61,7 @@ Intergalactic reads a config file where several options can be set in yaml forma
         imf: kroupa             # initial mass function
         m_max: 40               # max value for stellar mass
         binary_fraction: 0.05   # rate of binary stars
-        sn_ia_selection: rpl    # supernova imf
+        dtd_sn: rlp             # delay time distribution for supernovas
 
 If no values are provided Intergalactic will use its internal default values for all params.
 
@@ -103,6 +103,14 @@ The ``sol_ab`` param in the config file can be set to use any of the available a
 The default value is ``as09``. If you want to use your own abundances data you can do so subclassing the `Abundances class`_.
 
 .. _`Abundances class`: https://github.com/xuanxu/intergalactic/blob/master/src/intergalactic/abundances.py#L18-L47
+
+Delay Time Distributions
+------------------------
+
+The ``dtd_sn`` param in the config file can be set to use any of the available Delay Time Distributions for supernova rates from different papers/authors:
+
+:rlp: Supernova rates from Pilar Ruiz-Lapuente
+:mdvp: DTD from Mannucci, Della Valle, Panagia 2006
 
 License
 =======

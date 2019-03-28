@@ -3,7 +3,7 @@ import numpy as np
 import intergalactic.constants as constants
 import intergalactic.elements as elements
 import intergalactic.matrix as matrix
-from intergalactic.functions import select_imf, select_abundances
+from intergalactic.functions import select_imf, select_abundances, select_dtd
 from intergalactic.functions import stellar_mass, stellar_lifetime, max_mass_allowed
 from intergalactic.functions import total_energy_ejected, dtd_ruiz_lapuente, value_in_interval
 from intergalactic.functions import imf_plus_primaries, imf_binary_secondary
@@ -22,9 +22,10 @@ class Model:
         self.energies = []
         self.sn_rates = []
 
+        self.z = self.context["z"]
+        self.dtd = select_dtd(self.context["dtd_sn"])
         self.m_min = self.context["m_min"]
         self.m_max = self.context["m_max"]
-        self.z = self.context["z"]
         self.total_time_steps = 300
 
         self.bmaxm   = constants.B_MAX / 2
@@ -47,7 +48,6 @@ class Model:
 
             q = np.zeros((constants.Q_MATRIX_ROWS, constants.Q_MATRIX_COLUMNS))
 
-            fisik_a = 0.0
             energies_k  = 1e6 * self.energies[i]
             sn_rates_k = 1e6 * self.sn_rates[i]
 
@@ -62,16 +62,13 @@ class Model:
                     fm1 = f * imf_plus_primaries(m, self.initial_mass_function, self.context["binary_fraction"])
                     fm12 = fm1 + f * imf_binary_secondary(m, self.initial_mass_function, SNI_events = False, binary_fraction=self.context["binary_fraction"])
 
-                    if self.context["sn_ia_selection"] == "rlp":
-                        fisik_a = sn_rates_k
-
                     q += fm12 * qm
 
                     if m < self.bmaxm:
-                       q += (fisik_a * q_sn_ia)
+                       q += (sn_rates_k * q_sn_ia)
 
             np.savetxt(matrices_file, q, fmt="%15.8f", header=f"Q matrix for mass interval: [{m_sup}, {m_inf}]")
-            imf_sn_file.write(f'  {fisik_a:.4f}'
+            imf_sn_file.write(f'  {sn_rates_k:.4f}'
                               + f'  {energies_k:.4f}'
                               + '\n'
                              )
@@ -105,6 +102,6 @@ class Model:
 
             self.mass_intervals.append([m_inf, m_sup])
             self.energies.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
-            self.sn_rates.append(self.context["binary_fraction"] * 0.5 * (t_sup - t_inf) * (dtd_ruiz_lapuente(t_sup) + dtd_ruiz_lapuente(t_inf)))
+            self.sn_rates.append(self.context["binary_fraction"] * 0.5 * (t_sup - t_inf) * (self.dtd(t_sup) + self.dtd(t_inf)))
 
         mass_intervals_file.close()
