@@ -26,7 +26,7 @@ class Model:
         self.dtd = select_dtd(self.context["dtd_sn"])
         self.m_min = self.context["m_min"]
         self.m_max = self.context["m_max"]
-        self.total_time_steps = 300
+        self.total_time_steps = self.context["total_time_steps"]
 
         self.bmaxm   = constants.B_MAX / 2
 

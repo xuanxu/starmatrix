@@ -15,6 +15,7 @@ default = {
     "imf_alpha": 2.35,
     "m_min": 0.98,
     "m_max": 40.0,
+    "total_time_steps": 300,
     "binary_fraction": constants.BIN_FRACTION,
     "dtd_sn": "rlp",
     "output_dir": "results",
