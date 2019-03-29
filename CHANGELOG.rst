@@ -30,11 +30,10 @@ Bug fixes
 0.1.0 Beatrice Tinsley Release - (2019-03-21)
 =============================================
 
-First beta release.
-^^^^^^^^^^^^^^^^^^^
+**First beta release**
 
 Q-Matrix generation complete for 15 elements:
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------------------------
 
 H | D | He3 | He4 | C | C13 | N | O | n.r. | Ne | Mg | Si | S | Ca | Fe
 --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | ---
