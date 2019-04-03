@@ -66,11 +66,8 @@ class Model:
                     if m < self.bmaxm:
                        q += (sn_rates_k * q_sn_ia)
 
-            np.savetxt(matrices_file, q, fmt="%15.8f", header=f"Q matrix for mass interval: [{m_sup}, {m_inf}]")
-            imf_sn_file.write(f'  {sn_rates_k:.4f}'
-                              + f'  {energies_k:.4f}'
-                              + '\n'
-                             )
+            np.savetxt(matrices_file, q, fmt="%15.9f", header=f"Q matrix for mass interval: [{m_sup}, {m_inf}]")
+            imf_sn_file.write(f"  {sn_rates_k:.4f}  {energies_k:.4f}\n")
 
         matrices_file.close()
         imf_sn_file.close()
