@@ -35,9 +35,8 @@ class Model:
         self.create_q_matrices()
 
     def create_q_matrices(self):
-        # Chandrasekhar limit = 1.4
         feh = self.context["abundances"].feh()
-        q_sn_ia = matrix.q_sn(1.4, feh, sn_type = "sn_ia")[0:constants.Q_MATRIX_ROWS, 0:constants.Q_MATRIX_COLUMNS]
+        q_sn_ia = matrix.q_sn(constants.CHANDRASEKHAR_LIMIT, feh, sn_type = "sn_ia")[0:constants.Q_MATRIX_ROWS, 0:constants.Q_MATRIX_COLUMNS]
 
         imf_sn_file = open(f"{self.context['output_dir']}/imf_supernova_rates", "w+")
         matrices_file =  open(f"{self.context['output_dir']}/qm-matrices", "w+")
