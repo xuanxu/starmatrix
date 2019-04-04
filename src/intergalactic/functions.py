@@ -141,6 +141,20 @@ def dtd_mannucci_della_valle_panagia(t):
 
     return math.exp(logDTD)
 
+def newton_cotes(a, b, f):
+    """
+    Integration using Newton-Cotes formula with degree 6 (7 points)
+    """
+    NEWTON_COTES_POINTS = 7
+    NEWTON_COTES_COEFFICIENTS = [0.29285714, 1.54285714, 0.19285714, 1.94285714, 0.19285714, 1.54285714, 0.29285714]
+
+    h = (b - a) / (NEWTON_COTES_POINTS - 1)
+    sum_fs = 0.0
+    for i in range(0, NEWTON_COTES_POINTS):
+        sum_fs += NEWTON_COTES_COEFFICIENTS[i] * f(a + (i * h))
+
+    return h * sum_fs
+
 def imf_binary_primary(m, imf, binary_fraction=constants.BIN_FRACTION):
     """
     Initial mass function for primary stars of binary systems
