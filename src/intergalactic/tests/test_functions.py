@@ -64,13 +64,12 @@ def test_no_negative_time_values():
     assert functions.dtd_ruiz_lapuente(t) == 0.0
     assert functions.dtd_mannucci_della_valle_panagia(t) == 0.0
 
-def test_imf_plus_primaries():
+def test_imf_zero():
     m_in_binaries_range = 5.0
     m = constants.B_MIN - 0.5
     imf = functions.select_imf(np.random.choice(settings.valid_values["imf"]), settings.default)
 
-    assert functions.imf_plus_primaries(m, imf) == imf.for_mass(m) + functions.imf_binary_primary(m, imf)
+    assert functions.imf_zero(m, imf) == imf.for_mass(m)
 
-    imf_1 = imf.for_mass(m_in_binaries_range) * (1.0 - constants.BIN_FRACTION)
-    imf_2 = functions.imf_binary_primary(m_in_binaries_range, imf)
-    assert functions.imf_plus_primaries(m_in_binaries_range, imf) == imf_1 + imf_2
+    imf_bin = imf.for_mass(m_in_binaries_range) * (1.0 - constants.BIN_FRACTION)
+    assert functions.imf_zero(m_in_binaries_range, imf) == imf_bin

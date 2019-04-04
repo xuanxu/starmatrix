@@ -158,58 +158,76 @@ def newton_cotes(a, b, f):
 def imf_binary_primary(m, imf, binary_fraction=constants.BIN_FRACTION):
     """
     Initial mass function for primary stars of binary systems
+    Integrated between  m' and m'' using Newton-Cotes
+    Returns 0 unless m is in (1.5, 16)
 
     """
 
-    if m <= 0 : return 0.0
-    b_inf = max(constants.B_MIN, m)
-    b_sup = min(constants.B_MAX, 2 * m)
+    m_inf = max(constants.B_MIN, m)
+    m_sup = min(constants.B_MAX, 2 * m)
+    if m <= 0 or m_sup <= m_inf : return 0.0
 
-    stm = (b_sup - b_inf) / constants.N_INTERVALS
-    if stm <= 0 : return 0.0
-
-    imf_bin_1 = 0.0
-    for i in range(0, constants.N_POINTS):
-        binary_mass = b_inf + (i * stm)
-        imf_bin_1 += constants.WEIGHTS_N[i] * \
-                     secondary_mass_fraction(1.0 - (m / binary_mass)) * \
-                     imf.for_mass(binary_mass) * \
-                     m / (binary_mass ** 2)
-
-    return imf_bin_1 * stm * binary_fraction
+    return newton_cotes(m_inf, m_sup, phi_primary(m, imf, binary_fraction))
 
 def imf_binary_secondary(m, imf, SNI_events = False, binary_fraction=constants.BIN_FRACTION):
     """
     Initial mass function for secondary stars of binary systems
     Optionally ocurring Supernova I events
+    Integrated between  m' and m'' using Newton-Cotes
+    If SNI_events = False then returns 0 unless m is in (0, 8)
 
     """
 
-    if m <= 0 : return 0.0
-    b_inf = max(constants.B_MIN, 2 * m)
-    b_sup = constants.B_MAX
+    m_inf = max(constants.B_MIN, 2 * m)
+    m_sup = constants.B_MAX
     if SNI_events : b_sup = min(constants.B_MAX, constants.M_SNII + m)
+    if m <= 0 or m_sup <= m_inf : return 0.0
 
-    stm = (b_sup - b_inf) / constants.N_INTERVALS
-    if stm <= 0 : return 0.0
+    return newton_cotes(m_inf, m_sup, phi_secondary(m, imf, binary_fraction))
 
-    imf_bin_2 = 0.0
-    for i in range(0, constants.N_POINTS):
-        binary_mass = b_inf + (i * stm)
-        imf_bin_2 += constants.WEIGHTS_N[i] * \
-                     secondary_mass_fraction(m / binary_mass) * \
-                     imf.for_mass(binary_mass) * \
-                     m / (binary_mass ** 2)
-
-    return imf_bin_2 * stm * binary_fraction
-
-def imf_plus_primaries(m, imf, binary_fraction=constants.BIN_FRACTION):
+def imf_zero(m, imf, binary_fraction=constants.BIN_FRACTION):
     """
-    Initial mass function for normal stars plus primaries of binaries
+    Initial mass function for stars that are single or
+    part of binary systems not giving rise to SN I events
 
     """
 
     if constants.B_MIN <= m <= constants.B_MAX:
-        return imf.for_mass(m) * (1.0 - binary_fraction) + imf_binary_primary(m, imf)
+        return imf.for_mass(m) * (1.0 - binary_fraction)
     else:
-        return imf.for_mass(m) + imf_binary_primary(m, imf)
+        return imf.for_mass(m)
+
+def global_imf(m, imf, binary_fraction=constants.BIN_FRACTION):
+    """
+    global initial mass function from Ferrini et al.*,1992, ApJ, 387, 138
+
+    """
+    if m < constants.M_MIN:
+        return 0.0
+    if constants.M_MIN <= m < 1.5:
+        return imf_zero(m, imf, binary_fraction) + imf_binary_secondary(m, imf, binary_fraction)
+    elif 1.5 <= m < 8:
+        return imf_zero(m, imf, binary_fraction) + imf_binary_secondary(m, imf, binary_fraction) + imf_binary_primary(m, imf, binary_fraction)
+    elif 8 <= m < 16:
+        return imf_zero(m, imf, binary_fraction) + imf_binary_primary(m, imf, binary_fraction)
+    elif 16 <= m:
+        return imf_zero(m, imf, binary_fraction)
+
+
+def phi_primary(m, imf, binary_fraction=constants.BIN_FRACTION):
+    """
+    Expression to integrate for each mass m for the IMF for primary stars of binary systems
+
+    """
+    return lambda binary_mass : secondary_mass_fraction(1.0 - (m / binary_mass)) * \
+                                imf.for_mass(binary_mass) * binary_fraction * \
+                                m / (binary_mass ** 2)
+
+def phi_secondary(m, imf, binary_fraction=constants.BIN_FRACTION):
+    """
+    Expression to integrate for each mass m for the IMF for secondary stars of binary systems
+
+    """
+    return lambda binary_mass : secondary_mass_fraction(m / binary_mass) * \
+                                imf.for_mass(binary_mass) * binary_fraction * \
+                                m / (binary_mass ** 2)
