@@ -1,4 +1,4 @@
-.. intergalactic changelog 
+.. intergalactic changelog
 
 =========
 Changelog
@@ -21,10 +21,23 @@ New Delay Time Distribution setting
 - Added setting ``dtd_sn`` to select Delay Time Distribution tu use with supernova rates
 - Added DTD from *Mannucci, Della Valle, Panagia (2006)*
 
+Q-Matrix changes
+----------------
+
+- Q Matrix values are calculated now without adding a 10e6 factor
+- Accuracy increased to ``15.10f``
+- Supernova rates are 0.0 for masses > 8 solar masses
+
+New unified integration method
+------------------------------
+
+- Supernova rates, IMFs and Q integrals are now resolved with Newton-Cotes degree 6
+
 Bug fixes
 ---------
 
 - Fixed out-of-limits error ocurring when interpolating to 100 stellar masses
+- Fixed over-adding supernova rates to Q matrix in each integration step
 
 
 0.1.0 Beatrice Tinsley Release - (2019-03-21)

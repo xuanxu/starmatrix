@@ -64,13 +64,30 @@ def test_no_negative_time_values():
     assert functions.dtd_ruiz_lapuente(t) == 0.0
     assert functions.dtd_mannucci_della_valle_panagia(t) == 0.0
 
-def test_imf_plus_primaries():
+def test_imf_zero():
     m_in_binaries_range = 5.0
-    m = constants.B_MIN - 0.5
+    m_lower = constants.B_MIN - 0.5
+    m_up = constants.B_MAX + 0.5
     imf = functions.select_imf(np.random.choice(settings.valid_values["imf"]), settings.default)
 
-    assert functions.imf_plus_primaries(m, imf) == imf.for_mass(m) + functions.imf_binary_primary(m, imf)
+    assert functions.imf_zero(m_lower, imf) == imf.for_mass(m_lower)
+    assert functions.imf_zero(m_up, imf) == imf.for_mass(m_up)
 
-    imf_1 = imf.for_mass(m_in_binaries_range) * (1.0 - constants.BIN_FRACTION)
-    imf_2 = functions.imf_binary_primary(m_in_binaries_range, imf)
-    assert functions.imf_plus_primaries(m_in_binaries_range, imf) == imf_1 + imf_2
+    imf_bin = imf.for_mass(m_in_binaries_range) * (1.0 - constants.BIN_FRACTION)
+    assert functions.imf_zero(m_in_binaries_range, imf) == imf_bin
+
+def test_imf_binary_primary_integrates_phi_primary():
+    m_in_binaries_range = 5.0
+    m_sup = 2 * m_in_binaries_range
+    imf = functions.select_imf(np.random.choice(settings.valid_values["imf"]), settings.default)
+
+    expected = functions.newton_cotes(m_in_binaries_range, m_sup, functions.phi_primary(m_in_binaries_range, imf))
+    assert functions.imf_binary_primary(m_in_binaries_range, imf) == expected
+
+def test_imf_binary_secondary_integrates_phi_secondary():
+    m_in_binaries_range = 5.0
+    m_inf = 2 * m_in_binaries_range
+    imf = functions.select_imf(np.random.choice(settings.valid_values["imf"]), settings.default)
+
+    expected = functions.newton_cotes(m_inf, constants.B_MAX, functions.phi_secondary(m_in_binaries_range, imf))
+    assert functions.imf_binary_secondary(m_in_binaries_range, imf) == expected

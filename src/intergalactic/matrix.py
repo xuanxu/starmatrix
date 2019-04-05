@@ -57,6 +57,7 @@ def q(m, settings = {}):
 
     So element Q(1,1) (internally q(0,0) as numpy index starts at 0) is the H produced from H,
     and Q(14,4) is the Calcium created from Helium 4.
+    Returned matrix is cropped to [constants.Q_MATRIX_ROWS, constants.Q_MATRIX_COLUMNS]
 
     """
 
@@ -220,12 +221,14 @@ def q(m, settings = {}):
         for j in range(0, 15):
             if q[i, j] <= 0.0 and (i != 0 and j != 1) : q[i, j] = 0.0
 
-    return q
+    return q[0:constants.Q_MATRIX_ROWS, 0:constants.Q_MATRIX_COLUMNS]
 
 def q_sn(m, feh=0.0, sn_type="sn_ia"):
     """
     Compute the Q Matrix of elements coming from Supernova events
     Supernovae type can be specified as one of: [sn_ia, sn_ib]
+
+    Returned matrix is cropped to [constants.Q_MATRIX_ROWS, constants.Q_MATRIX_COLUMNS]
 
     """
 
@@ -252,4 +255,4 @@ def q_sn(m, feh=0.0, sn_type="sn_ia"):
     for i in range(8, 15):
         q[i, i] = 1.0 - remnant
 
-    return q
+    return q[0:constants.Q_MATRIX_ROWS, 0:constants.Q_MATRIX_COLUMNS]
