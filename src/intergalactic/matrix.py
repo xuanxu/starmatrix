@@ -62,7 +62,7 @@ def q(m, settings = {}):
     """
 
     q = empty_q_matrix()
-    if m < constants.M_MIN : return q
+    if m < constants.M_MIN : return resize_matrix(q)
 
     z          = settings["z"]
     abundances = settings["abundances"].abundance()
@@ -221,7 +221,7 @@ def q(m, settings = {}):
         for j in range(0, 15):
             if q[i, j] <= 0.0 and (i != 0 and j != 1) : q[i, j] = 0.0
 
-    return q[0:constants.Q_MATRIX_ROWS, 0:constants.Q_MATRIX_COLUMNS]
+    return resize_matrix(q)
 
 def q_sn(m, feh=0.0, sn_type="sn_ia"):
     """
@@ -233,7 +233,7 @@ def q_sn(m, feh=0.0, sn_type="sn_ia"):
     """
 
     q = empty_q_matrix()
-    if m < constants.M_MIN : return q
+    if m < constants.M_MIN : return resize_matrix(q)
 
     if feh < -0.3:
         sn_ejections = sn_ejections_low_z[sn_type]
@@ -255,4 +255,7 @@ def q_sn(m, feh=0.0, sn_type="sn_ia"):
     for i in range(8, 15):
         q[i, i] = 1.0 - remnant
 
-    return q[0:constants.Q_MATRIX_ROWS, 0:constants.Q_MATRIX_COLUMNS]
+    return resize_matrix(q)
+
+def resize_matrix(complete_matrix):
+    return complete_matrix[0:constants.Q_MATRIX_ROWS, 0:constants.Q_MATRIX_COLUMNS]
