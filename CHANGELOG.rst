@@ -4,8 +4,8 @@
 Changelog
 =========
 
-0.2.0 (unreleased)
-==================
+1.0.0 Mercedes Mollá Release - (2019-04-05)
+===========================================
 
 New nucleosynthesis method
 --------------------------
@@ -38,6 +38,7 @@ Bug fixes
 
 - Fixed out-of-limits error ocurring when interpolating to 100 stellar masses
 - Fixed over-adding supernova rates to Q matrix in each integration step
+- Fixed matrix size when mass was invalid
 
 
 0.1.0 Beatrice Tinsley Release - (2019-03-21)

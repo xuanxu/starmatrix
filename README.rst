@@ -6,15 +6,16 @@
 .. |license| image:: https://img.shields.io/badge/license-MIT-blue.svg
    :target: https://github.com/xuanxu/intergalactic/blob/master/LICENSE
    :alt: MIT License
-.. |status| image:: https://img.shields.io/badge/status-beta-yellowgreen.svg
-   :alt: Project status: beta
+.. |version| image:: https://img.shields.io/pypi/v/intergalactic.svg?color=brightgreen
+   :target: https://pypi.org/project/intergalactic/
+   :alt: Intergalactic in PyPi
 
 
 =============
 Intergalactic
 =============
 
-|travis-badge| |license| |status|
+|travis-badge| |license| |version|
 
 Intergalactic is a Q-Matrix generator.
 
