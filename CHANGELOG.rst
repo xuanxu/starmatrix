@@ -4,6 +4,15 @@
 Changelog
 =========
 
+
+1.x.x (unreleased)
+===========================================
+
+Minor changes
+-------------
+
+- Better ``confif-example.yml`` file
+
 1.0.0 Mercedes Mollá Release - (2019-04-05)
 ===========================================
 
