@@ -1,0 +1,50 @@
+import pytest
+import numpy as np
+import intergalactic.constants as constants
+import intergalactic.functions as functions
+import intergalactic.settings as settings
+import intergalactic.elements as elements
+import intergalactic.abundances as abundances
+import intergalactic.matrix as matrix
+
+def test_params():
+    assert len(matrix.sn_elements_list) == 11
+    assert "sn_ia" in matrix.sn_ejections_low_z.keys()
+    assert "sn_ia" in matrix.sn_ejections_high_z.keys()
+    assert "sn_ib" in matrix.sn_ejections_low_z.keys()
+    assert "sn_ib" in matrix.sn_ejections_high_z.keys()
+
+def test_q_index():
+    assert matrix.q_index("H") == 0
+    assert matrix.q_index("Fe") == 14
+
+def resize_matrix():
+    expected_size = (constants.Q_MATRIX_ROWS, constants.Q_MATRIX_COLUMNS)
+    assert np.zeros((constants.Q_MATRIX_ROWS + 5, constants.Q_MATRIX_COLUMNS + 33)).shape == expected_size
+
+def test_empty_q_matrix():
+    empty_matrix = matrix.empty_q_matrix()
+
+    assert empty_matrix.shape == (15, 15)
+    assert np.all([i == 0 for i in empty_matrix])
+
+def test_q_sn_size():
+    for m in [0.8, 1, 2, 4, 6, (np.random.rand() * 8), 8, 10, 40]:
+        for feh in [-3.3, -1.3, -0.3, 0., 0.17, 0.3, 0.4]: # test z from 0.00001 to 0.05
+
+            q_supernovas = matrix.q_sn(m, feh)
+
+            assert q_supernovas.shape == (constants.Q_MATRIX_ROWS, constants.Q_MATRIX_COLUMNS)
+
+def test_q_size():
+    for m in [0.8, 1, 2, 4, 6, 8, 10, 40]:
+        for z in [0., 0.001, 0.01, 0.02, 0.03, 0.04, 0.05]:
+            test_settings = {
+                "z": z,
+                "abundances": functions.select_abundances(np.random.choice(settings.valid_values["sol_ab"]), z),
+                "expelled": elements.Expelled(settings.default["expelled_elements_filename"]),
+            }
+
+            q = matrix.q(m, test_settings)
+
+            assert q.shape == (constants.Q_MATRIX_ROWS, constants.Q_MATRIX_COLUMNS)
