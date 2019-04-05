@@ -12,7 +12,7 @@ with open(os.path.join("src", "intergalactic", "__init__.py")) as version_file:
 with open("README.rst") as readme_file:
     long_description = readme_file.read()
 
-
+# https://packaging.python.org/guides/distributing-packages-using-setuptools
 # http://blog.ionelmc.ro/2014/05/25/python-packaging/
 setup(
     name="intergalactic",
@@ -43,18 +43,19 @@ setup(
     package_data={"": ["sample_input/*"]},
     entry_points={"console_scripts": ["intergalactic = intergalactic.cli:main"]},
     classifiers=[
-        "Development Status :: 4 - Beta",
-        "Intended Audience :: Education",
+        "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Science/Research",
+        "Intended Audience :: Education",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: Implementation :: CPython",
-        "Topic :: Scientific/Engineering :: Physics",
         "Topic :: Scientific/Engineering :: Astronomy",
+        "Topic :: Scientific/Engineering :: Physics",
     ],
     long_description=long_description,
     include_package_data=True,
