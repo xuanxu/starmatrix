@@ -32,6 +32,7 @@ setup(
     install_requires=[
         "pyyaml>=3.13",
         "numpy>=1.16",
+        "scipy>=1.2",
     ],
     extras_require={
         "dev": [
