@@ -29,7 +29,6 @@ class IMF:
         return scipy.integrate.quad(self.imf, self.m_low, self.m_up)[0]
 
     def for_mass(self, m):
-        self.m = m
         if m <= 0 : return 0.0
         return self.normalization_factor * self.imf(m)
 
