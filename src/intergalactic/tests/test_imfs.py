@@ -9,12 +9,6 @@ from intergalactic.imfs import IMF, Salpeter, Maschberger
 def available_imfs():
     return settings.valid_values["imf"]
 
-def test_logm():
-    for mass in [0.3, 1.3, 3.3, 30]:
-        imf = IMF()
-        imf.m = mass
-        assert imf.logm() == math.log10(mass)
-
 def test_description_presence(available_imfs):
     for imf in available_imfs:
         assert functions.select_imf(imf).description() != IMF().description()

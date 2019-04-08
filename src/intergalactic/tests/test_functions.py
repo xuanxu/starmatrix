@@ -3,12 +3,12 @@ import numpy as np
 import intergalactic.functions as functions
 import intergalactic.constants as constants
 import intergalactic.settings as settings
-from intergalactic.imfs import Chabrier, Ferrini, Salpeter, Kroupa, MillerScalo, Maschberger, Starburst
+from intergalactic.imfs import Chabrier, Ferrini, Salpeter, Starburst, Kroupa, MillerScalo, Maschberger
 from intergalactic.abundances import AndersGrevesse1989, GrevesseSauval1998, Asplund2005, Asplund2009, Heger2010
 
 def test_select_imf():
-    strings = ["salpeter", "chabrier", "ferrini", "kroupa", "miller_scalo", "starburst", "maschberger"]
-    classes = [Salpeter, Chabrier, Ferrini, Kroupa, MillerScalo, Starburst, Maschberger]
+    strings = ["salpeter", "starburst", "chabrier", "ferrini", "kroupa", "miller_scalo", "maschberger"]
+    classes = [Salpeter, Starburst, Chabrier, Ferrini, Kroupa, MillerScalo, Maschberger]
 
     for i in range(len(strings)):
         imf_instance = functions.select_imf(strings[i])

@@ -79,7 +79,7 @@ Initial mass function
 The ``imf`` param in the config file can be set to use any of the predefined IMFs from different papers/authors:
 
 :salpeter: Salpeter 1955
-:starburst: Starburst 1999
+:starburst: Starburst 1999 (a Salpeter with mass limits in [1, 120])
 :miller_scalo: Miller & Scalo 1979
 :ferrini: Ferrini, Palla & Penco 1998
 :kroupa: Kroupa 2002

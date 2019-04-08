@@ -8,10 +8,17 @@ Changelog
 1.x.x (unreleased)
 ===========================================
 
+New normalization of IMFs
+-------------------------
+
+- Added settings to configure IMF's mass limits: ``[imf_m_low, imf_m_up]``
+- IMFs are normalized calculating the definite integral in ``[m_low, m_up]``
+
 Minor changes
 -------------
 
 - Better ``confif-example.yml`` file
+- ``Starburst`` IMF, is internally a shortcut for a Salpeter IMF with mass limits in [1, 120]
 
 1.0.0 Mercedes Mollá Release - (2019-04-05)
 ===========================================
@@ -22,7 +29,7 @@ New nucleosynthesis method
 - Time step is now constant on ``log(t)``
 - New settings to add limits on stellar mass: ``[m_min, m_max]``
 - Added setting for number of time steps:  ``[total_time_steps]``
-- New stellar lifetime method from *Raiteri C.M., Villata M. & Navarro J.F., 1996, A&A 315, 105-115*.
+- New stellar lifetime method from *Raiteri C.M., Villata M. & Navarro J.F., 1996, A&A 315, 105-115*
 
 New Delay Time Distribution setting
 -----------------------------------

@@ -7,11 +7,11 @@ import intergalactic.constants as constants
 def select_imf(name, params = {}):
     imfs = {
         "salpeter": imf.Salpeter,
+        "starburst": imf.Starburst,
         "chabrier": imf.Chabrier,
         "ferrini": imf.Ferrini,
         "kroupa": imf.Kroupa,
         "miller_scalo": imf.MillerScalo,
-        "starburst": imf.Starburst,
         "maschberger": imf.Maschberger
     }
     return imfs[name](params)

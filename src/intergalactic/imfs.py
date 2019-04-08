@@ -15,34 +15,48 @@ and a way to define new functions subclassing IMF
 
 """
 import math
-import intergalactic
+import scipy.integrate
+import intergalactic.settings
 
 class IMF:
     def __init__(self, params = {}):
         self.params = params
+        self.set_mass_limits()
+        self.normalization_factor = 1.0 / self.integration_of_mass_interval()
         self.set_params()
+
+    def integration_of_mass_interval(self):
+        return scipy.integrate.quad(self.imf, self.m_low, self.m_up)[0]
 
     def for_mass(self, m):
         self.m = m
         if m <= 0 : return 0.0
-        return self.imf()
+        return self.normalization_factor * self.imf(m)
 
-    def logm(self):
-        return math.log10(self.m)
+    def set_mass_limits(self):
+        if "imf_m_low" in self.params:
+            self.m_low = self.params["imf_m_low"]
+        else:
+            self.m_low = intergalactic.settings.default["imf_m_low"]
+
+        if "imf_m_up" in self.params:
+            self.m_up = self.params["imf_m_up"]
+        else:
+            self.m_up = intergalactic.settings.default["imf_m_up"]
 
     def set_params(self):
         pass
 
-    def imf(self):
-        pass
+    def imf(self, m):
+        return 1.0
 
     def description(self):
         return "Base Initial Mass Function class"
 
 
 class Salpeter(IMF):
-    def imf(self):
-        return self.m * 0.20080261 * (self.m ** -(self.alpha()))
+    def imf(self, m):
+        return m * (m ** -(self.alpha()))
 
     def alpha(self):
         if "imf_alpha" in self.params:
@@ -53,71 +67,66 @@ class Salpeter(IMF):
     def description(self):
         return "IMF from Salpeter 1955"
 
+class Starburst(Salpeter):
 
-class Starburst(IMF):
-    def imf(self):
-        return self.m * (self.m**-2.35)/2.28707
+    def set_mass_limits(self):
+        self.m_low = 1.0
+        self.m_up  = 120.0
 
     def description(self):
         return "IMF from Starburst 1999"
 
 
 class MillerScalo(IMF):
-    def imf(self):
-        return 0.0189 * (106 / 2.30) * math.exp(-((self.logm() + 1.02) ** 2) / (2 * (0.68 ** 2)))
+    def imf(self, m):
+        return (106 / 2.30) * math.exp(-((math.log10(m) + 1.02) ** 2) / (2 * (0.68 ** 2)))
 
     def description(self):
         return "IMF from Miller & Scalo 1979"
 
 
 class Ferrini(IMF):
-    def imf(self):
-        return 2.19 * 10 ** (-math.sqrt(0.73 + self.logm() * (1.92 + self.logm() * 2.07))) / self.m ** 0.52
+    def imf(self, m):
+        return 10 ** (-math.sqrt(0.73 + math.log10(m) * (1.92 + math.log10(m) * 2.07))) / m ** 0.52
 
     def description(self):
         return "IMF Ferrini, Palla & Penco 1998"
 
 
 class Kroupa(IMF):
-    def imf(self):
-        if self.m >= 0.01 and self.m < 0.08:
-            return self.m * 7.945 * (self.m ** -0.3)
-        elif self.m >= 0.08 and self.m < 0.5:
-            return self.m * 7.945 * 0.08 * (self.m ** -1.3)
-        elif self.m >= 0.5 and self.m < 1.0:
-            return self.m * 7.945 * 0.04 * (self.m ** -2.3)
-        elif self.m >= 1:
-            return self.m * 7.945 * 0.04 * (self.m ** -2.7)
+    def imf(self, m):
+        if m >= 0.01 and m < 0.08:
+            return m * (m ** -0.3)
+        elif m >= 0.08 and m < 0.5:
+            return m * 0.08 * (m ** -1.3)
+        elif m >= 0.5 and m < 1.0:
+            return m * 0.04 * (m ** -2.3)
+        elif m >= 1:
+            return m * 0.04 * (m ** -2.7)
 
     def description(self):
         return "IMF from Kroupa 2002"
 
 
 class Chabrier(IMF):
-    def imf(self):
-        if self.m <= 1:
-          return 13.78*(0.158/2.3)*math.exp(-((self.logm() - math.log10(0.079))**2)/(2*(0.69**2)))
-        elif self.m > 1:
-          return 13.78*self.m*(0.0443/2.3)*(self.m**-2.35)
+    def imf(self, m):
+        if m <= 1:
+          return (0.158/2.3)*math.exp(-((math.log10(m) - math.log10(0.079))**2)/(2*(0.69**2)))
+        elif m > 1:
+          return m*(0.0443/2.3)*(m**-2.35)
 
     def description(self):
         return "IMF from Chabrier 2003"
 
 
 class Maschberger(IMF):
-    def imf(self):
-        return self.factor() * self.m * self.a() * \
-               (self.m_mu() ** (-self.aalfa())) * \
-               ((1 + (self.m_mu() ** (1 - self.aalfa()))) ** (-self.beta()))
+    def imf(self, m):
+        return m * self.a() * \
+               (self.m_mu(m) ** (-self.aalfa())) * \
+               ((1 + (self.m_mu(m) ** (1 - self.aalfa()))) ** (-self.beta()))
 
-    def factor(self):
-        if self.params["m_max"] <= 40:
-            return 1.31
-        else:
-            return 1.22
-
-    def m_mu(self):
-        return self.m / self.mu()
+    def m_mu(self, m):
+        return m / self.mu()
 
     def g1(self):
         return (1 + ((0.15 / 0.2) ** (1 - self.aalfa()))) ** (1 - self.beta())
@@ -136,10 +145,6 @@ class Maschberger(IMF):
 
     def beta(self):
         return 1.4
-
-    def set_params(self):
-        if "m_max" not in self.params:
-            self.params["m_max"] = 40
 
     def description(self):
         return "IMF from Maschberger 2012"

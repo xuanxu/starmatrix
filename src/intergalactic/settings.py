@@ -13,6 +13,8 @@ default = {
     "sol_ab": "as09",
     "imf": "kroupa",
     "imf_alpha": 2.35,
+    "imf_m_low": 0.15,
+    "imf_m_up": 100,
     "m_min": 0.98,
     "m_max": 40.0,
     "total_time_steps": 300,
@@ -23,7 +25,7 @@ default = {
 }
 
 valid_values = {
-    "imf": ["salpeter", "chabrier", "ferrini", "kroupa", "miller_scalo", "starburst", "maschberger"],
+    "imf": ["salpeter", "starburst", "chabrier", "ferrini", "kroupa", "miller_scalo", "maschberger"],
     "dtd_sn": ["rlp", "mdvp"],
     "sol_ab": ["ag89", "gs98", "as05", "as09", "he10"],
 }
@@ -41,5 +43,9 @@ def validate(params):
         params["m_max"] = max_mass_allowed(params["z"])
         print(f"Maximum mass is bigger than the allowewd mass for z = : {params['z']}")
         print(f"  Using m_max value: {params['m_max']} solar masses")
+
+    if params["imf"] == "starburst":
+        params["imf_m_low"]: 1.0
+        params["imf_m_up"]: 120.0
 
     return params
