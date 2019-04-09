@@ -38,6 +38,7 @@ setup(
         "dev": [
             "pytest",
             "pytest_mock",
+            "pytest_cov",
         ],
     },
     packages=find_packages("src"),

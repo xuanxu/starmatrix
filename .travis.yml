@@ -12,8 +12,12 @@ matrix:
     - python: nightly
 
 install:
+  - pip install codecov
   - pip install .       # Test installation correctness
   - pip install .[dev]  # Test development dependencies
 
 script:
-  - pytest -v  # Test against installed code
+  - pytest --cov-report=xml --cov=intergalactic # Test against installed code
+
+after_success:
+  - codecov
