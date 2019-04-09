@@ -21,9 +21,7 @@ def main():
         return create_template_config_file()
 
     input_params = {}
-    if args.config != None:
-        with open(args.config, "r") as params_file:
-            input_params = yaml.safe_load(params_file)
+    if args.config != None : input_params = read_config_file(args.config)
 
     context = settings.validate(input_params)
 
@@ -41,3 +39,8 @@ def main():
 def create_template_config_file():
     shutil.copy(join(dirname(__file__),"sample_input", "params.yml"), "config-example.yml")
     return "Created file: config-example.yml"
+
+def read_config_file(name):
+    with open(name, "r") as params_file:
+        input_params = yaml.safe_load(params_file)
+    return input_params
