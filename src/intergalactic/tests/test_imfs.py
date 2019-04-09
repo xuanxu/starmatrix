@@ -29,3 +29,16 @@ def test_imf_is_zero_if_no_positive_mass(available_imfs):
     for imf in available_imfs:
         assert select_imf(imf).for_mass(0) == 0.0
         assert select_imf(imf).for_mass(-10) == 0.0
+
+def test_for_mass_is_normalized(available_imfs):
+    for imf_name in available_imfs:
+        imf = select_imf(imf_name)
+        mass = np.random.random() * 10
+        imf_for_mass = imf.for_mass(mass)
+        assert imf_for_mass == imf.imf(mass) * imf.normalization_factor
+
+def test_integration_accounts_for_mass_limits():
+    imf_1 = IMF({"imf_m_low": 3, "imf_m_up": 103})
+    imf_2 = IMF({"imf_m_low": 7, "imf_m_up": 57})
+    assert imf_2.normalization_factor == 2 * imf_1.normalization_factor
+    assert imf_1.integration_of_mass_interval() == 2 * imf_2.integration_of_mass_interval()
