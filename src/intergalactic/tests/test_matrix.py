@@ -1,7 +1,6 @@
 import pytest
 import numpy as np
 import intergalactic.constants as constants
-import intergalactic.functions as functions
 import intergalactic.settings as settings
 import intergalactic.elements as elements
 import intergalactic.abundances as abundances
@@ -41,7 +40,7 @@ def test_q_size():
         for z in [0., 0.001, 0.01, 0.02, 0.03, 0.04, 0.05]:
             test_settings = {
                 "z": z,
-                "abundances": functions.select_abundances(np.random.choice(settings.valid_values["sol_ab"]), z),
+                "abundances": abundances.select_abundances(np.random.choice(settings.valid_values["sol_ab"]), z),
                 "expelled": elements.Expelled(settings.default["expelled_elements_filename"]),
             }
 

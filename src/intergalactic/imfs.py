@@ -18,6 +18,19 @@ import math
 import scipy.integrate
 import intergalactic.settings
 
+def select_imf(name, params = {}):
+    imfs = {
+        "salpeter": Salpeter,
+        "starburst": Starburst,
+        "chabrier": Chabrier,
+        "ferrini": Ferrini,
+        "kroupa": Kroupa,
+        "miller_scalo": MillerScalo,
+        "maschberger": Maschberger
+    }
+    return imfs[name](params)
+
+
 class IMF:
     def __init__(self, params = {}):
         self.params = params

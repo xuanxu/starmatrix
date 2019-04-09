@@ -3,7 +3,9 @@ import numpy as np
 import intergalactic.constants as constants
 import intergalactic.elements as elements
 import intergalactic.matrix as matrix
-from intergalactic.functions import select_imf, select_abundances, select_dtd
+from intergalactic.imfs import select_imf
+from intergalactic.abundances import select_abundances
+from intergalactic.dtds import select_dtd
 from intergalactic.functions import stellar_mass, stellar_lifetime, max_mass_allowed
 from intergalactic.functions import total_energy_ejected, newton_cotes, global_imf
 

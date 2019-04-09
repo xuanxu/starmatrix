@@ -15,6 +15,17 @@ and a way to define new abundances subclassing Abundances
 
 import math
 
+def select_abundances(option, z):
+    abundandes_data = {
+        "ag89": AndersGrevesse1989,
+        "gs98": GrevesseSauval1998,
+        "as05": Asplund2005,
+        "as09": Asplund2009,
+        "he10": Heger2010
+    }
+    return abundandes_data[option](z)
+
+
 class Abundances:
     def __init__(self, z):
         self.z = z
