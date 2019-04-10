@@ -37,6 +37,7 @@ setup(
     extras_require={
         "dev": [
             "pytest",
+            "pytest_mock",
         ],
     },
     packages=find_packages("src"),
