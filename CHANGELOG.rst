@@ -17,7 +17,7 @@ New normalization of IMFs
 Minor changes
 -------------
 
-- Better ``confif-example.yml`` file
+- Better ``config-example.yml`` file
 - ``Starburst`` IMF, is internally a shortcut for a Salpeter IMF with mass limits in [1, 120]
 
 1.0.0 Mercedes Mollá Release - (2019-04-05)
