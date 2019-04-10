@@ -2,9 +2,11 @@
 # z                           -> Metallicity. Default value: 0.02
 # sol_ab                      -> Solar abundances data (*). Default value: as09
 # imf                         -> Initial Mass function to use (*). Default value: kroupa
-# imf_alpha                   -> If IMF is salpeter, this extra param is needed. Defaults to 2.35
-# m_min                       -> Minimum mass
-# m_max                       -> Maximum mass
+# imf_alpha                   -> If IMF is salpeter/starburst, this extra param is needed. Defaults to 2.35
+# imf_m_low                   -> Lower limit for the IMF. Default value: 0.15
+# imf_m_up                    -> Upper limit for the IMF. Default value: 100
+# m_min                       -> Minimum mass for the resulting Q-Matrices
+# m_max                       -> Maximum mass for the resulting Q-Matrices
 # total_time_steps            -> Total time steps for integration. Default value: 300
 # binary_fraction             -> Fraction of binary systems. Default value: 0.05
 # dtd_sn                      -> Delay time distribution to use for Supernovas (*). Default value: rpl
@@ -15,11 +17,11 @@
 
 # imf = [
 #         salpeter     = Salpeter 1955
+#         starburst    = Starburst 1999 (special case of Salpeter in [1, 120])
 #         chabrier     = Chabrier 2003
 #         ferrini      = Ferrini, Palla & Penco 1998
 #         kroupa       = Kroupa 2002 (default)
 #         miller_scalo = Miller & Scalo 1979
-#         starburst    = Starburst 1999
 #         maschberger  = Maschberger 2012
 #       ]
 
