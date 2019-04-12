@@ -36,6 +36,8 @@ def test_total_energy_no_negative_time_values():
     t = -1
     assert functions.total_energy_ejected(t) == 0.0
 
+    assert functions.total_energy_ejected(1e-5) > 0.0
+
     t = functions.stellar_lifetime(5, 0.02)
     assert functions.total_energy_ejected(t) > 0.0
 
