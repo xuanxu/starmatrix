@@ -30,7 +30,7 @@ setup(
     ],
     python_requires=">=3.6",
     install_requires=[
-        "pyyaml>=3.13",
+        "pyyaml>=5.1",
         "numpy>=1.16",
         "scipy>=1.2",
     ],
