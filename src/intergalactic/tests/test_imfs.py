@@ -30,6 +30,9 @@ def test_imf_is_zero_if_no_positive_mass(available_imfs):
         assert select_imf(imf).for_mass(0) == 0.0
         assert select_imf(imf).for_mass(-10) == 0.0
 
+        for mass in [0.02, 0.2, 0.75, 2, 8, 35, 90]:
+            assert select_imf(imf).for_mass(mass) > 0.0
+
 def test_for_mass_is_normalized(available_imfs):
     for imf_name in available_imfs:
         imf = select_imf(imf_name)
