@@ -45,7 +45,7 @@ def validate(params):
         print(f"  Using m_max value: {params['m_max']} solar masses")
 
     if params["imf"] == "starburst":
-        params["imf_m_low"]: 1.0
-        params["imf_m_up"]: 120.0
+        params["imf_m_low"] = 1.0
+        params["imf_m_up"] = 120.0
 
     return params
