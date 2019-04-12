@@ -27,8 +27,19 @@ def test_empty_q_matrix():
     assert empty_matrix.shape == (15, 15)
     assert np.all([i == 0 for i in empty_matrix])
 
+def test_matrices_are_empty_if_not_enough_mass():
+    m = constants.M_MIN - 0.001
+    test_settings = {
+                "z": 0.03,
+                "abundances": abundances.select_abundances(np.random.choice(settings.valid_values["sol_ab"]), 0.03),
+                "expelled": elements.Expelled(settings.default["expelled_elements_filename"]),
+            }
+
+    assert np.all([i == 0 for i in matrix.q(m, test_settings)])
+    assert np.all([i == 0 for i in matrix.q_sn(m, -0.01)])
+
 def test_q_sn_size():
-    for m in [0.8, 1, 2, 4, 6, (np.random.rand() * 8), 8, 10, 40]:
+    for m in [0.8, 1, 2, 4, 6, (np.random.rand() * 8), 8, 10, 40, 90]:
         for feh in [-3.3, -1.3, -0.3, 0., 0.17, 0.3, 0.4]: # test z from 0.00001 to 0.05
 
             q_supernovas = matrix.q_sn(m, feh)
@@ -36,7 +47,7 @@ def test_q_sn_size():
             assert q_supernovas.shape == (constants.Q_MATRIX_ROWS, constants.Q_MATRIX_COLUMNS)
 
 def test_q_size():
-    for m in [0.8, 1, 2, 4, 6, 8, 10, 40]:
+    for m in [0.8, 1, 2, 4, 6, 8, 10, 40, 90]:
         for z in [0., 0.001, 0.01, 0.02, 0.03, 0.04, 0.05]:
             test_settings = {
                 "z": z,
