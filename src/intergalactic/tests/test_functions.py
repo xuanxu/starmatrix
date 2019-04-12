@@ -53,6 +53,14 @@ def test_imf_zero():
     imf_bin = imf.for_mass(m_in_binaries_range) * (1.0 - constants.BIN_FRACTION)
     assert functions.imf_zero(m_in_binaries_range, imf) == imf_bin
 
+def test_imf_binaries_are_zero_for_non_valid_masses():
+    imf = select_imf(np.random.choice(settings.valid_values["imf"]), settings.default)
+
+    assert functions.imf_binary_primary(-1, imf) == 0.0
+    assert functions.imf_binary_primary(constants.M_MIN / 2, imf) == 0.0
+    assert functions.imf_binary_secondary(-1, imf) == 0.0
+    assert functions.imf_binary_secondary(constants.B_MAX * 2, imf) == 0.0
+
 def test_imf_binary_primary_integrates_phi_primary():
     m_in_binaries_range = 5.0
     m_sup = 2 * m_in_binaries_range
