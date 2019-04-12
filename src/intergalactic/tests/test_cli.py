@@ -7,34 +7,39 @@ import intergalactic.settings as settings
 
 @pytest.fixture
 def deactivate_os_actions(mocker):
-    mocker.patch.object(cli, 'read_config_file')
     mocker.patch.object(model, 'Model')
     mocker.patch.object(model.Model, 'run')
     mocker.patch.object(os, 'makedirs')
     mocker.patch.object(shutil, 'rmtree')
-    mocker.patch.object(cli, 'create_template_config_file')
+    mocker.patch.object(shutil, 'copy')
     mocker.patch.object(argparse.ArgumentParser, 'parse_args')
     argparse.ArgumentParser.parse_args.return_value = argparse.Namespace(generate_config=False, config=None)
     os.makedirs.return_value = True
     shutil.rmtree.return_value = True
 
+@pytest.fixture
+def mock_config_file(mocker):
+    config_file_content = "m_max: 33.0\ntotal_time_steps: 123"
+    mocked_file = mocker.mock_open(read_data=config_file_content)
+    mocker.patch.object(cli, 'open', mocked_file)
+    mocker.spy(cli, "read_config_file")
+    return {'m_max': 33.0, 'total_time_steps': 123}
+
 def test_option_generate_config(mocker, deactivate_os_actions):
     argparse.ArgumentParser.parse_args.return_value = argparse.Namespace(generate_config=True)
+    mocker.spy(cli, "create_template_config_file")
     cli.main()
     cli.create_template_config_file.assert_called()
 
-def test_option_config(mocker, deactivate_os_actions):
+def test_option_config(mocker, deactivate_os_actions, mock_config_file):
     argparse.ArgumentParser.parse_args.return_value = argparse.Namespace(generate_config=False, config='ejectas.dat')
     cli.main()
     cli.read_config_file.assert_called_once_with('ejectas.dat')
 
-
-def test_model_is_configured_properly(mocker, deactivate_os_actions):
+def test_model_is_configured_properly(mocker, deactivate_os_actions, mock_config_file):
     argparse.ArgumentParser.parse_args.return_value = argparse.Namespace(generate_config=False, config='ejectas.dat')
-    config = {'m_max': 33.0, 'total_time_steps': 123,}
-    cli.read_config_file.return_value = config
     cli.main()
-    expected_context = {**settings.default, **config}
+    expected_context = {**settings.default, **mock_config_file}
 
     model.Model.assert_called_once_with(expected_context)
     model.Model(expected_context).run.assert_called()
