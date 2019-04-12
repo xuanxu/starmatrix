@@ -7,7 +7,8 @@ def test_select_dtd():
     dtds = [dtd_ruiz_lapuente, dtd_mannucci_della_valle_panagia]
 
     for i in range(len(strings)):
-        for time in np.random.rand(5) * 900 * 0.01:
+        times = [0.001, 9.] + list(np.random.rand(5)) + list(np.random.rand(5) * 9)
+        for time in times:
             assert select_dtd(strings[i])(time) == dtds[i](time)
 
 def test_no_negative_time_values():
