@@ -12,7 +12,6 @@ matrix:
     - python: nightly
 
 install:
-  - pip install scipy
   - pip install .       # Test installation correctness
   - pip install .[dev]  # Test development dependencies
 
