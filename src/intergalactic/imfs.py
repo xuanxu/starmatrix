@@ -107,14 +107,16 @@ class Ferrini(IMF):
 
 class Kroupa(IMF):
     def imf(self, m):
-        if m >= 0.01 and m < 0.08:
+        if 0.01 <= m < 0.08:
             return m * (m ** -0.3)
-        elif m >= 0.08 and m < 0.5:
+        elif 0.08 <= m < 0.5:
             return m * 0.08 * (m ** -1.3)
-        elif m >= 0.5 and m < 1.0:
+        elif 0.5 <= m < 1.0:
             return m * 0.04 * (m ** -2.3)
-        elif m >= 1:
+        elif 1 <= m:
             return m * 0.04 * (m ** -2.7)
+        else:
+            return 0
 
     def description(self):
         return "IMF from Kroupa 2002"
@@ -124,7 +126,7 @@ class Chabrier(IMF):
     def imf(self, m):
         if m <= 1:
           return (0.158/2.3)*math.exp(-((math.log10(m) - math.log10(0.079))**2)/(2*(0.69**2)))
-        elif m > 1:
+        else:
           return m*(0.0443/2.3)*(m**-2.35)
 
     def description(self):
