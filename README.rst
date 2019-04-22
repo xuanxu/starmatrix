@@ -30,11 +30,11 @@ H D He3 He4 C C13 N O n.r. Ne Mg Si S Ca Fe
 Installation
 ============
 
-The easiest way to install it is using pip::
+The easiest way to install the package is using pip::
 
     $ pip install intergalactic
 
-This will also install some dependencies: *numpy* and *yaml*
+This will also install some dependencies if they are not found in the system: *numpy*, *scipy* and *yaml*
 
 Usage
 =====
