@@ -96,7 +96,7 @@ The default value is ``kroupa``. If you want to use your own IMF you can do so s
 
 .. _`IMF class`: https://github.com/xuanxu/intergalactic/blob/master/src/intergalactic/imfs.py#L20-L40
 
-The IMF will be normalized integrating in the ``[imf_m_low, imf_m_up]`` mass interval.
+The IMF will be normalized integrating in the ``[imf_m_low, imf_m_up]`` mass interval (default: [0.15, 100], except Starburst: [1, 120]).
 
 Solar abundances
 ----------------
