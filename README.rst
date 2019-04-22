@@ -59,15 +59,18 @@ Input params
 
 Intergalactic reads a config file where several options can be set in yaml format::
 
-    input_params:
         z: 0.0200               # metallicity
         sol_ab: ag89            # solar abundances
-        imf: kroupa             # initial mass function
+        imf: kroupa             # initial mass function (IMF)
+        imf_m_low: 0.15         # lower mass limit for the IMF
+        imf_m_up: 100           # upper mass limit for the IMF
+        total_time_steps: 300   # number of time steps (will result in a Q Matrix per step)
+        m_min: 0.98             # min value for stellar mass
         m_max: 40               # max value for stellar mass
         binary_fraction: 0.05   # rate of binary stars
         dtd_sn: rlp             # delay time distribution for supernovas
 
-If no values are provided Intergalactic will use its internal default values for all params.
+Intergalactic will use its internal default values for all params for which no values are provided.
 
 If you want to use an existent configuration file as template for your own, you can run::
 
@@ -92,6 +95,8 @@ The ``imf`` param in the config file can be set to use any of the predefined IMF
 The default value is ``kroupa``. If you want to use your own IMF you can do so subclassing the `IMF class`_.
 
 .. _`IMF class`: https://github.com/xuanxu/intergalactic/blob/master/src/intergalactic/imfs.py#L20-L40
+
+The IMF will be normalized integrating in the ``[imf_m_low, imf_m_up]`` mass interval.
 
 Solar abundances
 ----------------
