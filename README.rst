@@ -3,6 +3,9 @@
 .. |travis-badge| image:: https://travis-ci.org/xuanxu/intergalactic.svg?branch=master
    :target: https://travis-ci.org/xuanxu/intergalactic
    :alt: Build status
+.. |codecov-badge| image:: https://codecov.io/gh/xuanxu/intergalactic/branch/master/graph/badge.svg
+   :target: https://codecov.io/gh/xuanxu/intergalactic
+   :alt: Coverage status
 .. |license| image:: https://img.shields.io/badge/license-MIT-blue.svg
    :target: https://github.com/xuanxu/intergalactic/blob/master/LICENSE
    :alt: MIT License
@@ -15,7 +18,7 @@
 Intergalactic
 =============
 
-|travis-badge| |license| |version|
+|travis-badge| |codecov-badge| |license| |version|
 
 Intergalactic is a Q-Matrix generator.
 
