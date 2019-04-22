@@ -2,8 +2,8 @@
 =========
 Intergalactic
 =========
-Chemical evolution model for spiral galaxies
+Generation of matrices of elements in spiral galaxies
 
 """
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
