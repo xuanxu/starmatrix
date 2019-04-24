@@ -11,7 +11,8 @@
 # binary_fraction             -> Fraction of binary systems. Default value: 0.05
 # dtd_sn                      -> Delay time distribution to use for Supernovas (*). Default value: rpl
 # output_dir                  -> Name of the directory where results are written. Defaults to "results",
-# expelled_elements_filename  -> Filename of ejected data. Defaults to "expelled_elements"
+# expelled_elements_filename  -> Filename of ejected data. Defaults to an internal file with data for z=0.02 from
+#                                Gavilan et al, 2006, A&A, 450, 509 and Chieffi & Limongi, 2004, ApJ, 608, 405
 
 # (*) Some parameters offer a list of available options:
 
