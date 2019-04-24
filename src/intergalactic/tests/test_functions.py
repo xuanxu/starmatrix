@@ -85,3 +85,16 @@ def test_global_imf():
     for m in [1, 4, 8, 10, 40]:
         assert 0 < functions.global_imf(m, imf)
         assert functions.imf_zero(100, imf) < functions.global_imf(m, imf)
+
+def test_imf_supernovas_II_non_zero_for_SNII_masses():
+    imf = select_imf(np.random.choice(settings.valid_values["imf"]), settings.default)
+
+    assert functions.imf_supernovas_II(constants.M_SNII + 0.01, imf) > 0
+    assert functions.imf_supernovas_II(constants.M_SNII + np.random.sample() * 100, imf) > 0
+    assert functions.imf_supernovas_II(constants.M_SNII + 100, imf) > 0
+
+def test_imf_supernovas_II_is_zero_for_lower_masses():
+    imf = select_imf(np.random.choice(settings.valid_values["imf"]), settings.default)
+
+    assert functions.imf_supernovas_II(np.random.sample() * constants.M_SNII, imf) == 0
+    assert functions.imf_supernovas_II(constants.M_SNII, imf) == 0

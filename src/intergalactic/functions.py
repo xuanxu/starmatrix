@@ -172,3 +172,9 @@ def phi_secondary(m, imf, binary_fraction=constants.BIN_FRACTION):
     return lambda binary_mass : secondary_mass_fraction(m / binary_mass) * \
                                 imf.for_mass(binary_mass) * binary_fraction * \
                                 m / (binary_mass ** 2)
+
+def imf_supernovas_II(m, imf, binary_fraction=constants.BIN_FRACTION):
+    if m > constants.M_SNII:
+        return imf_zero(m, imf, binary_fraction) / m
+    else:
+        return 0

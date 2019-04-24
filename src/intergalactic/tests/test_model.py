@@ -6,6 +6,7 @@ import intergalactic.model
 from intergalactic.model import Model
 import intergalactic.settings as settings
 import intergalactic.imfs as imfs
+import intergalactic.functions as functions
 import intergalactic.abundances as abundances
 import intergalactic.dtds as dtds
 
@@ -28,7 +29,7 @@ def test_model_initialization():
     assert model.context["abundances"].z == params["z"]
     assert model.mass_intervals == []
     assert model.energies == []
-    assert model.sn_rates == []
+    assert model.sn_Ia_rates == []
     assert model.z == params["z"]
     assert model.dtd == dtds.dtd_mannucci_della_valle_panagia
     assert model.m_min == params["m_min"]
@@ -56,16 +57,17 @@ def test_explosive_nucleosynthesis(mocker, deactivate_open_files):
 
     assert len(model.mass_intervals) == settings.default["total_time_steps"]
     assert len(model.energies) == settings.default["total_time_steps"]
-    assert len(model.sn_rates) == settings.default["total_time_steps"]
+    assert len(model.sn_Ia_rates) == settings.default["total_time_steps"]
     mocked_file.assert_called_once_with(f"{settings.default['output_dir']}/mass_intervals", "w+")
 
 def test_create_q_matrices(mocker, deactivate_open_files):
+    mocker.spy(functions, "newton_cotes")
     mocked_file = deactivate_open_files
     mocker.spy(numpy, "savetxt")
     model = Model(settings.default)
     model.total_time_steps = 2
     model.mass_intervals = [[1., 8.], [8., 33.]]
-    model.sn_rates = [2e-4, 1e-4]
+    model.sn_Ia_rates = [2e-4, 1e-4]
     model.energies = [3e-4, 1.2e-4]
 
     model.create_q_matrices()

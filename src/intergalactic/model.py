@@ -7,7 +7,7 @@ from intergalactic.imfs import select_imf
 from intergalactic.abundances import select_abundances
 from intergalactic.dtds import select_dtd
 from intergalactic.functions import stellar_mass, stellar_lifetime, max_mass_allowed
-from intergalactic.functions import total_energy_ejected, newton_cotes, global_imf
+from intergalactic.functions import total_energy_ejected, newton_cotes, global_imf, imf_supernovas_II
 
 class Model:
     def __init__(self, settings = {}):
@@ -21,7 +21,7 @@ class Model:
 
         self.mass_intervals = []
         self.energies = []
-        self.sn_rates = []
+        self.sn_Ia_rates = []
 
         self.z = self.context["z"]
         self.dtd = select_dtd(self.context["dtd_sn"])
@@ -43,7 +43,7 @@ class Model:
         q = np.zeros((constants.Q_MATRIX_ROWS, constants.Q_MATRIX_COLUMNS))
         for i in range(0, self.total_time_steps):
             m_inf, m_sup = self.mass_intervals[i]
-            supernova_rates = 0.0
+            supernova_Ia_rates = 0.0
 
             if m_sup <= constants.M_MIN or m_sup <= m_inf : continue
 
@@ -52,12 +52,14 @@ class Model:
                     matrix.q(m, self.context))
 
             if m_inf < self.bmaxm:
-                supernova_rates = self.sn_rates[i]
-                q += q_sn_ia * supernova_rates
+                supernova_Ia_rates = self.sn_Ia_rates[i]
+                q += q_sn_ia * supernova_Ia_rates
 
+            supernova_II_rates = newton_cotes(m_inf, m_sup, lambda m : \
+                imf_supernovas_II(m, self.initial_mass_function, self.context["binary_fraction"]))
 
             np.savetxt(matrices_file, q, fmt="%15.10f", header=f"Q matrix for mass interval: [{m_sup}, {m_inf}]")
-            imf_sn_file.write(f"  {supernova_rates:.10f}  {self.energies[i]:.10f}\n")
+            imf_sn_file.write(f"  {supernova_Ia_rates:.10f}  {supernova_II_rates:.10f}  {self.energies[i]:.10f}\n")
 
         matrices_file.close()
         imf_sn_file.close()
@@ -88,6 +90,6 @@ class Model:
 
             self.mass_intervals.append([m_inf, m_sup])
             self.energies.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
-            self.sn_rates.append(self.context["binary_fraction"] * newton_cotes(t_inf, t_sup, self.dtd))
+            self.sn_Ia_rates.append(self.context["binary_fraction"] * newton_cotes(t_inf, t_sup, self.dtd))
 
         mass_intervals_file.close()
