@@ -14,7 +14,6 @@ def secondary_mass_fraction(mu):
     with Gamma = 2 as Greggio, L., Renzini, A.: 1983a, Astron. Astrophys. 118, 217
 
     """
-
     gamma = 2.0
     return (2.0 ** (1.0 + gamma)) * (1.0 + gamma) * (mu ** gamma)
 
@@ -74,17 +73,24 @@ def max_mass_allowed(z):
     return float(math.floor((math.pow(10, -a1/(2 * a2)))))
 
 def total_energy_ejected(t):
+    """
+    Thermal and kinetic energy released by each type of SN up to the time t after the explosion
+    where tc is the characteristic cooling time of the shell sorrounding the remnant (53000 yrs)
+    from Ferrini & Poggiantti, 1993, ApJ, 410, 44F
+
+    """
     if t <= 0 : return 0.0
     tc = 5.3e-5
     if t > tc:
         rt = (tc / t) ** 0.4
         return 1 - 0.44 * (rt ** 2) * (1 - 0.41 * rt) - 0.22 * (rt ** 2)
     else:
-        return 8.67e3 * t
+        return 9811.32 * t
 
 def newton_cotes(a, b, f):
     """
     Integration using Newton-Cotes formula with degree 6 (7 points)
+
     """
     NEWTON_COTES_POINTS = 7
     NEWTON_COTES_COEFFICIENTS = [0.29285714, 1.54285714, 0.19285714, 1.94285714, 0.19285714, 1.54285714, 0.29285714]
@@ -103,7 +109,6 @@ def imf_binary_primary(m, imf, binary_fraction=constants.BIN_FRACTION):
     Returns 0 unless m is in (1.5, 16)
 
     """
-
     m_inf = max(constants.B_MIN, m)
     m_sup = min(constants.B_MAX, 2 * m)
     if m <= 0 or m_sup <= m_inf : return 0.0
@@ -118,7 +123,6 @@ def imf_binary_secondary(m, imf, SNI_events = False, binary_fraction=constants.B
     If SNI_events = False then returns 0 unless m is in (0, 8)
 
     """
-
     m_inf = max(constants.B_MIN, 2 * m)
     m_sup = constants.B_MAX
     if SNI_events : b_sup = min(constants.B_MAX, constants.M_SNII + m)
@@ -132,7 +136,6 @@ def imf_zero(m, imf, binary_fraction=constants.BIN_FRACTION):
     part of binary systems not giving rise to SN I events
 
     """
-
     if constants.B_MIN <= m <= constants.B_MAX:
         return imf.for_mass(m) * (1.0 - binary_fraction)
     else:
