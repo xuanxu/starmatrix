@@ -41,7 +41,7 @@ In the rush of time sometimes things get messy, you can help us cleaning things 
 ## How to report an issue
 
 * Try to use a descriptive and to-the-point title
-* Is a good idea to include some of there sections:
+* Is a good idea to include some of these sections:
   * Steps to reproduce the bug
   * Expected behaviour/response
   * Actual response
