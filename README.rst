@@ -121,6 +121,20 @@ The ``dtd_sn`` param in the config file can be set to use any of the available D
 :rlp: Supernova rates from Pilar Ruiz-Lapuente
 :mdvp: DTD from Mannucci, Della Valle, Panagia 2006
 
+
+Edge
+====
+
+If you want to play with the latest code present in this repository even if it has not been released yet, you can do it by cloning the repo locally and instructing pip to install it::
+
+    $ git clone https://github.com/xuanxu/intergalactic.git
+    $ cd intergalactic
+    $ pip install -e .
+
+You can then run the test suite using `pytest`::
+
+    $ pytest -v --cov=intergalactic
+
 License
 =======
 
