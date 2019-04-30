@@ -157,4 +157,4 @@ Intergalactic is built upon a long list of previous works from different authors
 * *Mollá et al*, 2017, MNRAS, 468, 305-318
 * *Gavilan, Mollá & Buell*, 2006, A&A, 450, 509
 * *Raiteri C.M., Villata M. & Navarro J.F.*, 1996, A&A 315, 105-115
-* *Mannucci, Della Valle, Panagia* (2006)
+* *Mannucci, Della Valle, Panagia*, 2006, MNRAS, 370, 773M
