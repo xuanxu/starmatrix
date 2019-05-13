@@ -22,7 +22,7 @@ Intergalactic
 
 Intergalactic is a Q-Matrix generator.
 
-Based on explicit values for *solar abundances*, *z* and *IMF*, Intergalactic calculates matrices ``Q(i,j)`` of masses of elements ``i`` ejected to the galactic medium as element ``j``, for a complete range of stellar masses, accounting for supernovas of types *I* and *II*.
+Based on explicit values for *solar abundances*, *z* and *IMF*, Intergalactic calculates matrices ``Q(i,j)`` of masses of elements ``i`` ejected to the galactic medium as element ``j``, for a complete range of stellar masses, accounting for supernovas of types *I* and *II*. You can read more about the ``Matrices Q formalism`` in ``Ferrini et al. 1992``.
 
 Intergalactic computes the contribution matrix of 15 elements:
 
