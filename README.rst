@@ -3,6 +3,9 @@
 .. |travis-badge| image:: https://travis-ci.org/xuanxu/intergalactic.svg?branch=master
    :target: https://travis-ci.org/xuanxu/intergalactic
    :alt: Build status
+.. |docs-badge| image:: https://readthedocs.org/projects/intergalactic/badge/?version=latest
+   :target: https://intergalactic.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
 .. |codecov-badge| image:: https://codecov.io/gh/xuanxu/intergalactic/branch/master/graph/badge.svg
    :target: https://codecov.io/gh/xuanxu/intergalactic
    :alt: Coverage status
@@ -18,7 +21,7 @@
 Intergalactic
 =============
 
-|travis-badge| |codecov-badge| |license| |version|
+|travis-badge| |docs-badge| |codecov-badge| |license| |version|
 
 Intergalactic is a Q-Matrices generator.
 
