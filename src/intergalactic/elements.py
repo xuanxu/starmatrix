@@ -1,5 +1,6 @@
 from bisect import bisect
 
+
 class Expelled:
 
     elements_list = ["H", "D", "He3", "He4", "C12", "C13",
@@ -45,7 +46,7 @@ class Expelled:
         """
 
         index = bisect(self.mass_points, m)
-        if index == len(self.mass_points) : index -= 1
+        if index == len(self.mass_points): index -= 1
 
         mass_prev = self.mass_points[index - 1]
         mass_next = self.mass_points[index]

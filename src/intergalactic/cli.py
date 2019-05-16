@@ -1,9 +1,13 @@
-import argparse, os, shutil, yaml
+import argparse
+import os
+import shutil
+import yaml
 from os.path import dirname, join, exists
 
 import intergalactic
 import intergalactic.settings as settings
 import intergalactic.model as model
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -21,7 +25,7 @@ def main():
         return create_template_config_file()
 
     input_params = {}
-    if args.config != None : input_params = read_config_file(args.config)
+    if args.config is not None: input_params = read_config_file(args.config)
 
     context = settings.validate(input_params)
 
@@ -36,9 +40,11 @@ def main():
     model.Model(context).run()
     print(f"Done. Output files ready in '{context['output_dir']}' directory.")
 
+
 def create_template_config_file():
-    shutil.copy(join(dirname(__file__),"sample_input", "params.yml"), "config-example.yml")
+    shutil.copy(join(dirname(__file__), "sample_input", "params.yml"), "config-example.yml")
     return "Created file: config-example.yml"
+
 
 def read_config_file(name):
     with open(name, "r") as params_file:

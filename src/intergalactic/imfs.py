@@ -18,7 +18,8 @@ import math
 import scipy.integrate
 import intergalactic.settings
 
-def select_imf(name, params = {}):
+
+def select_imf(name, params={}):
     imfs = {
         "salpeter": Salpeter,
         "starburst": Starburst,
@@ -32,7 +33,7 @@ def select_imf(name, params = {}):
 
 
 class IMF:
-    def __init__(self, params = {}):
+    def __init__(self, params={}):
         self.params = params
         self.set_mass_limits()
         self.normalization_factor = 1.0 / self.integration_of_mass_interval()
@@ -42,7 +43,7 @@ class IMF:
         return scipy.integrate.quad(self.imf, self.m_low, self.m_up)[0]
 
     def for_mass(self, m):
-        if m <= 0 : return 0.0
+        if m <= 0: return 0.0
         return self.normalization_factor * self.imf(m)
 
     def set_mass_limits(self):
@@ -78,6 +79,7 @@ class Salpeter(IMF):
 
     def description(self):
         return "IMF from Salpeter 1955"
+
 
 class Starburst(Salpeter):
 
@@ -125,9 +127,9 @@ class Kroupa(IMF):
 class Chabrier(IMF):
     def imf(self, m):
         if m <= 1:
-          return (0.158/2.3)*math.exp(-((math.log10(m) - math.log10(0.079))**2)/(2*(0.69**2)))
+            return (0.158/2.3)*math.exp(-((math.log10(m) - math.log10(0.079))**2)/(2*(0.69**2)))
         else:
-          return m*(0.0443/2.3)*(m**-2.35)
+            return m*(0.0443/2.3)*(m**-2.35)
 
     def description(self):
         return "IMF from Chabrier 2003"

@@ -9,8 +9,9 @@ from intergalactic.dtds import select_dtd
 from intergalactic.functions import stellar_mass, stellar_lifetime, max_mass_allowed
 from intergalactic.functions import total_energy_ejected, newton_cotes, global_imf, imf_supernovas_II
 
+
 class Model:
-    def __init__(self, settings = {}):
+    def __init__(self, settings={}):
         self.context = settings
         self.init_variables()
 
@@ -36,26 +37,26 @@ class Model:
         self.create_q_matrices()
 
     def create_q_matrices(self):
-        q_sn_ia = matrix.q_sn(constants.CHANDRASEKHAR_LIMIT, self.context["abundances"].feh(), sn_type = "sn_ia")
+        q_sn_ia = matrix.q_sn(constants.CHANDRASEKHAR_LIMIT, self.context["abundances"].feh(), sn_type="sn_ia")
         imf_sn_file = open(f"{self.context['output_dir']}/imf_supernova_rates", "w+")
-        matrices_file =  open(f"{self.context['output_dir']}/qm-matrices", "w+")
+        matrices_file = open(f"{self.context['output_dir']}/qm-matrices", "w+")
 
         q = np.zeros((constants.Q_MATRIX_ROWS, constants.Q_MATRIX_COLUMNS))
         for i in range(0, self.total_time_steps):
             m_inf, m_sup = self.mass_intervals[i]
             supernova_Ia_rates = 0.0
 
-            if m_sup <= constants.M_MIN or m_sup <= m_inf : continue
+            if m_sup <= constants.M_MIN or m_sup <= m_inf: continue
 
-            q += newton_cotes(m_inf, m_sup, lambda m : \
-                    global_imf(m, self.initial_mass_function, self.context["binary_fraction"]) * \
+            q += newton_cotes(m_inf, m_sup, lambda m:
+                    global_imf(m, self.initial_mass_function, self.context["binary_fraction"]) *
                     matrix.q(m, self.context))
 
             if m_inf < self.bmaxm:
                 supernova_Ia_rates = self.sn_Ia_rates[i]
                 q += q_sn_ia * supernova_Ia_rates
 
-            supernova_II_rates = newton_cotes(m_inf, m_sup, lambda m : \
+            supernova_II_rates = newton_cotes(m_inf, m_sup, lambda m:
                 imf_supernovas_II(m, self.initial_mass_function, self.context["binary_fraction"]))
 
             np.savetxt(matrices_file, q, fmt="%15.10f", header=f"Q matrix for mass interval: [{m_sup}, {m_inf}]")

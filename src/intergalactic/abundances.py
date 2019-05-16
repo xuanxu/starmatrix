@@ -15,6 +15,7 @@ and a way to define new abundances subclassing Abundances
 
 import math
 
+
 def select_abundances(option, z):
     abundandes_data = {
         "ag89": AndersGrevesse1989,

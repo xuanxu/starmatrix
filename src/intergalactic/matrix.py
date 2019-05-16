@@ -26,14 +26,17 @@ sn_ejections_high_z = {
     "sn_ib": dict(zip(sn_elements_list, [1.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3]))
 }
 
+
 def empty_q_matrix():
     return np.zeros((15, 15))
+
 
 def q_index(element):
     q_elements = ["H", "D", "He3", "He4", "C12", "O16", "N14", "C13", "nr", "Ne", "Mg", "Si", "S", "Ca", "Fe"]
     return q_elements.index(element)
 
-def q(m, settings = {}):
+
+def q(m, settings={}):
     """
     Compute the Q Matrix of elements for a given mass (without supernovas)
 
@@ -62,11 +65,11 @@ def q(m, settings = {}):
     """
 
     q = empty_q_matrix()
-    if m < constants.M_MIN : return resize_matrix(q)
+    if m < constants.M_MIN: return resize_matrix(q)
 
-    z          = settings["z"]
+    z = settings["z"]
     abundances = settings["abundances"].abundance()
-    expelled   = settings["expelled"]
+    expelled = settings["expelled"]
     elements = expelled.for_mass(m)
 
     h_he = abundances["H"] + abundances["He4"]
@@ -95,7 +98,7 @@ def q(m, settings = {}):
         elements["N14s"] += elements["N14p"]
         elements["C13s"] += elements["C13"]
         elements["N14p"] = 0.0
-        elements["C13"]  = 0.0
+        elements["C13"] = 0.0
 
     if z == 0:
         elements["N14s"] = 0.0
@@ -183,7 +186,7 @@ def q(m, settings = {}):
     q[6, 0] = fractional_abundances["N"] * new_metals_ejected
     q[7, 0] = fractional_abundances["C13"] * new_metals_ejected
 
-    q[9, 0]  = fractional_abundances["Ne"] * new_metals_ejected
+    q[9, 0] = fractional_abundances["Ne"] * new_metals_ejected
     q[10, 0] = fractional_abundances["Mg"] * new_metals_ejected
     q[11, 0] = fractional_abundances["Si"] * new_metals_ejected
     q[12, 0] = fractional_abundances["S"] * new_metals_ejected
@@ -219,9 +222,10 @@ def q(m, settings = {}):
     # No negative values allowed except for H-D (q(0,1)):
     for i in range(0, 15):
         for j in range(0, 15):
-            if q[i, j] <= 0.0 and (i != 0 and j != 1) : q[i, j] = 0.0
+            if q[i, j] <= 0.0 and (i != 0 and j != 1): q[i, j] = 0.0
 
     return resize_matrix(q)
+
 
 def q_sn(m, feh=0.0, sn_type="sn_ia"):
     """
@@ -233,7 +237,7 @@ def q_sn(m, feh=0.0, sn_type="sn_ia"):
     """
 
     q = empty_q_matrix()
-    if m < constants.M_MIN : return resize_matrix(q)
+    if m < constants.M_MIN: return resize_matrix(q)
 
     if feh < -0.3:
         sn_ejections = sn_ejections_low_z[sn_type]
@@ -256,6 +260,7 @@ def q_sn(m, feh=0.0, sn_type="sn_ia"):
         q[i, i] = 1.0 - remnant
 
     return resize_matrix(q)
+
 
 def resize_matrix(complete_matrix):
     return complete_matrix[0:constants.Q_MATRIX_ROWS, 0:constants.Q_MATRIX_COLUMNS]

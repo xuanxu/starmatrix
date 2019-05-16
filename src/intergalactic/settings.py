@@ -21,7 +21,7 @@ default = {
     "binary_fraction": constants.BIN_FRACTION,
     "dtd_sn": "rlp",
     "output_dir": "results",
-    "expelled_elements_filename":  join(dirname(__file__),"sample_input", "expelled_elements")
+    "expelled_elements_filename": join(dirname(__file__), "sample_input", "expelled_elements")
 }
 
 valid_values = {
@@ -29,6 +29,7 @@ valid_values = {
     "dtd_sn": ["rlp", "mdvp"],
     "sol_ab": ["ag89", "gs98", "as05", "as09", "he10"],
 }
+
 
 def validate(params):
     params = {**default, **params}
@@ -41,7 +42,7 @@ def validate(params):
 
     if params["m_max"] > max_mass_allowed(params["z"]):
         params["m_max"] = max_mass_allowed(params["z"])
-        print(f"Maximum mass is bigger than the allowewd mass for z = : {params['z']}")
+        print(f"Maximum mass is bigger than the allowewd mass for z: {params['z']}")
         print(f"  Using m_max value: {params['m_max']} solar masses")
 
     if params["imf"] == "starburst":
