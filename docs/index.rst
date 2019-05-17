@@ -19,7 +19,7 @@ Intergalactic computes the contribution matrix of 15 elements:
 |H|D|He3|He4|C|C13|N|O|Ne|Mg|Si|S|Ca|Fe|
 +-+-+---+---+-+---+-+-+--+--+--+-+--+--+
 
-and rich neutrons isotopes (referred as ``n.r.`` in the code).
+and rich neutron isotopes (referred as ``n.r.`` in the code).
 
 .. toctree::
    :maxdepth: 2
