@@ -121,7 +121,7 @@ Delay Time Distributions
 
 The ``dtd_sn`` param in the config file can be set to use any of the available Delay Time Distributions for supernova rates from different papers/authors:
 
-:rlp: Supernova rates from Pilar Ruiz-Lapuente
+:rlp: Supernova rates from Ruiz-Lapuente et al. 2000
 :mdvp: DTD from Mannucci, Della Valle, Panagia 2006
 
 
@@ -152,12 +152,13 @@ Intergalactic is built upon a long list of previous works from different authors
 
 * *Ferrini et al.*,1992, ApJ, 387, 138
 * *Ferrini & Poggiantti*, 1993, ApJ, 410, 44F
-* *Portinari, Chiosi & Bressan.*,1998,AA,334,505P
+* *Portinari, Chiosi & Bressan*,1998,AA,334,505P
 * *Galli et al.*, 1995, ApJ, 443, 536G
-* *Mollá et al*, 2015, MNRAS, 451, 3693-3708
-* *Iwamoto et al*, 1999, ApJS, 125, 439
+* *Mollá et al.*, 2015, MNRAS, 451, 3693-3708
+* *Iwamoto et al.*, 1999, ApJS, 125, 439
 * *Matteucci & Greggio*, 1986, A&A, 154, 279M
-* *Mollá et al*, 2017, MNRAS, 468, 305-318
+* *Mollá et al.*, 2017, MNRAS, 468, 305-318
 * *Gavilan, Mollá & Buell*, 2006, A&A, 450, 509
 * *Raiteri C.M., Villata M. & Navarro J.F.*, 1996, A&A 315, 105-115
 * *Mannucci, Della Valle, Panagia*, 2006, MNRAS, 370, 773M
+* *Ruiz-Lapuente et al.*, 2000, Mem. Soc. Astron. Ital. 71, 435
