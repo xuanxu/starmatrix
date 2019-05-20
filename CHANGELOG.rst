@@ -10,7 +10,7 @@ Changelog
 
 - Added Supernovas II data to the ``imf_supernova_rates`` file
 - Tweak SN total energy function to make it continous
-
+- Better docs
 
 1.1.0 (2019-04-22)
 ===========================================
