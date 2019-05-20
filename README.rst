@@ -136,7 +136,7 @@ If you want to play with the latest code present in this repository even if it h
 
 You can then run the test suite using `pytest`::
 
-    $ pytest -v --cov=intergalactic
+    $ pytest -v
 
 License
 =======
