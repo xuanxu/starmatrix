@@ -7,6 +7,9 @@ from intergalactic.imfs import Salpeter, Starburst, Chabrier, Ferrini, Kroupa, M
 
 @pytest.fixture
 def available_imfs():
+    """
+    Fixture returning the names of all available IMFs defined in settings
+    """
     return settings.valid_values["imf"]
 
 def test_select_imf():

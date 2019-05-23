@@ -6,6 +6,9 @@ from intergalactic.abundances import AndersGrevesse1989, GrevesseSauval1998, Asp
 
 @pytest.fixture
 def available_abundances():
+    """
+    Fixture returning all the valid values for the solar abundance setting
+    """
     return settings.valid_values["sol_ab"]
 
 

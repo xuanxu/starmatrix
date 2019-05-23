@@ -7,6 +7,9 @@ import intergalactic.settings as settings
 
 @pytest.fixture
 def deactivate_os_actions(mocker):
+    """
+    Fixture to disable all calls to the operating system (mkdir, rm, copy...)
+    """
     mocker.patch.object(model, 'Model')
     mocker.patch.object(model.Model, 'run')
     mocker.patch.object(os, 'makedirs')
@@ -19,6 +22,9 @@ def deactivate_os_actions(mocker):
 
 @pytest.fixture
 def mock_config_file(mocker):
+    """
+    Fixture mocking contents of a config file reading
+    """
     config_file_content = "m_max: 33.0\ntotal_time_steps: 123"
     mocked_file = mocker.mock_open(read_data=config_file_content)
     mocker.patch.object(cli, 'open', mocked_file)

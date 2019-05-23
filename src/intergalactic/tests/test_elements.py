@@ -6,6 +6,9 @@ import intergalactic.settings as settings
 
 @pytest.fixture
 def expelled():
+    """
+    Fixture returning a Expelled instance initialized with the default expelled data file
+    """
     expelled = Expelled(settings.default["expelled_elements_filename"])
     return expelled
 

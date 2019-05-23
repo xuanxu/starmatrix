@@ -38,6 +38,9 @@ def test_model_initialization():
 
 @pytest.fixture
 def deactivate_open_files(mocker):
+    """
+    Fixture to disable opening of files from model
+    """
     mocked_file = mocker.mock_open()
     mocker.patch.object(intergalactic.model, 'open', mocked_file)
     return mocked_file
