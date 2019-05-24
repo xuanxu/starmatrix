@@ -3,10 +3,10 @@
 # sol_ab                      -> Solar abundances data (*). Default value: as09
 # imf                         -> Initial Mass function to use (*). Default value: kroupa
 # imf_alpha                   -> If IMF is salpeter/starburst, this extra param is needed. Defaults to 2.35
-# imf_m_low                   -> Lower limit for the IMF. Default value: 0.15
-# imf_m_up                    -> Upper limit for the IMF. Default value: 100
-# m_min                       -> Minimum mass for the resulting Q-Matrices
-# m_max                       -> Maximum mass for the resulting Q-Matrices
+# imf_m_low                   -> Lower limit (in solar masses) for the IMF. Default value: 0.15
+# imf_m_up                    -> Upper limit (in solar masses) for the IMF. Default value: 100
+# m_min                       -> Minimum mass (in solar masses) for the resulting Q-Matrices.
+# m_max                       -> Maximum mass (in solar masses) for the resulting Q-Matrices.
 # total_time_steps            -> Total time steps for integration. Default value: 300
 # binary_fraction             -> Fraction of binary systems. Default value: 0.05
 # dtd_sn                      -> Delay time distribution to use for Supernovas (*). Default value: rpl
