@@ -124,6 +124,17 @@ The ``dtd_sn`` param in the config file can be set to use any of the available D
 :rlp: Supernova rates from Ruiz-Lapuente et al. 2000
 :mdvp: DTD from Mannucci, Della Valle, Panagia 2006
 
+Test suite
+==========
+
+Intergalactic includes a test suite located in the ``/src/intergalactic/tests`` directory. The current state of the build is `publicly tracked by Travis CI`_. You can run the tests locally and get information on code coverage if you clone the code to your local machine, install its development dependencies and use ``pytest``::
+
+    $ git clone https://github.com/xuanxu/intergalactic.git
+    $ cd intergalactic
+    $ pip install -e .[dev]
+    $ pytest -v --cov=intergalactic
+
+.. _`publicly tracked by Travis CI`: https://travis-ci.org/xuanxu/intergalactic
 
 Edge
 ====
@@ -133,11 +144,7 @@ If you want to play with the latest code present in this repository even if it h
     $ git clone https://github.com/xuanxu/intergalactic.git
     $ cd intergalactic
     $ pip install -e .
-
-You can then run the test suite using `pytest`::
-
-    $ pytest -v
-
+    
 License
 =======
 
