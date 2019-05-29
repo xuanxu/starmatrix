@@ -97,7 +97,7 @@ The ``imf`` param in the config file can be set to use any of the predefined IMF
 
 The default value is ``kroupa``. If you want to use your own IMF you can do so subclassing the `IMF class`_.
 
-.. _`IMF class`: https://github.com/xuanxu/intergalactic/blob/master/src/intergalactic/imfs.py#L20-L40
+.. _`IMF class`: https://github.com/xuanxu/intergalactic/blob/master/src/intergalactic/imfs.py#L35-L68
 
 The IMF will be normalized integrating in the ``[imf_m_low, imf_m_up]`` mass interval (default: ``[0.15, 100]``, except ``Starburst``: ``[1, 120]``).
 
@@ -114,7 +114,7 @@ The ``sol_ab`` param in the config file can be set to use any of the available a
 
 The default value is ``as09``. If you want to use your own abundances data you can do so subclassing the `Abundances class`_.
 
-.. _`Abundances class`: https://github.com/xuanxu/intergalactic/blob/master/src/intergalactic/abundances.py#L18-L47
+.. _`Abundances class`: https://github.com/xuanxu/intergalactic/blob/master/src/intergalactic/abundances.py#L30-L59
 
 Delay Time Distributions
 ------------------------
