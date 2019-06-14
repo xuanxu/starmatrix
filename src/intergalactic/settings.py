@@ -49,4 +49,19 @@ def validate(params):
         params["imf_m_low"] = 1.0
         params["imf_m_up"] = 120.0
 
+    deprecation_warnings(params)
+
     return params
+
+
+def deprecation_warnings(params):
+    deprecation_warnings = []
+
+    if params["dtd_sn"] == "mdvp":
+        deprecation_warnings.append("The DTD from Mannucci, Della Valle, Panagia is deprecated. It'll be removed in the next version.")
+
+    if deprecation_warnings:
+        print("*** Deprecations Warning ***")
+        for msg in deprecation_warnings:
+            print("!! " + msg)
+        print("")
