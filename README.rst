@@ -144,7 +144,7 @@ If you want to play with the latest code present in this repository even if it h
     $ git clone https://github.com/xuanxu/intergalactic.git
     $ cd intergalactic
     $ pip install -e .
-    
+
 License
 =======
 
@@ -168,4 +168,4 @@ Intergalactic is built upon a long list of previous works from different authors
 * *Gavilan, Mollá & Buell*, 2006, A&A, 450, 509
 * *Raiteri C.M., Villata M. & Navarro J.F.*, 1996, A&A 315, 105-115
 * *Mannucci, Della Valle, Panagia*, 2006, MNRAS, 370, 773M
-* *Ruiz-Lapuente et al.*, 2000, Mem. Soc. Astron. Ital. 71, 435
+* *Ruiz-Lapuente, P., Canal, R..*, 2000, astro.ph..9312R
