@@ -21,7 +21,7 @@ def select_dtd(option):
 
 def dtd_ruiz_lapuente(t):
     """
-    Delay Time Distribution (DTD) from Ruiz Lapuente
+    Delay Time Distribution (DTD) from Ruiz Lapuente & Canal (2000)
 
     """
     if t <= 0: return 0.0
