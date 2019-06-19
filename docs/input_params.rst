@@ -65,4 +65,5 @@ Delay Time Distributions
 The ``dtd_sn`` param in the config file can be set to use any of the available Delay Time Distributions for supernova rates from different papers/authors:
 
 :rlp: Supernova rates from Ruiz-Lapuente et al. 2000
+:sloan_ii: The DTD of Type Ia supernovae from Sloan II, by Maoz, Mannucci & Brandt (2012)
 :mdvp: DTD from Mannucci, Della Valle, Panagia 2006

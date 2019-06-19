@@ -11,6 +11,8 @@ Changelog
 - Added Supernovas II data to the ``imf_supernova_rates`` file
 - Tweak SN total energy function to make it continous
 - Better docs
+- Added DTD from Maoz, Mannucci & Brandt (2012)
+- The DTD from Mannucci, Della Valle & Panagia is deprecated
 
 1.1.0 (2019-04-22)
 ===========================================

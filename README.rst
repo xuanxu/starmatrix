@@ -123,6 +123,7 @@ The ``dtd_sn`` param in the config file can be set to use any of the available D
 
 :rlp: Supernova rates from Ruiz-Lapuente et al. 2000
 :mdvp: DTD from Mannucci, Della Valle, Panagia 2006
+:sloan_ii: DTD of Type Ia supernovae from Sloan II, by Maoz, Mannucci & Brandt (2012)
 
 Test suite
 ==========
@@ -169,3 +170,4 @@ Intergalactic is built upon a long list of previous works from different authors
 * *Raiteri C.M., Villata M. & Navarro J.F.*, 1996, A&A 315, 105-115
 * *Mannucci, Della Valle, Panagia*, 2006, MNRAS, 370, 773M
 * *Ruiz-Lapuente, P., Canal, R..*, 2000, astro.ph..9312R
+* *Maoz, D., Mannucci, F. & Brandt, T. D.* 2012, MNRAS, 426, 3282-3294

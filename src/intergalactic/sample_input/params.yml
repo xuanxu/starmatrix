@@ -37,6 +37,7 @@
 # dtd_sn = [
 #            mdvp = DTD from Mannucci, Della Valle, Panagia 2006
 #            rlp  = DTD from Ruiz-Lapuente (default)
+#            sloan_ii = DTD from Maoz, Mannucci & Brandt 2012
 #          ]
 
 z: 0.02
