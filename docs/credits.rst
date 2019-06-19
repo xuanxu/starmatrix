@@ -28,6 +28,7 @@ Intergalactic is built upon a long list of previous works from different authors
 * *Gavilan, Mollá & Buell*, 2006, A&A, 450, 509
 * *Raiteri C.M., Villata M. & Navarro J.F.*, 1996, A&A 315, 105-115
 * *Mannucci, Della Valle, Panagia*, 2006, MNRAS, 370, 773M
+* *Maoz, D., Mannucci, F. & Brandt, T. D.* 2012, MNRAS, 426, 3282-3294
 
 License
 -------
