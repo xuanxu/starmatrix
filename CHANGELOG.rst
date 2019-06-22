@@ -14,7 +14,7 @@ Changelog
 - Added DTD from Maoz, Mannucci & Brandt (2012)
 - The DTD from Mannucci, Della Valle & Panagia is deprecated
 
-1.1.0 (2019-04-22)
+1.1.0 (2019-04-22) (`All commits`_)
 ===========================================
 
 New normalization of IMFs
@@ -29,6 +29,8 @@ Minor changes
 - Better ``config-example.yml`` file
 - ``Starburst`` IMF, is internally a shortcut for a Salpeter IMF with mass limits in [1, 120]
 - Test coverage increased
+
+.. _`All commits`: https://github.com/xuanxu/intergalactic/compare/v1.0.0...v1.1.0
 
 1.0.0 Mercedes Mollá Release - (2019-04-05)
 ===========================================
