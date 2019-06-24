@@ -15,7 +15,7 @@ def select_dtd(option):
     dtds = {
         "rlp": dtd_ruiz_lapuente,
         "mdvp": dtd_mannucci_della_valle_panagia,
-        "sloan_ii": dtd_sloan_ii_maoz_mannucci_brandt
+        "maoz": dtd_maoz_graur
     }
     return dtds[option]
 
@@ -51,12 +51,14 @@ def dtd_mannucci_della_valle_panagia(t):
     return math.exp(logDTD)
 
 
-def dtd_sloan_ii_maoz_mannucci_brandt(t):
+def dtd_maoz_graur(t):
     """
-    Delay Time Distribution (DTD) from Maoz, Mannucci & Brandt (2012)
+    Delay Time Distribution (DTD) from Maoz & Graur (2017)
 
     """
     if t <= 0: return 0.0
     logt = math.log10(t) + 9
 
-    return math.pow(t, -1.07)
+    n_per_m = 0.0013
+
+    return math.pow(t, -1.1)

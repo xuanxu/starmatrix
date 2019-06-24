@@ -26,7 +26,7 @@ default = {
 
 valid_values = {
     "imf": ["salpeter", "starburst", "chabrier", "ferrini", "kroupa", "miller_scalo", "maschberger"],
-    "dtd_sn": ["rlp", "mdvp", "sloan_ii"],
+    "dtd_sn": ["rlp", "mdvp", "maoz"],
     "sol_ab": ["ag89", "gs98", "as05", "as09", "he10"],
 }
 
