@@ -59,6 +59,4 @@ def dtd_maoz_graur(t):
     if t <= 0: return 0.0
     logt = math.log10(t) + 9
 
-    n_per_m = 0.0013
-
     return math.pow(t, -1.1)
