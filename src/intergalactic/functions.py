@@ -134,7 +134,7 @@ def imf_binary_secondary(m, imf, SNI_events = False, binary_fraction=constants.B
     """
     m_inf = max(constants.B_MIN, 2 * m)
     m_sup = constants.B_MAX
-    if SNI_events: b_sup = min(constants.B_MAX, constants.M_SNII + m)
+    if SNI_events: m_sup = min(constants.B_MAX, constants.M_SNII + m)
     if m <= 0 or m_sup <= m_inf: return 0.0
 
     return newton_cotes(m_inf, m_sup, phi_secondary(m, imf, binary_fraction))
