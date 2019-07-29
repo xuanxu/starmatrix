@@ -12,6 +12,7 @@ def available_imfs():
     """
     return settings.valid_values["imf"]
 
+
 def test_select_imf():
     strings = ["salpeter", "starburst", "chabrier", "ferrini", "kroupa", "miller_scalo", "maschberger"]
     classes = [Salpeter, Starburst, Chabrier, Ferrini, Kroupa, MillerScalo, Maschberger]
@@ -19,6 +20,10 @@ def test_select_imf():
     for i in range(len(strings)):
         imf_instance = select_imf(strings[i])
         assert type(imf_instance) == classes[i]
+
+def test_valid_values_presence(available_imfs):
+    for imf in available_imfs:
+        assert select_imf(imf) != None
 
 def test_description_presence(available_imfs):
     for imf in available_imfs:

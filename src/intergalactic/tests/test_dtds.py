@@ -1,17 +1,30 @@
+import pytest
 import numpy as np
+import intergalactic.settings as settings
 from intergalactic.dtds import select_dtd
 from intergalactic.dtds import dtd_ruiz_lapuente
 from intergalactic.dtds import dtd_mannucci_della_valle_panagia
 from intergalactic.dtds import dtd_maoz_graur
 
-def test_select_dtd():
-    strings = ["rlp", "mdvp", "maoz"]
+@pytest.fixture
+def available_dtds():
+    """
+    Fixture returning the names of all available DTDs defined in settings
+    """
+    return settings.valid_values["dtd_sn"]
+
+
+def test_dtds_presence(available_dtds):
+    for dtd in available_dtds:
+        assert select_dtd(dtd) != None
+
+def test_select_dtd(available_dtds):
     dtds = [dtd_ruiz_lapuente, dtd_mannucci_della_valle_panagia, dtd_maoz_graur]
 
-    for i in range(len(strings)):
+    for i in range(len(available_dtds)):
         times = [0.001, 9.] + list(np.random.rand(5)) + list(np.random.rand(5) * 9)
         for time in times:
-            assert select_dtd(strings[i])(time) == dtds[i](time)
+            assert select_dtd(available_dtds[i])(time) == dtds[i](time)
 
 def test_no_negative_time_values():
     t = -1
