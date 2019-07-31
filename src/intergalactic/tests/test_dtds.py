@@ -6,6 +6,7 @@ from intergalactic.dtds import dtd_ruiz_lapuente
 from intergalactic.dtds import dtd_mannucci_della_valle_panagia
 from intergalactic.dtds import dtd_maoz_graur
 
+
 @pytest.fixture
 def available_dtds():
     """
@@ -16,7 +17,8 @@ def available_dtds():
 
 def test_dtds_presence(available_dtds):
     for dtd in available_dtds:
-        assert select_dtd(dtd) != None
+        assert select_dtd(dtd) is not None
+
 
 def test_select_dtd(available_dtds):
     dtds = [dtd_ruiz_lapuente, dtd_mannucci_della_valle_panagia, dtd_maoz_graur]
@@ -25,6 +27,7 @@ def test_select_dtd(available_dtds):
         times = [0.001, 9.] + list(np.random.rand(5)) + list(np.random.rand(5) * 9)
         for time in times:
             assert select_dtd(available_dtds[i])(time) == dtds[i](time)
+
 
 def test_no_negative_time_values():
     t = -1

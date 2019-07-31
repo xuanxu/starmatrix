@@ -3,7 +3,7 @@ import math
 import intergalactic.constants as constants
 
 
-def value_in_interval(value, interval = []):
+def value_in_interval(value, interval=[]):
     return min(max(interval[0], value), interval[1])
 
 
@@ -58,7 +58,7 @@ def stellar_mass(tau, z):
     good fit for masses up to the max_mass_allowed(z)
 
     """
-    log_tau = math.log10(tau * 1e9) # years to Gyrs
+    log_tau = math.log10(tau * 1e9)  # years to Gyrs
     a0, a1, a2 = tau_polinomyal_coefficients(z)
     square = math.sqrt((a1 ** 2) - (4 * a2 * (a0 - log_tau)))
     log_mass_minus = (-a1 - square) / (2 * a2)
@@ -85,7 +85,9 @@ def total_energy_ejected(t):
     from Ferrini & Poggiantti, 1993, ApJ, 410, 44F
 
     """
-    if t <= 0: return 0.0
+    if t <= 0:
+        return 0.0
+
     tc = 5.3e-5
     if t > tc:
         rt = (tc / t) ** 0.4
@@ -119,12 +121,13 @@ def imf_binary_primary(m, imf, binary_fraction=constants.BIN_FRACTION):
     """
     m_inf = max(constants.B_MIN, m)
     m_sup = min(constants.B_MAX, 2 * m)
-    if m <= 0 or m_sup <= m_inf: return 0.0
+    if m <= 0 or m_sup <= m_inf:
+        return 0.0
 
     return newton_cotes(m_inf, m_sup, phi_primary(m, imf, binary_fraction))
 
 
-def imf_binary_secondary(m, imf, SNI_events = False, binary_fraction=constants.BIN_FRACTION):
+def imf_binary_secondary(m, imf, SNI_events=False, binary_fraction=constants.BIN_FRACTION):
     """
     Initial mass function for secondary stars of binary systems
     Optionally ocurring Supernova I events
@@ -134,8 +137,11 @@ def imf_binary_secondary(m, imf, SNI_events = False, binary_fraction=constants.B
     """
     m_inf = max(constants.B_MIN, 2 * m)
     m_sup = constants.B_MAX
-    if SNI_events: m_sup = min(constants.B_MAX, constants.M_SNII + m)
-    if m <= 0 or m_sup <= m_inf: return 0.0
+    if SNI_events:
+        m_sup = min(constants.B_MAX, constants.M_SNII + m)
+
+    if m <= 0 or m_sup <= m_inf:
+        return 0.0
 
     return newton_cotes(m_inf, m_sup, phi_secondary(m, imf, binary_fraction))
 
@@ -175,8 +181,8 @@ def phi_primary(m, imf, binary_fraction=constants.BIN_FRACTION):
 
     """
     return lambda binary_mass: secondary_mass_fraction(1.0 - (m / binary_mass)) * \
-                                imf.for_mass(binary_mass) * binary_fraction * \
-                                m / (binary_mass ** 2)
+        imf.for_mass(binary_mass) * binary_fraction * \
+        m / (binary_mass ** 2)
 
 
 def phi_secondary(m, imf, binary_fraction=constants.BIN_FRACTION):
@@ -185,8 +191,8 @@ def phi_secondary(m, imf, binary_fraction=constants.BIN_FRACTION):
 
     """
     return lambda binary_mass: secondary_mass_fraction(m / binary_mass) * \
-                                imf.for_mass(binary_mass) * binary_fraction * \
-                                m / (binary_mass ** 2)
+        imf.for_mass(binary_mass) * binary_fraction * \
+        m / (binary_mass ** 2)
 
 
 def imf_supernovas_II(m, imf, binary_fraction=constants.BIN_FRACTION):

@@ -5,6 +5,7 @@ import intergalactic.constants as constants
 import intergalactic.settings as settings
 from intergalactic.imfs import select_imf
 
+
 def test_value_in_interval():
     interval_min  = 1.0
     interval_max  = 100
@@ -17,9 +18,11 @@ def test_value_in_interval():
     assert functions.value_in_interval(value_out_min, interval) == interval_min
     assert functions.value_in_interval(value_out_max, interval) == interval_max
 
+
 def test_secondary_mass_fraction():
     for m in [0.33, 3.33, 33.7, 73.0]:
         assert functions.secondary_mass_fraction(m) == 24 * m ** 2
+
 
 def test_mean_lifetime_stellar_mass_relation():
     z                 = 0.02
@@ -29,8 +32,9 @@ def test_mean_lifetime_stellar_mass_relation():
     stellar_mass      = functions.stellar_mass(lifetime_test, z)
     lifetime          = functions.stellar_lifetime(stellar_mass_test, z)
 
-    assert np.isclose(functions.stellar_mass(lifetime, z), stellar_mass_test,  rtol = 0.005)
-    assert np.isclose(functions.stellar_lifetime(stellar_mass, z), lifetime_test, rtol = 0.005)
+    assert np.isclose(functions.stellar_mass(lifetime, z), stellar_mass_test,  rtol=0.005)
+    assert np.isclose(functions.stellar_lifetime(stellar_mass, z), lifetime_test, rtol=0.005)
+
 
 def test_total_energy_no_negative_time_values():
     t = -1
@@ -40,6 +44,7 @@ def test_total_energy_no_negative_time_values():
 
     t = functions.stellar_lifetime(5, 0.02)
     assert functions.total_energy_ejected(t) > 0.0
+
 
 def test_imf_zero():
     m_in_binaries_range = 5.0
@@ -53,6 +58,7 @@ def test_imf_zero():
     imf_bin = imf.for_mass(m_in_binaries_range) * (1.0 - constants.BIN_FRACTION)
     assert functions.imf_zero(m_in_binaries_range, imf) == imf_bin
 
+
 def test_imf_binaries_are_zero_for_non_valid_masses():
     imf = select_imf(np.random.choice(settings.valid_values["imf"]), settings.default)
 
@@ -60,6 +66,7 @@ def test_imf_binaries_are_zero_for_non_valid_masses():
     assert functions.imf_binary_primary(constants.M_MIN / 2, imf) == 0.0
     assert functions.imf_binary_secondary(-1, imf) == 0.0
     assert functions.imf_binary_secondary(constants.B_MAX * 2, imf) == 0.0
+
 
 def test_imf_binary_primary_integrates_phi_primary():
     m_in_binaries_range = 5.0
@@ -69,6 +76,7 @@ def test_imf_binary_primary_integrates_phi_primary():
     expected = functions.newton_cotes(m_in_binaries_range, m_sup, functions.phi_primary(m_in_binaries_range, imf))
     assert functions.imf_binary_primary(m_in_binaries_range, imf) == expected
 
+
 def test_imf_binary_secondary_integrates_phi_secondary():
     m_in_binaries_range = 5.0
     m_inf = 2 * m_in_binaries_range
@@ -76,6 +84,7 @@ def test_imf_binary_secondary_integrates_phi_secondary():
 
     expected = functions.newton_cotes(m_inf, constants.B_MAX, functions.phi_secondary(m_in_binaries_range, imf))
     assert functions.imf_binary_secondary(m_in_binaries_range, imf) == expected
+
 
 def test_global_imf():
     imf = select_imf(np.random.choice(settings.valid_values["imf"]), settings.default)
@@ -86,12 +95,14 @@ def test_global_imf():
         assert 0 < functions.global_imf(m, imf)
         assert functions.imf_zero(100, imf) < functions.global_imf(m, imf)
 
+
 def test_imf_supernovas_II_non_zero_for_SNII_masses():
     imf = select_imf(np.random.choice(settings.valid_values["imf"]), settings.default)
 
     assert functions.imf_supernovas_II(constants.M_SNII + 0.01, imf) > 0
     assert functions.imf_supernovas_II(constants.M_SNII + np.random.sample() * 100, imf) > 0
     assert functions.imf_supernovas_II(constants.M_SNII + 100, imf) > 0
+
 
 def test_imf_supernovas_II_is_zero_for_lower_masses():
     imf = select_imf(np.random.choice(settings.valid_values["imf"]), settings.default)
