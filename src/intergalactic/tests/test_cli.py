@@ -1,9 +1,12 @@
+import argparse
+import os
+import shutil
 import pytest
 from pytest_mock import mocker
-import argparse, os, shutil
 import intergalactic.cli as cli
 import intergalactic.model as model
 import intergalactic.settings as settings
+
 
 @pytest.fixture
 def deactivate_os_actions(mocker):
@@ -20,6 +23,7 @@ def deactivate_os_actions(mocker):
     os.makedirs.return_value = True
     shutil.rmtree.return_value = True
 
+
 @pytest.fixture
 def mock_config_file(mocker):
     """
@@ -31,16 +35,19 @@ def mock_config_file(mocker):
     mocker.spy(cli, "read_config_file")
     return {'m_max': 33.0, 'total_time_steps': 123}
 
+
 def test_option_generate_config(mocker, deactivate_os_actions):
     argparse.ArgumentParser.parse_args.return_value = argparse.Namespace(generate_config=True)
     mocker.spy(cli, "create_template_config_file")
     cli.main()
     cli.create_template_config_file.assert_called()
 
+
 def test_option_config(mocker, deactivate_os_actions, mock_config_file):
     argparse.ArgumentParser.parse_args.return_value = argparse.Namespace(generate_config=False, config='ejectas.dat')
     cli.main()
     cli.read_config_file.assert_called_once_with('ejectas.dat')
+
 
 def test_model_is_configured_properly(mocker, deactivate_os_actions, mock_config_file):
     argparse.ArgumentParser.parse_args.return_value = argparse.Namespace(generate_config=False, config='ejectas.dat')
@@ -49,6 +56,7 @@ def test_model_is_configured_properly(mocker, deactivate_os_actions, mock_config
 
     model.Model.assert_called_once_with(expected_context)
     model.Model(expected_context).run.assert_called()
+
 
 def test_model_is_run(mocker, deactivate_os_actions):
     cli.main()

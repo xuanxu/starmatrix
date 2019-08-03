@@ -36,6 +36,7 @@ def test_model_initialization():
     assert model.m_max == params["m_max"]
     assert model.total_time_steps == params["total_time_steps"]
 
+
 @pytest.fixture
 def deactivate_open_files(mocker):
     """
@@ -45,6 +46,7 @@ def deactivate_open_files(mocker):
     mocker.patch.object(intergalactic.model, 'open', mocked_file)
     return mocked_file
 
+
 def test_model_run(mocker):
     mocker.patch.object(Model, "explosive_nucleosynthesis")
     mocker.patch.object(Model, "create_q_matrices")
@@ -52,6 +54,7 @@ def test_model_run(mocker):
 
     Model.explosive_nucleosynthesis.assert_called()
     Model.create_q_matrices.assert_called()
+
 
 def test_explosive_nucleosynthesis(mocker, deactivate_open_files):
     mocked_file = deactivate_open_files
@@ -62,6 +65,7 @@ def test_explosive_nucleosynthesis(mocker, deactivate_open_files):
     assert len(model.energies) == settings.default["total_time_steps"]
     assert len(model.sn_Ia_rates) == settings.default["total_time_steps"]
     mocked_file.assert_called_once_with(f"{settings.default['output_dir']}/mass_intervals", "w+")
+
 
 def test_create_q_matrices(mocker, deactivate_open_files):
     mocker.spy(functions, "newton_cotes")

@@ -25,9 +25,13 @@ def dtd_ruiz_lapuente(t):
     Delay Time Distribution (DTD) from Ruiz Lapuente & Canal (2000)
 
     """
-    if t <= 0: return 0.0
+    if t <= 0:
+        return 0.0
+
     logt = math.log10(t) + 9
-    if logt < 7.8: return 0.0
+    if logt < 7.8:
+        return 0.0
+
     f1 = 0.17e-11  * math.exp(-0.5 * ((logt - 7.744) / 0.08198) ** 2)
     f2 = 0.338e-11 * math.exp(-0.5 * ((logt - 7.9867) / 0.12489) ** 2)
     f3 = 0.115e-11 * math.exp(-0.5 * ((logt - 8.3477) / 0.14675) ** 2)
@@ -41,7 +45,9 @@ def dtd_mannucci_della_valle_panagia(t):
     Delay Time Distribution (DTD) from Mannucci, Della Valle, Panagia (2006)
 
     """
-    if t <= 0: return 0.0
+    if t <= 0:
+        return 0.0
+
     logt = math.log10(t) + 9
     if logt <= 7.93:
         logDTD = 1.4 - 50.0 * (logt - 7.7)**2
@@ -56,7 +62,9 @@ def dtd_maoz_graur(t):
     Delay Time Distribution (DTD) from Maoz & Graur (2017)
 
     """
-    if t <= 0: return 0.0
+    if t <= 0:
+        return 0.0
+
     logt = math.log10(t) + 9
 
     return math.pow(t, -1.1)

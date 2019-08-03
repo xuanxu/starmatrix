@@ -4,12 +4,12 @@ from bisect import bisect
 class Expelled:
 
     elements_list = ["H", "D", "He3", "He4", "C12", "C13",
-                    "N14p", "n.r.", "O16", "Ne", "Mg", "Si",
-                    "S", "Ca", "Fe", "remnants", "C13s", "N14s"]
+                     "N14p", "n.r.", "O16", "Ne", "Mg", "Si",
+                     "S", "Ca", "Fe", "remnants", "C13s", "N14s"]
     mass_points = []
     by_mass = {}
 
-    def __init__(self, expelled_elements_filename = "expelled_elements"):
+    def __init__(self, expelled_elements_filename="expelled_elements"):
         self.mass_points = []
         self.by_mass = {}
         self.read_expelled_elements_file(expelled_elements_filename)
@@ -32,7 +32,7 @@ class Expelled:
 
         for line in expelled_data:
             data_row = [max(0.0, float(data)) for data in line.split()]
-            mass = data_row.pop(0) # the first column is the mass
+            mass = data_row.pop(0)  # the first column is the mass
             self.mass_points.append(mass)
             self.by_mass[mass] = dict(zip(self.elements_list, data_row))
 
@@ -46,7 +46,8 @@ class Expelled:
         """
 
         index = bisect(self.mass_points, m)
-        if index == len(self.mass_points): index -= 1
+        if index == len(self.mass_points):
+            index -= 1
 
         mass_prev = self.mass_points[index - 1]
         mass_next = self.mass_points[index]

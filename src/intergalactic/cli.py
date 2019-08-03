@@ -25,7 +25,8 @@ def main():
         return create_template_config_file()
 
     input_params = {}
-    if args.config is not None: input_params = read_config_file(args.config)
+    if args.config is not None:
+        input_params = read_config_file(args.config)
 
     context = settings.validate(input_params)
 

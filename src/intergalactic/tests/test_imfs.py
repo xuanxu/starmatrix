@@ -5,6 +5,7 @@ import intergalactic.settings as settings
 from intergalactic.imfs import select_imf, IMF
 from intergalactic.imfs import Salpeter, Starburst, Chabrier, Ferrini, Kroupa, MillerScalo, Maschberger
 
+
 @pytest.fixture
 def available_imfs():
     """
@@ -21,17 +22,21 @@ def test_select_imf():
         imf_instance = select_imf(strings[i])
         assert type(imf_instance) == classes[i]
 
+
 def test_valid_values_presence(available_imfs):
     for imf in available_imfs:
-        assert select_imf(imf) != None
+        assert select_imf(imf) is not None
+
 
 def test_description_presence(available_imfs):
     for imf in available_imfs:
         assert select_imf(imf).description() != IMF().description()
 
+
 def test_salpeter_alpha():
     salpeter = Salpeter({"imf_alpha": 2.33})
     assert salpeter.alpha() == 2.33
+
 
 def test_imf_is_zero_if_no_positive_mass(available_imfs):
     for imf in available_imfs:
@@ -41,9 +46,11 @@ def test_imf_is_zero_if_no_positive_mass(available_imfs):
         for mass in [0.01, 0.02, 0.2, 0.75, 2, 8, 35, 90]:
             assert select_imf(imf).for_mass(mass) > 0.0
 
+
 def test_minimum_mass_value_for_kroupa_imf():
     assert select_imf("kroupa").for_mass(0.009) == 0.0
     assert select_imf("kroupa").for_mass(0.01) > 0.0
+
 
 def test_for_mass_is_normalized(available_imfs):
     for imf_name in available_imfs:
@@ -51,6 +58,7 @@ def test_for_mass_is_normalized(available_imfs):
         mass = np.random.random() * 10
         imf_for_mass = imf.for_mass(mass)
         assert imf_for_mass == imf.imf(mass) * imf.normalization_factor
+
 
 def test_integration_accounts_for_mass_limits():
     imf_1 = IMF({"imf_m_low": 3, "imf_m_up": 103})
