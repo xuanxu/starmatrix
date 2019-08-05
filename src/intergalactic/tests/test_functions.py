@@ -7,10 +7,10 @@ from intergalactic.imfs import select_imf
 
 
 def test_value_in_interval():
-    interval_min  = 1.0
-    interval_max  = 100
-    interval      = [interval_min, interval_max]
-    value_in      = 25
+    interval_min = 1.0
+    interval_max = 100
+    interval = [interval_min, interval_max]
+    value_in = 25
     value_out_min = 0.8
     value_out_max = 101
 
@@ -25,12 +25,12 @@ def test_secondary_mass_fraction():
 
 
 def test_mean_lifetime_stellar_mass_relation():
-    z                 = 0.02
+    z = 0.02
     stellar_mass_test = 4.0
-    lifetime_test     = 0.15
+    lifetime_test = 0.15
 
-    stellar_mass      = functions.stellar_mass(lifetime_test, z)
-    lifetime          = functions.stellar_lifetime(stellar_mass_test, z)
+    stellar_mass = functions.stellar_mass(lifetime_test, z)
+    lifetime = functions.stellar_lifetime(stellar_mass_test, z)
 
     assert np.isclose(functions.stellar_mass(lifetime, z), stellar_mass_test,  rtol=0.005)
     assert np.isclose(functions.stellar_lifetime(stellar_mass, z), lifetime_test, rtol=0.005)
