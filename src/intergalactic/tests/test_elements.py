@@ -35,3 +35,20 @@ def test_interpolation_for_mass_data(expelled):
 
         assert expelled_for_mass[element] <= interval[1]
         assert expelled_for_mass[element] >= interval[0]
+
+
+def test_extrapolation_for_mass_data(expelled):
+    m_low = expelled.mass_points[-2]
+    m_up  = expelled.mass_points[-1]
+    last_step_data_size = m_up - m_low
+
+    m = m_up + last_step_data_size
+
+    expelled_for_mass = expelled.for_mass(m)
+
+    for element in expelled.elements_list:
+        by_mass_m_up = expelled.by_mass[m_up][element]
+        by_mass_m_low = expelled.by_mass[m_low][element]
+        extrapolation =  by_mass_m_up + (by_mass_m_up - by_mass_m_low)
+
+        assert expelled_for_mass[element] == extrapolation / m
