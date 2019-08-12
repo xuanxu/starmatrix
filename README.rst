@@ -132,7 +132,7 @@ The ``dtd_sn`` param in the config file can be set to use any of the available D
 Test suite
 ==========
 
-Intergalactic includes a test suite located in the ``/src/intergalactic/tests`` directory. The current state of the build is `publicly tracked by Travis CI`_. You can run the tests locally and get information on code coverage if you clone the code to your local machine, install its development dependencies and use ``pytest``::
+Intergalactic includes a test suite located in the ``/src/intergalactic/tests`` directory. The current state of the build is `publicly tracked by Travis CI`_. You can run the latest tests locally and get information on code coverage if you clone the code to your local machine, install its development dependencies and use ``pytest``::
 
     $ git clone https://github.com/xuanxu/intergalactic.git
     $ cd intergalactic
