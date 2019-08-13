@@ -12,8 +12,13 @@ matrix:
   allow_failures:
     - python: nightly
 
-install:
+before_install:
+  - python --version
+  - pip install -U pip
+  - pip install -U pytest
   - pip install codecov
+
+install:
   - pip install .       # Test installation correctness
   - pip install .[dev]  # Test development dependencies
 
