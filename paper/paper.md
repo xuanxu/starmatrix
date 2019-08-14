@@ -34,7 +34,7 @@ and rich neutron isotopes.
 
 Calculating the contributions of chemical elements from different stars in several mass ranges is a necessary step for galactic chemical evolution models [@molla2017]. Intergalactic provides detailed datasets to use as input or by internal methods in these kind of models.
 
-The code includes a variety of options for `IMFs`, `solar abundances` data and `Delay Time Distributions` to choose from, but custom options can be easily added programmatically because a base class is included for each of this parameters to be subclassed if needed.
+The code includes a variety of options for `IMFs`, `solar abundances` data and `Delay Time Distributions` to choose from, but custom options can be easily added programmatically using a base class for each of these parameters that is included to be subclassed if needed.
 
 Intergalactic is released with an open source licence, distributed through the Python Package Index and is easily installable using the `pip` package manager.
 
