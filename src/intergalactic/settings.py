@@ -21,6 +21,7 @@ default = {
     "binary_fraction": constants.BIN_FRACTION,
     "dtd_sn": "rlp",
     "output_dir": "results",
+    "matrix_headers": "yes",
     "expelled_elements_filename": join(dirname(__file__), "sample_input", "expelled_elements")
 }
 

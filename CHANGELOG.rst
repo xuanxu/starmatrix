@@ -13,6 +13,7 @@ Changelog
 - Better docs
 - Added DTD from Maoz & Graur (2017)
 - The DTD from Mannucci, Della Valle & Panagia is deprecated
+- Added `matrix_headers` setting to optionally remove headers from `qm-matrices` file
 
 1.1.0 (2019-04-22)
 ==================
@@ -34,7 +35,7 @@ Minor changes
 
 .. _`All v1.1.0 commits`: https://github.com/xuanxu/intergalactic/compare/v1.0.0...v1.1.0
 
-1.0.0 Mercedes Mollá Release - (2019-04-05) 
+1.0.0 Mercedes Mollá Release - (2019-04-05)
 ===========================================
 
 New nucleosynthesis method
