@@ -58,6 +58,9 @@ def stellar_mass(tau, z):
     good fit for masses up to the max_mass_allowed(z)
 
     """
+    if tau < min_lifetime_allowed(z):
+        return max_mass_allowed(z)
+
     log_tau = math.log10(tau * 1e9)  # years to Gyrs
     a0, a1, a2 = tau_polinomyal_coefficients(z)
     square = math.sqrt((a1 ** 2) - (4 * a2 * (a0 - log_tau)))
@@ -76,6 +79,14 @@ def max_mass_allowed(z):
     log_z_2 = log_z ** 2
     _, a1, a2 = tau_polinomyal_coefficients(z)
     return float(math.floor((math.pow(10, -a1/(2 * a2)))))
+
+
+def min_lifetime_allowed(z):
+    """
+    The lifetime of the maximum stellar mass where Raitieri et al formula works for the given z.
+
+    """
+    return stellar_lifetime(max_mass_allowed(z), z)
 
 
 def total_energy_ejected(t):
