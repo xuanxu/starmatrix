@@ -43,6 +43,20 @@ def test_validate_with_invalid_values():
         assert params[param] == settings.default[param]
 
 
+def test_validate_max_mass_with_valid_values(capsys):
+    params = settings.validate({"m_max": 33})
+    assert params["m_max"] == 33
+    out, err = capsys.readouterr()
+    assert out == ""
+
+
+def test_validate_max_mass_with_invalid_values(capsys):
+    for z in [0.001, 0.008, 0.2, 0.33, 0.5]:
+        params = settings.validate({"m_max": 300, "z": z})
+        out, err = capsys.readouterr()
+        assert out.startswith(f"Maximum mass is bigger than the allowed mass for z: {z}")
+
+
 def test_validate_mass_limits_for_starburst_imf():
     for imf in settings.valid_values["imf"]:
         params = settings.validate({"imf": imf, "imf_m_low": 7, "imf_m_up": 40})
