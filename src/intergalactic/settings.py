@@ -42,8 +42,7 @@ def validate(params):
             params[param] = default[param]
 
     if params["m_max"] > max_mass_allowed(params["z"]):
-        params["m_max"] = max_mass_allowed(params["z"])
-        print(f"Maximum mass is bigger than the allowewd mass for z: {params['z']}")
+        print(f"Maximum mass is bigger than the allowed mass for z: {params['z']}")
         print(f"  Using m_max value: {params['m_max']} solar masses")
 
     if params["imf"] == "starburst":

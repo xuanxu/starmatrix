@@ -43,17 +43,6 @@ def test_validate_with_invalid_values():
         assert params[param] == settings.default[param]
 
 
-def test_validate_max_mass_with_valid_values():
-    params = settings.validate({"m_max": 33})
-    assert params["m_max"] == 33
-
-
-def test_validate_max_mass_with_invalid_values():
-    for z in [0.001, 0.008, 0.2, 0.33, 0.5]:
-        params = settings.validate({"m_max": 300, "z": z})
-        assert params["m_max"] == max_mass_allowed(z)
-
-
 def test_validate_mass_limits_for_starburst_imf():
     for imf in settings.valid_values["imf"]:
         params = settings.validate({"imf": imf, "imf_m_low": 7, "imf_m_up": 40})

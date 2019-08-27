@@ -35,6 +35,19 @@ def test_mean_lifetime_stellar_mass_relation():
     assert np.isclose(functions.stellar_mass(lifetime, z), stellar_mass_test,  rtol=0.005)
     assert np.isclose(functions.stellar_lifetime(stellar_mass, z), lifetime_test, rtol=0.005)
 
+def test_stellar_mass_max_value():
+    for z in [0.001, 0.01, 0.02, 0.03, 0.05]:
+        t_small = functions.min_lifetime_allowed(z)/2
+        assert functions.stellar_mass(t_small, z) == functions.max_mass_allowed(z)
+
+def test_min_lifetime_and_max_mass_allowed():
+    z = 0.02
+    max_m = functions.max_mass_allowed(z)
+    max_tau = functions.min_lifetime_allowed(z)
+
+    assert np.isclose(functions.stellar_mass(max_tau,z), max_m,  rtol=0.001)
+    assert np.isclose(functions.stellar_lifetime(max_m, z), max_tau,  rtol=0.001)
+
 
 def test_total_energy_no_negative_time_values():
     t = -1
