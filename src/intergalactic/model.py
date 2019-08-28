@@ -41,32 +41,30 @@ class Model:
         imf_sn_file = open(f"{self.context['output_dir']}/imf_supernova_rates", "w+")
         matrices_file = open(f"{self.context['output_dir']}/qm-matrices", "w+")
 
-        q = np.zeros((constants.Q_MATRIX_ROWS, constants.Q_MATRIX_COLUMNS))
         for i in range(0, self.total_time_steps):
             m_inf, m_sup = self.mass_intervals[i]
-            supernova_Ia_rates = 0.0
+            q = np.zeros((constants.Q_MATRIX_ROWS, constants.Q_MATRIX_COLUMNS))
+            supernova_Ia_rates, supernova_II_rates = 0.0, 0.0
 
-            if m_sup <= constants.M_MIN or m_sup <= m_inf:
-                continue
+            if m_sup > constants.M_MIN and m_sup > m_inf:
+                q += newton_cotes(
+                    m_inf,
+                    m_sup,
+                    lambda m:
+                        global_imf(m, self.initial_mass_function, self.context["binary_fraction"]) *
+                        matrix.q(m, self.context)
+                )
 
-            q += newton_cotes(
-                m_inf,
-                m_sup,
-                lambda m:
-                    global_imf(m, self.initial_mass_function, self.context["binary_fraction"]) *
-                    matrix.q(m, self.context)
-            )
+                if m_inf < self.bmaxm:
+                    supernova_Ia_rates = self.sn_Ia_rates[i]
+                    q += q_sn_ia * supernova_Ia_rates
 
-            if m_inf < self.bmaxm:
-                supernova_Ia_rates = self.sn_Ia_rates[i]
-                q += q_sn_ia * supernova_Ia_rates
-
-            supernova_II_rates = newton_cotes(
-                m_inf,
-                m_sup,
-                lambda m:
-                    imf_supernovas_II(m, self.initial_mass_function, self.context["binary_fraction"])
-            )
+                supernova_II_rates = newton_cotes(
+                    m_inf,
+                    m_sup,
+                    lambda m:
+                        imf_supernovas_II(m, self.initial_mass_function, self.context["binary_fraction"])
+                )
 
             np.savetxt(matrices_file, q, fmt="%15.10f", header=self.__matrix_header(m_sup, m_inf))
             imf_sn_file.write(f"  {supernova_Ia_rates:.10f}  {supernova_II_rates:.10f}  {self.energies[i]:.10f}\n")

@@ -82,20 +82,23 @@ def test_create_q_matrices(mocker, deactivate_open_files):
     calls = [mocker.call(f"{settings.default['output_dir']}/imf_supernova_rates", "w+"),
              mocker.call(f"{settings.default['output_dir']}/qm-matrices", "w+")]
     mocked_file.assert_has_calls(calls)
+    functions.newton_cotes.assert_has_calls
     assert numpy.savetxt.call_count == model.total_time_steps
 
 
-def test_create_q_matrices_empty_files_if_wrong_data(mocker, deactivate_open_files):
+def test_create_q_matrices_all_zeros_files_if_wrong_data(mocker, deactivate_open_files):
     mocker.spy(functions, "newton_cotes")
     mocked_file = deactivate_open_files
     mocker.spy(numpy, "savetxt")
     model = Model(settings.default)
     model.total_time_steps = 2
     model.mass_intervals = [[0., 0.1], [8., 2.]]
+    model.energies = [1e-8, -1e-4]
 
     model.create_q_matrices()
 
     calls = [mocker.call(f"{settings.default['output_dir']}/imf_supernova_rates", "w+"),
              mocker.call(f"{settings.default['output_dir']}/qm-matrices", "w+")]
     mocked_file.assert_has_calls(calls)
-    assert numpy.savetxt.call_count == 0
+    assert functions.newton_cotes.call_count == 0
+    assert numpy.savetxt.call_count == model.total_time_steps
