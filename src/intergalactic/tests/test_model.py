@@ -102,3 +102,12 @@ def test_create_q_matrices_all_zeros_files_if_wrong_data(mocker, deactivate_open
     mocked_file.assert_has_calls(calls)
     assert functions.newton_cotes.call_count == 0
     assert numpy.savetxt.call_count == model.total_time_steps
+
+
+def test_matrix_header():
+    model = Model(settings.default)
+    assert model.context["matrix_headers"] is True
+    assert model._matrix_header(100, 1) == "Q matrix for mass interval: [100, 1]"
+
+    model.context["matrix_headers"] = False
+    assert model._matrix_header(100, 1) == ""

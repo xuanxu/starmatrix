@@ -66,7 +66,7 @@ class Model:
                         imf_supernovas_II(m, self.initial_mass_function, self.context["binary_fraction"])
                 )
 
-            np.savetxt(matrices_file, q, fmt="%15.10f", header=self.__matrix_header(m_sup, m_inf))
+            np.savetxt(matrices_file, q, fmt="%15.10f", header=self._matrix_header(m_sup, m_inf))
             imf_sn_file.write(f"  {supernova_Ia_rates:.10f}  {supernova_II_rates:.10f}  {self.energies[i]:.10f}\n")
 
         matrices_file.close()
@@ -102,7 +102,7 @@ class Model:
 
         mass_intervals_file.close()
 
-    def __matrix_header(self, m_sup, m_inf):
+    def _matrix_header(self, m_sup, m_inf):
         if self.context["matrix_headers"] is True:
             return f"Q matrix for mass interval: [{m_sup}, {m_inf}]"
         else:
