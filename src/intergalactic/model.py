@@ -44,7 +44,7 @@ class Model:
         for i in range(0, self.total_time_steps):
             m_inf, m_sup = self.mass_intervals[i]
             q = np.zeros((constants.Q_MATRIX_ROWS, constants.Q_MATRIX_COLUMNS))
-            supernova_Ia_rates, supernova_II_rates = 0.0, 0.0
+            phi, supernova_Ia_rates, supernova_II_rates = 0.0, 0.0, 0.0
 
             if m_sup > constants.M_MIN and m_sup > m_inf:
                 q += newton_cotes(
@@ -53,6 +53,13 @@ class Model:
                     lambda m:
                         global_imf(m, self.initial_mass_function, self.context["binary_fraction"]) *
                         matrix.q(m, self.context)
+                )
+
+                phi = newton_cotes(
+                    m_inf,
+                    m_sup,
+                    lambda m:
+                        global_imf(m, self.initial_mass_function, self.context["binary_fraction"])
                 )
 
                 if m_inf < self.bmaxm:
@@ -67,7 +74,7 @@ class Model:
                 )
 
             np.savetxt(matrices_file, q, fmt="%15.10f", header=self._matrix_header(m_sup, m_inf))
-            imf_sn_file.write(f"  {supernova_Ia_rates:.10f}  {supernova_II_rates:.10f}  {self.energies[i]:.10f}\n")
+            imf_sn_file.write(f"  {phi:.10f}  {supernova_Ia_rates:.10f}  {supernova_II_rates:.10f}  {self.energies[i]:.10f}\n")
 
         matrices_file.close()
         imf_sn_file.close()
