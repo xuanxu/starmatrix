@@ -197,6 +197,6 @@ def phi_secondary(m, imf, binary_fraction=constants.BIN_FRACTION):
 
 def imf_supernovas_II(m, imf, binary_fraction=constants.BIN_FRACTION):
     if m > constants.M_SNII:
-        return imf_zero(m, imf, binary_fraction) / m
+        return (imf_zero(m, imf, binary_fraction) + imf_binary_primary(m, imf, binary_fraction)) / m
     else:
         return 0

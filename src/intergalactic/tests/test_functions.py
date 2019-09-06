@@ -109,3 +109,11 @@ def test_imf_supernovas_II_is_zero_for_lower_masses():
 
     assert functions.imf_supernovas_II(np.random.sample() * constants.M_SNII, imf) == 0
     assert functions.imf_supernovas_II(constants.M_SNII, imf) == 0
+
+
+def test_imf_supernovas_II_includes_binary_primaries():
+    imf = select_imf(np.random.choice(settings.valid_values["imf"]), settings.default)
+    m = (constants.B_MIN + constants.B_MAX) / 2
+
+    assert m > constants.M_SNII
+    assert functions.imf_supernovas_II(m, imf) > functions.imf_zero(m, imf)/m
