@@ -211,3 +211,23 @@ def imf_supernovas_II(m, imf, binary_fraction=constants.BIN_FRACTION):
         return (imf_zero(m, imf, binary_fraction) + imf_binary_primary(m, imf, binary_fraction)) / m
     else:
         return 0
+
+def mass_from_tau(lifetime, z):
+    if lifetime > 15.13 : return None
+    if lifetime < 3.325e-3 : return 100.
+    ltau = 9 + math.log10(lifetime)
+    if ltau <= 6.48 : return 100.
+    ltau = min([ltau, 10.18])
+    if z < 0.00025:
+        a = [-16.1673, 8.1573, -1.51164, 0.119703, -3.2797e-3]
+    elif 0.00025 <= z < 0.00126:
+        a = [-18.18504, 9.132649, -1.68782, 0.133889, -3.71372e-3]
+    elif 0.00126 <= z < 0.0056:
+        a = [-25.38213, 12.52873, -2.282687, 0.1799017, -5.049336e-3]
+    elif 0.0056 <= z < 0.0126:
+        a = [-26.24297, 12.86747, -2.330858, 0.1829501, -5.130008e-3]
+    elif 0.0126 <= z:
+        a = [-25.09745, 12.14146, -2.170348, 0.1681194, -4.645682e-3]
+    p = a[0] + a[1] * ltau + a[2] * (ltau ** 2) + a[3] * (ltau ** 3) + a[4] * (ltau ** 4)
+    return value_in_interval(1 / p, [0.15, 100.0])
+

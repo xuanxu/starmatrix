@@ -6,7 +6,7 @@ import intergalactic.matrix as matrix
 from intergalactic.imfs import select_imf
 from intergalactic.abundances import select_abundances
 from intergalactic.dtds import select_dtd
-from intergalactic.functions import stellar_mass, stellar_lifetime, max_mass_allowed
+from intergalactic.functions import stellar_mass, stellar_lifetime, max_mass_allowed, mass_from_tau
 from intergalactic.functions import total_energy_ejected, newton_cotes, global_imf, imf_supernovas_II
 
 
@@ -83,23 +83,18 @@ class Model:
 
         t_ini = stellar_lifetime(self.m_max, 0.05)
         t_end = constants.TOTAL_TIME
-        t_ini_log = math.log10(t_ini * 1e9)
-        t_end_log = math.log10(t_end * 1e9)
 
-        delta_t_log = (t_end_log - t_ini_log) / self.total_time_steps
+        delta_t = (t_end - t_ini) / self.total_time_steps
 
         mass_intervals_file = open(f"{self.context['output_dir']}/mass_intervals", "w+")
-        mass_intervals_file.write(" ".join([str(i) for i in [t_ini, t_end, self.total_time_steps, delta_t_log]]))
+        mass_intervals_file.write(" ".join([str(i) for i in [t_ini, t_end, self.total_time_steps, delta_t]]))
 
         for step in range(0, self.total_time_steps):
-            t_inf_log = t_ini_log + (delta_t_log * step)
-            t_sup_log = t_ini_log + (delta_t_log * (step + 1))
+            t_inf = t_ini + (delta_t * step)
+            t_sup = t_ini + (delta_t * (step + 1))
 
-            t_inf = math.pow(10, t_inf_log - 9)
-            t_sup = math.pow(10, t_sup_log - 9)
-
-            m_inf = stellar_mass(t_sup, self.z)
-            m_sup = stellar_mass(t_inf, self.z)
+            m_inf = mass_from_tau(t_sup, self.z)
+            m_sup = mass_from_tau(t_inf, self.z)
 
             mass_intervals_file.write('\n' + f'{m_sup:14.10f}  ' + f'{m_inf:14.10f}  ' + str(step + 1))
 
