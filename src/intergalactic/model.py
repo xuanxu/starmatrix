@@ -6,7 +6,7 @@ import intergalactic.matrix as matrix
 from intergalactic.imfs import select_imf
 from intergalactic.abundances import select_abundances
 from intergalactic.dtds import select_dtd
-from intergalactic.functions import stellar_mass, stellar_lifetime, max_mass_allowed, mass_from_tau
+from intergalactic.functions import tau_from_mass, mass_from_tau
 from intergalactic.functions import total_energy_ejected, newton_cotes, global_imf, imf_supernovas_II
 
 
@@ -81,7 +81,7 @@ class Model:
 
     def explosive_nucleosynthesis(self):
 
-        t_ini = stellar_lifetime(self.m_max, 0.05)
+        t_ini = tau_from_mass(self.m_max, self.z)
         t_end = constants.TOTAL_TIME
 
         delta_t = (t_end - t_ini) / self.total_time_steps
