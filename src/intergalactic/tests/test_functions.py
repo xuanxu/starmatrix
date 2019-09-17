@@ -73,7 +73,8 @@ def test_imf_binary_primary_integrates_phi_primary():
     m_sup = 2 * m_in_binaries_range
     imf = select_imf(np.random.choice(settings.valid_values["imf"]), settings.default)
 
-    expected = functions.newton_cotes(m_in_binaries_range, m_sup, functions.phi_primary(m_in_binaries_range, imf))
+    expected = settings.default['binary_fraction'] * \
+        functions.newton_cotes(m_in_binaries_range, m_sup, functions.phi_primary(m_in_binaries_range, imf))
     assert functions.imf_binary_primary(m_in_binaries_range, imf) == expected
 
 
@@ -82,7 +83,8 @@ def test_imf_binary_secondary_integrates_phi_secondary():
     m_inf = 2 * m_in_binaries_range
     imf = select_imf(np.random.choice(settings.valid_values["imf"]), settings.default)
 
-    expected = functions.newton_cotes(m_inf, constants.B_MAX, functions.phi_secondary(m_in_binaries_range, imf))
+    expected = settings.default['binary_fraction'] * \
+        functions.newton_cotes(m_inf, constants.B_MAX, functions.phi_secondary(m_in_binaries_range, imf))
     assert functions.imf_binary_secondary(m_in_binaries_range, imf) == expected
 
 

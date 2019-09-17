@@ -124,7 +124,7 @@ def imf_binary_primary(m, imf, binary_fraction=constants.BIN_FRACTION):
     if m <= 0 or m_sup <= m_inf:
         return 0.0
 
-    return newton_cotes(m_inf, m_sup, phi_primary(m, imf, binary_fraction))
+    return binary_fraction * newton_cotes(m_inf, m_sup, phi_primary(m, imf))
 
 
 def imf_binary_secondary(m, imf, SNI_events=False, binary_fraction=constants.BIN_FRACTION):
@@ -143,7 +143,7 @@ def imf_binary_secondary(m, imf, SNI_events=False, binary_fraction=constants.BIN
     if m <= 0 or m_sup <= m_inf:
         return 0.0
 
-    return newton_cotes(m_inf, m_sup, phi_secondary(m, imf, binary_fraction))
+    return binary_fraction * newton_cotes(m_inf, m_sup, phi_secondary(m, imf))
 
 
 def imf_zero(m, imf, binary_fraction=constants.BIN_FRACTION):
@@ -175,23 +175,23 @@ def global_imf(m, imf, binary_fraction=constants.BIN_FRACTION):
         return imf_zero(m, imf, binary_fraction)
 
 
-def phi_primary(m, imf, binary_fraction=constants.BIN_FRACTION):
+def phi_primary(m, imf):
     """
     Expression to integrate for each mass m for the IMF for primary stars of binary systems
 
     """
     return lambda binary_mass: secondary_mass_fraction(1.0 - (m / binary_mass)) * \
-        imf.for_mass(binary_mass) * binary_fraction * \
+        imf.for_mass(binary_mass) * \
         m / (binary_mass ** 2)
 
 
-def phi_secondary(m, imf, binary_fraction=constants.BIN_FRACTION):
+def phi_secondary(m, imf):
     """
     Expression to integrate for each mass m for the IMF for secondary stars of binary systems
 
     """
     return lambda binary_mass: secondary_mass_fraction(m / binary_mass) * \
-        imf.for_mass(binary_mass) * binary_fraction * \
+        imf.for_mass(binary_mass) * \
         m / (binary_mass ** 2)
 
 
