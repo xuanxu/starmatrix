@@ -87,7 +87,7 @@ class Starburst(Salpeter):
 
     def set_mass_limits(self):
         self.m_low = 1.0
-        self.m_up  = 120.0
+        self.m_up = 120.0
 
     def description(self):
         return "IMF from Starburst 1999"
