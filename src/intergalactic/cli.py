@@ -34,12 +34,16 @@ def main():
     for param in context:
         print("   " + str(param) + " = " + str(context[param]))
 
-    shutil.rmtree(context['output_dir'], ignore_errors=True)
-    if not exists(context['output_dir']):
-        os.makedirs(context['output_dir'])
+    create_output_directory(context['output_dir'])
 
     model.Model(context).run()
     print(f"Done. Output files ready in '{context['output_dir']}' directory.")
+
+
+def create_output_directory(output_dir):
+    shutil.rmtree(output_dir, ignore_errors=True)
+    if not exists(output_dir):
+        os.makedirs(output_dir)
 
 
 def create_template_config_file():
