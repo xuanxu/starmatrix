@@ -85,6 +85,8 @@ class Model:
             self.explosive_nucleosynthesis_step_logt()
         elif self.integration_step == "t":
             self.explosive_nucleosynthesis_step_t()
+        else:
+            raise ValueError("Invalid value for integration step. Should be one of: [t, logt]")
 
     def explosive_nucleosynthesis_step_logt(self):
         t_ini = stellar_lifetime(min(self.m_max, max_mass_allowed(self.z)), self.z)
@@ -138,6 +140,7 @@ class Model:
             self.sn_Ia_rates.append(self.context["binary_fraction"] * newton_cotes(t_inf, t_sup, self.dtd))
 
         mass_intervals_file.close()
+
 
     def _matrix_header(self, m_sup, m_inf):
         if self.context["matrix_headers"] is True:

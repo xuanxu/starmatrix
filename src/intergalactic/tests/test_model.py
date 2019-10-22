@@ -78,6 +78,18 @@ def test_explosive_nucleosynthesis_with_t_step(mocker, deactivate_open_files):
     Model.explosive_nucleosynthesis_step_logt.assert_not_called()
 
 
+def test_explosive_nucleosynthesis_with_invalid_step(mocker, deactivate_open_files):
+    mocker.spy(Model, "explosive_nucleosynthesis_step_t")
+    mocker.spy(Model, "explosive_nucleosynthesis_step_logt")
+
+    model = Model({**settings.default, **{"integration_step": "t2"}})
+    with pytest.raises(ValueError):
+        model.explosive_nucleosynthesis()
+
+    Model.explosive_nucleosynthesis_step_t.assert_not_called()
+    Model.explosive_nucleosynthesis_step_logt.assert_not_called()
+
+
 def test_explosive_nucleosynthesis_step_t(mocker, deactivate_open_files):
     mocked_file = deactivate_open_files
     model = Model(settings.default)
