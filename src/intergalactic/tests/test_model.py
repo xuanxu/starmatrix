@@ -56,10 +56,43 @@ def test_model_run(mocker):
     Model.create_q_matrices.assert_called()
 
 
-def test_explosive_nucleosynthesis(mocker, deactivate_open_files):
+def test_explosive_nucleosynthesis_with_logt_step(mocker, deactivate_open_files):
+    mocker.spy(Model, "explosive_nucleosynthesis_step_t")
+    mocker.spy(Model, "explosive_nucleosynthesis_step_logt")
+
+    model = Model({**settings.default, **{"integration_step": "logt"}})
+    model.explosive_nucleosynthesis()
+
+    Model.explosive_nucleosynthesis_step_logt.assert_called_once()
+    Model.explosive_nucleosynthesis_step_t.assert_not_called()
+
+
+def test_explosive_nucleosynthesis_with_t_step(mocker, deactivate_open_files):
+    mocker.spy(Model, "explosive_nucleosynthesis_step_t")
+    mocker.spy(Model, "explosive_nucleosynthesis_step_logt")
+
+    model = Model({**settings.default, **{"integration_step": "t"}})
+    model.explosive_nucleosynthesis()
+
+    Model.explosive_nucleosynthesis_step_t.assert_called_once()
+    Model.explosive_nucleosynthesis_step_logt.assert_not_called()
+
+
+def test_explosive_nucleosynthesis_step_t(mocker, deactivate_open_files):
     mocked_file = deactivate_open_files
     model = Model(settings.default)
-    model.explosive_nucleosynthesis()
+    model.explosive_nucleosynthesis_step_t()
+
+    assert len(model.mass_intervals) == settings.default["total_time_steps"]
+    assert len(model.energies) == settings.default["total_time_steps"]
+    assert len(model.sn_Ia_rates) == settings.default["total_time_steps"]
+    mocked_file.assert_called_once_with(f"{settings.default['output_dir']}/mass_intervals", "w+")
+
+
+def test_explosive_nucleosynthesis_step_logt(mocker, deactivate_open_files):
+    mocked_file = deactivate_open_files
+    model = Model(settings.default)
+    model.explosive_nucleosynthesis_step_logt()
 
     assert len(model.mass_intervals) == settings.default["total_time_steps"]
     assert len(model.energies) == settings.default["total_time_steps"]

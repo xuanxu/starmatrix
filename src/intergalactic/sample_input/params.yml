@@ -5,12 +5,14 @@
 # imf_alpha                   -> If IMF is salpeter/starburst, this extra param is needed. Defaults to 2.35
 # imf_m_low                   -> Lower limit (in solar masses) for the IMF. Default value: 0.15
 # imf_m_up                    -> Upper limit (in solar masses) for the IMF. Default value: 100
-# m_min                       -> Minimum mass (in solar masses) for the resulting Q-Matrices.
-# m_max                       -> Maximum mass (in solar masses) for the resulting Q-Matrices.
-# total_time_steps            -> Total time steps for integration. Default value: 300
+
+# m_min                       -> Minimum mass (in solar masses) for the resulting Q-Matrices. Default value: 0.98
+# m_max                       -> Maximum mass (in solar masses) for the resulting Q-Matrices. Default value: 40.0
 # binary_fraction             -> Fraction of binary systems. Default value: 0.15
 # dtd_sn                      -> Delay time distribution to use for Supernovas (*). Default value: rpl
 # output_dir                  -> Name of the directory where results are written. Defaults to "results"
+# total_time_steps            -> Total time steps for integration. Default value: 300
+# integration_step            -> The constant step for integration: t or log(t). Default value: "logt"
 # matrix_headers              -> Flag to include headers in the qm-matrices file. Default value: yes
 # expelled_elements_filename  -> Filename of ejected data. Defaults to an internal file with data for z=0.02 from
 #                                Gavilan et al, 2006, A&A, 450, 509 and Chieffi & Limongi, 2004, ApJ, 608, 405
