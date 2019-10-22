@@ -1,19 +1,25 @@
+Configuration
+=============
 
-Input params
-============
+Intergalactic reads a configuration file where several input parameters (all of them optional) can be set in yaml format::
 
-Intergalactic reads a config file where several options can be set in yaml format::
-
-        z: 0.0200               # metallicity
-        sol_ab: ag89            # solar abundances
-        imf: kroupa             # initial mass function (IMF)
-        imf_m_low: 0.15         # lower mass limit for the IMF
-        imf_m_up: 100           # upper mass limit for the IMF
-        total_time_steps: 300   # number of time steps (will result in a Q Matrix per step)
-        m_min: 0.98             # min value for stellar mass
-        m_max: 40               # max value for stellar mass
-        binary_fraction: 0.15   # rate of binary stars
-        dtd_sn: rlp             # delay time distribution for supernovas
+        z                 # Metallicity. Default value: 0.02
+        sol_ab            # Solar abundances data. Default value: as09
+        imf               # Initial Mass function to use. Default value: kroupa
+        imf_alpha         # If IMF is salpeter/starburst, this extra param is needed. Defaults to 2.35
+        imf_m_low         # Lower limit (in solar masses) for the IMF. Default value: 0.15
+        imf_m_up          # Upper limit (in solar masses) for the IMF. Default value: 100
+        m_min             # Minimum mass (in solar masses) for the resulting Q-Matrices. Default: 0.98
+        m_max             # Maximum mass (in solar masses) for the resulting Q-Matrices. Default: 40.0
+        total_time_steps  # Total time steps for integration. Default value: 300
+        binary_fraction   # Fraction of binary systems. Default value: 0.15
+        dtd_sn            # Delay time distribution to use for Supernovas. Default value: rpl
+        output_dir        # Name of the directory where results are written. Defaults to "results"
+        matrix_headers    # Flag to include headers in the qm-matrices file. Default value: yes
+        integration_step  # The constant step for integration: t or log(t). Default value: "logt"
+        expelled_elements_filename  # Filename of ejected data. Defaults to an internal file with
+                                    # data for z=0.02 from Gavilan et al, 2006, A&A, 450, 509
+                                    # and Chieffi & Limongi, 2004, ApJ, 608, 405
 
 Intergalactic will use its internal default values for all params for which no values are provided.
 
