@@ -86,7 +86,7 @@ class Model:
         elif self.integration_step == "t":
             self.explosive_nucleosynthesis_step_t()
         else:
-            raise ValueError("Invalid value for integration step. Should be one of: [t, logt]")
+            raise ValueError("Invalid value for integration step. Should be one of: [logt, t]")
 
     def explosive_nucleosynthesis_step_logt(self):
         t_ini = stellar_lifetime(min(self.m_max, max_mass_allowed(self.z)), self.z)
