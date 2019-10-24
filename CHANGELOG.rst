@@ -14,6 +14,7 @@ Changelog
 - Added DTD from Maoz & Graur (2017)
 - The DTD from Mannucci, Della Valle & Panagia is deprecated
 - Added `matrix_headers` setting to optionally remove headers from `qm-matrices` file
+- The default value for binary systems fraction is now 0.15
 - Added `integration_step` setting to set the integration step as constant in log(t) or in t
 
 1.1.0 (2019-04-22)
