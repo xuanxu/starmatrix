@@ -74,7 +74,7 @@ Intergalactic reads a config file where several options can be set in yaml forma
         total_time_steps: 300   # number of time steps (will result in a Q Matrix per step)
         m_min: 0.98             # min value for stellar mass
         m_max: 40               # max value for stellar mass
-        binary_fraction: 0.05   # rate of binary stars
+        binary_fraction: 0.15   # rate of binary stars
         dtd_sn: rlp             # delay time distribution for supernovas
 
 Intergalactic will use its internal default values for all params for which no values are provided.

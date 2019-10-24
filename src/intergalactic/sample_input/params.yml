@@ -8,7 +8,7 @@
 # m_min                       -> Minimum mass (in solar masses) for the resulting Q-Matrices.
 # m_max                       -> Maximum mass (in solar masses) for the resulting Q-Matrices.
 # total_time_steps            -> Total time steps for integration. Default value: 300
-# binary_fraction             -> Fraction of binary systems. Default value: 0.05
+# binary_fraction             -> Fraction of binary systems. Default value: 0.15
 # dtd_sn                      -> Delay time distribution to use for Supernovas (*). Default value: rpl
 # output_dir                  -> Name of the directory where results are written. Defaults to "results"
 # matrix_headers              -> Flag to include headers in the qm-matrices file. Default value: yes
