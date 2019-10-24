@@ -27,6 +27,6 @@ and rich neutron isotopes (referred as ``n.r.`` in the code).
 
    installation
    usage
-   input_params
+   configuration
    testing_edge
    credits

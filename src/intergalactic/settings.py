@@ -22,6 +22,7 @@ default = {
     "dtd_sn": "rlp",
     "output_dir": "results",
     "matrix_headers": True,
+    "integration_step": "logt",
     "expelled_elements_filename": join(dirname(__file__), "sample_input", "expelled_elements")
 }
 
@@ -29,6 +30,7 @@ valid_values = {
     "imf": ["salpeter", "starburst", "chabrier", "ferrini", "kroupa", "miller_scalo", "maschberger"],
     "dtd_sn": ["rlp", "mdvp", "maoz"],
     "sol_ab": ["ag89", "gs98", "as05", "as09", "he10"],
+    "integration_step": ["logt", "t"],
 }
 
 
@@ -43,7 +45,7 @@ def validate(params):
 
     if params["m_max"] > max_mass_allowed(params["z"]):
         params["m_max"] = max_mass_allowed(params["z"])
-        print(f"Maximum mass is bigger than the allowewd mass for z: {params['z']}")
+        print(f"Maximum mass is bigger than the allowed mass for z: {params['z']}")
         print(f"  Using m_max value: {params['m_max']} solar masses")
 
     if params["imf"] == "starburst":
