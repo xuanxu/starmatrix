@@ -95,7 +95,7 @@ class Starburst(Salpeter):
 
 class MillerScalo(IMF):
     def imf(self, m):
-        return (106 / 2.30) * math.exp(-((math.log10(m) + 1.02) ** 2) / (2 * (0.68 ** 2)))
+        return math.exp(-((math.log10(m) + 1.02) ** 2) / (2 * (0.68 ** 2)))
 
     def description(self):
         return "IMF from Miller & Scalo 1979"
@@ -111,8 +111,8 @@ class Ferrini(IMF):
 
 class Kroupa(IMF):
     def imf(self, m):
-        if 0.01 <= m < 0.08:
-            return m * (m ** -0.3)
+        if 0.015 <= m < 0.08:
+            return m * (m ** -0.35)
         elif 0.08 <= m < 0.5:
             return m * 0.08 * (m ** -1.3)
         elif 0.5 <= m < 1.0:
@@ -129,15 +129,19 @@ class Kroupa(IMF):
 class Chabrier(IMF):
     def imf(self, m):
         if m <= 1:
-            return (0.158/2.3)*math.exp(-((math.log10(m) - math.log10(0.079))**2)/(2*(0.69**2)))
+            return 0.086*math.exp(-((math.log10(m) - math.log10(0.22))**2)/(2*(0.57**2)))
         else:
-            return m*(0.0443/2.3)*(m**-2.35)
+            return m*0.043*(m**-2.35)
 
     def description(self):
         return "IMF from Chabrier 2003"
 
 
 class Maschberger(IMF):
+    def set_mass_limits(self):
+        self.m_low = 0.15
+        self.m_up = 100.0
+
     def imf(self, m):
         return m * self.a() * \
                (self.m_mu(m) ** (-self.aalfa())) * \
