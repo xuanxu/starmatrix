@@ -32,9 +32,10 @@ class Expelled:
 
         for line in expelled_data:
             data_row = [max(0.0, float(data)) for data in line.split()]
-            mass = data_row.pop(0)  # the first column is the mass
-            self.mass_points.append(mass)
-            self.by_mass[mass] = dict(zip(self.elements_list, data_row))
+            if data_row:
+                mass = data_row.pop(0)  # the first column is the mass
+                self.mass_points.append(mass)
+                self.by_mass[mass] = dict(zip(self.elements_list, data_row))
 
         expelled_data.close()
 
