@@ -2,21 +2,6 @@ dist: xenial
 language: python
 sudo: false
 
-# addons for Scipy with Python 3.8-dev
-addons:
-  apt:
-    packages: &common_packages
-    - libatlas-dev
-    - libatlas-base-dev
-    - liblapack-dev
-    - gfortran
-    - libgmp-dev
-    - libmpfr-dev
-    - libsuitesparse-dev
-    - ccache
-    - swig
-    - libmpc-dev
-
 python:
   - 3.6
   - 3.7
