@@ -16,6 +16,7 @@ Intergalactic reads a configuration file where several input parameters (all of 
         dtd_sn            # Delay time distribution to use for Supernovas. Default value: rpl
         output_dir        # Name of the directory where results are written. Defaults to "results"
         matrix_headers    # Flag to include headers in the qm-matrices file. Default value: yes
+        return_fractions  # Flag to calculate R: fraction of mass restored to the ISM. Default: False
         integration_step  # The constant step for integration: t or log(t). Default value: "logt"
         expelled_elements_filename  # Filename of ejected data. Defaults to an internal file with
                                     # data for z=0.02 from Gavilan et al, 2006, A&A, 450, 509

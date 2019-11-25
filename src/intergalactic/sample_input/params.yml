@@ -13,7 +13,8 @@
 # output_dir                  -> Name of the directory where results are written. Defaults to "results"
 # total_time_steps            -> Total time steps for integration. Default value: 300
 # integration_step            -> The constant step for integration: t or log(t). Default value: "logt"
-# matrix_headers              -> Flag to include headers in the qm-matrices file. Default value: yes
+# matrix_headers              -> Flag to include headers in the qm-matrices file. Default value: True
+# return_fractions            -> Flag to calculate R: the return fraction of the stellar generation. Default value: False
 # expelled_elements_filename  -> Filename of ejected data. Defaults to an internal file with data for z=0.02 from
 #                                Gavilan et al, 2006, A&A, 450, 509 and Chieffi & Limongi, 2004, ApJ, 608, 405
 
