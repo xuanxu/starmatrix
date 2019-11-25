@@ -17,6 +17,7 @@ Changelog
 - The default value for binary systems fraction is now 0.15
 - Added ``integration_step`` setting to set the integration step as constant in *log(t)* or in *t*
 - Kroupa, Chabrier and Miller-Scalo IMFs have been slightly corrected
+- Added ``returned_fractions`` setting to generate a file with the masses restored to the ISM
 
 1.1.0 (2019-04-22)
 ==================
