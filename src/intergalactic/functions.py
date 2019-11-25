@@ -200,3 +200,14 @@ def imf_supernovas_II(m, imf, binary_fraction=constants.BIN_FRACTION):
         return (imf_zero(m, imf, binary_fraction) + imf_binary_primary(m, imf, binary_fraction)) / m
     else:
         return 0
+
+
+def return_fraction(m_inf, m_sup, expelled, imf, binary_fraction=constants.BIN_FRACTION):
+    r = newton_cotes(
+        m_inf,
+        m_sup,
+        lambda m:
+            global_imf(m, imf, binary_fraction) * (1 - expelled.for_mass(m)['remnants'])
+        )
+
+    return r

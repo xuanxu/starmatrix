@@ -3,6 +3,7 @@ import numpy as np
 import intergalactic.functions as functions
 import intergalactic.constants as constants
 import intergalactic.settings as settings
+import intergalactic.elements as elements
 from intergalactic.imfs import select_imf
 
 
@@ -119,3 +120,18 @@ def test_imf_supernovas_II_includes_binary_primaries():
 
     assert m > constants.M_SNII
     assert functions.imf_supernovas_II(m, imf) > functions.imf_zero(m, imf)/m
+
+
+def test_return_fractions():
+    imf = select_imf(np.random.choice(settings.valid_values["imf"]), settings.default)
+    default_yields_file = settings.default['expelled_elements_filename']
+    stellar_yields = elements.Expelled(default_yields_file)
+
+    expected = functions.newton_cotes(
+        1,
+        100,
+        lambda m:
+            functions.global_imf(m, imf) * (1 - stellar_yields.for_mass(m)['remnants'])
+        )
+
+    assert functions.return_fraction(1, 100, stellar_yields, imf) == expected
