@@ -156,3 +156,22 @@ def test_matrix_header():
 
     model.context["matrix_headers"] = False
     assert model._matrix_header(100, 1) == ""
+
+
+def test_return_fractions(mocker, deactivate_open_files):
+    mocker.spy(functions, "return_fraction")
+    mocked_file = deactivate_open_files
+    model = Model({**settings.default, **{"return_fractions": True}})
+    model.total_time_steps = 2
+    model.mass_intervals = [[1., 8.], [8., 33.]]
+    model.sn_Ia_rates = [2e-4, 1e-4]
+    model.energies = [3e-4, 1.2e-4]
+
+    model.create_q_matrices()
+
+    assert model.context["return_fractions"] is True
+    calls = [mocker.call(f"{settings.default['output_dir']}/imf_supernova_rates", "w+"),
+             mocker.call(f"{settings.default['output_dir']}/qm-matrices", "w+"),
+             mocker.call(f"{settings.default['output_dir']}/return_fractions", "w+")]
+    mocked_file.assert_has_calls(calls)
+    functions.return_fraction.assert_has_calls

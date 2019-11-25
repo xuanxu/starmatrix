@@ -6,7 +6,7 @@ import intergalactic.matrix as matrix
 from intergalactic.imfs import select_imf
 from intergalactic.abundances import select_abundances
 from intergalactic.dtds import select_dtd
-from intergalactic.functions import stellar_mass, stellar_lifetime, max_mass_allowed
+from intergalactic.functions import stellar_mass, stellar_lifetime, max_mass_allowed, return_fraction
 from intergalactic.functions import total_energy_ejected, newton_cotes, global_imf, imf_supernovas_II
 
 
@@ -41,11 +41,13 @@ class Model:
         q_sn_ia = matrix.q_sn(constants.CHANDRASEKHAR_LIMIT, feh=self.context["abundances"].feh(), sn_type="sn_ia")
         imf_sn_file = open(f"{self.context['output_dir']}/imf_supernova_rates", "w+")
         matrices_file = open(f"{self.context['output_dir']}/qm-matrices", "w+")
+        if self.context["return_fractions"] is True:
+            return_fraction_file = open(f"{self.context['output_dir']}/return_fractions", "w+")
 
         for i in range(0, self.total_time_steps):
             m_inf, m_sup = self.mass_intervals[i]
             q = np.zeros((constants.Q_MATRIX_ROWS, constants.Q_MATRIX_COLUMNS))
-            phi, supernova_Ia_rates, supernova_II_rates = 0.0, 0.0, 0.0
+            phi, supernova_Ia_rates, supernova_II_rates, r = 0.0, 0.0, 0.0, 0.0
 
             if m_sup > constants.M_MIN and m_sup > m_inf:
                 q += newton_cotes(
@@ -63,6 +65,8 @@ class Model:
                         global_imf(m, self.initial_mass_function, self.context["binary_fraction"])
                 )
 
+                r = return_fraction(m_inf, m_sup, self.context["expelled"], self.initial_mass_function, self.context["binary_fraction"])
+
                 if m_inf < self.bmaxm:
                     supernova_Ia_rates = self.sn_Ia_rates[i]
                     q += q_sn_ia * supernova_Ia_rates
@@ -76,9 +80,13 @@ class Model:
 
             np.savetxt(matrices_file, q, fmt="%15.10f", header=self._matrix_header(m_sup, m_inf))
             imf_sn_file.write(f"  {phi:.10f}  {supernova_Ia_rates:.10f}  {supernova_II_rates:.10f}  {self.energies[i]:.10f}\n")
+            if self.context["return_fractions"] is True:
+                return_fraction_file.write(f"{r:.10f}\n")
 
         matrices_file.close()
         imf_sn_file.close()
+        if self.context["return_fractions"] is True:
+            return_fraction_file.close()
 
     def explosive_nucleosynthesis(self):
         if self.integration_step == "logt":
@@ -140,7 +148,6 @@ class Model:
             self.sn_Ia_rates.append(self.context["binary_fraction"] * newton_cotes(t_inf, t_sup, self.dtd))
 
         mass_intervals_file.close()
-
 
     def _matrix_header(self, m_sup, m_inf):
         if self.context["matrix_headers"] is True:
