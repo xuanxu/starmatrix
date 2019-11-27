@@ -150,6 +150,51 @@ class Model:
 
         mass_intervals_file.close()
 
+    def explosive_nucleosynthesis_two_steps_t(self):
+        t_ini = stellar_lifetime(self.m_max, self.z)
+        t_limit_massive = stellar_lifetime(4.0, self.z)
+        t_end = min(stellar_lifetime(self.m_min, self.z), constants.TOTAL_TIME)
+
+        delta_t_1 = stellar_lifetime(100.0, self.z) / 2
+        delta_t_2 = 50 * delta_t_1
+
+        steps_with_delta_t_1 = math.ceil((t_limit_massive - t_ini) / delta_t_1)
+        t_ini_for_delta_2 = t_ini + (delta_t_1 * steps_with_delta_t_1)
+        steps_with_delta_t_2 = math.ceil((t_end - t_ini_for_delta_2) / delta_t_2)
+        delta_t_2 = (t_end - t_ini_for_delta_2) / steps_with_delta_t_2
+        self.total_time_steps = steps_with_delta_t_1 + steps_with_delta_t_2
+
+        mass_intervals_file = open(f"{self.context['output_dir']}/mass_intervals", "w+")
+        mass_intervals_file.write(" ".join([str(i) for i in [t_ini, t_end, steps_with_delta_t_1, steps_with_delta_t_2, delta_t_1, delta_t_2]]))
+
+        for step in range(0, steps_with_delta_t_1):
+            t_inf = t_ini + (delta_t_1 * step)
+            t_sup = t_ini + (delta_t_1 * (step + 1))
+
+            m_inf = stellar_mass(t_sup, self.z)
+            m_sup = stellar_mass(t_inf, self.z)
+
+            mass_intervals_file.write('\n' + f'{m_sup:14.10f}  ' + f'{m_inf:14.10f}  ' + str(step + 1))
+
+            self.mass_intervals.append([m_inf, m_sup])
+            self.energies.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
+            self.sn_Ia_rates.append(self.context["binary_fraction"] * newton_cotes(t_inf, t_sup, self.dtd))
+
+        for step in range(0, steps_with_delta_t_2):
+            t_inf = t_ini_for_delta_2 + (delta_t_2 * step)
+            t_sup = t_ini_for_delta_2 + (delta_t_2 * (step + 1))
+
+            m_inf = stellar_mass(t_sup, self.z)
+            m_sup = stellar_mass(t_inf, self.z)
+
+            mass_intervals_file.write('\n' + f'{m_sup:14.10f}  ' + f'{m_inf:14.10f}  ' + str(step + 1))
+
+            self.mass_intervals.append([m_inf, m_sup])
+            self.energies.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
+            self.sn_Ia_rates.append(self.context["binary_fraction"] * newton_cotes(t_inf, t_sup, self.dtd))
+
+        mass_intervals_file.close()
+
     def _matrix_header(self, m_sup, m_inf):
         if self.context["matrix_headers"] is True:
             return f"Q matrix for mass interval: [{m_sup}, {m_inf}]"
