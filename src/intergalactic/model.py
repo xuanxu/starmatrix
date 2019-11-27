@@ -128,7 +128,7 @@ class Model:
 
     def explosive_nucleosynthesis_step_t(self):
         t_ini = stellar_lifetime(self.m_max, self.z)
-        t_end = constants.TOTAL_TIME
+        t_end = min(stellar_lifetime(self.m_min, self.z), constants.TOTAL_TIME)
 
         delta_t = (t_end - t_ini) / self.total_time_steps
 
