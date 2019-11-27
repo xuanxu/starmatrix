@@ -76,3 +76,12 @@ The ``dtd_sn`` param in the config file can be set to use any of the available D
 :maoz: The DTD of Type Ia supernovae from Maoz & Graur (2017)
 :mdvp: DTD from Mannucci, Della Valle, Panagia 2006
 :castrillo: DTD of Type Ia supernovae from Castrillo et al. (2020)
+
+Integration step
+----------------
+
+By default integration steps are constant in `log(t)` but this behavior can be changed via the `integration_step` setting, that can take this values:
+
+:logt: Integration step is constant in `log(t)`, so it is smaller for short-lived stars and gradually increases when time increases (stellar mass decreases)
+:t:    Integration step is constant in `t`. Less efficient than log(t) but can be used to study specific intervals. Should be tuned with `total_time_steps` setting
+:two_steps_t: The integration will use two time steps: [half the lifetime of a 100 solar masses star for the given metallicity] as time step for stars bigger than 4 solar masses, and 100 times that for less massive stars. If this option is selected the `total_time_steps` setting is ignored.
