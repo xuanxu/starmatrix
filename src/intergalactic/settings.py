@@ -31,7 +31,7 @@ valid_values = {
     "imf": ["salpeter", "starburst", "chabrier", "ferrini", "kroupa", "miller_scalo", "maschberger"],
     "dtd_sn": ["rlp", "mdvp", "maoz", "castrillo"],
     "sol_ab": ["ag89", "gs98", "as05", "as09", "he10"],
-    "integration_step": ["logt", "t"],
+    "integration_step": ["logt", "t", "two_steps_t"],
 }
 
 
