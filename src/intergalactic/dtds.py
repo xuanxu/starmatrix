@@ -54,7 +54,7 @@ def dtd_mannucci_della_valle_panagia(t):
     else:
         logDTD = -0.8 - 0.9 * (logt - 8.7)**2
 
-    return math.exp(logDTD)
+    return math.pow(10, logDTD)
 
 
 def dtd_maoz_graur(t):
