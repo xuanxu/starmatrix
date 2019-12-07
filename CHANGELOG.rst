@@ -18,6 +18,7 @@ Changelog
 - Added ``integration_step`` setting to set the integration step as constant in *log(t)* or in *t*
 - Kroupa, Chabrier and Miller-Scalo IMFs have been slightly corrected
 - Added ``returned_fractions`` setting to generate a file with the masses restored to the ISM
+- Fixed: Maoz & Graur DTD rate corrected by mass
 
 1.1.0 (2019-04-22)
 ==================
