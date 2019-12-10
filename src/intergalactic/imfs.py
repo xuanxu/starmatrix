@@ -32,6 +32,14 @@ def select_imf(name, params={}):
     return imfs[name](params)
 
 
+class M_IMF:
+    def __init__(self, imf):
+        self.imf = imf
+
+    def for_mass(self, m):
+        return m * self.imf.for_mass(m)
+
+
 class IMF:
     def __init__(self, params={}):
         self.params = params
@@ -71,7 +79,7 @@ class IMF:
 
 class Salpeter(IMF):
     def imf(self, m):
-        return m * (m ** -(self.alpha()))
+        return (m ** -(self.alpha()))
 
     def alpha(self):
         if "imf_alpha" in self.params:
@@ -95,7 +103,7 @@ class Starburst(Salpeter):
 
 class MillerScalo(IMF):
     def imf(self, m):
-        return math.exp(-((math.log10(m) + 1.02) ** 2) / (2 * (0.68 ** 2)))
+        return math.exp(-((math.log10(m) + 1.02) ** 2) / (2 * (0.68 ** 2))) / m
 
     def description(self):
         return "IMF from Miller & Scalo 1979"
@@ -103,7 +111,7 @@ class MillerScalo(IMF):
 
 class Ferrini(IMF):
     def imf(self, m):
-        return 10 ** (-math.sqrt(0.73 + math.log10(m) * (1.92 + math.log10(m) * 2.07))) / m ** 0.52
+        return 10 ** (-math.sqrt(0.73 + math.log10(m) * (1.92 + math.log10(m) * 2.07))) / m ** 1.52
 
     def description(self):
         return "IMF Ferrini, Palla & Penco 1998"
@@ -112,13 +120,13 @@ class Ferrini(IMF):
 class Kroupa(IMF):
     def imf(self, m):
         if 0.015 <= m < 0.08:
-            return m * (m ** -0.35)
+            return (m ** -0.35)
         elif 0.08 <= m < 0.5:
-            return m * 0.08 * (m ** -1.3)
+            return 0.08 * (m ** -1.3)
         elif 0.5 <= m < 1.0:
-            return m * 0.04 * (m ** -2.3)
+            return 0.04 * (m ** -2.3)
         elif 1 <= m:
-            return m * 0.04 * (m ** -2.7)
+            return 0.04 * (m ** -2.7)
         else:
             return 0
 
@@ -129,9 +137,9 @@ class Kroupa(IMF):
 class Chabrier(IMF):
     def imf(self, m):
         if m <= 1:
-            return 0.086*math.exp(-((math.log10(m) - math.log10(0.22))**2)/(2*(0.57**2)))
+            return 0.086*m*math.exp(-((math.log10(m) - math.log10(0.22))**2)/(2*(0.57**2)))
         else:
-            return m*0.043*(m**-2.35)
+            return 0.043*(m**-2.35)
 
     def description(self):
         return "IMF from Chabrier 2003"
@@ -143,7 +151,7 @@ class Maschberger(IMF):
         self.m_up = 100.0
 
     def imf(self, m):
-        return m * self.a() * \
+        return self.a() * \
                (self.m_mu(m) ** (-self.aalfa())) * \
                ((1 + (self.m_mu(m) ** (1 - self.aalfa()))) ** (-self.beta()))
 

@@ -24,7 +24,8 @@ def test_model_initialization():
     validated_params = settings.validate(params)
     model = Model(validated_params)
 
-    assert isinstance(model.initial_mass_function, imfs.Chabrier)
+    assert isinstance(model.initial_mass_function, imfs.M_IMF)
+    assert isinstance(model.initial_mass_function.imf, imfs.Chabrier)
     assert isinstance(model.context["abundances"], abundances.AndersGrevesse1989)
     assert model.context["abundances"].z == params["z"]
     assert model.mass_intervals == []
