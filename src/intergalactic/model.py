@@ -65,7 +65,8 @@ class Model:
                         global_imf(m, self.initial_mass_function, self.context["binary_fraction"])
                 )
 
-                r = return_fraction(m_inf, m_sup, self.context["expelled"], self.initial_mass_function, self.context["binary_fraction"])
+                if self.context["return_fractions"] is True:
+                    r = return_fraction(m_inf, m_sup, self.context["expelled"], self.initial_mass_function, self.context["binary_fraction"])
 
                 if m_inf < self.bmaxm:
                     supernova_Ia_rates = self.sn_Ia_rates[i]
