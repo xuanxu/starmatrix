@@ -207,7 +207,7 @@ def return_fraction(m_inf, m_sup, expelled, imf, binary_fraction=constants.BIN_F
         m_inf,
         m_sup,
         lambda m:
-            global_imf(m, imf, binary_fraction) * (1 - expelled.for_mass(m)['remnants'])
+            (global_imf(m, imf, binary_fraction) / m) * (m - expelled.for_mass(m)['remnants'])
         )
 
     return r

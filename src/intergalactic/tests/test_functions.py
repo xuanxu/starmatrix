@@ -131,7 +131,7 @@ def test_return_fractions():
         1,
         100,
         lambda m:
-            functions.global_imf(m, imf) * (1 - stellar_yields.for_mass(m)['remnants'])
+            (functions.global_imf(m, imf)/m) * (m - stellar_yields.for_mass(m)['remnants'])
         )
 
     assert functions.return_fraction(1, 100, stellar_yields, imf) == expected
