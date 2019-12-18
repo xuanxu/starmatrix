@@ -61,7 +61,7 @@ def stellar_mass(tau, z):
     good fit for masses up to the max_mass_allowed(z)
 
     """
-    if tau < min_tau_allowed(z)
+    if tau < min_tau_allowed(z):
         return max_mass_allowed(z)
 
     log_tau = math.log10(tau * 1e9)  # years to Gyrs

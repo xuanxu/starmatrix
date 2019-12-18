@@ -98,8 +98,8 @@ class Model:
             raise ValueError("Invalid value for integration step. Should be one of: [logt, t]")
 
     def explosive_nucleosynthesis_step_logt(self):
-        t_ini = stellar_lifetime(min(self.m_max, max_mass_allowed(self.z)), self.z)
-        t_end = min(stellar_lifetime(self.m_min, self.z), constants.TOTAL_TIME)
+        t_ini = stellar_lifetime(self.m_max, 0.0001)
+        t_end = constants.TOTAL_TIME
         t_ini_log = math.log10(t_ini * 1e9)
         t_end_log = math.log10(t_end * 1e9)
 
