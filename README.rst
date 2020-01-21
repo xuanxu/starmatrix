@@ -175,3 +175,4 @@ Intergalactic is built upon a long list of previous works from different authors
 * *Mannucci, Della Valle, Panagia*, 2006, MNRAS, 370, 773M
 * *Ruiz-Lapuente, P., Canal, R.*, 2000, astro.ph..9312R
 * *Maoz, D. & Graur, O.* 2017, ApJ, 848, 25M
+* *Castrillo, A. et al* 2020, MNRAS (*in preparation*) 
