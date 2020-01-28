@@ -69,3 +69,16 @@ def dtd_maoz_graur(t):
     rate = 1.3e-3  # N/M* = 1.3 per 1000 Msun
 
     return rate * dtd
+
+
+def dtd_castrillo(t):
+    """
+    Delay Time Distribution (DTD) from Castrillo et al (2020, in preparation)
+
+    """
+    if t <= 0.04 or t > 10.0:
+        return 0.0
+
+    dtd = math.pow(t, -1.2)
+
+    return dtd
