@@ -81,5 +81,6 @@ def dtd_castrillo(t):
         return 0.0
 
     dtd = math.pow(t, -1.2)
+    rate = 0.012556  # [SN / Yr / M*]
 
-    return dtd
+    return rate * dtd
