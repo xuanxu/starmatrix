@@ -15,7 +15,8 @@ def select_dtd(option):
     dtds = {
         "rlp": dtd_ruiz_lapuente,
         "mdvp": dtd_mannucci_della_valle_panagia,
-        "maoz": dtd_maoz_graur
+        "maoz": dtd_maoz_graur,
+        "castrillo": dtd_castrillo
     }
     return dtds[option]
 
@@ -76,9 +77,10 @@ def dtd_castrillo(t):
     Delay Time Distribution (DTD) from Castrillo et al (2020, in preparation)
 
     """
-    if t <= 0.04 or t > 10.0:
+    if t <= 0.04:
         return 0.0
 
     dtd = math.pow(t, -1.2)
+    rate = 0.012556  # [SN / Yr / M*]
 
-    return dtd
+    return rate * dtd

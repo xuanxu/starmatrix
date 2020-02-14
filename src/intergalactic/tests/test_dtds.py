@@ -5,6 +5,7 @@ from intergalactic.dtds import select_dtd
 from intergalactic.dtds import dtd_ruiz_lapuente
 from intergalactic.dtds import dtd_mannucci_della_valle_panagia
 from intergalactic.dtds import dtd_maoz_graur
+from intergalactic.dtds import dtd_castrillo
 
 
 @pytest.fixture
@@ -21,7 +22,7 @@ def test_dtds_presence(available_dtds):
 
 
 def test_select_dtd(available_dtds):
-    dtds = [dtd_ruiz_lapuente, dtd_mannucci_della_valle_panagia, dtd_maoz_graur]
+    dtds = [dtd_ruiz_lapuente, dtd_mannucci_della_valle_panagia, dtd_maoz_graur, dtd_castrillo]
 
     for i in range(len(available_dtds)):
         times = [0.001, 9.] + list(np.random.rand(5)) + list(np.random.rand(5) * 9)
