@@ -34,7 +34,7 @@ Intergalactic is built upon a long list of previous works from different authors
 License
 -------
 
-*Copyright* © 2019 Juanjo Bazán, released under the `MIT license`_.
+*Copyright* © 2019-2020 Juanjo Bazán, released under the `MIT license`_.
 
 .. _`MIT license`: https://github.com/xuanxu/intergalactic/blob/master/LICENSE
 

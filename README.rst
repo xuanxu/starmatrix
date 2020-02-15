@@ -154,7 +154,7 @@ If you want to play with the latest code present in this repository even if it h
 License
 =======
 
-*Copyright* © 2019 Juanjo Bazán, released under the `MIT license`_.
+*Copyright* © 2020 Juanjo Bazán, released under the `MIT license`_.
 
 .. _`MIT license`: https://github.com/xuanxu/intergalactic/blob/master/LICENSE
 

@@ -20,7 +20,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Intergalactic'
-copyright = '2019, Juanjo Bazán'
+copyright = '2020, Juanjo Bazán'
 author = 'Juanjo Bazán'
 
 # The short X.Y version
