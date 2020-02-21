@@ -67,7 +67,7 @@ Input params
 Intergalactic reads a config file where several options can be set in yaml format::
 
         z: 0.0200               # metallicity
-        sol_ab: ag89            # solar abundances
+        sol_ab: as09            # solar abundances
         imf: kroupa             # initial mass function (IMF)
         imf_m_low: 0.15         # lower mass limit for the IMF
         imf_m_up: 100           # upper mass limit for the IMF
