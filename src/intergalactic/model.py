@@ -157,8 +157,8 @@ class Model:
         t_limit_massive = stellar_lifetime(4.0, self.z)
         t_end = min(stellar_lifetime(self.m_min, self.z), constants.TOTAL_TIME)
 
-        delta_t_1 = stellar_lifetime(100.0, self.z) / 2
-        delta_t_2 = 50 * delta_t_1
+        delta_t_1 = 0.001  # stellar_lifetime(100.0, self.z) / 2
+        delta_t_2 = 0.1  # 50 * delta_t_1
 
         steps_with_delta_t_1 = math.ceil((t_limit_massive - t_ini) / delta_t_1)
         t_ini_for_delta_2 = t_ini + (delta_t_1 * steps_with_delta_t_1)
