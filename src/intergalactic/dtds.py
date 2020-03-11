@@ -63,7 +63,7 @@ def dtd_maoz_graur(t):
     Delay Time Distribution (DTD) from Maoz & Graur (2017)
 
     """
-    if t <= 0 or t > 10.0:
+    if t <= 0.05 or t > 10.0:
         return 0.0
 
     dtd = math.pow(t, -1.1)
