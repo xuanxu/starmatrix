@@ -67,7 +67,9 @@ def dtd_maoz_graur(t):
         return 0.0
 
     dtd = math.pow(t, -1.1)
-    rate = 1.3e-3  # N/M* = 1.3 per 1000 Msun
+
+    # Normalization using 1.03e-3 SN/M* as Hubble-time-integrated production efficiency SN/Mo
+    rate = 0.727  # [SN / Yr / M*]
 
     return rate * dtd
 
@@ -81,6 +83,8 @@ def dtd_castrillo(t):
         return 0.0
 
     dtd = math.pow(t, -1.2)
+
+    # Normalization using 1.03e-3 SN/M* as Hubble-time-integrated production efficiency SN/Mo
     rate = 0.012556  # [SN / Yr / M*]
 
     return rate * dtd
