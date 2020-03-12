@@ -5,7 +5,7 @@ Changelog
 =========
 
 
-1.1.X (unreleased)
+1.2.0 (2020-03-12)
 ==================
 
 - Added Supernovas II data to the ``imf_supernova_rates`` file
