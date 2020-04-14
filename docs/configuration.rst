@@ -84,4 +84,7 @@ By default integration steps are constant in `log(t)` but this behavior can be c
 
 :logt: Integration step is constant in `log(t)`, so it is smaller for short-lived stars and gradually increases when time increases (stellar mass decreases)
 :t:    Integration step is constant in `t`. Less efficient than log(t) but can be used to study specific intervals. Should be tuned with `total_time_steps` setting
-:two_steps_t: The integration will use two time steps: [half the lifetime of a 100 solar masses star for the given metallicity] as time step for stars bigger than 4 solar masses, and 100 times that for less massive stars. If this option is selected the `total_time_steps` setting is ignored.
+:two_steps_t: The integration will use two time steps: [half the lifetime of a 100 solar masses star for the given metallicity] as time step for stars bigger than 4 solar masses, and 100 times that for less massive stars. If this option is selected the `total_time_steps` setting is ignored
+:fixed_n_steps: The integration will take exactly the number of time steps specified in the next two settings (`integration_steps_stars_smaller_than_4Msun` and `integration_steps_stars_bigger_than_4Msun`)
+:integration_steps_stars_bigger_than_4Msun: number of integration time steps for m = 4Msun to m_max. This option is ignored unless `integration_step` value is `fixed_n_steps`
+:integration_steps_stars_smaller_than_4Msun: number of integration time steps for m = m_min to 4Msun. This option is ignored unless `integration_step` value is `fixed_n_steps`
