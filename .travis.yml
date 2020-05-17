@@ -3,9 +3,9 @@ language: python
 sudo: false
 
 python:
-  - 3.6
-  - 3.7
-  - 3.8
+  - 3.6.10
+  - 3.7.7
+  - 3.8.3
   - nightly
 
 matrix:
