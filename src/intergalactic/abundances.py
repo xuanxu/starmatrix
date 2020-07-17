@@ -8,6 +8,7 @@ Contains solar abundances from different papers/authors:
 * Asplund et al. 2005,
 * Asplund et al. 2009,
 * Heger 2010
+* Lodders et al. 2019
 
 and a way to define new abundances subclassing Abundances
 

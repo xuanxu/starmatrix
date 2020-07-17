@@ -118,6 +118,7 @@ The ``sol_ab`` param in the config file can be set to use any of the available a
 :as05: Asplund et al. 2005
 :as09: Asplund et al. 2009
 :he10: Heger 2010
+:lo19: Lodders et al. 2019
 
 The default value is ``as09``. If you want to use your own abundances data you can do so subclassing the `Abundances class`_.
 
