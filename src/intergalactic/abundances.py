@@ -22,7 +22,8 @@ def select_abundances(option, z):
         "gs98": GrevesseSauval1998,
         "as05": Asplund2005,
         "as09": Asplund2009,
-        "he10": Heger2010
+        "he10": Heger2010,
+        "lo19": Lodders2019
     }
     return abundandes_data[option](z)
 
@@ -217,3 +218,34 @@ class Heger2010(Abundances):
 
     def description(self):
         return "Heger 2010"
+
+class Lodders2019(Abundances):
+    def h(self):
+        return -2.6866 * self.z + 0.7513
+
+    def he4(self):
+        return 1.687 * self.z + 0.2487
+
+    def feh_z_non_zero(self):
+        return math.log10(self.z / 0.015)
+
+    def elements(self):
+        return {
+            "H":   0.7048,
+            "D":   2.78e-5,
+            "He3": 3.47e-5,
+            "He4": 0.2786,
+            "C":   3.031e-3,
+            "C13": 3.432e-5,
+            "N":   8.536e-4,
+            "O":   7.428e-3,
+            "Ne":  2.271e-3,
+            "Mg":  5.437e-4,
+            "Si":  7.220e-4,
+            "S":   3.719e-4,
+            "Ca":  6.209e-5,
+            "Fe":  1.255e-3
+        }
+
+    def description(self):
+        return "Lodders et al. 2019"

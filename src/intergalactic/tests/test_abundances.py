@@ -2,7 +2,7 @@ import pytest
 import numpy as np
 import intergalactic.settings as settings
 from intergalactic.abundances import Abundances, select_abundances
-from intergalactic.abundances import AndersGrevesse1989, GrevesseSauval1998, Asplund2005, Asplund2009, Heger2010
+from intergalactic.abundances import AndersGrevesse1989, GrevesseSauval1998, Asplund2005, Asplund2009, Heger2010, Lodders2019
 
 
 @pytest.fixture
@@ -14,8 +14,8 @@ def available_abundances():
 
 
 def test_select_abundances():
-    strings = ["ag89", "gs98", "as05", "as09", "he10"]
-    classes = [AndersGrevesse1989, GrevesseSauval1998, Asplund2005, Asplund2009, Heger2010]
+    strings = ["ag89", "gs98", "as05", "as09", "he10", "lo19"]
+    classes = [AndersGrevesse1989, GrevesseSauval1998, Asplund2005, Asplund2009, Heger2010, Lodders2019]
 
     for i in range(len(strings)):
         abundance_instance = select_abundances(strings[i], 0.033)
