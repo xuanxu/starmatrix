@@ -5,6 +5,11 @@ Changelog
 =========
 
 
+1.X.X (Unreleased)
+==================
+
+- Added set of solar abundances from Lodders et al. 2019
+
 1.2.0 (2020-03-12)
 ==================
 
