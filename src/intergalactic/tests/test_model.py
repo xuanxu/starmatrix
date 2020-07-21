@@ -59,28 +59,70 @@ def test_model_run(mocker):
 def test_explosive_nucleosynthesis_with_logt_step(mocker, deactivate_open_files):
     mocker.spy(Model, "explosive_nucleosynthesis_step_t")
     mocker.spy(Model, "explosive_nucleosynthesis_step_logt")
+    mocker.spy(Model, "explosive_nucleosynthesis_two_steps_t")
+    mocker.spy(Model, "explosive_nucleosynthesis_fixed_n_steps")
 
     model = Model({**settings.default, **{"integration_step": "logt"}})
     model.explosive_nucleosynthesis()
 
     Model.explosive_nucleosynthesis_step_logt.assert_called_once()
     Model.explosive_nucleosynthesis_step_t.assert_not_called()
+    Model.explosive_nucleosynthesis_two_steps_t.assert_not_called()
+    Model.explosive_nucleosynthesis_fixed_n_steps.assert_not_called()
 
 
 def test_explosive_nucleosynthesis_with_t_step(mocker, deactivate_open_files):
     mocker.spy(Model, "explosive_nucleosynthesis_step_t")
     mocker.spy(Model, "explosive_nucleosynthesis_step_logt")
+    mocker.spy(Model, "explosive_nucleosynthesis_two_steps_t")
+    mocker.spy(Model, "explosive_nucleosynthesis_fixed_n_steps")
 
     model = Model({**settings.default, **{"integration_step": "t"}})
     model.explosive_nucleosynthesis()
 
     Model.explosive_nucleosynthesis_step_t.assert_called_once()
     Model.explosive_nucleosynthesis_step_logt.assert_not_called()
+    Model.explosive_nucleosynthesis_two_steps_t.assert_not_called()
+    Model.explosive_nucleosynthesis_fixed_n_steps.assert_not_called()
+
+
+def test_explosive_nucleosynthesis_with_two_steps_t(mocker, deactivate_open_files):
+    mocker.spy(Model, "explosive_nucleosynthesis_step_t")
+    mocker.spy(Model, "explosive_nucleosynthesis_step_logt")
+    mocker.spy(Model, "explosive_nucleosynthesis_two_steps_t")
+    mocker.spy(Model, "explosive_nucleosynthesis_fixed_n_steps")
+
+    model = Model({**settings.default, **{"integration_step": "two_steps_t"}})
+    model.explosive_nucleosynthesis()
+
+    Model.explosive_nucleosynthesis_two_steps_t.assert_called_once()
+    Model.explosive_nucleosynthesis_step_t.assert_not_called()
+    Model.explosive_nucleosynthesis_step_logt.assert_not_called()
+    Model.explosive_nucleosynthesis_fixed_n_steps.assert_not_called()
+
+
+def test_explosive_nucleosynthesis_with_fixed_n_steps(mocker, deactivate_open_files):
+    mocker.spy(Model, "explosive_nucleosynthesis_step_t")
+    mocker.spy(Model, "explosive_nucleosynthesis_step_logt")
+    mocker.spy(Model, "explosive_nucleosynthesis_two_steps_t")
+    mocker.spy(Model, "explosive_nucleosynthesis_fixed_n_steps")
+
+    model = Model({**settings.default, **{"integration_step": "fixed_n_steps",
+                                          "integration_steps_stars_smaller_than_4Msun": 100,
+                                          "integration_steps_stars_bigger_than_4Msun": 200}})
+    model.explosive_nucleosynthesis()
+
+    Model.explosive_nucleosynthesis_fixed_n_steps.assert_called_once_with(model, 200, 100)
+    Model.explosive_nucleosynthesis_two_steps_t.assert_not_called()
+    Model.explosive_nucleosynthesis_step_t.assert_not_called()
+    Model.explosive_nucleosynthesis_step_logt.assert_not_called()
 
 
 def test_explosive_nucleosynthesis_with_invalid_step(mocker, deactivate_open_files):
     mocker.spy(Model, "explosive_nucleosynthesis_step_t")
     mocker.spy(Model, "explosive_nucleosynthesis_step_logt")
+    mocker.spy(Model, "explosive_nucleosynthesis_two_steps_t")
+    mocker.spy(Model, "explosive_nucleosynthesis_fixed_n_steps")
 
     model = Model({**settings.default, **{"integration_step": "t2"}})
     with pytest.raises(ValueError):
@@ -88,6 +130,8 @@ def test_explosive_nucleosynthesis_with_invalid_step(mocker, deactivate_open_fil
 
     Model.explosive_nucleosynthesis_step_t.assert_not_called()
     Model.explosive_nucleosynthesis_step_logt.assert_not_called()
+    Model.explosive_nucleosynthesis_two_steps_t.assert_not_called()
+    Model.explosive_nucleosynthesis_fixed_n_steps.assert_not_called()
 
 
 def test_explosive_nucleosynthesis_step_t(mocker, deactivate_open_files):
@@ -109,6 +153,30 @@ def test_explosive_nucleosynthesis_step_logt(mocker, deactivate_open_files):
     assert len(model.mass_intervals) == settings.default["total_time_steps"]
     assert len(model.energies) == settings.default["total_time_steps"]
     assert len(model.sn_Ia_rates) == settings.default["total_time_steps"]
+    mocked_file.assert_called_once_with(f"{settings.default['output_dir']}/mass_intervals", "w+")
+
+
+def test_explosive_nucleosynthesis_two_steps_t(mocker, deactivate_open_files):
+    mocked_file = deactivate_open_files
+    model = Model(settings.default)
+    model.explosive_nucleosynthesis_two_steps_t()
+
+    assert model.total_time_steps != settings.default["total_time_steps"]
+    assert len(model.mass_intervals) == model.total_time_steps
+    assert len(model.energies) == model.total_time_steps
+    assert len(model.sn_Ia_rates) == model.total_time_steps
+    mocked_file.assert_called_once_with(f"{settings.default['output_dir']}/mass_intervals", "w+")
+
+
+def test_explosive_nucleosynthesis_fixed_n_steps(mocker, deactivate_open_files):
+    mocked_file = deactivate_open_files
+    model = Model(settings.default)
+    model.explosive_nucleosynthesis_fixed_n_steps(150, 91)
+
+    assert model.total_time_steps == 150+91
+    assert len(model.mass_intervals) == model.total_time_steps
+    assert len(model.energies) == model.total_time_steps
+    assert len(model.sn_Ia_rates) == model.total_time_steps
     mocked_file.assert_called_once_with(f"{settings.default['output_dir']}/mass_intervals", "w+")
 
 
