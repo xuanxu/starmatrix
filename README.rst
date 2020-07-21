@@ -77,7 +77,7 @@ Intergalactic reads a config file where several options can be set in yaml forma
         binary_fraction: 0.15   # rate of binary stars
         dtd_sn: rlp             # delay time distribution for supernovas
         output_dir: results     # Name of the directory where results are written.
-        integration_step: logt  # The integration step can be constant in t or in log(t)
+        integration_step: logt  # The integration step can be constant in t, constant in log(t), or custom.
         expelled_elements_filename: ejecta.txt  # Filename of ejected data.
 
 Intergalactic will use its internal default values for all params for which no values are provided.
