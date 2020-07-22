@@ -73,6 +73,10 @@ def q(m, settings={}):
     expelled = settings["expelled"]
     elements = expelled.for_mass(m)
 
+    # CRI-LIM correction
+    if expelled.cri_lim_yields:
+        abundances = settings["abundances"].corrected_abundance_CRI_LIM()
+
     h_he = abundances["H"] + abundances["He4"]
     remnant = elements["remnants"]
     he_core = 1 - (elements["H"] / abundances["H"])
