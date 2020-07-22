@@ -35,10 +35,10 @@ def test_empty_q_matrix():
 def test_matrices_are_empty_if_not_enough_mass():
     m = constants.M_MIN - 0.001
     test_settings = {
-                "z": 0.03,
-                "abundances": abundances.select_abundances(np.random.choice(settings.valid_values["sol_ab"]), 0.03),
-                "expelled": elements.Expelled(settings.default["expelled_elements_filename"]),
-            }
+        "z": 0.03,
+        "abundances": abundances.select_abundances(np.random.choice(settings.valid_values["sol_ab"]), 0.03),
+        "expelled": elements.Expelled(settings.default["expelled_elements_filename"]),
+    }
 
     assert np.all([i == 0 for i in matrix.q(m, test_settings)])
     assert np.all([i == 0 for i in matrix.q_sn(m, feh=-0.01)])
