@@ -1,4 +1,5 @@
 import pytest
+from pytest_mock import mocker
 import numpy as np
 import intergalactic.constants as constants
 import intergalactic.settings as settings
@@ -65,3 +66,23 @@ def test_q_size():
             q = matrix.q(m, test_settings)
 
             assert q.shape == (constants.Q_MATRIX_ROWS, constants.Q_MATRIX_COLUMNS)
+
+def test_cri_lim_exception(mocker):
+    test_settings = {
+        "z": 0.03,
+        "abundances": abundances.select_abundances(np.random.choice(settings.valid_values["sol_ab"]), 0.03),
+        "expelled": elements.Expelled(settings.default["expelled_elements_filename"]),
+    }
+    mocker.spy(abundances.Abundances, "abundance")
+    mocker.spy(abundances.Abundances, "corrected_abundance_CRI_LIM")
+
+    q = matrix.q(4, test_settings)
+
+    abundances.Abundances.abundance.assert_called_once()
+    abundances.Abundances.corrected_abundance_CRI_LIM.assert_not_called()
+
+    test_settings["expelled"].cri_lim_yields = True
+
+    q = matrix.q(4, test_settings)
+
+    abundances.Abundances.corrected_abundance_CRI_LIM.assert_called_once()

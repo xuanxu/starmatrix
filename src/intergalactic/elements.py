@@ -8,11 +8,15 @@ class Expelled:
                      "S", "Ca", "Fe", "remnants", "C13s", "N14s"]
     mass_points = []
     by_mass = {}
+    cri_lim_yields = False
 
     def __init__(self, expelled_elements_filename="expelled_elements"):
         self.mass_points = []
         self.by_mass = {}
         self.read_expelled_elements_file(expelled_elements_filename)
+        if "CRI-LIM" in expelled_elements_filename.upper():
+            self.cri_lim_yields = True
+
 
     def read_expelled_elements_file(self, filename):
         """
