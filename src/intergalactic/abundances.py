@@ -60,7 +60,6 @@ class Abundances:
             "Fe":  self.elements()["Fe"] * (10 ** self.feh())
         }
 
-
     def corrected_abundance_CRI_LIM(self):
         """
         When using the combination of yields from
@@ -246,6 +245,7 @@ class Heger2010(Abundances):
 
     def description(self):
         return "Heger 2010"
+
 
 class Lodders2019(Abundances):
     def h(self):

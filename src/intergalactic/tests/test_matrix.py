@@ -67,6 +67,7 @@ def test_q_size():
 
             assert q.shape == (constants.Q_MATRIX_ROWS, constants.Q_MATRIX_COLUMNS)
 
+
 def test_cri_lim_exception(mocker):
     test_settings = {
         "z": 0.03,
