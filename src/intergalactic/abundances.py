@@ -220,6 +220,7 @@ class Heger2010(Abundances):
     def description(self):
         return "Heger 2010"
 
+
 class Lodders2019(Abundances):
     def h(self):
         return -2.6866 * self.z + 0.7513
