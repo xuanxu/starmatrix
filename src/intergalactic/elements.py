@@ -14,9 +14,10 @@ class Expelled:
         self.mass_points = []
         self.by_mass = {}
         self.read_expelled_elements_file(expelled_elements_filename)
-        if "CRI-LIM" in expelled_elements_filename.upper():
-            self.cri_lim_yields = True
 
+        upcased_filename = expelled_elements_filename.upper()
+        if "CRI-LIM" in upcased_filename or "CRI_LIM" in upcased_filename:
+            self.cri_lim_yields = True
 
     def read_expelled_elements_file(self, filename):
         """
