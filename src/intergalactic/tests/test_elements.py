@@ -54,10 +54,11 @@ def test_extrapolation_for_mass_data(expelled):
 
         assert expelled_for_mass[element] == extrapolation / m
 
+
 def test_cri_lim_exception(mocker):
     expelled = Expelled(settings.default["expelled_elements_filename"])
-    assert expelled.cri_lim_yields == False
+    assert expelled.cri_lim_yields is False
 
     mocker.patch.object(Expelled, "read_expelled_elements_file")
     cri_lim_expelled = Expelled("expelled_CRI-LIM-elements_filename")
-    assert cri_lim_expelled.cri_lim_yields == True
+    assert cri_lim_expelled.cri_lim_yields is True

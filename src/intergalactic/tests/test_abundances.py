@@ -61,6 +61,7 @@ def test_abundance_values_presence(available_abundances):
         abundance_values = np.array(list(select_abundances(abundance, 0.025).abundance().values()))
         assert np.all(abundance_values > 0.0)
 
+
 def test_cri_lim_exception(available_abundances):
     for abundance in available_abundances:
         normal = select_abundances(abundance, 0.02).abundance()

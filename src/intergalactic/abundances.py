@@ -60,7 +60,6 @@ class Abundances:
             "Fe":  self.elements()["Fe"] * (10 ** self.feh())
         }
 
-
     def corrected_abundance_CRI_LIM(self):
         """
         When using the combination of yields from
