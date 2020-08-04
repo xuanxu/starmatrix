@@ -10,7 +10,7 @@ python:
   - 3.8-dev
   - nightly
 
-matrix:
+jobs:
   fast_finish: true
   allow_failures:
     - python: nightly
