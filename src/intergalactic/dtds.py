@@ -3,8 +3,11 @@ Delay Time Distributions
 
 Contains some predefined DTDs from different papers/authors:
 
-* Ruiz Lapuente
+* Ruiz Lapuente & Canal (2000)
 * Mannucci, Della Valle, Panagia (2006)
+* Maoz & Graur (2017)
+* Castrillo et al (2020)
+* Greggio, L. (2005)
 
 """
 
