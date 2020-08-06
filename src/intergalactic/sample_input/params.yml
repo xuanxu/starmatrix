@@ -44,6 +44,7 @@
 #            rlp  = DTD from Ruiz-Lapuente (default)
 #            maoz = DTD from Maoz & Graur 2017
 #            castrillo = DTD from Castrillo et al. 2020
+#            greggio = DTD from Greggio, L. 2005
 #          ]
 
 z: 0.02

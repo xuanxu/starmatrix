@@ -133,6 +133,7 @@ The ``dtd_sn`` param in the config file can be set to use any of the available D
 :mdvp: DTD from Mannucci, Della Valle, Panagia 2006
 :maoz: DTD of Type Ia supernovae from Maoz & Graur (2017)
 :castrillo: DTD of Type Ia supernovae from Castrillo et al. (2020)
+:greggio: DTD of Type Ia supernovae from Greggio, L. (2005)
 
 Test suite
 ==========
@@ -181,3 +182,4 @@ Intergalactic is built upon a long list of previous works from different authors
 * *Ruiz-Lapuente, P., Canal, R.*, 2000, astro.ph..9312R
 * *Maoz, D. & Graur, O.* 2017, ApJ, 848, 25M
 * *Castrillo, A. et al* 2020, MNRAS (*in preparation*)
+* *Greggio, L.* 2005, A&A 441, 1055–1078
