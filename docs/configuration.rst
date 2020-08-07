@@ -76,6 +76,7 @@ The ``dtd_sn`` param in the config file can be set to use any of the available D
 :maoz: The DTD of Type Ia supernovae from Maoz & Graur (2017)
 :mdvp: DTD from Mannucci, Della Valle, Panagia 2006
 :castrillo: DTD of Type Ia supernovae from Castrillo et al. (2020)
+:greggio: DTD of Type Ia supernovae from Greggio, L. (2005)
 
 Integration step
 ----------------
