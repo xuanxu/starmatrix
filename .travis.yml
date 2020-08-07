@@ -1,15 +1,15 @@
 dist: xenial
+os: linux
 language: python
-sudo: false
 
 python:
   - 3.6.11
   - 3.7.8
-  - 3.8.4
+  - 3.8.5
   - 3.8-dev
   - nightly
 
-matrix:
+jobs:
   fast_finish: true
   allow_failures:
     - python: nightly

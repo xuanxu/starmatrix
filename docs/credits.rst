@@ -30,6 +30,7 @@ Intergalactic is built upon a long list of previous works from different authors
 * *Mannucci, Della Valle, Panagia*, 2006, MNRAS, 370, 773M
 * *Maoz, D. & Graur, O.* 2017, ApJ, 848, 25M
 * *Castrillo, A. et al* 2020, MNRAS
+* *Greggio, L.* 2005, A&A 441, 1055–1078
 
 License
 -------
