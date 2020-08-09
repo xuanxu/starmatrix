@@ -46,7 +46,7 @@ def dtd_ruiz_lapuente(t):
     dtd = (f1 + f2 + f3 + f4 + f5) * 1e9
 
     # Normalization using 1.03e-3 SN/M* as Hubble-time-integrated production efficiency SN/Mo
-    rate = 0.2440759 # [SN / Yr / M*]
+    rate = 0.2440759  # [SN / Yr / M*]
 
     return rate * dtd
 
