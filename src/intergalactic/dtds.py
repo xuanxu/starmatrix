@@ -42,7 +42,13 @@ def dtd_ruiz_lapuente(t):
     f3 = 0.115e-11 * math.exp(-0.5 * ((logt - 8.3477) / 0.14675) ** 2)
     f4 = 0.160e-11 * math.exp(-0.5 * ((logt - 9.08) / 0.23) ** 2)
     f5 = 0.020e-11 * math.exp(-0.5 * ((logt - 9.58) / 0.17) ** 2)
-    return((f1 + f2 + f3 + f4 + f5) * 1e9)
+
+    dtd = (f1 + f2 + f3 + f4 + f5) * 1e9
+
+    # Normalization using 1.03e-3 SN/M* as Hubble-time-integrated production efficiency SN/Mo
+    rate = 0.2440759 # [SN / Yr / M*]
+
+    return rate * dtd
 
 
 def dtd_mannucci_della_valle_panagia(t):
@@ -67,7 +73,7 @@ def dtd_maoz_graur(t):
     Delay Time Distribution (DTD) from Maoz & Graur (2017)
 
     """
-    if t <= 0.05 or t > 10.0:
+    if t <= 0.05:
         return 0.0
 
     dtd = math.pow(t, -1.1)
