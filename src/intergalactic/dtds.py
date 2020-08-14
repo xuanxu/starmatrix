@@ -109,7 +109,7 @@ def dtd_greggio(t):
     if logt < 7.5:
         dtd = 0
     elif 7.5 <= logt < 7.735:
-        dtd = (0.00215/(7.776-7.516)) * (logt-7-50)
+        dtd = (0.00215/(7.776-7.516)) * (logt-7.50)
     elif 7.735 <= logt < 8.55:
         dtd = 0.003335 * math.exp(((-0.5 * (logt-8.22))/0.47) ** 2)
     elif 8.55 <= logt < 8.61:
