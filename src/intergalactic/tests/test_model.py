@@ -19,7 +19,7 @@ def test_model_initialization():
         "m_min": 1.1,
         "m_max": 42.0,
         "total_time_steps": 250,
-        "dtd_sn": "mdvp"
+        "dtd_sn": "greggio"
     }
     validated_params = settings.validate(params)
     model = Model(validated_params)
@@ -31,7 +31,7 @@ def test_model_initialization():
     assert model.energies == []
     assert model.sn_Ia_rates == []
     assert model.z == params["z"]
-    assert model.dtd == dtds.dtd_mannucci_della_valle_panagia
+    assert model.dtd == dtds.dtd_greggio
     assert model.m_min == params["m_min"]
     assert model.m_max == params["m_max"]
     assert model.total_time_steps == params["total_time_steps"]

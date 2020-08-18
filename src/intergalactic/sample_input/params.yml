@@ -40,7 +40,6 @@
 #          ]
 
 # dtd_sn = [
-#            mdvp = DTD from Mannucci, Della Valle, Panagia 2006
 #            rlp  = DTD from Ruiz-Lapuente (default)
 #            maoz = DTD from Maoz & Graur 2017
 #            castrillo = DTD from Castrillo et al. 2020

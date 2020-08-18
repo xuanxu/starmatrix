@@ -16,7 +16,7 @@ def test_validate_with_valid_values():
         "z": 0.033,
         "imf": "miller_scalo",
         "imf_m_low": 0.3,
-        "dtd_sn": "mdvp",
+        "dtd_sn": "castrillo",
         "sol_ab": "ag89",
         "m_max": 40.0,
         "output_dir": "testing"
