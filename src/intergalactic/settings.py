@@ -29,7 +29,7 @@ default = {
 
 valid_values = {
     "imf": ["salpeter", "starburst", "chabrier", "ferrini", "kroupa", "miller_scalo", "maschberger"],
-    "dtd_sn": ["rlp", "mdvp", "maoz", "castrillo", "greggio"],
+    "dtd_sn": ["rlp", "maoz", "castrillo", "greggio"],
     "sol_ab": ["ag89", "gs98", "as05", "as09", "he10", "lo19"],
     "integration_step": ["logt", "t", "two_steps_t", "fixed_n_steps"],
 }
@@ -60,9 +60,6 @@ def validate(params):
 
 def deprecation_warnings(params):
     deprecation_warnings = []
-
-    if params["dtd_sn"] == "mdvp":
-        deprecation_warnings.append("The DTD from Mannucci, Della Valle, Panagia is deprecated. It'll be removed in the next version.")
 
     if deprecation_warnings:
         print("*** Deprecations Warning ***")

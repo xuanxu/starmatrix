@@ -12,6 +12,7 @@ Changelog
 - Added dataset of solar abundances from Lodders et al. 2019
 - Added ``two_steps_t`` option for ``integration_step`` setting: The integration will use two time steps: [half the lifetime of a 100 solar masses star for the given metallicity] as time step for stars bigger than 4 solar masses, and 100 times that for less massive stars. If this option is selected the `total_time_steps` setting is ignored
 - Added ``fixed_n_steps`` option for ``integration_step`` setting: The integration will take exactly the number of time steps specified in the next two settings (``integration_steps_stars_smaller_than_4Msun`` and ``integration_steps_stars_bigger_than_4Msun``)
+- Removed DTD from *Mannucci, Della Valle, Panagia (2006)* (was deprecated in v1.2.0)
 
 1.2.0 (2020-03-12)
 ==================
