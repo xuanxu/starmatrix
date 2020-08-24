@@ -4,7 +4,6 @@ Delay Time Distributions
 Contains some predefined DTDs from different papers/authors:
 
 * Ruiz Lapuente & Canal (2000)
-* Mannucci, Della Valle, Panagia (2006)
 * Maoz & Graur (2017)
 * Castrillo et al (2020)
 * Greggio, L. (2005)
@@ -17,7 +16,6 @@ import math
 def select_dtd(option):
     dtds = {
         "rlp": dtd_ruiz_lapuente,
-        "mdvp": dtd_mannucci_della_valle_panagia,
         "maoz": dtd_maoz_graur,
         "castrillo": dtd_castrillo,
         "greggio": dtd_greggio
@@ -49,23 +47,6 @@ def dtd_ruiz_lapuente(t):
     rate = 0.2440759  # [SN / Yr / M*]
 
     return rate * dtd
-
-
-def dtd_mannucci_della_valle_panagia(t):
-    """
-    Delay Time Distribution (DTD) from Mannucci, Della Valle, Panagia (2006)
-
-    """
-    if t <= 0:
-        return 0.0
-
-    logt = math.log10(t) + 9
-    if logt <= 7.93:
-        logDTD = 1.4 - 50.0 * (logt - 7.7)**2
-    else:
-        logDTD = -0.8 - 0.9 * (logt - 8.7)**2
-
-    return math.pow(10, logDTD)
 
 
 def dtd_maoz_graur(t):

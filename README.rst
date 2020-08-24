@@ -130,7 +130,6 @@ Delay Time Distributions
 The ``dtd_sn`` param in the config file can be set to use any of the available Delay Time Distributions for supernova rates from different papers/authors:
 
 :rlp: Supernova rates from Ruiz-Lapuente et al. 2000
-:mdvp: DTD from Mannucci, Della Valle, Panagia 2006
 :maoz: DTD of Type Ia supernovae from Maoz & Graur (2017)
 :castrillo: DTD of Type Ia supernovae from Castrillo et al. (2020)
 :greggio: DTD of Type Ia supernovae from Greggio, L. (2005)
@@ -178,7 +177,6 @@ Intergalactic is built upon a long list of previous works from different authors
 * *Mollá et al.*, 2017, MNRAS, 468, 305-318
 * *Gavilan, Mollá & Buell*, 2006, A&A, 450, 509
 * *Raiteri C.M., Villata M. & Navarro J.F.*, 1996, A&A 315, 105-115
-* *Mannucci, Della Valle, Panagia*, 2006, MNRAS, 370, 773M
 * *Ruiz-Lapuente, P., Canal, R.*, 2000, astro.ph..9312R
 * *Maoz, D. & Graur, O.* 2017, ApJ, 848, 25M
 * *Castrillo, A. et al* 2020, MNRAS (*in preparation*)
