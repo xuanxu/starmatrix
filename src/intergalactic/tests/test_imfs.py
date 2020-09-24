@@ -57,11 +57,13 @@ def test_for_mass_is_normalized(available_imfs):
         imf = select_imf(imf_name)
         mass = np.random.random() * 10
         imf_for_mass = imf.for_mass(mass)
-        assert imf_for_mass == imf.imf(mass) * imf.normalization_factor
+        assert imf_for_mass == imf.m_imf(mass) * imf.normalization_factor
 
 
-def test_integration_accounts_for_mass_limits():
-    imf_1 = IMF({"imf_m_low": 3, "imf_m_up": 103})
+def test_normalization_factor():
+    imf_1 = IMF({"imf_m_low": 7, "imf_m_up": 47})
     imf_2 = IMF({"imf_m_low": 7, "imf_m_up": 57})
-    assert imf_2.normalization_factor == 2 * imf_1.normalization_factor
-    assert imf_1.integration_of_mass_interval() == 2 * imf_2.integration_of_mass_interval()
+    assert imf_2.integrated_m_imf_in_mass_interval() > imf_1.integrated_m_imf_in_mass_interval()
+    assert imf_1.normalization_factor > imf_2.normalization_factor
+    assert imf_1.integrated_m_imf_in_mass_interval() == 1 / imf_1.normalization_factor
+    assert imf_2.integrated_m_imf_in_mass_interval() == 1 / imf_2.normalization_factor

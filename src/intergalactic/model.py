@@ -70,6 +70,7 @@ class Model:
 
                 if m_inf < self.bmaxm:
                     supernova_Ia_rates = self.sn_Ia_rates[i]
+                    # TODO: ADD STARS PER MASS UNIT
                     q += q_sn_ia * supernova_Ia_rates
 
                 supernova_II_rates = newton_cotes(
