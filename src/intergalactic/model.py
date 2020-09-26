@@ -44,6 +44,8 @@ class Model:
         if self.context["return_fractions"] is True:
             return_fraction_file = open(f"{self.context['output_dir']}/return_fractions", "w+")
 
+        sn_ia_factor = self.context["binary_fraction"] * self.initial_mass_function.stars_per_mass_unit
+
         for i in range(0, self.total_time_steps):
             m_inf, m_sup = self.mass_intervals[i]
             q = np.zeros((constants.Q_MATRIX_ROWS, constants.Q_MATRIX_COLUMNS))
@@ -69,7 +71,8 @@ class Model:
                     r = return_fraction(m_inf, m_sup, self.context["expelled"], self.initial_mass_function, self.context["binary_fraction"])
 
                 if m_inf < self.bmaxm:
-                    supernova_Ia_rates = self.sn_Ia_rates[i]
+                    supernova_Ia_rates = self.sn_Ia_rates[i] * sn_ia_factor
+
                     q += q_sn_ia * supernova_Ia_rates
 
                 supernova_II_rates = newton_cotes(
@@ -128,7 +131,7 @@ class Model:
 
             self.mass_intervals.append([m_inf, m_sup])
             self.energies.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
-            self.sn_Ia_rates.append(self.context["binary_fraction"] * newton_cotes(t_inf, t_sup, self.dtd))
+            self.sn_Ia_rates.append(newton_cotes(t_inf, t_sup, self.dtd))
 
         mass_intervals_file.close()
 
@@ -152,7 +155,7 @@ class Model:
 
             self.mass_intervals.append([m_inf, m_sup])
             self.energies.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
-            self.sn_Ia_rates.append(self.context["binary_fraction"] * newton_cotes(t_inf, t_sup, self.dtd))
+            self.sn_Ia_rates.append(newton_cotes(t_inf, t_sup, self.dtd))
 
         mass_intervals_file.close()
 
@@ -184,7 +187,7 @@ class Model:
 
             self.mass_intervals.append([m_inf, m_sup])
             self.energies.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
-            self.sn_Ia_rates.append(self.context["binary_fraction"] * newton_cotes(t_inf, t_sup, self.dtd))
+            self.sn_Ia_rates.append(newton_cotes(t_inf, t_sup, self.dtd))
 
         for step in range(0, steps_with_delta_t_2):
             t_inf = t_ini_for_delta_2 + (delta_t_2 * step)
@@ -197,7 +200,7 @@ class Model:
 
             self.mass_intervals.append([m_inf, m_sup])
             self.energies.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
-            self.sn_Ia_rates.append(self.context["binary_fraction"] * newton_cotes(t_inf, t_sup, self.dtd))
+            self.sn_Ia_rates.append(newton_cotes(t_inf, t_sup, self.dtd))
 
         mass_intervals_file.close()
 
@@ -225,7 +228,7 @@ class Model:
 
             self.mass_intervals.append([m_inf, m_sup])
             self.energies.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
-            self.sn_Ia_rates.append(self.context["binary_fraction"] * newton_cotes(t_inf, t_sup, self.dtd))
+            self.sn_Ia_rates.append(newton_cotes(t_inf, t_sup, self.dtd))
 
         for step in range(0, n_small):
             t_inf = t_limit_massive + (delta_t_2 * step)
@@ -238,7 +241,7 @@ class Model:
 
             self.mass_intervals.append([m_inf, m_sup])
             self.energies.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
-            self.sn_Ia_rates.append(self.context["binary_fraction"] * newton_cotes(t_inf, t_sup, self.dtd))
+            self.sn_Ia_rates.append(newton_cotes(t_inf, t_sup, self.dtd))
 
         mass_intervals_file.close()
 
