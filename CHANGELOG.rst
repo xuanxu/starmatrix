@@ -8,6 +8,7 @@ Changelog
 1.3.0 (Unreleased)
 ==================
 
+- SuperNova rates are now computed accounting for the total number of stars created per unit of stellar mass
 - Added new DTD option: Greggio, L. 2005
 - Added dataset of solar abundances from Lodders et al. 2019
 - Added ``two_steps_t`` option for ``integration_step`` setting: The integration will use two time steps: [half the lifetime of a 100 solar masses star for the given metallicity] as time step for stars bigger than 4 solar masses, and 100 times that for less massive stars. If this option is selected the `total_time_steps` setting is ignored
