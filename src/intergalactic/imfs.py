@@ -36,11 +36,15 @@ class IMF:
     def __init__(self, params={}):
         self.params = params
         self.set_mass_limits()
-        self.normalization_factor = 1.0 / self.integrated_m_imf_in_mass_interval()
+        self.normalization_factor = 1.0 / self.integrated_m_phi_in_mass_interval()
+        self.stars_per_mass_unit = self.normalization_factor * self.integrated_phi_in_mass_interval()
         self.set_params()
 
-    def integrated_m_imf_in_mass_interval(self):
-        return scipy.integrate.quad(self.m_imf, self.m_low, self.m_up)[0]
+    def integrated_m_phi_in_mass_interval(self):
+        return scipy.integrate.quad(self.m_phi, self.m_low, self.m_up)[0]
+
+    def integrated_phi_in_mass_interval(self):
+        return scipy.integrate.quad(self.phi, self.m_low, self.m_up)[0]
 
     def for_mass(self, m):
         """
@@ -50,7 +54,7 @@ class IMF:
         if m <= 0:
             return 0.0
 
-        return self.normalization_factor * self.m_imf(m)
+        return self.normalization_factor * self.m_phi(m)
 
     def set_mass_limits(self):
         if "imf_m_low" in self.params:
@@ -66,15 +70,18 @@ class IMF:
     def set_params(self):
         pass
 
-    def m_imf(self, m):
+    def m_phi(self, m):
         return m
+
+    def phi(self, m):
+        return self.m_phi(m) / m
 
     def description(self):
         return "Base Initial Mass Function class"
 
 
 class Salpeter(IMF):
-    def m_imf(self, m):
+    def m_phi(self, m):
         return m * (m ** -(self.alpha()))
 
     def alpha(self):
@@ -98,7 +105,7 @@ class Starburst(Salpeter):
 
 
 class MillerScalo(IMF):
-    def m_imf(self, m):
+    def m_phi(self, m):
         return math.exp(-((math.log10(m) + 1.02) ** 2) / (2 * (0.68 ** 2)))
 
     def description(self):
@@ -106,7 +113,7 @@ class MillerScalo(IMF):
 
 
 class Ferrini(IMF):
-    def m_imf(self, m):
+    def m_phi(self, m):
         return 10 ** (-math.sqrt(0.73 + math.log10(m) * (1.92 + math.log10(m) * 2.07))) / m ** 0.52
 
     def description(self):
@@ -114,7 +121,7 @@ class Ferrini(IMF):
 
 
 class Kroupa(IMF):
-    def m_imf(self, m):
+    def m_phi(self, m):
         if 0.015 <= m < 0.08:
             return m * (m ** -0.35)
         elif 0.08 <= m < 0.5:
@@ -131,7 +138,7 @@ class Kroupa(IMF):
 
 
 class Chabrier(IMF):
-    def m_imf(self, m):
+    def m_phi(self, m):
         if m <= 1:
             return 0.086*math.exp(-((math.log10(m) - math.log10(0.22))**2)/(2*(0.57**2)))
         else:
@@ -146,7 +153,7 @@ class Maschberger(IMF):
         self.m_low = 0.15
         self.m_up = 100.0
 
-    def m_imf(self, m):
+    def m_phi(self, m):
         return m * self.a() * \
                (self.m_mu(m) ** (-self.aalfa())) * \
                ((1 + (self.m_mu(m) ** (1 - self.aalfa()))) ** (-self.beta()))
