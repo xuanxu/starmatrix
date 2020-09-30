@@ -55,26 +55,3 @@ class Expelled:
 
         """
         return dict(zip(self.elements_list, self.interpolation_function(m) / m))
-
-    def for_mass_old(self, m):
-        """
-        Interpolates expelled mass (per solar mass) for all elements for a given
-        stellar mass, using the data from the class' expelled_elements input file.
-
-        """
-        index = bisect(self.mass_points, m)
-        if index == len(self.mass_points):
-            index -= 1
-
-        mass_prev = self.mass_points[index - 1]
-        mass_next = self.mass_points[index]
-        elements_prev = self.by_mass[mass_prev]
-        elements_next = self.by_mass[mass_next]
-        interpolations = {"mass": m}
-        p = (mass_next - m) / (mass_next - mass_prev)
-
-        for element in self.elements_list:
-            d = elements_next[element] - elements_prev[element]
-            interpolations[element] = (elements_next[element] - (p * d)) / m
-
-        return interpolations
