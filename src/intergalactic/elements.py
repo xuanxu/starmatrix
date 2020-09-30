@@ -1,4 +1,6 @@
 from bisect import bisect
+import numpy as np
+from scipy.interpolate import interp1d
 
 
 class Expelled:
@@ -11,7 +13,9 @@ class Expelled:
 
     def __init__(self, expelled_elements_filename="expelled_elements"):
         self.mass_points = []
+        self.data_rows = []
         self.by_mass = {}
+        self.interpolation_function = None
         self.read_expelled_elements_file(expelled_elements_filename)
 
     def read_expelled_elements_file(self, filename):
@@ -35,9 +39,14 @@ class Expelled:
             if data_row:
                 mass = data_row.pop(0)  # the first column is the mass
                 self.mass_points.append(mass)
+                self.data_rows.append(data_row)
                 self.by_mass[mass] = dict(zip(self.elements_list, data_row))
 
         expelled_data.close()
+        self.interpolation_function = interp1d(
+            np.array(self.mass_points),
+            np.matrix.transpose(np.array(self.data_rows)),
+            fill_value="extrapolate")
 
     def for_mass(self, m):
         """
@@ -45,7 +54,14 @@ class Expelled:
         stellar mass, using the data from the class' expelled_elements input file.
 
         """
+        return dict(zip(self.elements_list, self.interpolation_function(m) / m))
 
+    def for_mass_old(self, m):
+        """
+        Interpolates expelled mass (per solar mass) for all elements for a given
+        stellar mass, using the data from the class' expelled_elements input file.
+
+        """
         index = bisect(self.mass_points, m)
         if index == len(self.mass_points):
             index -= 1
