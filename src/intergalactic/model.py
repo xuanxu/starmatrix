@@ -44,14 +44,16 @@ class Model:
         if self.context["return_fractions"] is True:
             return_fraction_file = open(f"{self.context['output_dir']}/return_fractions", "w+")
 
-        sn_ia_factor = self.context["binary_fraction"] * self.initial_mass_function.stars_per_mass_unit
-
         for i in range(0, self.total_time_steps):
             m_inf, m_sup = self.mass_intervals[i]
             q = np.zeros((constants.Q_MATRIX_ROWS, constants.Q_MATRIX_COLUMNS))
-            phi, supernova_Ia_rates, supernova_II_rates, r = 0.0, 0.0, 0.0, 0.0
+            phi, supernova_Ia_rates, supernova_II_rates, r, sn_contribution = 0.0, 0.0, 0.0, 0.0, 0.0
 
             if m_sup > constants.M_MIN and m_sup > m_inf:
+                if m_inf < self.bmaxm:
+                    supernova_Ia_rates = self.sn_Ia_rates[i] * self.initial_mass_function.stars_per_mass_unit
+                    sn_contribution = q_sn_ia * supernova_Ia_rates
+
                 q += newton_cotes(
                     m_inf,
                     m_sup,
@@ -60,6 +62,8 @@ class Model:
                         matrix.q(m, self.context)
                 )
 
+                q += sn_contribution
+
                 phi = newton_cotes(
                     m_inf,
                     m_sup,
@@ -67,20 +71,15 @@ class Model:
                         global_imf(m, self.initial_mass_function, self.context["binary_fraction"])
                 )
 
-                if self.context["return_fractions"] is True:
-                    r = return_fraction(m_inf, m_sup, self.context["expelled"], self.initial_mass_function, self.context["binary_fraction"])
-
-                if m_inf < self.bmaxm:
-                    supernova_Ia_rates = self.sn_Ia_rates[i] * sn_ia_factor
-
-                    q += q_sn_ia * supernova_Ia_rates
-
                 supernova_II_rates = newton_cotes(
                     m_inf,
                     m_sup,
                     lambda m:
                         imf_supernovas_II(m, self.initial_mass_function, self.context["binary_fraction"])
                 )
+
+                if self.context["return_fractions"] is True:
+                    r = return_fraction(m_inf, m_sup, self.context["expelled"], self.initial_mass_function, self.context["binary_fraction"])
 
             np.savetxt(matrices_file, q, fmt="%15.10f", header=self._matrix_header(m_sup, m_inf))
             imf_sn_file.write(f"  {phi:.10f}  {supernova_Ia_rates:.10f}  {supernova_II_rates:.10f}  {self.energies[i]:.10f}\n")
