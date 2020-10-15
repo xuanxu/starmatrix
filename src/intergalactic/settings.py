@@ -62,7 +62,7 @@ def validate(params):
 def deprecation_warnings(params):
     deprecation_warnings = []
 
-    if params["deprecation_warnings"] == False:
+    if params["deprecation_warnings"] is False:
         return []
 
     if params["deprecation_warnings"] == "test":
