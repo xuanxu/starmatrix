@@ -24,6 +24,7 @@ default = {
     "matrix_headers": True,
     "return_fractions": False,
     "integration_step": "logt",
+    "deprecation_warnings": True,
     "expelled_elements_filename": join(dirname(__file__), "sample_input", "expelled_elements")
 }
 
@@ -61,8 +62,16 @@ def validate(params):
 def deprecation_warnings(params):
     deprecation_warnings = []
 
+    if params["deprecation_warnings"] == False:
+        return []
+
+    if params["deprecation_warnings"] == "test":
+        deprecation_warnings.append("Deprecation warnings show here.")
+
     if deprecation_warnings:
         print("*** Deprecations Warning ***")
         for msg in deprecation_warnings:
             print("!! " + msg)
         print("")
+
+    return deprecation_warnings

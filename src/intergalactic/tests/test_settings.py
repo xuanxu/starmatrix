@@ -63,3 +63,10 @@ def test_validate_mass_limits_for_starburst_imf():
         else:
             assert params["imf_m_low"] == 7
             assert params["imf_m_up"] == 40
+
+def test_deprecation_warnings():
+    dw = settings.deprecation_warnings({"deprecation_warnings": False})
+    assert len(dw) == 0
+
+    dw = settings.deprecation_warnings({"deprecation_warnings": "test"})
+    assert len(dw) == 1
