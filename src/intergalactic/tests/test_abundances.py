@@ -1,5 +1,4 @@
 import pytest
-from pytest_mock import mocker
 import numpy as np
 import intergalactic.settings as settings
 from intergalactic.abundances import Abundances, select_abundances
