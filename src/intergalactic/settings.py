@@ -15,6 +15,7 @@ default = {
     "imf_alpha": 2.35,
     "imf_m_low": 0.15,
     "imf_m_up": 100,
+    "imf_correction_factor": 1,
     "m_min": 0.98,
     "m_max": 40.0,
     "total_time_steps": 300,

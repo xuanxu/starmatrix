@@ -36,8 +36,9 @@ class IMF:
     def __init__(self, params={}):
         self.params = params
         self.set_mass_limits()
+        self.correction_factor = self.uncertainty_correction_of_integral()
         self.normalization_factor = 1.0 / self.integrated_m_phi_in_mass_interval()
-        self.stars_per_mass_unit = self.normalization_factor * self.integrated_phi_in_mass_interval()
+        self.stars_per_mass_unit = self.normalization_factor * self.integrated_phi_in_mass_interval() * self.correction_factor
         self.set_params()
 
     def integrated_m_phi_in_mass_interval(self):
@@ -45,6 +46,12 @@ class IMF:
 
     def integrated_phi_in_mass_interval(self):
         return scipy.integrate.quad(self.phi, self.m_low, self.m_up)[0]
+
+    def uncertainty_correction_of_integral(self):
+        if "imf_correction_factor" in self.params:
+            return self.params["imf_correction_factor"]
+
+        return 1
 
     def for_mass(self, m):
         """
