@@ -51,7 +51,7 @@ class IMF:
         if "imf_correction_factor" in self.params:
             return self.params["imf_correction_factor"]
 
-        return 1
+        return 1.0
 
     def for_mass(self, m):
         """
