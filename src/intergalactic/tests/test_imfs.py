@@ -69,15 +69,6 @@ def test_normalization_factor():
     assert imf_2.integrated_m_phi_in_mass_interval() == 1 / imf_2.normalization_factor
 
 
-def test_correction_factor():
-    imf_1 = IMF()
-    imf_2 = IMF({"imf_correction_factor": 3.0})
-
-    assert imf_1.correction_factor == 1
-    assert imf_2.correction_factor == 3.0
-    assert imf_1.stars_per_mass_unit * 3.0 == imf_2.stars_per_mass_unit
-
-
 def test_phi_m_phi_relation(available_imfs):
     for imf in available_imfs:
         selected_imf = select_imf(imf)
@@ -88,5 +79,5 @@ def test_phi_m_phi_relation(available_imfs):
 def test_stars_per_mass_unit(available_imfs):
     for imf in available_imfs:
         selected_imf = select_imf(imf)
-        expected = selected_imf.normalization_factor * selected_imf.integrated_phi_in_mass_interval() * selected_imf.correction_factor
+        expected = selected_imf.normalization_factor * selected_imf.integrated_phi_in_mass_interval()
         assert selected_imf.stars_per_mass_unit == expected

@@ -23,6 +23,18 @@ def select_dtd(option):
     return dtds[option]
 
 
+def dtd_correction(params):
+    """
+    When normalizing DTDs to 1 sometimes a correction factor is needed,
+    caused by the uncertainty in the value of the integral of the DTD for the whole mass range
+
+    """
+    if "dtd_correction_factor" in params:
+        return params["dtd_correction_factor"]
+
+    return 1.0
+
+
 def dtd_ruiz_lapuente(t):
     """
     Delay Time Distribution (DTD) from Ruiz Lapuente & Canal (2000)
