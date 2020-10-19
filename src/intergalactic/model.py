@@ -5,7 +5,7 @@ import intergalactic.elements as elements
 import intergalactic.matrix as matrix
 from intergalactic.imfs import select_imf
 from intergalactic.abundances import select_abundances
-from intergalactic.dtds import select_dtd
+from intergalactic.dtds import select_dtd, dtd_correction
 from intergalactic.functions import stellar_mass, stellar_lifetime, max_mass_allowed, return_fraction
 from intergalactic.functions import total_energy_ejected, newton_cotes, global_imf, imf_supernovas_II
 
@@ -51,7 +51,7 @@ class Model:
 
             if m_sup > constants.M_MIN and m_sup > m_inf:
                 if m_inf < self.bmaxm:
-                    supernova_Ia_rates = self.sn_Ia_rates[i] * self.initial_mass_function.stars_per_mass_unit
+                    supernova_Ia_rates = self.sn_Ia_rates[i] * self.initial_mass_function.stars_per_mass_unit * dtd_correction(self.context)
 
                 q += newton_cotes(
                     m_inf,

@@ -18,7 +18,7 @@ Intergalactic reads a configuration file where several input parameters (all of 
         matrix_headers    # Flag to include headers in the qm-matrices file. Default value: yes
         return_fractions  # Flag to calculate R: fraction of mass restored to the ISM. Default: False
         integration_step  # The integration step can be constant in t or in log(t). Default: "logt"
-        imf_correction_factor # Correction factor for the uncertainty in the IMF integral. Default: 1
+        dtd_correction_factor # Correction factor for the uncertainty in the DTD integral. Default: 1.0
         deprecation_warnings  # If False Intergalactic won't show deprecation warnings. Default: True
         expelled_elements_filename  # Filename of ejected data. Defaults to an internal file with
                                     # data for z=0.02 from Gavilan et al, 2006, A&A, 450, 509
