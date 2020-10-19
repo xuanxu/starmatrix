@@ -47,12 +47,11 @@ class Model:
         for i in range(0, self.total_time_steps):
             m_inf, m_sup = self.mass_intervals[i]
             q = np.zeros((constants.Q_MATRIX_ROWS, constants.Q_MATRIX_COLUMNS))
-            phi, supernova_Ia_rates, supernova_II_rates, r, sn_contribution = 0.0, 0.0, 0.0, 0.0, 0.0
+            phi, supernova_Ia_rates, supernova_II_rates, r = 0.0, 0.0, 0.0, 0.0
 
             if m_sup > constants.M_MIN and m_sup > m_inf:
                 if m_inf < self.bmaxm:
                     supernova_Ia_rates = self.sn_Ia_rates[i] * self.initial_mass_function.stars_per_mass_unit
-                    sn_contribution = q_sn_ia * supernova_Ia_rates
 
                 q += newton_cotes(
                     m_inf,
@@ -62,7 +61,7 @@ class Model:
                         matrix.q(m, self.context)
                 )
 
-                q += sn_contribution
+                q += q_sn_ia * supernova_Ia_rates
 
                 phi = newton_cotes(
                     m_inf,
