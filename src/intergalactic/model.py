@@ -50,9 +50,6 @@ class Model:
             phi, supernova_Ia_rates, supernova_II_rates, r = 0.0, 0.0, 0.0, 0.0
 
             if m_sup > constants.M_MIN and m_sup > m_inf:
-                if m_inf < self.bmaxm:
-                    supernova_Ia_rates = self.sn_Ia_rates[i] * self.initial_mass_function.stars_per_mass_unit * dtd_correction(self.context)
-
                 q += newton_cotes(
                     m_inf,
                     m_sup,
@@ -61,6 +58,7 @@ class Model:
                         matrix.q(m, self.context)
                 )
 
+                supernova_Ia_rates = self.sn_Ia_rates[i] * self.initial_mass_function.stars_per_mass_unit * dtd_correction(self.context)
                 q += q_sn_ia * supernova_Ia_rates
 
                 phi = newton_cotes(
