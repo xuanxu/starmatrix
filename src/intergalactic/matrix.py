@@ -100,16 +100,14 @@ def q(m, settings={}):
 
     # Secondary production of N and C is different for massive starts (< 8 solar masses)
     if m >= 8 and z != 0:
-        if not expelled.cri_lim_yields:
-            elements["N14s"] += elements["N14p"]
-            elements["C13s"] += elements["C13"]
-            elements["N14p"] = 0.0
-            elements["C13"] = 0.0
+        elements["N14s"] += elements["N14p"]
+        elements["C13s"] += elements["C13"]
+        elements["N14p"] = 0.0
+        elements["C13"] = 0.0
 
     if z == 0:
-        if not expelled.cri_lim_yields:
-            elements["N14s"] = 0.0
-            elements["C13s"] = 0.0
+        elements["N14s"] = 0.0
+        elements["C13s"] = 0.0
         secondary_n_core = 0.0
         secondary_c13_core = 0.0
     else:
