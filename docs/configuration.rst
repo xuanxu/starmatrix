@@ -18,11 +18,12 @@ Intergalactic reads a configuration file where several input parameters (all of 
         matrix_headers    # Flag to include headers in the qm-matrices file. Default value: yes
         return_fractions  # Flag to calculate R: fraction of mass restored to the ISM. Default: False
         integration_step  # The integration step can be constant in t or in log(t). Default: "logt"
-        dtd_correction_factor # Correction factor for the uncertainty in the DTD integral. Default: 1.0
+        dtd_correction_factor # Correction for the uncertainty in the DTD integral. Default: 1.0
         deprecation_warnings  # If False Intergalactic won't show deprecation warnings. Default: True
         expelled_elements_filename  # Filename of ejected data. Defaults to an internal file with
                                     # data for z=0.02 from Gavilan et al, 2006, A&A, 450, 509
                                     # and Chieffi & Limongi, 2004, ApJ, 608, 405
+        yield_corrections # A map of individual correction factors for items in the ejected data file
 
 Intergalactic will use its internal default values for all params for which no values are provided.
 
@@ -90,3 +91,41 @@ By default integration steps are constant in `log(t)` but this behavior can be c
 :fixed_n_steps: The integration will take exactly the number of time steps specified in the next two settings (`integration_steps_stars_smaller_than_4Msun` and `integration_steps_stars_bigger_than_4Msun`)
 :integration_steps_stars_bigger_than_4Msun: integer number of integration time steps for m = 4Msun to m_max. This option is ignored unless `integration_step` value is `fixed_n_steps`
 :integration_steps_stars_smaller_than_4Msun: integer number of integration time steps for m = m_min to 4Msun. This option is ignored unless `integration_step` value is `fixed_n_steps`
+
+
+Ejected data file
+-----------------
+
+The ``expelled_elements_filename`` setting should be a valid path of a text file containing data for expelled elements per stellar mass.
+
+**Format:**
+
+The file should include a row of data for each stellar mass.
+Structure of each row should be:
+
+* First column: **stellar mass**
+* 2nd to 19th columns: expelled mass of element i where i is in the following ordered list
+
+    **H, D, He3, He4, C12, C13, N14primary, n.r., O16, Ne, Mg, Si, S, Ca, Fe, remnants, C13secondary, N14secondary**
+
+This data will be used internally to interpolate/extrapolate values for all the mass range of the model.
+
+Yield corrections
+-----------------
+
+Using the ``yield_corrections`` setting you can specify correction factors for the yields contained in the ejected data file.
+This settings is a map of **key: value** pairs.
+The allowed keys correspond to the elements included in the ejected data file:
+
+**H**, **D**, **He3**, **He4**, **C12**, **C13**, **N14p**, **n.r.**, **O16**, **Ne**, **Mg**, **Si**, **S**, **Ca**, **Fe**, **remnants**, **C13s** and **N14s**
+
+**Example:**
+
+If you want to multiply all magnesium data by 2, and all Sulfur data by 0.87 your settings file should include:
+
+.. code:: yaml
+
+    yield_corrections:
+        mg: 2
+        s: 0.87
+
