@@ -69,7 +69,7 @@ def test_q_size():
 
 
 def test_q_applies_yield_corrections(mocker):
-    m = np.random.rand() * 40
+    m = constants.M_MIN + np.random.rand() * 40
     expelled = elements.Expelled(settings.default["expelled_elements_filename"])
     test_settings = {
                 "z": 0.02,
@@ -84,7 +84,7 @@ def test_q_applies_yield_corrections(mocker):
 
 
 def test_q_with_no_yield_corrections(mocker):
-    m = np.random.rand() * 40
+    m = constants.M_MIN + np.random.rand() * 40
     expelled = elements.Expelled(settings.default["expelled_elements_filename"])
     test_settings = {
                 "z": 0.02,
