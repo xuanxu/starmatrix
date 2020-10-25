@@ -68,6 +68,35 @@ def test_q_size():
             assert q.shape == (constants.Q_MATRIX_ROWS, constants.Q_MATRIX_COLUMNS)
 
 
+def test_q_applies_yield_corrections(mocker):
+    m = np.random.rand() * 40
+    expelled = elements.Expelled(settings.default["expelled_elements_filename"])
+    test_settings = {
+                "z": 0.02,
+                "abundances": abundances.select_abundances(np.random.choice(settings.valid_values["sol_ab"]), 0.02),
+                "expelled": expelled,
+                "yield_corrections": {"Mg": 2, "Fe": 3.45}
+            }
+
+    mocker.spy(expelled, "for_mass")
+    q = matrix.q(m, test_settings)
+    expelled.for_mass.assert_called_once_with(m, {"Mg": 2, "Fe": 3.45})
+
+
+def test_q_with_no_yield_corrections(mocker):
+    m = np.random.rand() * 40
+    expelled = elements.Expelled(settings.default["expelled_elements_filename"])
+    test_settings = {
+                "z": 0.02,
+                "abundances": abundances.select_abundances(np.random.choice(settings.valid_values["sol_ab"]), 0.02),
+                "expelled": expelled,
+            }
+
+    mocker.spy(expelled, "for_mass")
+    q = matrix.q(m, test_settings)
+    expelled.for_mass.assert_called_once_with(m, {})
+
+
 def test_cri_lim_exception(mocker):
     test_settings = {
         "z": 0.03,

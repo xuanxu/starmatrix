@@ -69,9 +69,15 @@ def q(m, settings={}):
         return resize_matrix(q)
 
     z = settings["z"]
-    abundances = settings["abundances"].abundance()
     expelled = settings["expelled"]
-    elements = expelled.for_mass(m)
+
+    # Apply corrections if present
+    yield_corrections = {}
+    if "yield_corrections" in settings:
+        yield_corrections = settings["yield_corrections"]
+
+    elements = expelled.for_mass(m, yield_corrections)
+    abundances = settings["abundances"].abundance()
 
     # CRI-LIM correction
     if expelled.cri_lim_yields:

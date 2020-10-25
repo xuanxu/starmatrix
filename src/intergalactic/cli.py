@@ -31,8 +31,10 @@ def main():
     context = settings.validate(input_params)
 
     print("Running model with settings:")
+    print("")
     for param in context:
         print("   " + str(param) + " = " + str(context[param]))
+    print("")
 
     create_output_directory(context['output_dir'])
 

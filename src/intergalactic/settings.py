@@ -6,6 +6,7 @@ All the values set here can be overwritten via the input file: params.yml
 """
 from os.path import dirname, join
 from intergalactic import constants as constants
+from intergalactic import elements
 from intergalactic.functions import max_mass_allowed
 
 default = {
@@ -17,7 +18,6 @@ default = {
     "imf_m_up": 100,
     "m_min": 0.98,
     "m_max": 40.0,
-    "total_time_steps": 300,
     "binary_fraction": constants.BIN_FRACTION,
     "dtd_sn": "rlp",
     "dtd_correction_factor": 1.0,
@@ -26,7 +26,8 @@ default = {
     "return_fractions": False,
     "integration_step": "logt",
     "deprecation_warnings": True,
-    "expelled_elements_filename": join(dirname(__file__), "sample_input", "expelled_elements")
+    "expelled_elements_filename": join(dirname(__file__), "sample_input", "expelled_elements"),
+    "yield_corrections": {},
 }
 
 valid_values = {
@@ -84,15 +85,48 @@ def validate(params):
         params["imf_m_low"] = 1.0
         params["imf_m_up"] = 120.0
 
+    if params["yield_corrections"] == {}:
+        params.pop("yield_corrections")
+    else:
+        params["yield_corrections"] = validate_yield_corrections(params["yield_corrections"])
 
     invalid_params = params.keys() - default_params.keys()
     for invalid_param in invalid_params:
-        print(f"{invalid_param} is not a valid key: Ignored")
+        print(f"Ignoring invalid setting: {invalid_param}")
         params.pop(invalid_param)
 
+    print("")
     deprecation_warnings(params)
 
     return params
+
+
+def validate_yield_corrections(corrections):
+    valid_corrections = {}
+    valid_elements = elements.Expelled.elements_list
+    if type(corrections) is not dict:
+        print("Yield corrections ignored")
+        print("  Invalid format, it should be a dict of element: value pairs")
+        print("  Valid values for element are: ")
+        print(f"  {', '.join(valid_elements)}")
+        print("")
+        return valid_corrections
+
+    normalized_input_corrections = dict((k.lower(), v) for k, v in corrections.items())
+
+    for element in valid_elements:
+        if element.lower() in normalized_input_corrections:
+            value = normalized_input_corrections[element.lower()]
+            if type(value) == int or type(value) == float:
+                valid_corrections[element] = value
+            else:
+                print(f"Yield correction for {element} ignored: is not a number")
+
+    invalid_corrections = normalized_input_corrections.keys() - [e.lower() for e in valid_elements]
+    for invalid_correction in invalid_corrections:
+        print(f"Yield correction for {invalid_correction} ignored: Invalid element")
+
+    return valid_corrections
 
 
 def deprecation_warnings(params):

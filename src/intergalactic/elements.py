@@ -44,7 +44,7 @@ class Expelled:
 
         expelled_data.close()
 
-    def for_mass(self, m):
+    def for_mass(self, m, yield_corrections={}):
         """
         Interpolates expelled mass (per solar mass) for all elements for a given
         stellar mass, using the data from the class' expelled_elements input file.
@@ -65,5 +65,7 @@ class Expelled:
         for element in self.elements_list:
             d = elements_next[element] - elements_prev[element]
             interpolations[element] = (elements_next[element] - (p * d)) / m
+            if element in yield_corrections:
+                interpolations[element] = interpolations[element] * yield_corrections[element]
 
         return interpolations
