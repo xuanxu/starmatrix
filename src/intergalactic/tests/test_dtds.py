@@ -26,7 +26,7 @@ def test_select_dtd(available_dtds):
     dtds = [dtd_ruiz_lapuente, dtd_maoz_graur, dtd_castrillo, dtd_greggio]
 
     for i in range(len(available_dtds)):
-        times = [0.001, 9.] + list(np.random.rand(5)) + list(np.random.rand(5) * 9)
+        times = [0.001, 0.04, 0.1, 0.4, 9.] + list(np.random.rand(5)) + list(np.random.rand(5) * 9)
         for time in times:
             assert select_dtd(available_dtds[i])(time) == dtds[i](time)
 
