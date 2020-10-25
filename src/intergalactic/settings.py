@@ -36,15 +36,44 @@ valid_values = {
     "integration_step": ["logt", "t", "two_steps_t", "fixed_n_steps"],
 }
 
+default_extraparams = {
+    "integration_step": {
+        "fixed_n_steps": {
+            "integration_steps_stars_bigger_than_4Msun": 150,
+            "integration_steps_stars_smaller_than_4Msun": 90
+        },
+        "logt": {
+            "total_time_steps": 300,
+        },
+        "t": {
+            "total_time_steps": 300,
+        }
+    }
+}
+
+
+def default_settings(params=default):
+    default_params = default
+    params = {**default_params, **params}
+
+    for extraparam in default_extraparams.keys():
+        if extraparam in params:
+            if params[extraparam] in default_extraparams[extraparam].keys():
+                default_params = {**default_params, **default_extraparams[extraparam][params[extraparam]]}
+
+    return default_params
+
 
 def validate(params):
-    params = {**default, **params}
+    default_params = default_settings(params)
+    params = {**default_params, **params}
+
     for param in valid_values.keys():
         if params[param] not in valid_values[param]:
             print(f"Provided value for {param} is incorrect.")
             print(f"  Valid values for {param} are: {valid_values[param]}")
-            print(f"  Using default value: {default[param]}")
-            params[param] = default[param]
+            print(f"  Using default value: {default_params[param]}")
+            params[param] = default_params[param]
 
     if params["m_max"] > max_mass_allowed(params["z"]):
         params["m_max"] = max_mass_allowed(params["z"])
@@ -54,6 +83,12 @@ def validate(params):
     if params["imf"] == "starburst":
         params["imf_m_low"] = 1.0
         params["imf_m_up"] = 120.0
+
+
+    invalid_params = params.keys() - default_params.keys()
+    for invalid_param in invalid_params:
+        print(f"{invalid_param} is not a valid key: Ignored")
+        params.pop(invalid_param)
 
     deprecation_warnings(params)
 

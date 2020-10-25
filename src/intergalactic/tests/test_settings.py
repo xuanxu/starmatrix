@@ -11,6 +11,21 @@ def test_defaults():
         assert settings.default[setting] is not None
 
 
+def test_default_settings_with_no_params():
+    assert settings.default_settings() == settings.default_settings(settings.default)
+
+
+def test_default_settings_adds_extra_params():
+    test_settings = {"integration_step": "fixed_n_steps"}
+    expected_values = settings.default_extraparams["integration_step"]["fixed_n_steps"]
+    complete_default_settings = settings.default_settings(test_settings)
+
+    for k in ["integration_steps_stars_bigger_than_4Msun", "integration_steps_stars_smaller_than_4Msun"]:
+        assert (k in settings.default) is False
+        assert (k in complete_default_settings) is True
+        assert complete_default_settings[k] == expected_values[k]
+
+
 def test_validate_with_valid_values():
     valid_values = {
         "z": 0.033,

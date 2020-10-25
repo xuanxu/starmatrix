@@ -28,8 +28,10 @@ class Model:
         self.dtd = select_dtd(self.context["dtd_sn"])
         self.m_min = self.context["m_min"]
         self.m_max = self.context["m_max"]
-        self.total_time_steps = self.context["total_time_steps"]
         self.integration_step = self.context["integration_step"]
+        self.total_time_steps = 0
+        if "total_time_steps" in self.context:
+            self.total_time_steps = self.context["total_time_steps"]
 
         self.bmaxm = constants.B_MAX / 2
 
