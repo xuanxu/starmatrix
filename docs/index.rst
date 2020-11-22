@@ -21,6 +21,13 @@ Intergalactic computes the contribution matrix of 15 elements:
 
 and rich neutron isotopes (referred as ``n.r.`` in the code).
 
+
+**Codebase**
+
+The code for *Intergalactic* is hosted at `GitHub`_ under a MIT license.
+
+.. _`GitHub`: https://github.com/xuanxu/intergalactic
+
 .. toctree::
    :maxdepth: 2
    :caption: User guide:
