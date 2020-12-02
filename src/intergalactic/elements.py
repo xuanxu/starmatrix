@@ -8,11 +8,16 @@ class Expelled:
                      "S", "Ca", "Fe", "remnants", "C13s", "N14s"]
     mass_points = []
     by_mass = {}
+    cri_lim_yields = False
 
     def __init__(self, expelled_elements_filename="expelled_elements"):
         self.mass_points = []
         self.by_mass = {}
         self.read_expelled_elements_file(expelled_elements_filename)
+
+        upcased_filename = expelled_elements_filename.upper()
+        if "CRI-LIM" in upcased_filename or "CRI_LIM" in upcased_filename:
+            self.cri_lim_yields = True
 
     def read_expelled_elements_file(self, filename):
         """
@@ -39,7 +44,7 @@ class Expelled:
 
         expelled_data.close()
 
-    def for_mass(self, m):
+    def for_mass(self, m, yield_corrections={}):
         """
         Interpolates expelled mass (per solar mass) for all elements for a given
         stellar mass, using the data from the class' expelled_elements input file.
@@ -60,5 +65,7 @@ class Expelled:
         for element in self.elements_list:
             d = elements_next[element] - elements_prev[element]
             interpolations[element] = (elements_next[element] - (p * d)) / m
+            if element in yield_corrections:
+                interpolations[element] = interpolations[element] * yield_corrections[element]
 
         return interpolations

@@ -69,9 +69,19 @@ def q(m, settings={}):
         return resize_matrix(q)
 
     z = settings["z"]
-    abundances = settings["abundances"].abundance()
     expelled = settings["expelled"]
-    elements = expelled.for_mass(m)
+
+    # Apply corrections if present
+    yield_corrections = {}
+    if "yield_corrections" in settings:
+        yield_corrections = settings["yield_corrections"]
+
+    elements = expelled.for_mass(m, yield_corrections)
+    abundances = settings["abundances"].abundance()
+
+    # CRI-LIM correction
+    if expelled.cri_lim_yields:
+        abundances = settings["abundances"].corrected_abundance_CRI_LIM()
 
     h_he = abundances["H"] + abundances["He4"]
     remnant = elements["remnants"]
@@ -94,31 +104,19 @@ def q(m, settings={}):
         "Fe":  0.0
     }
 
-    # Secondary production of N and C is different for massive starts (< 8 solar masses)
-    if m >= 8 and z != 0:
-        elements["N14s"] += elements["N14p"]
-        elements["C13s"] += elements["C13"]
-        elements["N14p"] = 0.0
-        elements["C13"] = 0.0
+    # Secondary production of N and C
+    secondary_n_core = (
+        (elements["N14s"] / (abundances["C"] + abundances["C13"] + abundances["O"])) -
+        ((1 - co_core) * abundances["N"] / (abundances["C"] + abundances["C13"] + abundances["O"])) +
+        co_core
+    )
+    secondary_c13_core = (
+        (elements["C13s"] / abundances["C"]) -
+        ((1 - secondary_n_core) * (abundances["C13"] / abundances["C"])) +
+        secondary_n_core
+    )
 
-    if z == 0:
-        elements["N14s"] = 0.0
-        elements["C13s"] = 0.0
-        secondary_n_core = 0.0
-        secondary_c13_core = 0.0
-    else:
-        secondary_n_core = (
-            (elements["N14s"] / (abundances["C"] + abundances["C13"] + abundances["O"])) -
-            ((1 - co_core) * abundances["N"] / (abundances["C"] + abundances["C13"] + abundances["O"])) +
-            co_core
-        )
-        secondary_c13_core = (
-            (elements["C13s"] / abundances["C"]) -
-            ((1 - secondary_n_core) * (abundances["C13"] / abundances["C"])) +
-            secondary_n_core
-        )
-
-    if new_metals_ejected != 0:
+    if new_metals_ejected > 0:
         fractional_abundances["N"] = elements["N14p"] / (h_he * new_metals_ejected)
         fractional_abundances["C13"] = elements["C13"] / (h_he * new_metals_ejected)
         fractional_abundances["C"] = (
@@ -129,12 +127,12 @@ def q(m, settings={}):
             (elements["O16"] / (h_he * new_metals_ejected)) -
             ((1 - secondary_n_core) * abundances["O"] / (h_he * new_metals_ejected))
         )
-        if m >= 8:
-            for element in ["Ne", "Mg", "Si", "S", "Ca", "Fe"]:
-                fractional_abundances[element] = (
-                    (elements[element] - ((1 - remnant) * abundances[element])) /
-                    (h_he * new_metals_ejected)
-                )
+
+        for element in ["Ne", "Mg", "Si", "S", "Ca", "Fe"]:
+            fractional_abundances[element] = (
+                (elements[element] - ((1 - remnant) * abundances[element])) /
+                (h_he * new_metals_ejected)
+            )
 
     # Make sure all values are in [0, 1] and normalize:
     for key, value in fractional_abundances.items():

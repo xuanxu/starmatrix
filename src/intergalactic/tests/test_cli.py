@@ -58,7 +58,7 @@ def test_option_config(mocker, deactivate_os_actions, mock_config_file):
 def test_model_is_configured_properly(mocker, deactivate_os_actions, mock_config_file):
     argparse.ArgumentParser.parse_args.return_value = argparse.Namespace(generate_config=False, config='ejectas.dat')
     cli.main()
-    expected_context = {**settings.default, **mock_config_file}
+    expected_context = settings.validate(mock_config_file)
 
     model.Model.assert_called_once_with(expected_context)
     model.Model(expected_context).run.assert_called()
@@ -67,7 +67,7 @@ def test_model_is_configured_properly(mocker, deactivate_os_actions, mock_config
 def test_model_is_run(mocker, deactivate_os_actions):
     cli.main()
     model.Model.assert_called()
-    model.Model(settings.default).run.assert_called()
+    model.Model(settings.default_settings()).run.assert_called()
 
 
 def test_creation_of_output_directory(mocker, deactivate_os_actions, mock_config_file):

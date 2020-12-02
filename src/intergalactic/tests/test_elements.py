@@ -1,4 +1,5 @@
 import pytest
+from pytest_mock import mocker
 import math
 import numpy as np
 from intergalactic.elements import Expelled
@@ -52,3 +53,43 @@ def test_extrapolation_for_mass_data(expelled):
         extrapolation = by_mass_m_up + (by_mass_m_up - by_mass_m_low)
 
         assert expelled_for_mass[element] == extrapolation / m
+
+
+def test_for_mass_with_no_yield_corrections(expelled):
+    elements = expelled.elements_list
+    no_correction = dict(zip(elements, np.ones(len(elements))))
+
+    m = np.random.rand() * 40
+
+    assert expelled.for_mass(m) == expelled.for_mass(m, {})
+    assert expelled.for_mass(m) == expelled.for_mass(m, no_correction)
+
+
+def test_for_mass_with_yield_corrections(expelled):
+    elements = expelled.elements_list
+    m = np.random.rand() * 40
+
+    zero_correction = dict(zip(elements, np.zeros(len(elements))))
+    zero_corrected = expelled.for_mass(m, zero_correction)
+    assert zero_corrected['mass'] == m
+    for e in elements:
+        assert zero_corrected[e] == 0
+
+    no_correction = expelled.for_mass(m)
+    for element_corrected in elements:
+        element_correction = {element_corrected: 2.57}
+        corrected = expelled.for_mass(m, element_correction)
+        for element in elements:
+            if element == element_corrected:
+                assert corrected[element] == no_correction[element] * 2.57
+            else:
+                assert corrected[element] == no_correction[element]
+
+
+def test_cri_lim_exception(mocker):
+    expelled = Expelled(settings.default["expelled_elements_filename"])
+    assert expelled.cri_lim_yields is False
+
+    mocker.patch.object(Expelled, "read_expelled_elements_file")
+    cri_lim_expelled = Expelled("expelled_CRI-LIM-elements_filename")
+    assert cri_lim_expelled.cri_lim_yields is True

@@ -11,6 +11,28 @@ def test_defaults():
         assert settings.default[setting] is not None
 
 
+def test_default_settings_with_no_params():
+    assert settings.default_settings() == settings.default_settings(settings.default)
+
+
+def test_default_settings_adds_extra_params():
+    test_settings = {"integration_step": "fixed_n_steps"}
+    expected_values = settings.default_extraparams["integration_step"]["fixed_n_steps"]
+    complete_default_settings = settings.default_settings(test_settings)
+
+    for k in ["integration_steps_stars_bigger_than_4Msun", "integration_steps_stars_smaller_than_4Msun"]:
+        assert (k in settings.default) is False
+        assert (k in complete_default_settings) is True
+        assert complete_default_settings[k] == expected_values[k]
+
+
+def test_default_settings_adds_extra_params_only_if_needed():
+    settings.default_extraparams["inexistent_setting"] = {"a": 34}
+    params = settings.default_settings({"integration_step": "testing"})
+    assert(params) == settings.default
+    assert("inexistent_setting" in params) is False
+
+
 def test_validate_with_valid_values():
     valid_values = {
         "z": 0.033,
@@ -63,6 +85,33 @@ def test_validate_mass_limits_for_starburst_imf():
         else:
             assert params["imf_m_low"] == 7
             assert params["imf_m_up"] == 40
+
+
+def test_validate_with_invalid_settings():
+    params = settings.validate({"imf_m_low": 7, "invalid_setting": 47})
+
+    assert(params["imf_m_low"]) == 7
+    assert("invalid_setting" in params) is False
+
+
+def test_validate_with_yield_corrections():
+    params = settings.validate({"yield_corrections": {"Mg": 3, "Aluminium": 4}})
+    assert(params["yield_corrections"]) == {"Mg": 3}
+
+
+def test_validate_yield_corrections_with_invalid_input():
+    no_dict_input = settings.validate_yield_corrections([])
+    invalid_value_input = settings.validate_yield_corrections({"H": "A lot"})
+
+    assert(no_dict_input) == {}
+    assert(invalid_value_input) == {}
+
+
+def test_validate_yield_corrections():
+    corrections = {"H": 1.3, "mg": 2.1, "fE": 4, "AllTheRest": 7.8, "Si": "Wrong"}
+    valid_corrections = settings.validate_yield_corrections(corrections)
+
+    assert(valid_corrections) == {"H": 1.3, "Mg": 2.1, "Fe": 4}
 
 
 def test_deprecation_warnings():

@@ -5,7 +5,7 @@ import intergalactic.elements as elements
 import intergalactic.matrix as matrix
 from intergalactic.imfs import select_imf
 from intergalactic.abundances import select_abundances
-from intergalactic.dtds import select_dtd
+from intergalactic.dtds import select_dtd, dtd_correction
 from intergalactic.functions import stellar_mass, stellar_lifetime, max_mass_allowed, return_fraction
 from intergalactic.functions import total_energy_ejected, newton_cotes, global_imf, imf_supernovas_II
 
@@ -28,8 +28,10 @@ class Model:
         self.dtd = select_dtd(self.context["dtd_sn"])
         self.m_min = self.context["m_min"]
         self.m_max = self.context["m_max"]
-        self.total_time_steps = self.context["total_time_steps"]
         self.integration_step = self.context["integration_step"]
+        self.total_time_steps = 0
+        if "total_time_steps" in self.context:
+            self.total_time_steps = self.context["total_time_steps"]
 
         self.bmaxm = constants.B_MAX / 2
 
@@ -43,8 +45,6 @@ class Model:
         matrices_file = open(f"{self.context['output_dir']}/qm-matrices", "w+")
         if self.context["return_fractions"] is True:
             return_fraction_file = open(f"{self.context['output_dir']}/return_fractions", "w+")
-
-        sn_ia_factor = self.context["binary_fraction"] * self.initial_mass_function.stars_per_mass_unit
 
         for i in range(0, self.total_time_steps):
             m_inf, m_sup = self.mass_intervals[i]
@@ -60,6 +60,9 @@ class Model:
                         matrix.q(m, self.context)
                 )
 
+                supernova_Ia_rates = self.sn_Ia_rates[i] * self.initial_mass_function.stars_per_mass_unit * dtd_correction(self.context)
+                q += q_sn_ia * supernova_Ia_rates
+
                 phi = newton_cotes(
                     m_inf,
                     m_sup,
@@ -67,20 +70,15 @@ class Model:
                         global_imf(m, self.initial_mass_function, self.context["binary_fraction"])
                 )
 
-                if self.context["return_fractions"] is True:
-                    r = return_fraction(m_inf, m_sup, self.context["expelled"], self.initial_mass_function, self.context["binary_fraction"])
-
-                if m_inf < self.bmaxm:
-                    supernova_Ia_rates = self.sn_Ia_rates[i] * sn_ia_factor
-
-                    q += q_sn_ia * supernova_Ia_rates
-
                 supernova_II_rates = newton_cotes(
                     m_inf,
                     m_sup,
                     lambda m:
                         imf_supernovas_II(m, self.initial_mass_function, self.context["binary_fraction"])
                 )
+
+                if self.context["return_fractions"] is True:
+                    r = return_fraction(m_inf, m_sup, self.context["expelled"], self.initial_mass_function, self.context["binary_fraction"])
 
             np.savetxt(matrices_file, q, fmt="%15.10f", header=self._matrix_header(m_sup, m_inf))
             imf_sn_file.write(f"  {phi:.10f}  {supernova_Ia_rates:.10f}  {supernova_II_rates:.10f}  {self.energies[i]:.10f}\n")

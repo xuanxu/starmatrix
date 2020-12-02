@@ -60,6 +60,32 @@ class Abundances:
             "Fe":  self.elements()["Fe"] * (10 ** self.feh())
         }
 
+    def corrected_abundance_CRI_LIM(self):
+        """
+        When using the combination of yields from
+        Cristallo et al. 2011 (for low mass stars) + Limongi & Chieffi 2012 (for massive stars)
+        data needs to be corrected because for non solar metalicities they don't follow solar scale.
+        """
+        if self.z < 0.014:
+            return {
+                "H":   self.h(),
+                "D":   self.elements()["D"],
+                "He3": self.elements()["He3"],
+                "He4": self.he4(),
+                "C":   self.elements()["C"] * (10 ** self.feh()),
+                "C13": self.elements()["C13"] * (10 ** self.feh()),
+                "N":   self.elements()["N"] * (10 ** self.feh()),
+                "O":   self.elements()["O"] * (10 ** (self.feh() + 0.47)),
+                "Ne":  self.elements()["Ne"] * (10 ** self.feh()),
+                "Mg":  self.elements()["Mg"] * (10 ** (self.feh() + 0.27)),
+                "Si":  self.elements()["Si"] * (10 ** (self.feh() + 0.37)),
+                "S":   self.elements()["S"] * (10 ** (self.feh() + 0.35)),
+                "Ca":  self.elements()["Ca"] * (10 ** (self.feh() + 0.33)),
+                "Fe":  self.elements()["Fe"] * (10 ** self.feh())
+            }
+        else:
+            return self.abundance()
+
 
 class AndersGrevesse1989(Abundances):
     def h(self):
