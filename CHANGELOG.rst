@@ -17,6 +17,7 @@ Changelog
 - Deprecation warnings can be silenced setting ``deprecation_warnings`` to False (it is True by default)
 - Added correction of abundances data for CRI-LIM yields set
 - Element production refactored: removed special case for massive stars
+- Updated CNO cycle calculations
 - Added ``yield_corrections`` setting to allow custom corrections for the ejections data
 
 1.2.0 (2020-03-12)
