@@ -1,7 +1,7 @@
 """
-=========
-Intergalactic
-=========
+==========
+Starmatrix
+==========
 Generation of matrices of elements in spiral galaxies
 
 """

@@ -1,6 +1,6 @@
 import numpy as np
-import intergalactic.constants as constants
-import intergalactic.functions as functions
+import starmatrix.constants as constants
+import starmatrix.functions as functions
 
 
 sn_elements_list = ["He4", "C12", "O16", "N14", "C13", "Ne", "Mg", "Si", "S", "Ca", "Fe"]

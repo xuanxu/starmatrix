@@ -5,5 +5,5 @@ source = src
 branch = True
 source = src
 omit =
-    src/intergalactic/tests/*
-    src/intergalactic/sample_input/*
+    src/starmatrix/tests/*
+    src/starmatrix/sample_input/*

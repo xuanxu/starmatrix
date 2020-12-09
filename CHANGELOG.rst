@@ -1,4 +1,4 @@
-.. intergalactic changelog
+.. starmatrix changelog
 
 =========
 Changelog
@@ -19,6 +19,7 @@ Changelog
 - Element production refactored: removed special case for massive stars
 - Updated CNO cycle calculations
 - Added ``yield_corrections`` setting to allow custom corrections for the ejections data
+- Project renamed to Starmatrix
 
 1.2.0 (2020-03-12)
 ==================
@@ -54,7 +55,7 @@ Minor changes
 
 `All v1.1.0 commits`_
 
-.. _`All v1.1.0 commits`: https://github.com/xuanxu/intergalactic/compare/v1.0.0...v1.1.0
+.. _`All v1.1.0 commits`: https://github.com/xuanxu/starmatrix/compare/v1.0.0...v1.1.0
 
 1.0.0 Mercedes Mollá Release - (2019-04-05)
 ===========================================
@@ -94,7 +95,7 @@ Bug fixes
 
 `All v1.0.0 commits`_
 
-.. _`All v1.0.0 commits`: https://github.com/xuanxu/intergalactic/compare/v0.1.0...v1.0.0
+.. _`All v1.0.0 commits`: https://github.com/xuanxu/starmatrix/compare/v0.1.0...v1.0.0
 
 0.1.0 Beatrice Tinsley Release - (2019-03-21)
 =============================================

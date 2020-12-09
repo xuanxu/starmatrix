@@ -2,13 +2,13 @@ import pytest
 from pytest_mock import mocker
 
 import numpy
-import intergalactic.model
-from intergalactic.model import Model
-import intergalactic.settings as settings
-import intergalactic.imfs as imfs
-import intergalactic.functions as functions
-import intergalactic.abundances as abundances
-import intergalactic.dtds as dtds
+import starmatrix.model
+from starmatrix.model import Model
+import starmatrix.settings as settings
+import starmatrix.imfs as imfs
+import starmatrix.functions as functions
+import starmatrix.abundances as abundances
+import starmatrix.dtds as dtds
 
 
 def test_model_initialization():
@@ -43,7 +43,7 @@ def deactivate_open_files(mocker):
     Fixture to disable opening of files from model
     """
     mocked_file = mocker.mock_open()
-    mocker.patch.object(intergalactic.model, 'open', mocked_file)
+    mocker.patch.object(starmatrix.model, 'open', mocked_file)
     return mocked_file
 
 

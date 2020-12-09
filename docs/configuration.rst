@@ -1,7 +1,7 @@
 Configuration
 =============
 
-Intergalactic reads a configuration file where several input parameters (all of them optional) can be set in yaml format::
+Starmatrix reads a configuration file where several input parameters (all of them optional) can be set in yaml format::
 
         z                 # Metallicity. Default value: 0.02
         sol_ab            # Solar abundances data. Default value: as09
@@ -19,17 +19,17 @@ Intergalactic reads a configuration file where several input parameters (all of 
         return_fractions  # Flag to calculate R: fraction of mass restored to the ISM. Default: False
         integration_step  # The integration step can be constant in t or in log(t). Default: "logt"
         dtd_correction_factor # Correction for the uncertainty in the DTD integral. Default: 1.0
-        deprecation_warnings  # If False Intergalactic won't show deprecation warnings. Default: True
+        deprecation_warnings  # If False Starmatrix won't show deprecation warnings. Default: True
         expelled_elements_filename  # Filename of ejected data. Defaults to an internal file with
                                     # data for z=0.02 from Gavilan et al, 2006, A&A, 450, 509
                                     # and Chieffi & Limongi, 2004, ApJ, 608, 405
         yield_corrections # A map of individual correction factors for items in the ejected data file
 
-Intergalactic will use its internal default values for all params for which no values are provided.
+Starmatrix will use its internal default values for all params for which no values are provided.
 
 If you want to use an existent configuration file as template for your own, you can run::
 
-    $ intergalactic --generate-config
+    $ starmatrix --generate-config
 
 That command will create a ``config-example.yml`` file in the current dir.
 
@@ -49,7 +49,7 @@ The ``imf`` param in the config file can be set to use any of the predefined IMF
 
 The default value is ``kroupa``. If you want to use your own IMF you can do so subclassing the `IMF class`_.
 
-.. _`IMF class`: https://github.com/xuanxu/intergalactic/blob/master/src/intergalactic/imfs.py#L20-L40
+.. _`IMF class`: https://github.com/xuanxu/starmatrix/blob/master/src/starmatrix/imfs.py#L20-L40
 
 The IMF will be normalized integrating in the ``[imf_m_low, imf_m_up]`` mass interval
 (default: ``[0.15, 100]``, except ``Starburst``: ``[1, 120]``).
@@ -68,7 +68,7 @@ The ``sol_ab`` param in the config file can be set to use any of the available a
 
 The default value is ``as09``. If you want to use your own abundances data you can do so subclassing the `Abundances class`_.
 
-.. _`Abundances class`: https://github.com/xuanxu/intergalactic/blob/master/src/intergalactic/abundances.py#L18-L47
+.. _`Abundances class`: https://github.com/xuanxu/starmatrix/blob/master/src/starmatrix/abundances.py#L18-L47
 
 Delay Time Distributions
 ------------------------

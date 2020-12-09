@@ -1,12 +1,12 @@
 import pytest
 import numpy as np
-import intergalactic.settings as settings
-from intergalactic.dtds import select_dtd
-from intergalactic.dtds import dtd_correction
-from intergalactic.dtds import dtd_ruiz_lapuente
-from intergalactic.dtds import dtd_maoz_graur
-from intergalactic.dtds import dtd_castrillo
-from intergalactic.dtds import dtd_greggio
+import starmatrix.settings as settings
+from starmatrix.dtds import select_dtd
+from starmatrix.dtds import dtd_correction
+from starmatrix.dtds import dtd_ruiz_lapuente
+from starmatrix.dtds import dtd_maoz_graur
+from starmatrix.dtds import dtd_castrillo
+from starmatrix.dtds import dtd_greggio
 
 
 @pytest.fixture

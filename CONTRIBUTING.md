@@ -1,11 +1,11 @@
-# How to Contribute to `Intergalactic`
+# How to Contribute to `Starmatrix`
 
 Every contributor is welcome, regardless of their programming experience, if any.
 There are several ways you can contribute to this project, here is a not exahustive list:
 
 ## Report an issue
 
-The prefered way to report any bug is [opening an issue in the project's Github repo](https://github.com/xuanxu/intergalactic/issues/new).
+The prefered way to report any bug is [opening an issue in the project's Github repo](https://github.com/xuanxu/starmatrix/issues/new).
 
 For more informal communication, you can contact [@xuanxu via twitter](https://twitter.com/xuanxu)
 
@@ -49,7 +49,7 @@ In the rush of time sometimes things get messy, you can help us cleaning things 
 
 ## Code of Conduct
 
-Obviously there is very little chance of having fun or creating anything interesting in an environment where people do not feel safe. That's why `intergalactic` has a [Code of Conduct](CODE_OF_CONDUCT.md) every contributor must comply. Please read it if you plan to be part of the `intergalactic` community.
+Obviously there is very little chance of having fun or creating anything interesting in an environment where people do not feel safe. That's why `starmatrix` has a [Code of Conduct](CODE_OF_CONDUCT.md) every contributor must comply. Please read it if you plan to be part of the `starmatrix` community.
 
 
 Thanks! :heart: :heart: :heart:

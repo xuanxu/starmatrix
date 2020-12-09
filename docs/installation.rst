@@ -3,13 +3,13 @@ Installation
 
 The easiest way to install the package is using pip::
 
-    $ pip install intergalactic
+    $ pip install starmatrix
 
 This will also install some dependencies if they are not found in the system: **numpy**, **scipy** and **pyyaml**
 
 Uninstall
 ---------
 
-To remove Intergalactic from your system run::
+To remove Starmatrix from your system run::
 
-    $ pip uninstall intergalactic
+    $ pip uninstall starmatrix

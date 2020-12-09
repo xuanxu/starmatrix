@@ -1,33 +1,33 @@
-.. intergalactic
+.. starmatrix
 
-.. |travis-badge| image:: https://travis-ci.org/xuanxu/intergalactic.svg?branch=master
-   :target: https://travis-ci.org/xuanxu/intergalactic
+.. |travis-badge| image:: https://travis-ci.org/xuanxu/starmatrix.svg?branch=master
+   :target: https://travis-ci.org/xuanxu/starmatrix
    :alt: Build status
-.. |docs-badge| image:: https://readthedocs.org/projects/intergalactic/badge/?version=latest
-   :target: https://intergalactic.readthedocs.io/en/latest/?badge=latest
+.. |docs-badge| image:: https://readthedocs.org/projects/starmatrix/badge/?version=latest
+   :target: https://starmatrix.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
-.. |codecov-badge| image:: https://codecov.io/gh/xuanxu/intergalactic/branch/master/graph/badge.svg
-   :target: https://codecov.io/gh/xuanxu/intergalactic
+.. |codecov-badge| image:: https://codecov.io/gh/xuanxu/starmatrix/branch/master/graph/badge.svg
+   :target: https://codecov.io/gh/xuanxu/starmatrix
    :alt: Coverage status
 .. |license| image:: https://img.shields.io/badge/license-MIT-blue.svg
-   :target: https://github.com/xuanxu/intergalactic/blob/master/LICENSE
+   :target: https://github.com/xuanxu/starmatrix/blob/master/LICENSE
    :alt: MIT License
-.. |version| image:: https://img.shields.io/pypi/v/intergalactic.svg?color=brightgreen
-   :target: https://pypi.org/project/intergalactic/
-   :alt: Intergalactic in PyPi
+.. |version| image:: https://img.shields.io/pypi/v/starmatrix.svg?color=brightgreen
+   :target: https://pypi.org/project/starmatrix/
+   :alt: starmatrix in PyPi
 
 
-=============
-Intergalactic
-=============
+============
+✨Starmatrix
+============
 
 |travis-badge| |docs-badge| |codecov-badge| |license| |version|
 
-Intergalactic is a Q-Matrices generator.
+Starmatrix is a Q-Matrices generator.
 
-Based on explicit values for *solar abundances*, *z* and *IMF*, Intergalactic calculates matrices ``Q(i,j)`` of masses of elements ``i`` ejected to the galactic medium as element ``j``, for a complete range of stellar masses, accounting for supernovas of types ``Ia`` and ``II``. You can read more about the ``Matrices Q formalism`` in ``Ferrini et al. 1992``.
+Based on explicit values for *solar abundances*, *z* and *IMF*, Starmatrix calculates matrices ``Q(i,j)`` of masses of elements ``i`` ejected to the galactic medium as element ``j``, for a complete range of stellar masses, accounting for supernovas of types ``Ia`` and ``II``. You can read more about the ``Matrices Q formalism`` in ``Ferrini et al. 1992``.
 
-Intergalactic computes the contribution matrix of 15 elements:
+Starmatrix computes the contribution matrix of 15 elements:
 
 = = === === = === = = ==== == == == = == ==
 H D He3 He4 C C13 N O n.r. Ne Mg Si S Ca Fe
@@ -38,24 +38,24 @@ Installation
 
 The easiest way to install the package is using pip::
 
-    $ pip install intergalactic
+    $ pip install starmatrix
 
 This will also install some dependencies if they are not found in the system: *numpy*, *scipy* and *pyyaml*
 
 A previous installation can be upgraded to the latest version with::
 
-    $ pip install --upgrade intergalactic
+    $ pip install --upgrade starmatrix
 
 Usage
 =====
 
-Use intergalactic running::
+Use starmatrix running::
 
-    $ intergalactic --config FILENAME
+    $ starmatrix --config FILENAME
 
 where *FILENAME* is the path to the config yaml file.
 
-Running intergalactic will produce a directory with three output files:
+Running starmatrix will produce a directory with three output files:
 
 * **mass_intervals**: all the mass intervals used to integrate for all the mass range
 * **imf_supernova_rates**: the initial mass functions for the supernova rates for each mass interval
@@ -64,7 +64,7 @@ Running intergalactic will produce a directory with three output files:
 Input params
 ============
 
-Intergalactic reads a config file where several options can be set in yaml format::
+Starmatrix reads a config file where several options can be set in yaml format::
 
         z: 0.0200               # metallicity
         sol_ab: as09            # solar abundances
@@ -80,11 +80,11 @@ Intergalactic reads a config file where several options can be set in yaml forma
         integration_step: logt  # The integration step can be constant in t, constant in log(t), or custom.
         expelled_elements_filename: ejecta.txt  # Filename of ejected data.
 
-Intergalactic will use its internal default values for all params for which no values are provided.
+Starmatrix will use its internal default values for all params for which no values are provided.
 
 If you want to use an existent configuration file as template for your own, you can run::
 
-    $ intergalactic --generate-config
+    $ starmatrix --generate-config
 
 That command will create a ``config-example.yml`` file in the current dir.
 
@@ -104,7 +104,7 @@ The ``imf`` param in the config file can be set to use any of the predefined IMF
 
 The default value is ``kroupa``. If you want to use your own IMF you can do so subclassing the `IMF class`_.
 
-.. _`IMF class`: https://github.com/xuanxu/intergalactic/blob/master/src/intergalactic/imfs.py#L35-L68
+.. _`IMF class`: https://github.com/xuanxu/starmatrix/blob/master/src/starmatrix/imfs.py#L35-L68
 
 The IMF will be normalized integrating in the ``[imf_m_low, imf_m_up]`` mass interval (default: ``[0.15, 100]``, except ``Starburst``: ``[1, 120]``).
 
@@ -122,7 +122,7 @@ The ``sol_ab`` param in the config file can be set to use any of the available a
 
 The default value is ``as09``. If you want to use your own abundances data you can do so subclassing the `Abundances class`_.
 
-.. _`Abundances class`: https://github.com/xuanxu/intergalactic/blob/master/src/intergalactic/abundances.py#L30-L59
+.. _`Abundances class`: https://github.com/xuanxu/starmatrix/blob/master/src/starmatrix/abundances.py#L30-L59
 
 Delay Time Distributions
 ------------------------
@@ -137,22 +137,22 @@ The ``dtd_sn`` param in the config file can be set to use any of the available D
 Test suite
 ==========
 
-Intergalactic includes a test suite located in the ``/src/intergalactic/tests`` directory. The current state of the build is `publicly tracked by Travis CI`_. You can run the latest tests locally and get information on code coverage if you clone the code to your local machine, install its development dependencies and use ``pytest``::
+Starmatrix includes a test suite located in the ``/src/starmatrix/tests`` directory. The current state of the build is `publicly tracked by Travis CI`_. You can run the latest tests locally and get information on code coverage if you clone the code to your local machine, install its development dependencies and use ``pytest``::
 
-    $ git clone https://github.com/xuanxu/intergalactic.git
-    $ cd intergalactic
+    $ git clone https://github.com/xuanxu/starmatrix.git
+    $ cd starmatrix
     $ pip install -e .[dev]
-    $ pytest -v --cov=intergalactic
+    $ pytest -v --cov=starmatrix
 
-.. _`publicly tracked by Travis CI`: https://travis-ci.org/xuanxu/intergalactic
+.. _`publicly tracked by Travis CI`: https://travis-ci.org/xuanxu/starmatrix
 
 Edge
 ====
 
 If you want to play with the latest code present in this repository even if it has not been released yet, you can do it by cloning the repo locally and instructing pip to install it::
 
-    $ git clone https://github.com/xuanxu/intergalactic.git
-    $ cd intergalactic
+    $ git clone https://github.com/xuanxu/starmatrix.git
+    $ cd starmatrix
     $ pip install -e .
 
 License
@@ -160,12 +160,12 @@ License
 
 *Copyright* © 2020 Juanjo Bazán, released under the `MIT license`_.
 
-.. _`MIT license`: https://github.com/xuanxu/intergalactic/blob/master/LICENSE
+.. _`MIT license`: https://github.com/xuanxu/starmatrix/blob/master/LICENSE
 
 Credits
 =======
 
-Intergalactic is built upon a long list of previous works from different authors/papers:
+Starmatrix is built upon a long list of previous works from different authors/papers:
 
 * *Ferrini et al.*,1992, ApJ, 387, 138
 * *Ferrini & Poggiantti*, 1993, ApJ, 410, 44F

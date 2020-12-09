@@ -5,13 +5,13 @@ Usage
 Basic
 -----
 
-Use Intergalactic running::
+Use Starmatrix running::
 
-    $ intergalactic --config FILENAME
+    $ starmatrix --config FILENAME
 
 where *FILENAME* is the path to the config yaml file.
 
-Running Intergalactic will produce a directory with three output files:
+Running Starmatrix will produce a directory with three output files:
 
 * **mass_intervals**: all the mass intervals used to integrate for all the mass range
 * **imf_supernova_rates**: the initial mass functions for the supernova rates for each mass interval
@@ -21,35 +21,35 @@ Running Intergalactic will produce a directory with three output files:
 Advanced
 --------
 
-If you have Intergalactic installed in your system, you can import its modules, classes and functions to use them in your own code.
+If you have Starmatrix installed in your system, you can import its modules, classes and functions to use them in your own code.
 
-This is the list of all Intergalactic modules::
+This is the list of all Starmatrix modules::
 
-    intergalactic.abundances
-    intergalactic.constants
-    intergalactic.dtds
-    intergalactic.elements
-    intergalactic.functions
-    intergalactic.imfs
-    intergalactic.matrix
-    intergalactic.model
-    intergalactic.settings
+    starmatrix.abundances
+    starmatrix.constants
+    starmatrix.dtds
+    starmatrix.elements
+    starmatrix.functions
+    starmatrix.imfs
+    starmatrix.matrix
+    starmatrix.model
+    starmatrix.settings
 
 **Examples:**
 
 Run a model with your own custom parameters from inside your programs::
 
-    import intergalactic
-    import intergalactic.settings as settings
-    from intergalactic.model import Model
+    import starmatrix
+    import starmatrix.settings as settings
+    from starmatrix.model import Model
 
     custom_params = { ... }
     context = settings.validate(custom_params)
     Model(context).run()
 
-Call Intergalactic utility functions::
+Call Starmatrix utility functions::
 
-    import intergalactic.functions as functions
+    import starmatrix.functions as functions
 
     stellar_mass = 4.3
     z = 0.02
@@ -57,7 +57,7 @@ Call Intergalactic utility functions::
 
 Compute the contributions matrix of supernovas for a given mass::
 
-    import intergalactic.matrix as matrix
+    import starmatrix.matrix as matrix
 
     stellar_mass = 4.3
     contribution_matrix = matrix.q_sn(stellar_mass)

@@ -1,9 +1,9 @@
 import pytest
 import math
 import numpy as np
-import intergalactic.settings as settings
-from intergalactic.imfs import select_imf, IMF
-from intergalactic.imfs import Salpeter, Starburst, Chabrier, Ferrini, Kroupa, MillerScalo, Maschberger
+import starmatrix.settings as settings
+from starmatrix.imfs import select_imf, IMF
+from starmatrix.imfs import Salpeter, Starburst, Chabrier, Ferrini, Kroupa, MillerScalo, Maschberger
 
 
 @pytest.fixture

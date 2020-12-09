@@ -1,6 +1,6 @@
-=============
-Intergalactic
-=============
+==========
+Starmatrix
+==========
 
 **Modelling nucleosynthesis of galactic chemical elements**
 
@@ -9,11 +9,11 @@ Intergalactic
    :width: 690px
    :align: center
 
-Intergalactic is a Q-Matrix generator.
+Starmatrix is a Q-Matrix generator.
 
-Based on explicit values for *solar abundances*, *z* and *IMF*, Intergalactic calculates matrices ``Q(i,j)`` of masses of elements ``i`` ejected to the galactic medium as element ``j``, for a complete range of stellar masses, accounting for supernovas of types *I* and *II*.
+Based on explicit values for *solar abundances*, *z* and *IMF*, Starmatrix calculates matrices ``Q(i,j)`` of masses of elements ``i`` ejected to the galactic medium as element ``j``, for a complete range of stellar masses, accounting for supernovas of types *I* and *II*.
 
-Intergalactic computes the contribution matrix of 15 elements:
+Starmatrix computes the contribution matrix of 15 elements:
 
 +-+-+---+---+-+---+-+-+--+--+--+-+--+--+
 |H|D|He3|He4|C|C13|N|O|Ne|Mg|Si|S|Ca|Fe|
@@ -24,9 +24,9 @@ and rich neutron isotopes (referred as ``n.r.`` in the code).
 
 **Codebase**
 
-The code for *Intergalactic* is hosted at `GitHub`_ under a MIT license.
+The code for *Starmatrix* is hosted at `GitHub`_ under a MIT license.
 
-.. _`GitHub`: https://github.com/xuanxu/intergalactic
+.. _`GitHub`: https://github.com/xuanxu/starmatrix
 
 .. toctree::
    :maxdepth: 2
