@@ -144,7 +144,7 @@ Starmatrix includes a test suite located in the ``/src/starmatrix/tests`` direct
     $ pip install -e .[dev]
     $ pytest -v --cov=starmatrix
 
-.. _`publicly tracked by Travis CI`: https://travis-ci.org/xuanxu/starmatrix
+.. _`publicly tracked by Travis CI`: https://travis-ci.com/xuanxu/starmatrix
 
 Edge
 ====
