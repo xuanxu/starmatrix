@@ -1,6 +1,6 @@
 import pytest
-import intergalactic.settings as settings
-from intergalactic.functions import max_mass_allowed
+import starmatrix.settings as settings
+from starmatrix.functions import max_mass_allowed
 
 
 def test_defaults():

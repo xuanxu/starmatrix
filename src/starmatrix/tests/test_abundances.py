@@ -1,8 +1,8 @@
 import pytest
 import numpy as np
-import intergalactic.settings as settings
-from intergalactic.abundances import Abundances, select_abundances
-from intergalactic.abundances import AndersGrevesse1989, GrevesseSauval1998, Asplund2005, Asplund2009, Heger2010, Lodders2019
+import starmatrix.settings as settings
+from starmatrix.abundances import Abundances, select_abundances
+from starmatrix.abundances import AndersGrevesse1989, GrevesseSauval1998, Asplund2005, Asplund2009, Heger2010, Lodders2019
 
 
 @pytest.fixture

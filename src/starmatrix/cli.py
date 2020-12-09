@@ -4,18 +4,18 @@ import shutil
 import yaml
 from os.path import dirname, join, exists
 
-import intergalactic
-import intergalactic.settings as settings
-import intergalactic.model as model
+import starmatrix
+import starmatrix.settings as settings
+import starmatrix.model as model
 
 
 def main():
     parser = argparse.ArgumentParser(
-        prog="intergalactic",
-        description="Command line tools for the intergalactic Python library.",
+        prog="starmatrix",
+        description="Command line tools for the Starmatrix Python library.",
         epilog="Another dimension, new Galaxy!",
     )
-    parser.add_argument("-v", "--version", action="version", version=intergalactic.__version__)
+    parser.add_argument("-v", "--version", action="version", version=starmatrix.__version__)
     parser.add_argument("--config", metavar="FILENAME", help="configuration file to use containing model initial params")
     parser.add_argument("--generate-config", action="store_true", help="create a config.yml example file")
 

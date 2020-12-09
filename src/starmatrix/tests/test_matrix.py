@@ -1,11 +1,11 @@
 import pytest
 from pytest_mock import mocker
 import numpy as np
-import intergalactic.constants as constants
-import intergalactic.settings as settings
-import intergalactic.elements as elements
-import intergalactic.abundances as abundances
-import intergalactic.matrix as matrix
+import starmatrix.constants as constants
+import starmatrix.settings as settings
+import starmatrix.elements as elements
+import starmatrix.abundances as abundances
+import starmatrix.matrix as matrix
 
 
 def test_params():

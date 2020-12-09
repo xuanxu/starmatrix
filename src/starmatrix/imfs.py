@@ -16,7 +16,7 @@ and a way to define new functions subclassing IMF
 """
 import math
 import scipy.integrate
-import intergalactic.settings
+import starmatrix.settings
 
 
 def select_imf(name, params={}):
@@ -60,12 +60,12 @@ class IMF:
         if "imf_m_low" in self.params:
             self.m_low = self.params["imf_m_low"]
         else:
-            self.m_low = intergalactic.settings.default["imf_m_low"]
+            self.m_low = starmatrix.settings.default["imf_m_low"]
 
         if "imf_m_up" in self.params:
             self.m_up = self.params["imf_m_up"]
         else:
-            self.m_up = intergalactic.settings.default["imf_m_up"]
+            self.m_up = starmatrix.settings.default["imf_m_up"]
 
     def set_params(self):
         pass
@@ -88,7 +88,7 @@ class Salpeter(IMF):
         if "imf_alpha" in self.params:
             return self.params["imf_alpha"]
         else:
-            return intergalactic.settings.default["imf_alpha"]
+            return starmatrix.settings.default["imf_alpha"]
 
     def description(self):
         return "IMF from Salpeter 1955"

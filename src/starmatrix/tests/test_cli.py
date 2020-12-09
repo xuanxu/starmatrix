@@ -3,9 +3,9 @@ import os
 import shutil
 import pytest
 from pytest_mock import mocker
-import intergalactic.cli as cli
-import intergalactic.model as model
-import intergalactic.settings as settings
+import starmatrix.cli as cli
+import starmatrix.model as model
+import starmatrix.settings as settings
 
 
 @pytest.fixture

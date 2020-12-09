@@ -1,6 +1,6 @@
 import math
 
-import intergalactic.constants as constants
+import starmatrix.constants as constants
 
 
 def value_in_interval(value, interval=[]):

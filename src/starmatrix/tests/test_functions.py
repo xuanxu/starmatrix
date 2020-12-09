@@ -1,10 +1,10 @@
 import pytest
 import numpy as np
-import intergalactic.functions as functions
-import intergalactic.constants as constants
-import intergalactic.settings as settings
-import intergalactic.elements as elements
-from intergalactic.imfs import select_imf
+import starmatrix.functions as functions
+import starmatrix.constants as constants
+import starmatrix.settings as settings
+import starmatrix.elements as elements
+from starmatrix.imfs import select_imf
 
 
 def test_value_in_interval():

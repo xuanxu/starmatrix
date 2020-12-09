@@ -2,8 +2,8 @@ import pytest
 from pytest_mock import mocker
 import math
 import numpy as np
-from intergalactic.elements import Expelled
-import intergalactic.settings as settings
+from starmatrix.elements import Expelled
+import starmatrix.settings as settings
 
 
 @pytest.fixture

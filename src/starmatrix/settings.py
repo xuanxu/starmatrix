@@ -5,9 +5,9 @@ All the values set here can be overwritten via the input file: params.yml
 
 """
 from os.path import dirname, join
-from intergalactic import constants as constants
-from intergalactic import elements
-from intergalactic.functions import max_mass_allowed
+from starmatrix import constants as constants
+from starmatrix import elements
+from starmatrix.functions import max_mass_allowed
 
 default = {
     "z": 0.02,

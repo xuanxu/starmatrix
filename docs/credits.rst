@@ -8,14 +8,14 @@ Authors
 .. |orcid_jj| image:: https://img.shields.io/badge/orcid-0000----0001----7699----3983-brightgreen.svg
    :target: https://orcid.org/0000-0001-7699-3983
 
-Intergalactic was initially developed by `Juanjo Bazán`_ |orcid_jj|
+Starmatrix was initially developed by `Juanjo Bazán`_ |orcid_jj|
 
 .. _`Juanjo Bazán`: https://twitter.com/xuanxu
 
 References
 ----------
 
-Intergalactic is built upon a long list of previous works from different authors/papers:
+Starmatrix is built upon a long list of previous works from different authors/papers:
 
 * *Ferrini et al.*,1992, ApJ, 387, 138
 * *Ferrini & Poggiantti*, 1993, ApJ, 410, 44F
@@ -36,5 +36,5 @@ License
 
 *Copyright* © 2019-2020 Juanjo Bazán, released under the `MIT license`_.
 
-.. _`MIT license`: https://github.com/xuanxu/intergalactic/blob/master/LICENSE
+.. _`MIT license`: https://github.com/xuanxu/starmatrix/blob/master/LICENSE
 
