@@ -1,7 +1,7 @@
 .. starmatrix
 
-.. |travis-badge| image:: https://travis-ci.org/xuanxu/starmatrix.svg?branch=master
-   :target: https://travis-ci.org/xuanxu/starmatrix
+.. |travis-badge| image:: https://travis-ci.com/xuanxu/starmatrix.svg?branch=master
+   :target: https://travis-ci.com/xuanxu/starmatrix
    :alt: Build status
 .. |docs-badge| image:: https://readthedocs.org/projects/starmatrix/badge/?version=latest
    :target: https://starmatrix.readthedocs.io/en/latest/?badge=latest
