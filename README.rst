@@ -25,7 +25,7 @@
 
 Starmatrix is a Q-Matrices generator.
 
-Based on explicit values for *solar abundances*, *z* and *IMF*, Starmatrix calculates matrices ``Q(i,j)`` of masses of elements ``i`` ejected to the galactic medium as element ``j``, for a complete range of stellar masses, accounting for supernovas of types ``Ia`` and ``II``. You can read more about the ``Matrices Q formalism`` in ``Ferrini et al. 1992``.
+Based on explicit values for *solar abundances*, *Z* and *IMF*, Starmatrix calculates matrices ``Q(i,j)`` of masses of elements ``i`` ejected to the galactic medium as element ``j``, for a complete range of stellar masses, accounting for supernovas of types ``Ia`` and ``II``. You can read more about the ``Matrices Q formalism`` in ``Ferrini et al. 1992``.
 
 Starmatrix computes the contribution matrix of 15 elements:
 
