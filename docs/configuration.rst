@@ -83,7 +83,7 @@ The ``dtd_sn`` param in the config file can be set to use any of the available D
 Integration step
 ----------------
 
-By default integration steps are constant in `log(t)` but this behavior can be changed via the `integration_step` setting, that can take this values:
+By default integration steps are constant in `log(t)` but this behavior can be changed via the `integration_step` setting, that can take these values:
 
 :logt: Integration step is constant in `log(t)`, so it is smaller for short-lived stars and gradually increases when time increases (stellar mass decreases).  The total number of steps should be set using the `total_time_steps` setting
 :t:    Integration step is constant in `t`. Less efficient than log(t) but can be used to study specific intervals. Should be tuned with the `total_time_steps` setting
@@ -114,7 +114,7 @@ Yield corrections
 -----------------
 
 Using the ``yield_corrections`` setting you can specify correction factors for the yields contained in the ejected data file.
-This settings is a map of **key: value** pairs.
+This setting is a map of **key: value** pairs.
 The allowed keys correspond to the elements included in the ejected data file:
 
 **H**, **D**, **He3**, **He4**, **C12**, **C13**, **N14p**, **n.r.**, **O16**, **Ne**, **Mg**, **Si**, **S**, **Ca**, **Fe**, **remnants**, **C13s** and **N14s**
