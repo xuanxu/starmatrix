@@ -19,7 +19,7 @@ Starmatrix computes the contribution matrix of 15 elements:
 |H|D|He3|He4|C|C13|N|O|Ne|Mg|Si|S|Ca|Fe|
 +-+-+---+---+-+---+-+-+--+--+--+-+--+--+
 
-and rich neutron isotopes (referred as ``n.r.`` in the code).
+and neutron rich isotopes (referred as ``n.r.`` in the code).
 
 
 **Codebase**
