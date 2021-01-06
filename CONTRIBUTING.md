@@ -11,7 +11,7 @@ For more informal communication, you can contact [@xuanxu via twitter](https://t
 
 ## Resolve an issue
 
-Pull request are welcome. If you want to contribute code to solve an open issue:
+Pull requests are welcome. If you want to contribute code to solve an open issue:
 
 * Add a comment to tell everyone you are working on the issue.
 * If an issue has someone assigned it means that person is already working on it.
@@ -20,7 +20,7 @@ Pull request are welcome. If you want to contribute code to solve an open issue:
 * Commit there your code to solve the issue.
 * Make sure all test are passing (and add specs to test any new feature if needed).
 * Follow the code styles and practices already in place.
-* Open a *pull request* to the main repository mentioning what issue you are addressing.
+* Open a *pull request* to the main repository mentioning the issue you are addressing.
 
 ## Cleaning up
 
