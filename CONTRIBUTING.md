@@ -16,7 +16,7 @@ Pull requests are welcome. If you want to contribute code to solve an open issue
 * Add a comment to tell everyone you are working on the issue.
 * If an issue has someone assigned it means that person is already working on it.
 * Fork the project.
-* Create a topic branch based on master.
+* Create a topic branch based on main.
 * Commit there your code to solve the issue.
 * Make sure all test are passing (and add specs to test any new feature if needed).
 * Follow the code styles and practices already in place.

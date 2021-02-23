@@ -1,16 +1,16 @@
 .. starmatrix
 
-.. |travis-badge| image:: https://travis-ci.com/xuanxu/starmatrix.svg?branch=master
+.. |travis-badge| image:: https://travis-ci.com/xuanxu/starmatrix.svg?branch=main
    :target: https://travis-ci.com/xuanxu/starmatrix
    :alt: Build status
 .. |docs-badge| image:: https://readthedocs.org/projects/starmatrix/badge/?version=latest
    :target: https://starmatrix.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
-.. |codecov-badge| image:: https://codecov.io/gh/xuanxu/starmatrix/branch/master/graph/badge.svg
+.. |codecov-badge| image:: https://codecov.io/gh/xuanxu/starmatrix/branch/main/graph/badge.svg
    :target: https://codecov.io/gh/xuanxu/starmatrix
    :alt: Coverage status
 .. |license| image:: https://img.shields.io/badge/license-MIT-blue.svg
-   :target: https://github.com/xuanxu/starmatrix/blob/master/LICENSE
+   :target: https://github.com/xuanxu/starmatrix/blob/main/LICENSE
    :alt: MIT License
 .. |version| image:: https://img.shields.io/pypi/v/starmatrix.svg?color=brightgreen
    :target: https://pypi.org/project/starmatrix/
@@ -104,7 +104,7 @@ The ``imf`` param in the config file can be set to use any of the predefined IMF
 
 The default value is ``kroupa``. If you want to use your own IMF you can do so subclassing the `IMF class`_.
 
-.. _`IMF class`: https://github.com/xuanxu/starmatrix/blob/master/src/starmatrix/imfs.py#L35-L68
+.. _`IMF class`: https://github.com/xuanxu/starmatrix/blob/main/src/starmatrix/imfs.py#L35-L68
 
 The IMF will be normalized integrating in the ``[imf_m_low, imf_m_up]`` mass interval (default: ``[0.15, 100]``, except ``Starburst``: ``[1, 120]``).
 
@@ -122,7 +122,7 @@ The ``sol_ab`` param in the config file can be set to use any of the available a
 
 The default value is ``as09``. If you want to use your own abundances data you can do so subclassing the `Abundances class`_.
 
-.. _`Abundances class`: https://github.com/xuanxu/starmatrix/blob/master/src/starmatrix/abundances.py#L30-L59
+.. _`Abundances class`: https://github.com/xuanxu/starmatrix/blob/main/src/starmatrix/abundances.py#L30-L59
 
 Delay Time Distributions
 ------------------------
@@ -160,7 +160,7 @@ License
 
 *Copyright* © 2021 Juanjo Bazán, released under the `MIT license`_.
 
-.. _`MIT license`: https://github.com/xuanxu/starmatrix/blob/master/LICENSE
+.. _`MIT license`: https://github.com/xuanxu/starmatrix/blob/main/LICENSE
 
 Credits
 =======

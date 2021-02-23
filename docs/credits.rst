@@ -37,5 +37,4 @@ License
 
 *Copyright* © 2019-2021 Juanjo Bazán, released under the `MIT license`_.
 
-.. _`MIT license`: https://github.com/xuanxu/starmatrix/blob/master/LICENSE
-
+.. _`MIT license`: https://github.com/xuanxu/starmatrix/blob/main/LICENSE
