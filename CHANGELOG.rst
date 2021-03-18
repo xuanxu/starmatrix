@@ -4,6 +4,11 @@
 Changelog
 =========
 
+1.4.0 (2021-03-18)
+==================
+- New supernovae module to add SN yields datasets
+- Added ``sn_yields`` setting
+- Added SN yields dataset from *Seitenzahl et al. 2013*
 
 1.3.0 (2020-12-09)
 ==================
@@ -24,7 +29,7 @@ Changelog
 1.2.0 (2020-03-12)
 ==================
 
-- Added Supernovas II data to the ``imf_supernova_rates`` file
+- Added Supernovae II data to the ``imf_supernova_rates`` file
 - Tweak SN total energy function to make it continous
 - Better docs
 - Added DTD from Maoz & Graur (2017)

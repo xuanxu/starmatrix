@@ -2,7 +2,7 @@
 ==========
 Starmatrix
 ==========
-Generation of matrices of elements in spiral galaxies
+Modelling nucleosynthesis of galactic chemical elements
 
 """
-__version__ = "1.3.0"
+__version__ = "1.4.0"
