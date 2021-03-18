@@ -14,6 +14,7 @@ Starmatrix reads a configuration file where several input parameters (all of the
         total_time_steps  # Total time steps for integration. Default value: 300
         binary_fraction   # Fraction of binary systems. Default value: 0.15
         dtd_sn            # Delay time distribution to use for Supernovas. Default value: rpl
+        sn_yields         # Dataset for Supernovae yields. Default value: iwa1998
         output_dir        # Name of the directory where results are written. Defaults to "results"
         matrix_headers    # Flag to include headers in the qm-matrices file. Default value: yes
         return_fractions  # Flag to calculate R: fraction of mass restored to the ISM. Default: False
@@ -79,6 +80,14 @@ The ``dtd_sn`` param in the config file can be set to use any of the available D
 :maoz: The DTD of Type Ia supernovae from Maoz & Graur (2017)
 :castrillo: DTD of Type Ia supernovae from Castrillo et al. (2020)
 :greggio: DTD of Type Ia supernovae from Greggio, L. (2005)
+
+Supernovae yields
+-----------------
+
+The ``sn_yields`` param in the config file can be set to use any of the available supernova yields datasets from different papers/authors:
+
+:iwa1998: Supernova data from Iwamoto, K. et al., 1999, ApJ 125, 439
+:sei2013: Supernova data from Seitenzahl et al. 2013, MNRAS 429, 2, 1156–1172
 
 Integration step
 ----------------

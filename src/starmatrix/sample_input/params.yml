@@ -10,6 +10,7 @@
 # m_max                       -> Maximum mass (in solar masses) for the resulting Q-Matrices. Default value: 40.0
 # binary_fraction             -> Fraction of binary systems. Default value: 0.15
 # dtd_sn                      -> Delay time distribution to use for Supernovas (*). Default value: rpl
+# sn_yields                   -> Dataset for Supernovae yields. Default value (*): iwa1998
 # output_dir                  -> Name of the directory where results are written. Defaults to "results"
 # total_time_steps            -> Total time steps for integration. Default value: 300
 # integration_step            -> The integration step can be constant in t or in log(t). Default value: "logt"
@@ -46,6 +47,11 @@
 #            maoz = DTD from Maoz & Graur 2017
 #            castrillo = DTD from Castrillo et al. 2020
 #            greggio = DTD from Greggio, L. 2005
+#          ]
+
+# sn_yields = [
+#            iwa1998 = SN yields from Iwamoto et al. 1998
+#            sei2013 = SN yields from Seitenzahl et al. 2013
 #          ]
 
 z: 0.02
