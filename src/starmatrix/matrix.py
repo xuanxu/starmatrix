@@ -1,30 +1,7 @@
 import numpy as np
 import starmatrix.constants as constants
 import starmatrix.functions as functions
-
-
-sn_elements_list = ["He4", "C12", "O16", "N14", "C13", "Ne", "Mg", "Si", "S", "Ca", "Fe"]
-
-"""
-Datasets of Supernova ejections for different metallicities:
-There's a dataset for lower metallicities (Z=0.004, Z=0.0004)
-and another one for higher metalicity values (Z=0.008, Z=0.02 and Z= 0.0317).
-In both cases there's data for SN of Ia and Ib types.
-
-Supernova Ia data source: Iwamoto, K. et al. 1999 ApJ 125, 439
-Supernova Ib data source: Ferrini, F., Poggianti, B. 1993 ApJ 410, 44
-
-"""
-
-sn_ejections_low_z = {
-    "sn_ia": dict(zip(sn_elements_list, [0.0, 0.0508, 0.133, 3.31e-8, 1.56e-9, 0.00229, 0.0158, 0.142, 0.0914, 0.0181, 0.68])),
-    "sn_ib": dict(zip(sn_elements_list, [1.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3]))
-}
-
-sn_ejections_high_z = {
-    "sn_ia": dict(zip(sn_elements_list, [0.0, 0.0483, 0.143, 1.16e-6, 1.40e-6, 0.00202, 0.0085, 0.154, 0.0846, 0.0119, 0.626])),
-    "sn_ib": dict(zip(sn_elements_list, [1.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3]))
-}
+import starmatrix.supernovae as sn
 
 
 def empty_q_matrix():
@@ -240,14 +217,11 @@ def q_sn(m, feh=0.0, sn_type="sn_ia"):
     if m < constants.M_MIN:
         return resize_matrix(q)
 
-    if feh < -0.3:
-        sn_ejections = sn_ejections_low_z[sn_type]
-    else:
-        sn_ejections = sn_ejections_high_z[sn_type]
-
+    ejected = sn.empty_yields_set()
+    sn_ejections = sn.yields('iwa1998', feh)
     den = 0.99 * m
-    ejected = dict(zip(sn_elements_list, [0.0 for i in range(11)]))
-    for element in sn_elements_list:
+
+    for element in ejected.keys():
         ejected[element] = sn_ejections[element] / den
         for i in range(0, 4):
             q[q_index(element), i] = ejected[element]

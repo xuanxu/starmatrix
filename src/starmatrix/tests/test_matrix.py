@@ -8,14 +8,6 @@ import starmatrix.abundances as abundances
 import starmatrix.matrix as matrix
 
 
-def test_params():
-    assert len(matrix.sn_elements_list) == 11
-    assert "sn_ia" in matrix.sn_ejections_low_z.keys()
-    assert "sn_ia" in matrix.sn_ejections_high_z.keys()
-    assert "sn_ib" in matrix.sn_ejections_low_z.keys()
-    assert "sn_ib" in matrix.sn_ejections_high_z.keys()
-
-
 def test_q_index():
     assert matrix.q_index("H") == 0
     assert matrix.q_index("Fe") == 14
