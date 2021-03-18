@@ -99,27 +99,27 @@ def test_global_imf():
         assert functions.imf_zero(100, imf) < functions.global_imf(m, imf)
 
 
-def test_imf_supernovas_II_non_zero_for_SNII_masses():
+def test_imf_supernovae_II_non_zero_for_SNII_masses():
     imf = select_imf(np.random.choice(settings.valid_values["imf"]), settings.default)
 
-    assert functions.imf_supernovas_II(constants.M_SNII + 0.01, imf) > 0
-    assert functions.imf_supernovas_II(constants.M_SNII + np.random.sample() * 100, imf) > 0
-    assert functions.imf_supernovas_II(constants.M_SNII + 100, imf) > 0
+    assert functions.imf_supernovae_II(constants.M_SNII + 0.01, imf) > 0
+    assert functions.imf_supernovae_II(constants.M_SNII + np.random.sample() * 100, imf) > 0
+    assert functions.imf_supernovae_II(constants.M_SNII + 100, imf) > 0
 
 
-def test_imf_supernovas_II_is_zero_for_lower_masses():
+def test_imf_supernovae_II_is_zero_for_lower_masses():
     imf = select_imf(np.random.choice(settings.valid_values["imf"]), settings.default)
 
-    assert functions.imf_supernovas_II(np.random.sample() * constants.M_SNII, imf) == 0
-    assert functions.imf_supernovas_II(constants.M_SNII, imf) == 0
+    assert functions.imf_supernovae_II(np.random.sample() * constants.M_SNII, imf) == 0
+    assert functions.imf_supernovae_II(constants.M_SNII, imf) == 0
 
 
-def test_imf_supernovas_II_includes_binary_primaries():
+def test_imf_supernovae_II_includes_binary_primaries():
     imf = select_imf(np.random.choice(settings.valid_values["imf"]), settings.default)
     m = (constants.B_MIN + constants.B_MAX) / 2
 
     assert m > constants.M_SNII
-    assert functions.imf_supernovas_II(m, imf) > functions.imf_zero(m, imf)/m
+    assert functions.imf_supernovae_II(m, imf) > functions.imf_zero(m, imf)/m
 
 
 def test_return_fractions():

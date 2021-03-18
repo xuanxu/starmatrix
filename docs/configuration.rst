@@ -13,7 +13,7 @@ Starmatrix reads a configuration file where several input parameters (all of the
         m_max             # Maximum mass (in solar masses) for the resulting Q-Matrices. Default: 40.0
         total_time_steps  # Total time steps for integration. Default value: 300
         binary_fraction   # Fraction of binary systems. Default value: 0.15
-        dtd_sn            # Delay time distribution to use for Supernovas. Default value: rpl
+        dtd_sn            # Delay time distribution to use for Supernovae. Default value: rpl
         sn_yields         # Dataset for Supernovae yields. Default value: iwa1998
         output_dir        # Name of the directory where results are written. Defaults to "results"
         matrix_headers    # Flag to include headers in the qm-matrices file. Default value: yes

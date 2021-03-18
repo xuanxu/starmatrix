@@ -15,7 +15,7 @@ def q_index(element):
 
 def q(m, settings={}):
     """
-    Compute the Q Matrix of elements for a given mass (without supernovas)
+    Compute the Q Matrix of elements for a given mass (without supernovae)
 
     The element production matrix has this structure:
         H  D  He3  He4  C12  O16  N14  C13  nr  Ne  Mg  Si  S  Ca  Fe

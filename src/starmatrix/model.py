@@ -7,7 +7,7 @@ from starmatrix.imfs import select_imf
 from starmatrix.abundances import select_abundances
 from starmatrix.dtds import select_dtd, dtd_correction
 from starmatrix.functions import stellar_mass, stellar_lifetime, max_mass_allowed, return_fraction
-from starmatrix.functions import total_energy_ejected, newton_cotes, global_imf, imf_supernovas_II
+from starmatrix.functions import total_energy_ejected, newton_cotes, global_imf, imf_supernovae_II
 
 
 class Model:
@@ -74,7 +74,7 @@ class Model:
                     m_inf,
                     m_sup,
                     lambda m:
-                        imf_supernovas_II(m, self.initial_mass_function, self.context["binary_fraction"])
+                        imf_supernovae_II(m, self.initial_mass_function, self.context["binary_fraction"])
                 )
 
                 if self.context["return_fractions"] is True:

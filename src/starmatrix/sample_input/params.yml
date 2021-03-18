@@ -9,7 +9,7 @@
 # m_min                       -> Minimum mass (in solar masses) for the resulting Q-Matrices. Default value: 0.98
 # m_max                       -> Maximum mass (in solar masses) for the resulting Q-Matrices. Default value: 40.0
 # binary_fraction             -> Fraction of binary systems. Default value: 0.15
-# dtd_sn                      -> Delay time distribution to use for Supernovas (*). Default value: rpl
+# dtd_sn                      -> Delay time distribution to use for Supernovae (*). Default value: rpl
 # sn_yields                   -> Dataset for Supernovae yields. Default value (*): iwa1998
 # output_dir                  -> Name of the directory where results are written. Defaults to "results"
 # total_time_steps            -> Total time steps for integration. Default value: 300

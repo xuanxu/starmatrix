@@ -55,7 +55,7 @@ Call Starmatrix utility functions::
     z = 0.02
     stellar_tau = functions.stellar_lifetime(stellar_mass, z)
 
-Compute the contributions matrix of supernovas for a given mass::
+Compute the contributions matrix of supernovae for a given mass::
 
     import starmatrix.matrix as matrix
 
