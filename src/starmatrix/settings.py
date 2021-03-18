@@ -21,6 +21,7 @@ default = {
     "binary_fraction": constants.BIN_FRACTION,
     "dtd_sn": "rlp",
     "dtd_correction_factor": 1.0,
+    "sn_yields": "iwa1998",
     "output_dir": "results",
     "matrix_headers": True,
     "return_fractions": False,
@@ -33,6 +34,7 @@ default = {
 valid_values = {
     "imf": ["salpeter", "starburst", "chabrier", "ferrini", "kroupa", "miller_scalo", "maschberger"],
     "dtd_sn": ["rlp", "maoz", "castrillo", "greggio"],
+    "sn_yields": ["iwa1998", "sei2013"],
     "sol_ab": ["ag89", "gs98", "as05", "as09", "he10", "lo19"],
     "integration_step": ["logt", "t", "two_steps_t", "fixed_n_steps"],
 }

@@ -25,7 +25,7 @@
 
 Starmatrix is a Q-Matrices generator.
 
-Based on explicit values for *solar abundances*, *Z* and *IMF*, Starmatrix calculates matrices ``Q(i,j)`` of masses of elements ``i`` ejected to the galactic medium as element ``j``, for a complete range of stellar masses, accounting for supernovas of types ``Ia`` and ``II``. You can read more about the ``Matrices Q formalism`` in ``Ferrini et al. 1992``.
+Based on explicit values for *solar abundances*, *Z* and *IMF*, Starmatrix calculates matrices ``Q(i,j)`` of masses of elements ``i`` ejected to the galactic medium as element ``j``, for a complete range of stellar masses, accounting for supernovae of types ``Ia`` and ``II``. You can read more about the ``Matrices Q formalism`` in ``Ferrini et al. 1992``.
 
 Starmatrix computes the contribution matrix of 15 elements:
 
@@ -75,7 +75,8 @@ Starmatrix reads a config file where several options can be set in yaml format::
         m_min: 0.98             # min value for stellar mass
         m_max: 40               # max value for stellar mass
         binary_fraction: 0.15   # rate of binary stars
-        dtd_sn: rlp             # delay time distribution for supernovas
+        dtd_sn: rlp             # delay time distribution for supernovae
+        sn_yields: iwa1998      # Dataset for Supernovae yields
         output_dir: results     # Name of the directory where results are written.
         integration_step: logt  # The integration step can be constant in t, constant in log(t), or custom.
         expelled_elements_filename: ejecta.txt  # Filename of ejected data.
@@ -134,6 +135,14 @@ The ``dtd_sn`` param in the config file can be set to use any of the available D
 :castrillo: DTD of Type Ia supernovae from Castrillo et al. (2020)
 :greggio: DTD of Type Ia supernovae from Greggio, L. (2005)
 
+Supernovae yields
+-----------------
+
+The ``sn_yields`` param in the config file can be set to use any of the available supernova yields datasets from different papers/authors:
+
+:iwa1998: Supernova data from Iwamoto, K. et al., 1999, ApJ 125, 439
+:sei2013: Supernova data from Seitenzahl et al. 2013, MNRAS 429, 2, 1156–1172
+
 Test suite
 ==========
 
@@ -167,18 +176,19 @@ Credits
 
 Starmatrix is built upon a long list of previous works from different authors/papers:
 
-* *Ferrini et al.*,1992, ApJ, 387, 138
+* *Ferrini et al.*, 1992, ApJ, 387, 138
 * *Ferrini & Poggiantti*, 1993, ApJ, 410, 44F
-* *Portinari, Chiosi & Bressan*,1998,AA,334,505P
+* *Portinari, Chiosi & Bressan*, 1998,AA,334,505P
 * *Talbot & Arnett*, 1973, ApJ, 186, 51-67
 * *Galli et al.*, 1995, ApJ, 443, 536G
 * *Mollá et al.*, 2015, MNRAS, 451, 3693-3708
 * *Iwamoto et al.*, 1999, ApJS, 125, 439
+* *Seitenzahl et al.*, 2013, MNRAS, Volume 429, Issue 2, 1156–1172
 * *Matteucci & Greggio*, 1986, A&A, 154, 279M
 * *Mollá et al.*, 2017, MNRAS, 468, 305-318
 * *Gavilan, Mollá & Buell*, 2006, A&A, 450, 509
 * *Raiteri C.M., Villata M. & Navarro J.F.*, 1996, A&A 315, 105-115
 * *Ruiz-Lapuente, P., Canal, R.*, 2000, astro.ph..9312R
-* *Maoz, D. & Graur, O.* 2017, ApJ, 848, 25M
-* *Castrillo, A. et al* 2020, MNRAS (*in preparation*)
-* *Greggio, L.* 2005, A&A 441, 1055–1078
+* *Maoz, D. & Graur, O.*, 2017, ApJ, 848, 25M
+* *Castrillo, A. et al.*, 2020, MNRAS
+* *Greggio, L.*, 2005, A&A 441, 1055–1078

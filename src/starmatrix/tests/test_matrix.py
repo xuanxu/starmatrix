@@ -8,14 +8,6 @@ import starmatrix.abundances as abundances
 import starmatrix.matrix as matrix
 
 
-def test_params():
-    assert len(matrix.sn_elements_list) == 11
-    assert "sn_ia" in matrix.sn_ejections_low_z.keys()
-    assert "sn_ia" in matrix.sn_ejections_high_z.keys()
-    assert "sn_ib" in matrix.sn_ejections_low_z.keys()
-    assert "sn_ib" in matrix.sn_ejections_high_z.keys()
-
-
 def test_q_index():
     assert matrix.q_index("H") == 0
     assert matrix.q_index("Fe") == 14
@@ -42,16 +34,16 @@ def test_matrices_are_empty_if_not_enough_mass():
     }
 
     assert np.all([i == 0 for i in matrix.q(m, test_settings)])
-    assert np.all([i == 0 for i in matrix.q_sn(m, feh=-0.01)])
+    assert np.all([i == 0 for i in matrix.q_sn(m)])
 
 
 def test_q_sn_size():
     for m in [0.8, 1, 2, 4, 6, (np.random.rand() * 8), 8, 10, 40, 90]:
         for feh in [-3.3, -1.3, -0.3, 0., 0.17, 0.3, 0.4]:  # test z from 0.00001 to 0.05
 
-            q_supernovas = matrix.q_sn(m, feh=feh)
+            q_supernovae = matrix.q_sn(m, feh=feh)
 
-            assert q_supernovas.shape == (constants.Q_MATRIX_ROWS, constants.Q_MATRIX_COLUMNS)
+            assert q_supernovae.shape == (constants.Q_MATRIX_ROWS, constants.Q_MATRIX_COLUMNS)
 
 
 def test_q_size():

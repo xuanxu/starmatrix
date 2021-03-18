@@ -6,7 +6,7 @@ from starmatrix.functions import max_mass_allowed
 def test_defaults():
     assert settings.default is not None
     for setting in ["z", "sol_ab", "imf", "imf_alpha",
-                    "m_max", "binary_fraction", "dtd_sn",
+                    "m_max", "binary_fraction", "dtd_sn", "sn_yields",
                     "output_dir", "expelled_elements_filename"]:
         assert settings.default[setting] is not None
 
@@ -40,6 +40,7 @@ def test_validate_with_valid_values():
         "imf_m_low": 0.3,
         "dtd_sn": "castrillo",
         "sol_ab": "ag89",
+        "sn_yields": "iwa1998",
         "m_max": 40.0,
         "output_dir": "testing"
     }
@@ -55,12 +56,13 @@ def test_validate_with_invalid_values():
         "imf": "wrong name",
         "dtd_sn": "whatever",
         "sol_ab": "invalid",
+        "sn_yields": "incorrect",
         "m_max": 3.3
     }
 
     params = settings.validate(invalid_values)
 
-    for param in ["imf", "dtd_sn", "sol_ab"]:
+    for param in ["imf", "dtd_sn", "sol_ab", "sn_yields"]:
         assert params[param] != invalid_values[param]
         assert params[param] == settings.default[param]
 
