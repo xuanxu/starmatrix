@@ -34,7 +34,7 @@ def test_matrices_are_empty_if_not_enough_mass():
     }
 
     assert np.all([i == 0 for i in matrix.q(m, test_settings)])
-    assert np.all([i == 0 for i in matrix.q_sn(m, feh=-0.01)])
+    assert np.all([i == 0 for i in matrix.q_sn(m)])
 
 
 def test_q_sn_size():

@@ -21,6 +21,7 @@ default = {
     "binary_fraction": constants.BIN_FRACTION,
     "dtd_sn": "rlp",
     "dtd_correction_factor": 1.0,
+    "sn_yields": "iwa1998",
     "output_dir": "results",
     "matrix_headers": True,
     "return_fractions": False,

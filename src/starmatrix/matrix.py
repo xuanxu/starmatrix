@@ -204,7 +204,7 @@ def q(m, settings={}):
     return resize_matrix(q)
 
 
-def q_sn(m, feh=0.0, sn_type="sn_ia"):
+def q_sn(m, feh=0.0, sn_yields="iwa1998"):
     """
     Compute the Q Matrix of elements coming from Supernova events
     Supernovae type can be specified as one of: [sn_ia, sn_ib]
@@ -218,7 +218,7 @@ def q_sn(m, feh=0.0, sn_type="sn_ia"):
         return resize_matrix(q)
 
     ejected = sn.empty_yields_set()
-    sn_ejections = sn.yields('iwa1998', feh)
+    sn_ejections = sn.yields(sn_yields, feh)
     den = 0.99 * m
 
     for element in ejected.keys():
