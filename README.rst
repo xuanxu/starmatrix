@@ -9,7 +9,7 @@
 .. |codecov-badge| image:: https://codecov.io/gh/xuanxu/starmatrix/branch/main/graph/badge.svg?token=JRNGFn3SjA
    :target: https://codecov.io/gh/xuanxu/starmatrix   
    :alt: Coverage status
-.. |license| image:: https://img.shields.io/badge/license-MIT-brightgreen.svg
+.. |license| image:: https://img.shields.io/github/license/xuanxu/starmatrix?color=brightgreen
    :target: https://github.com/xuanxu/starmatrix/blob/main/LICENSE
    :alt: MIT License
 .. |version| image:: https://img.shields.io/pypi/v/starmatrix.svg?color=brightgreen
