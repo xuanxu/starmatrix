@@ -52,6 +52,7 @@
 # sn_yields = [
 #            iwa1998 = SN yields from Iwamoto et al. 1998
 #            sei2013 = SN yields from Seitenzahl et al. 2013
+#            ln2020 = SN yields from Leung & Nomoto 2020
 #          ]
 
 z: 0.02

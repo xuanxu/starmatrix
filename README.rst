@@ -7,7 +7,7 @@
    :target: https://starmatrix.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
 .. |codecov-badge| image:: https://codecov.io/gh/xuanxu/starmatrix/branch/main/graph/badge.svg?token=JRNGFn3SjA
-   :target: https://codecov.io/gh/xuanxu/starmatrix   
+   :target: https://codecov.io/gh/xuanxu/starmatrix
    :alt: Coverage status
 .. |license| image:: https://img.shields.io/github/license/xuanxu/starmatrix?color=brightgreen
    :target: https://github.com/xuanxu/starmatrix/blob/main/LICENSE
@@ -142,6 +142,7 @@ The ``sn_yields`` param in the config file can be set to use any of the availabl
 
 :iwa1998: Supernova data from Iwamoto, K. et al., 1999, ApJ 125, 439
 :sei2013: Supernova data from Seitenzahl et al. 2013, MNRAS 429, 2, 1156–1172
+:ln2020: Supernova data from Leung & Nomoto 2020, ApJ 888, 2
 
 Test suite
 ==========

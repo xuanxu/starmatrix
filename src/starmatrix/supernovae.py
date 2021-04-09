@@ -14,7 +14,8 @@ def empty_yields_set():
 def yields(dataset_key, feh):
     datasets = {
         "iwa1998": yields_from_iwamoto,
-        "sei2013": yields_from_seitenzahl
+        "sei2013": yields_from_seitenzahl,
+        "lm2020": yields_from_leung_nomoto_2020
     }
     sn_yields = datasets[dataset_key](feh)
     return dict(zip(sn_elements_list, sn_yields))
@@ -43,3 +44,27 @@ def yields_from_seitenzahl(feh):
         return [0.0, 3.10e-03, 8.47e-09, 1.80e-06, 9.87e-02, 3.06e-03, 2.02e-02, 2.90e-01, 1.12e-01, 1.57e-02, 6.46e-01]
     elif -0.15 < feh:
         return [0.0, 3.04e-03, 1.74e-08, 3.21e-06, 1.01e-01, 3.53e-03, 1.52e-02, 2.84e-01, 1.11e-01, 1.47e-02, 6.22e-01]
+
+
+def yields_from_leung_nomoto_2020(feh):
+    """
+    Supernova data source: Seitenzahl et al. 2013, MNRAS, Vol 429, Issue 2, 1156–1172
+    The seven datasets are provided for Z/Zsun values of 0, 0.1, 0.5, 1, 2, 3 and 5.
+    Using Zsun = 0.0169 the corresponding FeH values are -1, -0.301, 0.0, 0.301, 0.4771 and 0.69897.
+    We use seven intervals delimited by midpoints of those values.
+    """
+    if feh <= -1.65:
+        return [0.0, 3.39e10-3, 3.33e10-10, 1.16e10-8, 1.14e10-1, 3.98e10-3, 1.70e10-2, 1.17e10-1, 5.40e10-2, 1.11e10-2, 6.73e10-1]
+    elif -1.65 < feh <= -0.65:
+        return [0.0, 3.38e10-3, 1.22e10-10, 4.53e10-9, 1.14e10-1, 3.96e10-3, 1.60e10-2, 1.22e10-1, 5.28e10-2, 9.73e10-3, 6.69e10-1]
+    elif -0.65 < feh <= -0.15:
+        return [0.0, 3.38e10-3, 3.41e10-10, 1.37e10-8, 1.16e10-1, 4.40e10-3, 1.11e10-2, 1.36e10-1, 6.14e10-2, 9.38e10-3, 6.34e10-1]
+    elif -0.15 < feh <= 0.15:
+        return [0.0, 3.35e10-3, 1.25e10-9, 3.80e10-8, 1.17e10-1, 4.00e10-3, 8.26e10-3, 1.35e10-1, 6.80e10-2, 8.49e10-3, 6.10e10-1]
+    elif 0.15 < feh <= 0.39:
+        return [0.0, 3.29e10-3, 4.59e10-9, 9.63e10-8, 1.19e10-1, 3.86e10-3, 5.46e10-3, 1.32e10-1, 5.69e10-2, 7.14e10-3, 5.83e10-1]
+    elif 0.39 < feh <= 0.59:
+        return [0.0, 2.62e10-3, 2.90e10-8, 6.40e10-7, 1.12e10-1, 3.42e10-3, 3.77e10-3, 1.30e10-1, 5.33e10-2, 6.79e10-3, 5.57e10-1]
+    elif 0.59 <= feh:
+        return [0.0, 2.20e10-3, 1.20e10-8, 9.43e10-8, 1.40e10-1, 3.16e10-3, 2.66e10-3, 1.40e10-1, 3.91e10-2, 5.45e10-3, 5.15e10-1]
+

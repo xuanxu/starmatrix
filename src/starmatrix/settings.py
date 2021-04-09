@@ -34,7 +34,7 @@ default = {
 valid_values = {
     "imf": ["salpeter", "starburst", "chabrier", "ferrini", "kroupa", "miller_scalo", "maschberger"],
     "dtd_sn": ["rlp", "maoz", "castrillo", "greggio"],
-    "sn_yields": ["iwa1998", "sei2013"],
+    "sn_yields": ["iwa1998", "sei2013", "ln2020"],
     "sol_ab": ["ag89", "gs98", "as05", "as09", "he10", "lo19"],
     "integration_step": ["logt", "t", "two_steps_t", "fixed_n_steps"],
 }
