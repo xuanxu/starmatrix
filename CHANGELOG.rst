@@ -4,6 +4,10 @@
 Changelog
 =========
 
+1.4.1 (unreleased)
+==================
+- Added SN yields dataset from *Leung & Nomoto 2020*
+
 1.4.0 (2021-03-18)
 ==================
 - New supernovae module to add SN yields datasets
