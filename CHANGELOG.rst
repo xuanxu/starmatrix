@@ -7,6 +7,7 @@ Changelog
 1.4.1 (unreleased)
 ==================
 - Added SN yields dataset from *Leung & Nomoto 2020*
+- Dropped support for Python 3.6 (Numpy updated to > 1.20)
 
 1.4.0 (2021-03-18)
 ==================
