@@ -48,7 +48,7 @@ def yields_from_seitenzahl(feh):
 
 def yields_from_leung_nomoto_2020(feh):
     """
-    Supernova data source: Seitenzahl et al. 2013, MNRAS, Vol 429, Issue 2, 1156–1172
+    Supernova data source: Leung & Nomoto, 2020, ApJ Vol 888, Issue 2, Id 80
     The seven datasets are provided for Z/Zsun values of 0, 0.1, 0.5, 1, 2, 3 and 5.
     Using Zsun = 0.0169 the corresponding FeH values are -1, -0.301, 0.0, 0.301, 0.4771 and 0.69897.
     We use seven intervals delimited by midpoints of those values.
