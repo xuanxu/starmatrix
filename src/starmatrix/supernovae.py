@@ -15,6 +15,7 @@ def yields(dataset_key, feh):
     datasets = {
         "iwa1998": yields_from_iwamoto,
         "sei2013": yields_from_seitenzahl,
+        "lm2018-1": yields_from_leung_nomoto_2018_table6,
         "lm2020": yields_from_leung_nomoto_2020
     }
     sn_yields = datasets[dataset_key](feh)
@@ -46,6 +47,29 @@ def yields_from_seitenzahl(feh):
         return [0.0, 3.04e-03, 1.74e-08, 3.21e-06, 1.01e-01, 3.53e-03, 1.52e-02, 2.84e-01, 1.11e-01, 1.47e-02, 6.22e-01]
 
 
+def yields_from_leung_nomoto_2018_table6(feh):
+    """
+    Supernova data source: Leung & Nomoto, 2018, ApJ, Volume 861, Issue 2, Id 143, Table 6
+    The seven datasets are provided for Z/Zsun values of 0, 0.1, 0.5, 1, 2, 3 and 5.
+    Using Zsun = 0.0169 the corresponding FeH values are -1, -0.301, 0.0, 0.301, 0.4771 and 0.69897.
+    We use seven intervals delimited by midpoints of those values.
+    """
+    if feh <= -1.65:
+        return [0.0, 1.58e-3, 7.17e-12, 2.30e-9, 4.19e-2, 2.18e-4, 2.94e-3, 1.62e-1, 1.11e-1, 2.64e-2, 8.46e-1]
+    elif -1.65 < feh <= -0.65:
+        return [0.0, 1.58e-3, 2.50e-12, 2.74e-10, 4.45e-2, 2.18e-4, 2.61e-3, 1.69e-1, 1.90e-1, 2.38e-2, 8.39e-1]
+    elif -0.65 < feh <= -0.15:
+        return [0.0, 1.32e-3, 3.79e-12, 3.34e-10, 5.38e-2, 5.48e-4, 2.34e-3, 2.16e-1, 1.25e-1, 2.21e-2, 7.51e-1]
+    elif -0.15 < feh <= 0.15:
+        return [0.0, 1.31e-3, 8.17e-12, 5.55e-10, 5.45e-2, 5.51e-4, 1.70e-3, 2.20e-1, 1.20e-1, 1.96e-2, 7.25e-1]
+    elif 0.15 < feh <= 0.39:
+        return [0.0, 1.29e-3, 2.44e-11, 1.13e-9, 5.49e-2, 5.51e-4, 1.15e-3, 2.23e-1, 1.90e-1, 1.62e-2, 6.80e-1]
+    elif 0.39 < feh <= 0.59:
+        return [0.0, 1.48e-3, 9.60e-12, 2.32e-10, 5.49e-2, 1.69e-4, 8.69e-4, 2.18e-1, 9.92e-2, 1.48e-2, 6.41e-1]
+    elif 0.59 <= feh:
+        return [0.0, 1.45e-3, 5.68e-11, 6.52e-10, 6.55e-2, 4.36e-4, 1.70e-3, 2.52e-1, 9.45e-2, 1.16e-2, 5.50e-1]
+
+
 def yields_from_leung_nomoto_2020(feh):
     """
     Supernova data source: Leung & Nomoto, 2020, ApJ, Vol 888, Issue 2, Id 80
@@ -67,4 +91,3 @@ def yields_from_leung_nomoto_2020(feh):
         return [0.0, 2.62e-3, 2.90e-8, 6.40e-7, 1.12e-1, 3.42e-3, 3.77e-3, 1.30e-1, 5.33e-2, 6.79e-3, 5.57e-1]
     elif 0.59 <= feh:
         return [0.0, 2.20e-3, 1.20e-8, 9.43e-8, 1.40e-1, 3.16e-3, 2.66e-3, 1.40e-1, 3.91e-2, 5.45e-3, 5.15e-1]
-

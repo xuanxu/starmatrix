@@ -54,6 +54,38 @@ def test_yields_from_seitenzahl():
     assert minus015 != minus01
     assert minus01 == plus1
 
+
+def test_yields_from_leung_nomoto_2018():
+    minus2 = sn.yields_from_leung_nomoto_2018_table6(-2)
+    minus165 = sn.yields_from_leung_nomoto_2018_table6(-1.65)
+    minus1 = sn.yields_from_leung_nomoto_2018_table6(-1)
+    minus065 = sn.yields_from_leung_nomoto_2018_table6(-0.65)
+    minus03 = sn.yields_from_leung_nomoto_2018_table6(-0.3)
+    minus015 = sn.yields_from_leung_nomoto_2018_table6(-0.15)
+    zero = sn.yields_from_leung_nomoto_2018_table6(0.0)
+    plus015 = sn.yields_from_leung_nomoto_2018_table6(0.15)
+    plus03 = sn.yields_from_leung_nomoto_2018_table6(0.3)
+    plus039 = sn.yields_from_leung_nomoto_2018_table6(0.39)
+    plus047 = sn.yields_from_leung_nomoto_2018_table6(0.47)
+    plus059 = sn.yields_from_leung_nomoto_2018_table6(0.59)
+    plus069 = sn.yields_from_leung_nomoto_2018_table6(0.69)
+    plus1 = sn.yields_from_leung_nomoto_2018_table6(1)
+
+    assert minus2 == minus165
+    assert minus165 != minus1
+    assert minus1 == minus065
+    assert minus065 != minus03
+    assert minus03 == minus015
+    assert minus015 != zero
+    assert zero == plus015
+    assert plus015 != plus03
+    assert plus03 == plus039
+    assert plus039 != plus047
+    assert plus047 == plus059
+    assert plus059 != plus069
+    assert plus069 == plus1
+
+
 def test_yields_from_leung_nomoto_2020():
     minus2 = sn.yields_from_leung_nomoto_2020(-2)
     minus165 = sn.yields_from_leung_nomoto_2020(-1.65)
@@ -83,7 +115,3 @@ def test_yields_from_leung_nomoto_2020():
     assert plus047 == plus059
     assert plus059 != plus069
     assert plus069 == plus1
-
-
-
-
