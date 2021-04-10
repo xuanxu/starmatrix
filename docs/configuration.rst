@@ -88,6 +88,9 @@ The ``sn_yields`` param in the config file can be set to use any of the availabl
 
 :iwa1998: Supernova data from Iwamoto, K. et al., 1999, ApJ 125, 439
 :sei2013: Supernova data from Seitenzahl et al. 2013, MNRAS 429, 2, 1156–1172
+:ln2018-1: Supernova data from Leung & Nomoto 2018, ApJ, Vol 861, 2, Id 143, Tables 6/7
+:ln2018-2: Supernova data from Leung & Nomoto 2018, ApJ, Vol 861, 2, Id 143, Tables 8/9
+:ln2018-3: Supernova data from Leung & Nomoto 2018, ApJ, Vol 861, 2, Id 143, Tables 10/11
 :ln2020: Supernova data from Leung & Nomoto 2020, ApJ Vol 888, Issue 2, Id 80
 
 Integration step

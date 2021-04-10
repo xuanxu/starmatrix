@@ -33,7 +33,8 @@ Starmatrix is built upon a long list of previous works from different authors/pa
 * *Maoz, D. & Graur, O.*, 2017, ApJ, 848, 25M
 * *Castrillo, A. et al.*, 2020, MNRAS
 * *Greggio, L.*, 2005, A&A 441, 1055–1078
-* *Leung & Nomoto*, 2020, ApJ Vol 888, Issue 2, Id 80
+* *Leung & Nomoto*, 2018, ApJ, Vol 861, Issue 2, Id 143
+* *Leung & Nomoto*, 2020, ApJ, Vol 888, Issue 2, Id 80
 
 License
 -------
