@@ -17,6 +17,7 @@ def yields(dataset_key, feh):
         "sei2013": yields_from_seitenzahl,
         "ln2018-1": yields_from_leung_nomoto_2018_table6,
         "ln2018-2": yields_from_leung_nomoto_2018_table8,
+        "ln2018-3": yields_from_leung_nomoto_2018_table10,
         "ln2020": yields_from_leung_nomoto_2020
     }
     sn_yields = datasets[dataset_key](feh)
@@ -92,6 +93,29 @@ def yields_from_leung_nomoto_2018_table8(feh):
         return [0.0, 1.40e-3, 2.65e-11, 4.20e-10, 6.62e-2, 6.78e-4, 1.00e-3, 2.31e-1, 9.59e-2, 1.19e-2, 5.98e-1]
     elif 0.59 <= feh:
         return [0.0, 1.30e-3, 1.37e-10, 6.32e-10, 7.26e-2, 4.18e-4, 9.25e-4, 2.47e-1, 8.98e-2, 1.10e-2, 4.92e-1]
+
+
+def yields_from_leung_nomoto_2018_table10(feh):
+    """
+    Supernova data source: Leung & Nomoto, 2018, ApJ, Volume 861, Issue 2, Id 143, Table 10/11
+    The seven datasets are provided for Z/Zsun values of 0, 0.1, 0.5, 1, 2, 3 and 5.
+    Using Zsun = 0.0169 the corresponding FeH values are -1, -0.301, 0.0, 0.301, 0.4771 and 0.69897.
+    We use seven intervals delimited by midpoints of those values.
+    """
+    if feh <= -1.65:
+        return [0.0, 5.48e-4, 1.3e-11, 2.15e-9, 3.46e-2, 1.63e-4, 2.50e-3, 1.72e-1, 1.14e-1, 2.55e-2, 7.57e-1]
+    elif -1.65 < feh <= -0.65:
+        return [0.0, 5.44e-4, 1.54e-12, 4.34e-10, 3.81e-2, 1.63e-4, 1.84e-3, 1.79e-1, 1.12e-1, 2.24e-2, 7.60e-1]
+    elif -0.65 < feh <= -0.15:
+        return [0.0, 5.88e-4, 3.24e-12, 2.94e-10, 4.85e-2, 6.58e-4, 1.69e-3, 2.30e-1, 1.14e-1, 1.84e-2, 7.20e-1]
+    elif -0.15 < feh <= 0.15:
+        return [0.0, 5.82e-4, 6.45e-12, 3.69e-10, 4.90e-2, 6.56e-4, 1.22e-3, 2.8e-1, 1.9e-1, 1.59e-2, 6.81e-1]
+    elif 0.15 < feh <= 0.39:
+        return [0.0, 5.71e-4, 1.62e-11, 5.52e-10, 4.94e-2, 6.46e-4, 8.41e-4, 2.13e-1, 9.81e-2, 1.26e-2, 6.44e-1]
+    elif 0.39 < feh <= 0.59:
+        return [0.0, 5.47e-4, 5.54e-11, 9.20e-10, 6.23e-2, 6.82e-4, 7.57e-4, 2.21e-1, 9.27e-2, 1.11e-2, 5.87e-1]
+    elif 0.59 <= feh:
+        return [0.0, 5.36e-4, 8.29e-11, 7.60e-10, 7.54e-2, 2.81e-4, 8.39e-4, 2.25e-1, 8.00e-2, 8.93e-3, 4.99e-1]
 
 
 def yields_from_leung_nomoto_2020(feh):

@@ -15,7 +15,7 @@ def test_empty_yields_set_is_all_zeroes():
 
 
 def test_yields_structure():
-    options = ["iwa1998", "sei2013", "ln2020", "ln2018-1", "ln2018-2"]
+    options = ["iwa1998", "sei2013", "ln2020", "ln2018-1", "ln2018-2", "ln2018-3"]
     dataset = random.sample(options, 1)[0]
     yields = sn.yields(dataset, 0)
 
@@ -58,7 +58,8 @@ def test_yields_from_seitenzahl():
 def test_yields_from_leung_nomoto_2018():
     leung_nomoto_sources = [
         sn.yields_from_leung_nomoto_2018_table6,
-        sn.yields_from_leung_nomoto_2018_table8
+        sn.yields_from_leung_nomoto_2018_table8,
+        sn.yields_from_leung_nomoto_2018_table10
     ]
 
     for ln_dataset in leung_nomoto_sources:
