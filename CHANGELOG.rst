@@ -4,7 +4,7 @@
 Changelog
 =========
 
-1.4.1 (unreleased)
+1.4.1 (2021-04-11)
 ==================
 - Added SN yields dataset from *Leung & Nomoto 2020*
 - Added SN yields datasets from three different models in *Leung & Nomoto 2018*
