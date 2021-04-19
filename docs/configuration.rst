@@ -94,6 +94,8 @@ The ``sn_yields`` param in the config file can be set to use any of the availabl
 :ln2020: Supernova data from Leung & Nomoto 2020, ApJ Vol 888, Issue 2, Id 80
 :br2019-1: Supernova data from Bravo, E. et al., 2019, MNRAS, 482, Issue 4, 4346–4363, Table 3
 :br2019-2: Supernova data from Bravo, E. et al., 2019, MNRAS, 482, Issue 4, 4346–4363, Table 4
+:gro2021-1: Supernova data from Gronow, S. et al., 2021, A&A, Table 4/A8 He detonation
+:gro2021-2: Supernova data from Gronow, S. et al., 2021, A&A, Table 4/A8 Core detonation
 
 Integration step
 ----------------

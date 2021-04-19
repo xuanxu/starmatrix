@@ -20,7 +20,9 @@ def yields(dataset_key, feh):
         "ln2018-3": yields_from_leung_nomoto_2018_table10,
         "ln2020": yields_from_leung_nomoto_2020,
         "br2019-1": yields_from_bravo_2019_table3,
-        "br2019-2": yields_from_bravo_2019_table4
+        "br2019-2": yields_from_bravo_2019_table4,
+        "gro2021-1": yields_from_gronow_2021_table4_he,
+        "gro2021-2": yields_from_gronow_2021_table4_core
     }
     sn_yields = datasets[dataset_key](feh)
     return dict(zip(sn_elements_list, sn_yields))
@@ -179,21 +181,33 @@ def yields_from_bravo_2019_table4(feh):
         return [2.84e-03, 5.86e-04, 1.38e-08, 6.03e-07, 3.41e-02, 2.48e-04, 7.78e-04, 1.30e-01, 7.73e-02, 1.51e-02, 6.70e-01]
 
 
+def yields_from_gronow_2021_table4_he(feh):
+    """
+    Supernova data source: Gronow, S. et al., 2021, A&A, Table 4/A8 He detonation
+    Five datasets are provided for FeH values of -2, -1, 0 and 0.4771
+    We use four intervals delimited by midpoints of those values.
+    """
+    if feh <= -1.5:
+        return [1.30e-2, 7.71e-4, 4.95e-11, 1.71e-7, 6.60e-3, 1.70e-3, 3.44e-3, 8.88e-3, 3.70e-3, 3.19e-3]
+    elif -1.5 < feh <= -0.5:
+        return [1.30e-2, 7.68e-4, 4.92e-11, 1.22e-6, 6.62e-3, 1.69e-3, 3.45e-3, 8.88e-3, 3.70e-3, 3.20e-3]
+    elif -0.5 < feh <= 0.239:
+        return [1.30e-2, 7.61e-4, 4.22e-11, 1.73e-5, 6.79e-3, 1.69e-3, 3.49e-3, 8.87e-3, 3.68e-3, 3.26e-3]
+    elif 0.239 <= feh:
+        return [1.20e-2, 7.55e-4, 3.96e-11, 3.51e-5, 7.09e-3, 1.68e-3, 3.51e-3, 8.96e-3, 3.74e-3, 3.46e-3]
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+def yields_from_gronow_2021_table4_core(feh):
+    """
+    Supernova data source: Gronow, S. et al., 2021, A&A, Table 4/A8 Core detonation
+    Five datasets are provided for FeH values of -2, -1, 0 and 0.4771
+    We use four intervals delimited by midpoints of those values.
+    """
+    if feh <= -1.5:
+        return [5.50e-3, 1.24e-3, 1.12e-9, 1.37e-7, 4.85e-2, 1.83e-3, 3.71e-3, 1.51e-1, 9.38e-2, 1.77e-2]
+    elif -1.5 < feh <= -0.5:
+        return [5.50e-3, 1.24e-3, 1.04e-9, 1.29e-7, 4.84e-2, 1.83e-3, 3.80e-3, 1.51e-1, 9.38e-2, 1.77e-2]
+    elif -0.5 < feh <= 0.239:
+        return [5.10e-3, 1.23e-3, 1.95e-9, 1.78e-7, 4.88e-2, 1.78e-3, 2.98e-3, 1.51e-1, 9.12e-2, 1.63e-2]
+    elif 0.239 <= feh:
+        return [3.60e-3, 1.20e-3, 1.19e-8, 5.12e-7, 4.93e-2, 1.64e-3, 1.61e-3, 1.50e-1, 7.98e-2, 1.30e-2]

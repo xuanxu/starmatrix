@@ -149,3 +149,26 @@ def test_yields_from_bravo_2019():
         assert minus02 != zero
         assert zero == plus025
         assert plus025 != plus1
+
+
+def test_yields_from_gronow_2021():
+    gronow_sources = [
+        sn.yields_from_gronow_2021_table4_he,
+        sn.yields_from_gronow_2021_table4_core
+    ]
+
+    for gronow_dataset in gronow_sources:
+        minus2 = gronow_dataset(-2)
+        minus15 = gronow_dataset(-1.5)
+        minus1 = gronow_dataset(-1)
+        minus05 = gronow_dataset(-0.5)
+        zero = gronow_dataset(0.0)
+        plus0239 = gronow_dataset(0.239)
+        plus1 = gronow_dataset(1)
+
+        assert minus2 == minus15
+        assert minus15 != minus1
+        assert minus1 == minus05
+        assert minus05 != zero
+        assert zero == plus0239
+        assert plus0239 != plus1
