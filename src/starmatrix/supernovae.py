@@ -22,7 +22,9 @@ def yields(dataset_key, feh):
         "br2019-1": yields_from_bravo_2019_table3,
         "br2019-2": yields_from_bravo_2019_table4,
         "gro2021-1": yields_from_gronow_2021_table4_he,
-        "gro2021-2": yields_from_gronow_2021_table4_core
+        "gro2021-2": yields_from_gronow_2021_table4_core,
+        "mor2018-1": yields_from_mori_2018_w7,
+        "mor2018-2": yields_from_mori_2018_wdd2
     }
     sn_yields = datasets[dataset_key](feh)
     return dict(zip(sn_elements_list, sn_yields))
@@ -188,13 +190,13 @@ def yields_from_gronow_2021_table4_he(feh):
     We use four intervals delimited by midpoints of those values.
     """
     if feh <= -1.5:
-        return [1.30e-2, 7.71e-4, 4.95e-11, 1.71e-7, 6.60e-3, 1.70e-3, 3.44e-3, 8.88e-3, 3.70e-3, 3.19e-3]
+        return [1.30e-2, 7.71e-4, 4.95e-11, 1.71e-7, 6.60e-3, 1.70e-3, 3.44e-3, 8.88e-3, 3.70e-3, 3.19e-3, 0]
     elif -1.5 < feh <= -0.5:
-        return [1.30e-2, 7.68e-4, 4.92e-11, 1.22e-6, 6.62e-3, 1.69e-3, 3.45e-3, 8.88e-3, 3.70e-3, 3.20e-3]
+        return [1.30e-2, 7.68e-4, 4.92e-11, 1.22e-6, 6.62e-3, 1.69e-3, 3.45e-3, 8.88e-3, 3.70e-3, 3.20e-3, 0]
     elif -0.5 < feh <= 0.239:
-        return [1.30e-2, 7.61e-4, 4.22e-11, 1.73e-5, 6.79e-3, 1.69e-3, 3.49e-3, 8.87e-3, 3.68e-3, 3.26e-3]
+        return [1.30e-2, 7.61e-4, 4.22e-11, 1.73e-5, 6.79e-3, 1.69e-3, 3.49e-3, 8.87e-3, 3.68e-3, 3.26e-3, 0]
     elif 0.239 <= feh:
-        return [1.20e-2, 7.55e-4, 3.96e-11, 3.51e-5, 7.09e-3, 1.68e-3, 3.51e-3, 8.96e-3, 3.74e-3, 3.46e-3]
+        return [1.20e-2, 7.55e-4, 3.96e-11, 3.51e-5, 7.09e-3, 1.68e-3, 3.51e-3, 8.96e-3, 3.74e-3, 3.46e-3, 0]
 
 
 def yields_from_gronow_2021_table4_core(feh):
@@ -204,10 +206,24 @@ def yields_from_gronow_2021_table4_core(feh):
     We use four intervals delimited by midpoints of those values.
     """
     if feh <= -1.5:
-        return [5.50e-3, 1.24e-3, 1.12e-9, 1.37e-7, 4.85e-2, 1.83e-3, 3.71e-3, 1.51e-1, 9.38e-2, 1.77e-2]
+        return [5.50e-3, 1.24e-3, 1.12e-9, 1.37e-7, 4.85e-2, 1.83e-3, 3.71e-3, 1.51e-1, 9.38e-2, 1.77e-2, 0]
     elif -1.5 < feh <= -0.5:
-        return [5.50e-3, 1.24e-3, 1.04e-9, 1.29e-7, 4.84e-2, 1.83e-3, 3.80e-3, 1.51e-1, 9.38e-2, 1.77e-2]
+        return [5.50e-3, 1.24e-3, 1.04e-9, 1.29e-7, 4.84e-2, 1.83e-3, 3.80e-3, 1.51e-1, 9.38e-2, 1.77e-2, 0]
     elif -0.5 < feh <= 0.239:
-        return [5.10e-3, 1.23e-3, 1.95e-9, 1.78e-7, 4.88e-2, 1.78e-3, 2.98e-3, 1.51e-1, 9.12e-2, 1.63e-2]
+        return [5.10e-3, 1.23e-3, 1.95e-9, 1.78e-7, 4.88e-2, 1.78e-3, 2.98e-3, 1.51e-1, 9.12e-2, 1.63e-2, 0]
     elif 0.239 <= feh:
-        return [3.60e-3, 1.20e-3, 1.19e-8, 5.12e-7, 4.93e-2, 1.64e-3, 1.61e-3, 1.50e-1, 7.98e-2, 1.30e-2]
+        return [3.60e-3, 1.20e-3, 1.19e-8, 5.12e-7, 4.93e-2, 1.64e-3, 1.61e-3, 1.50e-1, 7.98e-2, 1.30e-2, 0]
+
+
+def yields_from_mori_2018_w7(feh):
+    """
+    Supernova data source: Mori, K. et al., 2018, The Astrophysical Journal, 863:176 W7
+    """
+    return [0.0, 4.794e-2, 4.150e-8, 5.809e-6, 1.356e-1, 1.309e-3, 1.026e-2, 1.732e-1, 7.890e-2, 1.133e-2, 6.683e-1]
+
+
+def yields_from_mori_2018_wdd2(feh):
+    """
+    Supernova data source: Mori, K. et al., 2018, The Astrophysical Journal, 863:176 WDD2
+    """
+    return [0.0, 1.359e-3, 3.292e-8, 3.308e-8, 7.061e-2, 1.072e-3, 7.081e-3, 2.321e-1, 1.317e-1, 2.477e-2, 6.834e-1]

@@ -15,14 +15,15 @@ def test_empty_yields_set_is_all_zeroes():
 
 
 def test_yields_structure():
-    options = ["iwa1998", "sei2013", "ln2020", "ln2018-1", "ln2018-2", "ln2018-3"]
-    dataset = random.sample(options, 1)[0]
-    yields = sn.yields(dataset, 0)
+    options = ["iwa1998", "sei2013", "ln2020", "ln2018-1", "ln2018-2", "ln2018-3",
+               "br2019-1", "br2019-2", "gro2021-1", "gro2021-2", "mor2018-1", "mor2018-2"]
+    for dataset in options:
+        yields = sn.yields(dataset, 0)
 
-    assert len(yields) > 0
-    assert len(yields) == len(sn.sn_elements_list)
-    for element in sn.sn_elements_list:
-        assert element in yields.keys()
+        assert len(yields) > 0
+        assert len(yields) == len(sn.sn_elements_list)
+        for element in sn.sn_elements_list:
+            assert element in yields.keys()
 
 
 def test_yields_from_iwamoto():
