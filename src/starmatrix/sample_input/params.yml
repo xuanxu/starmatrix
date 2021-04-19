@@ -56,6 +56,8 @@
 #            ln2018-2 = SN yields from Leung & Nomoto 2018 tables 8/9
 #            ln2018-3 = SN yields from Leung & Nomoto 2018 tables 10/11
 #            ln2020 = SN yields from Leung & Nomoto 2020
+#            br2019-1 = SN yields from Bravo et al 2019 table 3
+#            br2019-2 = SN yields from Bravo et al 2019 table 4
 #          ]
 
 z: 0.02
