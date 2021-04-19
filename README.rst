@@ -1,7 +1,7 @@
 .. starmatrix
 
-.. |travis-badge| image:: https://travis-ci.com/xuanxu/starmatrix.svg?branch=main
-   :target: https://travis-ci.com/xuanxu/starmatrix
+.. |ci-badge| image:: https://github.com/xuanxu/starmatrix/actions/workflows/tests.yml/badge.svg
+   :target: https://github.com/xuanxu/starmatrix/actions/workflows/tests.yml
    :alt: Build status
 .. |docs-badge| image:: https://readthedocs.org/projects/starmatrix/badge/?version=latest
    :target: https://starmatrix.readthedocs.io/en/latest/?badge=latest
@@ -21,7 +21,7 @@
 ✨Starmatrix
 ============
 
-|travis-badge| |docs-badge| |codecov-badge| |license| |version|
+|ci-badge| |docs-badge| |codecov-badge| |license| |version|
 
 Starmatrix is a Q-Matrices generator.
 
@@ -150,14 +150,14 @@ The ``sn_yields`` param in the config file can be set to use any of the availabl
 Test suite
 ==========
 
-Starmatrix includes a test suite located in the ``/src/starmatrix/tests`` directory. The current state of the build is `publicly tracked by Travis CI`_. You can run the latest tests locally and get information on code coverage if you clone the code to your local machine, install its development dependencies and use ``pytest``::
+Starmatrix includes a test suite located in the ``/src/starmatrix/tests`` directory. The current state of the build is `publicly tracked by GitHub CI`_. You can run the latest tests locally and get information on code coverage if you clone the code to your local machine, install its development dependencies and use ``pytest``::
 
     $ git clone https://github.com/xuanxu/starmatrix.git
     $ cd starmatrix
     $ pip install -e .[dev]
     $ pytest -v --cov=starmatrix
 
-.. _`publicly tracked by Travis CI`: https://travis-ci.com/xuanxu/starmatrix
+.. _`publicly tracked by GitHub CI`: https://github.com/xuanxu/starmatrix/actions/workflows/tests.yml
 
 Edge
 ====
