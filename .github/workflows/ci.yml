@@ -29,6 +29,7 @@ jobs:
         pip install -U pytest
         pip install codecov
     - name: Install Starmatrix
+      run: |
         pip install .
         pip install .[dev]
     - name: Test against installed code
