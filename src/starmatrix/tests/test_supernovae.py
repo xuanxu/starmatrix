@@ -15,14 +15,15 @@ def test_empty_yields_set_is_all_zeroes():
 
 
 def test_yields_structure():
-    options = ["iwa1998", "sei2013", "ln2020", "ln2018-1", "ln2018-2", "ln2018-3"]
-    dataset = random.sample(options, 1)[0]
-    yields = sn.yields(dataset, 0)
+    options = ["iwa1998", "sei2013", "ln2020", "ln2018-1", "ln2018-2", "ln2018-3",
+               "br2019-1", "br2019-2", "gro2021-1", "gro2021-2", "mor2018-1", "mor2018-2"]
+    for dataset in options:
+        yields = sn.yields(dataset, 0)
 
-    assert len(yields) > 0
-    assert len(yields) == len(sn.sn_elements_list)
-    for element in sn.sn_elements_list:
-        assert element in yields.keys()
+        assert len(yields) > 0
+        assert len(yields) == len(sn.sn_elements_list)
+        for element in sn.sn_elements_list:
+            assert element in yields.keys()
 
 
 def test_yields_from_iwamoto():
@@ -122,3 +123,53 @@ def test_yields_from_leung_nomoto_2020():
     assert plus047 == plus059
     assert plus059 != plus069
     assert plus069 == plus1
+
+
+def test_yields_from_bravo_2019():
+    bravo_sources = [
+        sn.yields_from_bravo_2019_table3,
+        sn.yields_from_bravo_2019_table4
+    ]
+
+    for bravo_dataset in bravo_sources:
+        minus2 = bravo_dataset(-2)
+        minus15 = bravo_dataset(-1.5)
+        minus1 = bravo_dataset(-1)
+        minus07 = bravo_dataset(-0.7)
+        minus05 = bravo_dataset(-0.5)
+        minus02 = bravo_dataset(-0.2)
+        zero = bravo_dataset(0.0)
+        plus025 = bravo_dataset(0.25)
+        plus1 = bravo_dataset(1)
+
+        assert minus2 == minus15
+        assert minus15 != minus1
+        assert minus1 == minus07
+        assert minus07 != minus05
+        assert minus05 == minus02
+        assert minus02 != zero
+        assert zero == plus025
+        assert plus025 != plus1
+
+
+def test_yields_from_gronow_2021():
+    gronow_sources = [
+        sn.yields_from_gronow_2021_table3_he,
+        sn.yields_from_gronow_2021_table3_core
+    ]
+
+    for gronow_dataset in gronow_sources:
+        minus2 = gronow_dataset(-2)
+        minus15 = gronow_dataset(-1.5)
+        minus1 = gronow_dataset(-1)
+        minus05 = gronow_dataset(-0.5)
+        zero = gronow_dataset(0.0)
+        plus0239 = gronow_dataset(0.239)
+        plus1 = gronow_dataset(1)
+
+        assert minus2 == minus15
+        assert minus15 != minus1
+        assert minus1 == minus05
+        assert minus05 != zero
+        assert zero == plus0239
+        assert plus0239 != plus1
