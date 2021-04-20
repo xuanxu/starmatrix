@@ -35,3 +35,7 @@ jobs:
         pip install .[dev]
     - name: Test against installed code
       run: pytest -v --cov-report=xml --cov=starmatrix
+  coverage:
+    steps:
+    - name: Update report
+      run: codecov
