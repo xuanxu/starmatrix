@@ -21,8 +21,8 @@ def yields(dataset_key, feh):
         "ln2020": yields_from_leung_nomoto_2020,
         "br2019-1": yields_from_bravo_2019_table3,
         "br2019-2": yields_from_bravo_2019_table4,
-        "gro2021-1": yields_from_gronow_2021_table4_he,
-        "gro2021-2": yields_from_gronow_2021_table4_core,
+        "gro2021-1": yields_from_gronow_2021_table3_he,
+        "gro2021-2": yields_from_gronow_2021_table3_core,
         "mor2018-1": yields_from_mori_2018_w7,
         "mor2018-2": yields_from_mori_2018_wdd2
     }
@@ -183,36 +183,36 @@ def yields_from_bravo_2019_table4(feh):
         return [2.84e-03, 5.86e-04, 1.38e-08, 6.03e-07, 3.41e-02, 2.48e-04, 7.78e-04, 1.30e-01, 7.73e-02, 1.51e-02, 6.70e-01]
 
 
-def yields_from_gronow_2021_table4_he(feh):
+def yields_from_gronow_2021_table3_he(feh):
     """
-    Supernova data source: Gronow, S. et al., 2021, A&A, Table 4/A8 He detonation
+    Supernova data source: Gronow, S. et al., 2021, A&A, Table 3/A10 He detonation
     Five datasets are provided for FeH values of -2, -1, 0 and 0.4771
     We use four intervals delimited by midpoints of those values.
     """
     if feh <= -1.5:
-        return [1.30e-2, 7.71e-4, 4.95e-11, 1.71e-7, 6.60e-3, 1.70e-3, 3.44e-3, 8.88e-3, 3.70e-3, 3.19e-3, 0]
+        return [2.10e-2, 7.39e-6, 4.23e-9, 1.25e-7, 3.02e-3, 1.77e-6, 2.29e-4, 3.69e-2, 1.61e-2, 3.70e-3, 4.47e-2]
     elif -1.5 < feh <= -0.5:
-        return [1.30e-2, 7.68e-4, 4.92e-11, 1.22e-6, 6.62e-3, 1.69e-3, 3.45e-3, 8.88e-3, 3.70e-3, 3.20e-3, 0]
+        return [2.10e-2, 7.25e-6, 4.21e-9, 1.16e-6, 3.02e-3, 2.03e-6, 2.34e-4, 3.69e-2, 1.61e-2, 3.70e-3, 4.47e-2]
     elif -0.5 < feh <= 0.239:
-        return [1.30e-2, 7.61e-4, 4.22e-11, 1.73e-5, 6.79e-3, 1.69e-3, 3.49e-3, 8.87e-3, 3.68e-3, 3.26e-3, 0]
+        return [2.10e-2, 1.09e-5, 3.87e-9, 1.71e-5, 3.09e-3, 7.97e-6, 2.53e-4, 3.71e-2, 1.61e-2, 3.70e-3, 4.48e-2]
     elif 0.239 <= feh:
-        return [1.20e-2, 7.55e-4, 3.96e-11, 3.51e-5, 7.09e-3, 1.68e-3, 3.51e-3, 8.96e-3, 3.74e-3, 3.46e-3, 0]
+        return [2.00e-2, 7.52e-6, 3.65e-9, 3.46e-5, 3.24e-3, 1.06e-5, 2.56e-4, 3.76e-2, 1.63e-2, 3.76e-3, 4.45e-2]
 
 
-def yields_from_gronow_2021_table4_core(feh):
+def yields_from_gronow_2021_table3_core(feh):
     """
-    Supernova data source: Gronow, S. et al., 2021, A&A, Table 4/A8 Core detonation
+    Supernova data source: Gronow, S. et al., 2021, A&A, Table 3/A10 Core detonation
     Five datasets are provided for FeH values of -2, -1, 0 and 0.4771
     We use four intervals delimited by midpoints of those values.
     """
     if feh <= -1.5:
-        return [5.50e-3, 1.24e-3, 1.12e-9, 1.37e-7, 4.85e-2, 1.83e-3, 3.71e-3, 1.51e-1, 9.38e-2, 1.77e-2, 0]
+        return [7.10e-03, 2.46e-06, 2.49e-12, 5.16e-12, 2.70e-03, 1.05e-07, 1.02e-04, 7.28e-02, 5.56e-02, 1.42e-02, 7.98e-01]
     elif -1.5 < feh <= -0.5:
-        return [5.50e-3, 1.24e-3, 1.04e-9, 1.29e-7, 4.84e-2, 1.83e-3, 3.80e-3, 1.51e-1, 9.38e-2, 1.77e-2, 0]
+        return [7.10e-03, 2.47e-06, 2.57e-12, 5.26e-12, 2.70e-03, 1.03e-07, 1.06e-04, 7.28e-02, 5.57e-02, 1.42e-02, 7.97e-01]
     elif -0.5 < feh <= 0.239:
-        return [5.10e-3, 1.23e-3, 1.95e-9, 1.78e-7, 4.88e-2, 1.78e-3, 2.98e-3, 1.51e-1, 9.12e-2, 1.63e-2, 0]
+        return [6.50e-03, 1.23e-03, 1.95e-09, 1.79e-07, 4.88e-02, 1.78e-03, 3.05e-03, 1.52e-01, 9.29e-02, 1.63e-02, 6.58e-01]
     elif 0.239 <= feh:
-        return [3.60e-3, 1.20e-3, 1.19e-8, 5.12e-7, 4.93e-2, 1.64e-3, 1.61e-3, 1.50e-1, 7.98e-2, 1.30e-2, 0]
+        return [4.50e-03, 1.12e-06, 1.12e-12, 6.24e-11, 2.75e-03, 1.16e-07, 4.12e-05, 7.30e-02, 4.89e-02, 1.14e-02, 8.07e-01]
 
 
 def yields_from_mori_2018_w7(feh):
