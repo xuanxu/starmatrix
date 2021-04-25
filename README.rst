@@ -140,18 +140,18 @@ Supernovae yields
 
 The ``sn_yields`` param in the config file can be set to use any of the available supernova yields datasets from different papers/authors:
 
-:iwa1998: Supernova data from Iwamoto, K. et al., 1999, ApJ 125, 439
-:sei2013: Supernova data from Seitenzahl et al. 2013, MNRAS 429, 2, 1156–1172
-:ln2018-1: Supernova data from Leung & Nomoto 2018, ApJ, Vol 861, Issue 2, Id 143, Tables 6/7
-:ln2018-2: Supernova data from Leung & Nomoto 2018, ApJ, Vol 861, Issue 2, Id 143, Tables 8/9
-:ln2018-3: Supernova data from Leung & Nomoto 2018, ApJ, Vol 861, Issue 2, Id 143, Tables 10/11
-:ln2020: Supernova data from Leung & Nomoto 2020, ApJ, Vol 888, Issue 2, Id 80
-:br2019-1: Supernova data from Bravo, E. et al., 2019, MNRAS, 482, Issue 4, 4346–4363, Table 3
-:br2019-2: Supernova data from Bravo, E. et al., 2019, MNRAS, 482, Issue 4, 4346–4363, Table 4
-:gro2021-1: Supernova data from Gronow, S. et al., 2021, A&A, Table 3/A10 He detonation
-:gro2021-2: Supernova data from Gronow, S. et al., 2021, A&A, Table 3/A10 Core detonation
-:mor2018-1: Supernova data from Mori, K. et al, 2018, ApJ, 863:176 W7
-:mor2018-2: Supernova data from Mori, K. et al, 2018, ApJ, 863:176 WDD2
+:iwa1998: Data from Iwamoto, K. et al., 1999, ApJ 125, 439
+:sei2013: Data from Seitenzahl et al. 2013, MNRAS 429, 2, 1156–1172
+:ln2018-1: Data from Leung & Nomoto 2018, ApJ, Vol 861, Issue 2, Id 143, Tables 6/7
+:ln2018-2: Data from Leung & Nomoto 2018, ApJ, Vol 861, Issue 2, Id 143, Tables 8/9
+:ln2018-3: Data from Leung & Nomoto 2018, ApJ, Vol 861, Issue 2, Id 143, Tables 10/11
+:ln2020: Data from Leung & Nomoto 2020, ApJ, Vol 888, Issue 2, Id 80
+:br2019-1: Data from Bravo, E. et al., 2019, MNRAS, 482, Issue 4, 4346–4363, Table 3
+:br2019-2: Data from Bravo, E. et al., 2019, MNRAS, 482, Issue 4, 4346–4363, Table 4
+:gro2021-1: Data from Gronow, S. et al., 2021, A&A, Table 3/A10 He detonation
+:gro2021-2: Data from Gronow, S. et al., 2021, A&A, Table 3/A10 Core detonation
+:mor2018-1: Data from Mori, K. et al, 2018, ApJ, 863:176 W7
+:mor2018-2: Data from Mori, K. et al, 2018, ApJ, 863:176 WDD2
 
 Test suite
 ==========
@@ -204,3 +204,6 @@ Starmatrix is built upon a long list of previous works from different authors/pa
 * *Greggio, L.*, 2005, A&A 441, 1055–1078
 * *Leung & Nomoto*, 2018, ApJ, Vol 861, Issue 2, Id 143
 * *Leung & Nomoto*, 2020, ApJ, Vol 888, Issue 2, Id 80
+* *Bravo, E. et al.*, 2019, MNRAS, 482, Issue 4, 4346–4363
+* *Gronow, S. et al.*, 2021, A&A
+* *Mori, K. et al.*, 2018, ApJ, 863:176
