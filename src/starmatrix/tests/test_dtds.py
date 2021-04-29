@@ -7,6 +7,7 @@ from starmatrix.dtds import dtd_ruiz_lapuente
 from starmatrix.dtds import dtd_maoz_graur
 from starmatrix.dtds import dtd_castrillo
 from starmatrix.dtds import dtd_greggio
+from starmatrix.dtds import dtd_chen
 
 
 @pytest.fixture
@@ -23,7 +24,7 @@ def test_dtds_presence(available_dtds):
 
 
 def test_select_dtd(available_dtds):
-    dtds = [dtd_ruiz_lapuente, dtd_maoz_graur, dtd_castrillo, dtd_greggio]
+    dtds = [dtd_ruiz_lapuente, dtd_maoz_graur, dtd_castrillo, dtd_greggio, dtd_chen]
 
     for i in range(len(available_dtds)):
         times = [0.001, 0.04, 0.1, 0.4, 9.] + list(np.random.rand(5)) + list(np.random.rand(5) * 9)
