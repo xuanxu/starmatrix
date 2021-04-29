@@ -4,6 +4,10 @@
 Changelog
 =========
 
+1.5.1 (2021-04-29)
+==================
+- New DTD option: Chen, X. et al. 2021
+
 1.5.0 (2021-04-20)
 ==================
 - Drop support for Python 3.6 (updating Numpy to >1.20)
