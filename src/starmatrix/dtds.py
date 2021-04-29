@@ -18,7 +18,8 @@ def select_dtd(option):
         "rlp": dtd_ruiz_lapuente,
         "maoz": dtd_maoz_graur,
         "castrillo": dtd_castrillo,
-        "greggio": dtd_greggio
+        "greggio": dtd_greggio,
+        "chen": dtd_chen
     }
     return dtds[option]
 
@@ -112,3 +113,19 @@ def dtd_greggio(t):
 
     # Normalization
     return dtd * 0.524563739
+
+
+def dtd_chen(t):
+    """
+    Delay Time Distribution (DTD) from Chen, Hu and Wang, 2021, ApJ
+
+    """
+    if t <= 0.12:
+      return 0.0
+
+    dtd = math.pow(t, -1.41)
+
+    # Normalization using 1.03e-3 SN/M* as Hubble-time-integrated production efficiency SN/Mo
+    rate = 2.072e-4  # [SN / Yr / M*]
+
+    return rate * dtd

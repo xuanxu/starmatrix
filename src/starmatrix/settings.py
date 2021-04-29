@@ -33,7 +33,7 @@ default = {
 
 valid_values = {
     "imf": ["salpeter", "starburst", "chabrier", "ferrini", "kroupa", "miller_scalo", "maschberger"],
-    "dtd_sn": ["rlp", "maoz", "castrillo", "greggio"],
+    "dtd_sn": ["rlp", "maoz", "castrillo", "greggio", "chen"],
     "sn_yields": ["iwa1998",
                   "sei2013",
                   "ln2020",
