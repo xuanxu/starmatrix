@@ -81,6 +81,12 @@ The ``dtd_sn`` param in the config file can be set to use any of the available D
 :castrillo: DTD of Type Ia supernovae from Castrillo et al. (2020)
 :greggio: DTD of Type Ia supernovae from Greggio, L. (2005)
 :chen: DTD of Type Ia supernovae from Chen et al. (2021)
+:greggio-CDD04: DTD from model Close DD 0.4 Gyrs from Greggio, L. (2005)
+:greggio-CDD1: DTD from model Close DD 1 Gyr from Greggio, L. (2005)
+:greggio-WDD04: DTD from model Wide DD 0.4 Gyrs from Greggio, L. (2005)
+:greggio-WDD1: DTD from model Wide DD 1 Gyr from Greggio, L. (2005)
+:greggio-SDCH: DTD from model SD Chandra from Greggio, L. (2005)
+:greggio-SDSCH: DTD from model SD sub-Chandra from Greggio, L. (2005)
 
 Supernovae yields
 -----------------
