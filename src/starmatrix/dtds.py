@@ -19,6 +19,12 @@ def select_dtd(option):
         "maoz": dtd_maoz_graur,
         "castrillo": dtd_castrillo,
         "greggio": dtd_greggio,
+        "greggio-CDD04": dtd_close_dd_04,
+        "greggio-CDD1": dtd_close_dd_1,
+        "greggio-WDD04": dtd_wide_dd_04,
+        "greggio-WDD1": dtd_wide_dd_1,
+        "greggio-SDCH": dtd_sd_chandra,
+        "greggio-SDSCH": dtd_sd_subchandra,
         "chen": dtd_chen
     }
     return dtds[option]
@@ -113,6 +119,122 @@ def dtd_greggio(t):
 
     # Normalization
     return dtd * 0.524563739
+
+
+def dtd_close_dd_04(t):
+    """
+    Delay Time Distribution (DTD) from Laura Greggio, A&A 441, 1055–1078 (2005)
+    Model Close Double Degenerate 0.4 Gyrs
+
+    """
+    logt = math.log10(t) + 9
+    if logt < 7.657:
+        dtd = 0
+    elif 7.657 <= logt < 8.6:
+        dtd = -0.8373*(logt**2) + 13.217*logt - 51.878
+    else:
+        dtd = 10.914 - 1.29964*logt
+
+    # Normalization
+    return dtd * 1.005391  # 10^2.335e-3
+
+
+def dtd_close_dd_1(t):
+    """
+    Delay Time Distribution (DTD) from Laura Greggio, A&A 441, 1055–1078 (2005)
+    Model Close Double Degenerate 1 Gyr
+
+    """
+    logt = math.log10(t) + 9
+
+    if logt < 6.32:
+        dtd = 0
+    elif 6.32 <= logt < 7.9:
+        dtd = 4.68e-3 + 4.86e-2*(logt-6.32)
+    elif 7.9 <= logt < 8.987:
+        dtd = 4.117 - 0.5092*logt
+    elif 8.987 <= logt < 9.15:
+        dtd = -2.2167e4*(logt**5) + 1.0075e6*(logt**4) - 1.8317e7*(logt**3) + 1.6651e8*(logt**2) - 7.5677e8*logt + 1.3758e9
+    else:
+        dtd = 8.8761 - 1.0656*logt
+
+    # Normalization
+    return dtd * 1.00148  # 10^6.423e-4
+
+
+def dtd_wide_dd_04(t):
+    """
+    Delay Time Distribution (DTD) from Laura Greggio, A&A 441, 1055–1078 (2005)
+    Model Wide Double Degenerate 0.4 Gyrs
+
+    """
+    logt = math.log10(t) + 9
+    if logt < 7.5:
+        dtd = 0
+    elif 7.5 <= logt < 8.746:
+        dtd = -1.1944*(logt**4) + 37.543*(logt**3) - 442.49*(logt**2) + 2318*logt - 455.6
+    else:
+        dtd = -0.8223*logt + 6.6439
+
+    # Normalization
+    return dtd * 1.00695  # 10^3.011e-3
+
+
+def dtd_wide_dd_1(t):
+    """
+    Delay Time Distribution (DTD) from Laura Greggio, A&A 441, 1055–1078 (2005)
+    Model Wide Double Degenerate 1 Gyr
+
+    """
+    logt = math.log10(t) + 9
+    if logt < 7.69:
+        dtd = 0
+    elif 7.69 <= logt < 8.99:
+        dtd = -0.0337*(logt**4) + 1.119*(logt**3) + 81.827*logt - 179.83
+    else:
+        dtd = 1.2853*(logt**4) - 49.722*(logt**3) + 721.22*(logt**2) - 46.495*logt + 11241
+
+    # Normalization
+    return dtd * 1.01213  # 10^5.238e-3
+
+
+def dtd_sd_chandra(t):
+    """
+    Delay Time Distribution (DTD) from Laura Greggio, A&A 441, 1055–1078 (2005)
+    Model Single Degenerate Chandra Mass
+
+    """
+    logt = math.log10(t) + 9
+
+    if logt < 7.89:
+        dtd = 0
+    elif 7.89 <= logt < 9.1:
+        dtd = -0.0869*(logt**3) + 1.9168*(logt**2) - 14.187*logt + 35.319
+    elif 9.1 <= logt < 9.89:
+        dtd = -1.7291*logt + 15.144
+    else:
+        dtd = -5.1962*logt + 49.362
+
+    # Normalization
+    return dtd * 1.00225  # 10^9.796e-4
+
+
+def dtd_sd_subchandra(t):
+    """
+    Delay Time Distribution (DTD) from Laura Greggio, A&A 441, 1055–1078 (2005)
+    Model Single Degenerate Sub-Chandra Mass
+
+    """
+    logt = math.log10(t) + 9
+    if logt < 7.60:
+        dtd = 0
+    elif 7.60 <= logt < 8.58:
+        dtd = 0.2564*(logt**3) - 6.8315*(logt**2) + 59.975*logt - 173.57
+    else:
+        dtd = -1.7322*logt + 14.841
+
+    # Normalization
+    return dtd * 1.001875  # 10^8.139e-4
 
 
 def dtd_chen(t):
