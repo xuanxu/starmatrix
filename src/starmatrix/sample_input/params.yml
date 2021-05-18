@@ -48,6 +48,12 @@
 #            castrillo = DTD from Castrillo et al. 2020
 #            greggio = DTD from Greggio, L. 2005
 #            chen = DTD from Chen et al. 2021
+#            greggio-CDD04 = DTD from model Close DD 0.4 Gyrs from Greggio, L. (2005)
+#            greggio-CDD1 = DTD from model Close DD 1 Gyr from Greggio, L. (2005)
+#            greggio-WDD04 = DTD from model Wide DD 0.4 Gyrs from Greggio, L. (2005)
+#            greggio-WDD1 = DTD from model Wide DD 1 Gyr from Greggio, L. (2005)
+#            greggio-SDCH = DTD from model SD Chandra from Greggio, L. (2005)
+#            greggio-SDSCH = DTD from model SD sub-Chandra from Greggio, L. (2005)
 #          ]
 
 # sn_yields = [
