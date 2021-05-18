@@ -4,6 +4,17 @@
 Changelog
 =========
 
+1.5.2 (2021-05-18)
+==================
+- Added six new DTDs options from Greggio, L. (2005):
+
+  - Close Double Degenerate 0.4 Gyrs
+  - Close Double Degenerate 1 Gyr
+  - Wide Double Degenerate 0.4 Gyrs
+  - Wide Double Degenerate 1 Gyr
+  - Single Degenerate Chandra mass
+  - Single Degenerate sub-Chandra mass
+
 1.5.1 (2021-04-29)
 ==================
 - New DTD option: Chen, X. et al. 2021
