@@ -34,7 +34,7 @@ def test_select_dtd(available_dtds):
             dtd_close_dd_04, dtd_close_dd_1, dtd_wide_dd_04, dtd_wide_dd_1, dtd_sd_chandra, dtd_sd_subchandra]
 
     for i in range(len(available_dtds)):
-        times = [0.001, 0.04, 0.1, 0.4, 2, 9.] + list(np.random.rand(5)) + list(np.random.rand(5) * 9)
+        times = [0, 0.001, 0.04, 0.1, 0.4, 2, 9.] + list(np.random.rand(5)) + list(np.random.rand(5) * 9)
         for time in times:
             assert select_dtd(available_dtds[i])(time) == dtds[i](time)
 
