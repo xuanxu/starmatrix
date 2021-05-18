@@ -43,6 +43,12 @@ def test_no_negative_time_values():
     t = -1
     assert dtd_ruiz_lapuente(t) == 0.0
     assert dtd_maoz_graur(t) == 0.0
+    assert dtd_close_dd_04(t) == 0.0
+    assert dtd_close_dd_1(t) == 0.0
+    assert dtd_wide_dd_04(t) == 0.0
+    assert dtd_wide_dd_1(t) == 0.0
+    assert dtd_sd_chandra(t) == 0.0
+    assert dtd_sd_subchandra(t) == 0.0
 
 
 def test_dtd_correction_factor():
