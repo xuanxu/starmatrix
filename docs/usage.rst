@@ -29,6 +29,7 @@ This is the list of all Starmatrix modules::
     starmatrix.constants
     starmatrix.dtds
     starmatrix.elements
+    starmatrix.supernovae
     starmatrix.functions
     starmatrix.imfs
     starmatrix.matrix
