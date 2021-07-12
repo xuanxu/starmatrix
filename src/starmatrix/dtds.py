@@ -144,7 +144,7 @@ def dtd_close_dd_04(t):
     dtd = math.pow(10, log_dtd)
 
     # Normalization using 1.03e-3 SN/M* as Hubble-time-integrated production efficiency SN/Mo
-    return dtd * 2.335e-3
+    return dtd * 1.059e-3
 
 
 def dtd_close_dd_1(t):
@@ -172,7 +172,7 @@ def dtd_close_dd_1(t):
     dtd = math.pow(10, log_dtd)
 
     # Normalization using 1.03e-3 SN/M* as Hubble-time-integrated production efficiency SN/Mo
-    return dtd * 6.423e-4
+    return dtd * 1.0777e-3
 
 
 def dtd_wide_dd_04(t):
@@ -195,7 +195,7 @@ def dtd_wide_dd_04(t):
     dtd = math.pow(10, log_dtd)
 
     # Normalization using 1.03e-3 SN/M* as Hubble-time-integrated production efficiency SN/Mo
-    return dtd * 3.011e-3
+    return dtd * 9.92088e-4
 
 
 def dtd_wide_dd_1(t):
@@ -218,7 +218,7 @@ def dtd_wide_dd_1(t):
     dtd = math.pow(10, log_dtd)
 
     # Normalization using 1.03e-3 SN/M* as Hubble-time-integrated production efficiency SN/Mo
-    return dtd * 5.238e-3
+    return dtd * 4.277e-4
 
 
 def dtd_sd_chandra(t):
@@ -244,7 +244,7 @@ def dtd_sd_chandra(t):
     dtd = math.pow(10, log_dtd)
 
     # Normalization using 1.03e-3 SN/M* as Hubble-time-integrated production efficiency SN/Mo
-    return dtd * 9.796e-4
+    return dtd * 1.06474e-3
 
 
 def dtd_sd_subchandra(t):
@@ -267,7 +267,7 @@ def dtd_sd_subchandra(t):
     dtd = math.pow(10, log_dtd)
 
     # Normalization using 1.03e-3 SN/M* as Hubble-time-integrated production efficiency SN/Mo
-    return dtd * 8.139e-4
+    return dtd * 1.0354e-3
 
 
 def dtd_chen(t):
@@ -281,6 +281,6 @@ def dtd_chen(t):
     dtd = math.pow(t, -1.41)
 
     # Normalization using 1.03e-3 SN/M* as Hubble-time-integrated production efficiency SN/Mo
-    rate = 2.072e-4  # [SN / Yr / M*]
+    rate = 2.069e-4  # [SN / Yr / M*]
 
     return rate * dtd
