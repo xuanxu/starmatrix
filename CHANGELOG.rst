@@ -4,6 +4,10 @@
 Changelog
 =========
 
+1.5.3 (2021-07-14)
+==================
+- Better normalization rates and fits for Greggio DTDs
+
 1.5.2 (2021-05-18)
 ==================
 - Added six new DTDs options from Greggio, L. (2005):
