@@ -109,15 +109,15 @@ def dtd_greggio(t):
         return 0.0
 
     logt = math.log10(t) + 9
-    if logt < 7.5:
+    if logt < 7.45:
         dtd = 0
-    elif 7.5 <= logt < 7.735:
+    elif 7.45 <= logt <= 7.735:
         dtd = (0.00215/(7.776-7.516)) * (logt-7.50)
-    elif 7.735 <= logt < 8.55:
+    elif 7.735 < logt <= 8.55:
         dtd = 0.003335 * math.exp(((-0.5 * (logt-8.22))/0.47) ** 2)
-    elif 8.55 <= logt < 8.61:
+    elif 8.55 < logt <= 8.61:
         dtd = 0.002618 - ((0.002618-0.001129)/(8.6398-8.55)) * (logt-8.55)
-    else:
+    elif 8.61 < logt:
         dtd = math.pow(10, ((-1.0615 * logt) + 6))
 
     # Normalization
@@ -138,8 +138,8 @@ def dtd_close_dd_04(t):
         log_dtd = -20
     elif 7.657 <= logt < 8.6:
         log_dtd = -0.8373*(logt**2) + 13.217*logt - 51.878
-    else:
-        log_dtd = 10.914 - 1.29964*logt
+    elif 8.6 <= logt:
+        log_dtd = 10.914 - 1.2964*logt
 
     dtd = math.pow(10, log_dtd)
 
@@ -164,15 +164,15 @@ def dtd_close_dd_1(t):
         log_dtd = 4.68e-3 + 4.86e-2*(logt-6.32)
     elif 7.9 <= logt < 8.987:
         log_dtd = 4.117 - 0.5092*logt
-    elif 8.987 <= logt < 9.15:
-        log_dtd = -97.154*(logt**3) + 2653.4456*(logt**2) - 24157.978*logt + 73317.501
-    else:
+    elif 8.987 <= logt < 9.16:
+        log_dtd = -97.15408482273*(logt**3) + 2653.445666247*(logt**2) - 24157.97809549*logt + 73317.50108578
+    elif 9.16 <= logt:
         log_dtd = 8.8761 - 1.0656*logt
 
     dtd = math.pow(10, log_dtd)
 
     # Normalization using 1.03e-3 SN/M* as Hubble-time-integrated production efficiency SN/Mo
-    return dtd * 1.0777e-3
+    return dtd * 9.8400244741154628e-4
 
 
 def dtd_wide_dd_04(t):
@@ -188,8 +188,8 @@ def dtd_wide_dd_04(t):
     if logt < 7.5:
         log_dtd = -20
     elif 7.5 <= logt < 8.746:
-        log_dtd = -1.1944*(logt**4) + 37.543*(logt**3) - 442.49*(logt**2) + 2318*logt - 4555.6
-    else:
+        log_dtd = -1.194384*(logt**4) + 37.542520*(logt**3) - 442.490023*(logt**2) + 2318.164371*logt - 4555.628418
+    elif 8.746 <= logt:
         log_dtd = -0.8223*logt + 6.6439
 
     dtd = math.pow(10, log_dtd)
@@ -211,14 +211,14 @@ def dtd_wide_dd_1(t):
     if logt < 7.69:
         log_dtd = -20
     elif 7.69 <= logt < 8.99:
-        log_dtd = 0.1305*(logt**4) - 4.2953*(logt**3) + 52.6877*(logt**2) - 285.3629*logt + 575.189
-    else:
-        log_dtd = 1.2853*(logt**4) - 49.722*(logt**3) + 721.22*(logt**2) - 4649.52*logt + 11241.15
+        log_dtd = 0.1305*(logt**4) - 4.295277*(logt**3) + 52.687732*(logt**2) - 285.362875*logt + 575.188754
+    elif 8.99 <= logt:
+        log_dtd = 1.061260*(logt**4) - 41.103454*(logt**3) + 596.908266*(logt**2) - 3852.941647*logt + 9327.789697
 
     dtd = math.pow(10, log_dtd)
 
     # Normalization using 1.03e-3 SN/M* as Hubble-time-integrated production efficiency SN/Mo
-    return dtd * 4.277e-4
+    return dtd * 1.1169615977359982e-3
 
 
 def dtd_sd_chandra(t):
@@ -238,13 +238,13 @@ def dtd_sd_chandra(t):
         log_dtd = -0.0869*(logt**3) + 1.9168*(logt**2) - 14.187*logt + 35.319
     elif 9.1 <= logt < 9.89:
         log_dtd = -1.7291*logt + 15.144
-    else:
+    elif 9.89 <= logt:
         log_dtd = -5.1962*logt + 49.362
 
     dtd = math.pow(10, log_dtd)
 
     # Normalization using 1.03e-3 SN/M* as Hubble-time-integrated production efficiency SN/Mo
-    return dtd * 1.06474e-3
+    return dtd * 1.064741165931863e-3
 
 
 def dtd_sd_subchandra(t):
@@ -261,13 +261,13 @@ def dtd_sd_subchandra(t):
         log_dtd = -20
     elif 7.60 <= logt < 8.58:
         log_dtd = 0.2564*(logt**3) - 6.8315*(logt**2) + 59.975*logt - 173.57
-    else:
-        log_dtd = -1.7322*logt + 14.841
+    elif 8.58 <= logt:
+        log_dtd = -1.733*logt + 14.852
 
     dtd = math.pow(10, log_dtd)
 
     # Normalization using 1.03e-3 SN/M* as Hubble-time-integrated production efficiency SN/Mo
-    return dtd * 1.0354e-3
+    return dtd * 1.03540652488714e-3
 
 
 def dtd_chen(t):
