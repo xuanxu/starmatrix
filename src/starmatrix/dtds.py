@@ -325,7 +325,7 @@ class Strolger:
     def term_2_f(self, t_prime):
         return math.exp(-math.pow(t_prime, 2)/2)
 
-    @lru_cache
+    @lru_cache(maxsize=128)
     def normalization_rate(self):
         return self.efficiency() / self.phi_integrated()
 
