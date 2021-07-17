@@ -7,10 +7,14 @@ Contains some predefined DTDs from different papers/authors:
 * Maoz & Graur (2017)
 * Castrillo et al (2020)
 * Greggio, L. (2005)
+* Strolger et al. (2020)
 
 """
 
 import math
+import scipy.integrate
+import starmatrix.constants as constants
+from functools import lru_cache
 
 
 def select_dtd(option):
@@ -25,7 +29,12 @@ def select_dtd(option):
         "greggio-WDD1": dtd_wide_dd_1,
         "greggio-SDCH": dtd_sd_chandra,
         "greggio-SDSCH": dtd_sd_subchandra,
-        "chen": dtd_chen
+        "chen": dtd_chen,
+        "strolger-fit1": dtds_strolger["fit_1"],
+        "strolger-fit2": dtds_strolger["fit_2"],
+        "strolger-fit3": dtds_strolger["fit_3"],
+        "strolger-fit4": dtds_strolger["fit_4"],
+        "strolger-optimized": dtds_strolger["optimized"],
     }
     return dtds[option]
 
@@ -284,3 +293,57 @@ def dtd_chen(t):
     rate = 2.069e-4  # [SN / Yr / M*]
 
     return rate * dtd
+
+
+class Strolger:
+    def __init__(self, psi, omega, alpha):
+        self.psi = psi
+        self.omega = omega
+        self.alpha = alpha
+
+    def description(self):
+        return ("Delay Time Distributions (DTDs) from Strolger et al, "
+                "The Astrophysical Journal, 2020, 890, 2. "
+                "DOI: 10.3847/1538-4357/ab6a97")
+
+    def phi(self, t_gyrs):
+        t_myrs = t_gyrs * 1e3
+
+        u = t_myrs - self.psi
+        term_1 = (1/(self.omega * math.pi)) * math.exp((-(u**2))/(2*(self.omega**2)))
+
+        t_low = -math.inf
+        t_up = self.alpha*(u/self.omega)
+
+        if 12 < t_up:
+            term_2 = 2 * scipy.integrate.quad(self.term_2_f, t_low, 0)[0]
+        else:
+            term_2 = scipy.integrate.quad(self.term_2_f, t_low, t_up)[0]
+
+        return term_1 * term_2
+
+    def term_2_f(self, t_prime):
+        return math.exp(-math.pow(t_prime, 2)/2)
+
+    @lru_cache
+    def normalization_rate(self):
+        return self.efficiency() / self.phi_integrated()
+
+    def efficiency(self):
+        # SN/M* as Hubble-time-integrated production efficiency SN/Mo
+        return 1.03e-3
+
+    def phi_integrated(self):
+        return scipy.integrate.quad(self.phi, 0, constants.TOTAL_TIME)[0]
+
+    def at_time(self, t):
+        return self.normalization_rate() * self.phi(t)
+
+
+dtds_strolger = {
+    "fit_1": Strolger(10, 600, 220).at_time,
+    "fit_2": Strolger(110, 1000, 2).at_time,
+    "fit_3": Strolger(350, 1200, 20).at_time,
+    "fit_4": Strolger(6000, 6000, -2).at_time,
+    "optimized": Strolger(-1518, 51, 50).at_time,
+}

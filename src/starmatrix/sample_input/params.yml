@@ -54,6 +54,11 @@
 #            greggio-WDD1 = DTD from model Wide DD 1 Gyr from Greggio, L. (2005)
 #            greggio-SDCH = DTD from model SD Chandra from Greggio, L. (2005)
 #            greggio-SDSCH = DTD from model SD sub-Chandra from Greggio, L. (2005)
+#            strolger-fit1 = Phi from Strolger et al (2020) with (ξ, ω, 𝛼) = (10, 600, 220)
+#            strolger-fit2 = Phi from Strolger et al (2020) with (ξ, ω, 𝛼) = (110, 1000, 2)
+#            strolger-fit3 = Phi from Strolger et al (2020) with (ξ, ω, 𝛼) = (350, 1200, 20)
+#            strolger-fit4 = Phi from Strolger et al (2020) with (ξ, ω, 𝛼) = (6000, 6000, -2)
+#            strolger-optimized = Phi from Strolger et al (2020) with (ξ, ω, 𝛼) = (-1518, 51, 50)
 #          ]
 
 # sn_yields = [

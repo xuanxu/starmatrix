@@ -4,6 +4,12 @@
 Changelog
 =========
 
+
+1.6.0 (unreleased)
+==================
+- Added Phi function from Strolger et al (2020)
+
+
 1.5.3 (2021-07-14)
 ==================
 - Better normalization rates and fits for Greggio DTDs
