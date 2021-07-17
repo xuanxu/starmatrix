@@ -141,6 +141,11 @@ The ``dtd_sn`` param in the config file can be set to use any of the available D
 :greggio-WDD1: DTD from model Wide DD 1 Gyr from Greggio, L. (2005)
 :greggio-SDCH: DTD from model SD Chandra from Greggio, L. (2005)
 :greggio-SDSCH: DTD from model SD sub-Chandra from Greggio, L. (2005)
+:strolger-fit1: Phi function from Strolger et al (2020) with (ξ, ω, 𝛼) = (10, 600, 220)
+:strolger-fit2: Phi function from Strolger et al (2020) with (ξ, ω, 𝛼) = (110, 1000, 2)
+:strolger-fit3: Phi function from Strolger et al (2020) with (ξ, ω, 𝛼) = (350, 1200, 20)
+:strolger-fit4: Phi function from Strolger et al (2020) with (ξ, ω, 𝛼) = (6000, 6000, -2)
+:strolger-optimized: Phi function from Strolger et al (2020) with (ξ, ω, 𝛼) = (-1518, 51, 50)
 
 Supernovae yields
 -----------------
@@ -215,3 +220,4 @@ Starmatrix is built upon a long list of previous works from different authors/pa
 * *Gronow, S. et al.*, 2021, A&A
 * *Mori, K. et al.*, 2018, ApJ, 863:176
 * *Chen, X., Hu, L. & Wang, L.*, 2021, ApJ
+* *Strolger et al*, 2020, ApJ, Vol 890, 2. doi: 10.3847/1538-4357/ab6a97

@@ -36,6 +36,7 @@ Starmatrix is built upon a long list of previous works from different authors/pa
 * *Leung & Nomoto*, 2018, ApJ, Vol 861, Issue 2, Id 143
 * *Leung & Nomoto*, 2020, ApJ, Vol 888, Issue 2, Id 80
 * *Chen, X., Hu, L. & Wang, L.*, 2021, ApJ
+* *Strolger et al*, 2020, ApJ, Vol 890, 2. doi: 10.3847/1538-4357/ab6a97
 
 License
 -------

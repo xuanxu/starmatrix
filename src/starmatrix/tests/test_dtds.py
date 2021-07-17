@@ -14,6 +14,7 @@ from starmatrix.dtds import dtd_wide_dd_1
 from starmatrix.dtds import dtd_sd_chandra
 from starmatrix.dtds import dtd_sd_subchandra
 from starmatrix.dtds import dtd_chen
+from starmatrix.dtds import dtds_strolger
 
 
 @pytest.fixture
@@ -31,10 +32,13 @@ def test_dtds_presence(available_dtds):
 
 def test_select_dtd(available_dtds):
     dtds = [dtd_ruiz_lapuente, dtd_maoz_graur, dtd_castrillo, dtd_greggio, dtd_chen,
-            dtd_close_dd_04, dtd_close_dd_1, dtd_wide_dd_04, dtd_wide_dd_1, dtd_sd_chandra, dtd_sd_subchandra]
+            dtd_close_dd_04, dtd_close_dd_1, dtd_wide_dd_04, dtd_wide_dd_1, dtd_sd_chandra, dtd_sd_subchandra,
+            dtds_strolger["fit_1"], dtds_strolger["fit_2"], dtds_strolger["fit_3"], dtds_strolger["fit_4"], dtds_strolger["optimized"]]
+
+    assert len(available_dtds) == len(dtds)
 
     for i in range(len(available_dtds)):
-        times = [0, 0.001, 0.04, 0.1, 0.4, 2, 9.] + list(np.random.rand(5)) + list(np.random.rand(5) * 9)
+        times = [0, 0.001, 0.04, 0.1, 0.4, 1, 2, 9.] + list(np.random.rand(5)) + list(np.random.rand(5) * 9)
         for time in times:
             assert select_dtd(available_dtds[i])(time) == dtds[i](time)
 
