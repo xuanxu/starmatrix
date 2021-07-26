@@ -5,6 +5,11 @@ Changelog
 =========
 
 
+1.6.1 (2021-07-26)
+==================
+- Updated DTD fits
+
+
 1.6.0 (2021-07-17)
 ==================
 - Added 5 new DTDs based on fits using the Phi function from *Strolger et al 2020*
