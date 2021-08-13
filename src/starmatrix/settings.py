@@ -35,7 +35,7 @@ valid_values = {
     "imf": ["salpeter", "starburst", "chabrier", "ferrini", "kroupa", "miller_scalo", "maschberger"],
     "dtd_sn": ["rlp", "maoz", "castrillo", "greggio", "chen", "greggio-CDD04", "greggio-CDD1",
                "greggio-WDD04", "greggio-WDD1", "greggio-SDCH", "greggio-SDSCH",
-               "strolger-fit1", "strolger-fit2", "strolger-fit3", "strolger-fit4", "strolger-optimized"],
+               "strolger-fit1", "strolger-fit2", "strolger-fit3", "strolger-fit4", "strolger-fit5", "strolger-optimized"],
     "sn_yields": ["iwa1998",
                   "sei2013",
                   "ln2020",

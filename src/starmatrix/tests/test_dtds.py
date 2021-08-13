@@ -33,7 +33,8 @@ def test_dtds_presence(available_dtds):
 def test_select_dtd(available_dtds):
     dtds = [dtd_ruiz_lapuente, dtd_maoz_graur, dtd_castrillo, dtd_greggio, dtd_chen,
             dtd_close_dd_04, dtd_close_dd_1, dtd_wide_dd_04, dtd_wide_dd_1, dtd_sd_chandra, dtd_sd_subchandra,
-            dtds_strolger["fit_1"], dtds_strolger["fit_2"], dtds_strolger["fit_3"], dtds_strolger["fit_4"], dtds_strolger["optimized"]]
+            dtds_strolger["fit_1"], dtds_strolger["fit_2"], dtds_strolger["fit_3"], dtds_strolger["fit_4"],
+            dtds_strolger["fit_5"], dtds_strolger["optimized"]]
 
     assert len(available_dtds) == len(dtds)
 

@@ -34,6 +34,7 @@ def select_dtd(option):
         "strolger-fit2": dtds_strolger["fit_2"],
         "strolger-fit3": dtds_strolger["fit_3"],
         "strolger-fit4": dtds_strolger["fit_4"],
+        "strolger-fit5": dtds_strolger["fit_5"],
         "strolger-optimized": dtds_strolger["optimized"],
     }
     return dtds[option]
@@ -345,5 +346,6 @@ dtds_strolger = {
     "fit_2": Strolger(110, 1000, 2).at_time,
     "fit_3": Strolger(350, 1200, 20).at_time,
     "fit_4": Strolger(6000, 6000, -2).at_time,
+    "fit_5": Strolger(-650, 2200, 1100).at_time,
     "optimized": Strolger(-1518, 51, 50).at_time,
 }
