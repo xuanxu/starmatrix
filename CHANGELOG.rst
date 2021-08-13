@@ -5,6 +5,11 @@ Changelog
 =========
 
 
+1.6.2 (2021-08-13)
+==================
+- New DTD fit using Strolger's Phi
+
+
 1.6.1 (2021-07-26)
 ==================
 - Updated DTD fits
