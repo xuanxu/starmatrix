@@ -145,6 +145,7 @@ The ``dtd_sn`` param in the config file can be set to use any of the available D
 :strolger-fit2: Phi function from Strolger et al (2020) with (ξ, ω, 𝛼) = (110, 1000, 2)
 :strolger-fit3: Phi function from Strolger et al (2020) with (ξ, ω, 𝛼) = (350, 1200, 20)
 :strolger-fit4: Phi function from Strolger et al (2020) with (ξ, ω, 𝛼) = (6000, 6000, -2)
+:strolger-fit5: Phi function from Strolger et al (2020) with (ξ, ω, 𝛼) = (-650, 2200, 1100)
 :strolger-optimized: Phi function from Strolger et al (2020) with (ξ, ω, 𝛼) = (-1518, 51, 50)
 
 Supernovae yields
