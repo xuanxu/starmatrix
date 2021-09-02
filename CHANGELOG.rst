@@ -4,21 +4,21 @@
 Changelog
 =========
 
+1.6.3 (2021-09-02)
+==================
+- Updated Gronow data: each model is now a double detonation (He + Core)
 
 1.6.2 (2021-08-13)
 ==================
 - New DTD fit using Strolger's Phi
 
-
 1.6.1 (2021-07-26)
 ==================
 - Updated DTD fits
 
-
 1.6.0 (2021-07-17)
 ==================
 - Added 5 new DTDs based on fits using the Phi function from *Strolger et al 2020*
-
 
 1.5.3 (2021-07-14)
 ==================
