@@ -154,8 +154,8 @@ def test_yields_from_bravo_2019():
 
 def test_yields_from_gronow_2021():
     gronow_sources = [
-        sn.yields_from_gronow_2021_table3_he,
-        sn.yields_from_gronow_2021_table3_core
+        sn.yields_from_gronow_2021_tables_3_A10,
+        sn.yields_from_gronow_2021_tables_4_A8
     ]
 
     for gronow_dataset in gronow_sources:

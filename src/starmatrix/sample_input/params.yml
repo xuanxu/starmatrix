@@ -71,8 +71,8 @@
 #            ln2020 = SN yields from Leung & Nomoto 2020
 #            br2019-1 = SN yields from Bravo et al 2019 table 3
 #            br2019-2 = SN yields from Bravo et al 2019 table 4
-#            gro2021-1 = SN yields from Gronow et al 2021 table 3 He detonation
-#            gro2021-2 = SN yields from Gronow et al 2021 table 3 Core detonation
+#            gro2021-1 = SN yields from Gronow et al 2021 tables 3+A10
+#            gro2021-2 = SN yields from Gronow et al 2021 tables 4+A8
 #            mor2018-1 = SN yields from Mori et al 2018 model W7
 #            mor2018-2 = SN yields from Mori et al 2018 model WDD2
 #          ]
