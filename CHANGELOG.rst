@@ -4,6 +4,10 @@
 Changelog
 =========
 
+1.6.4 (2021-11-22)
+==================
+- Tweak Chabrier IMF
+
 1.6.3 (2021-09-02)
 ==================
 - Updated Gronow data: each model is now a double detonation (He + Core)
