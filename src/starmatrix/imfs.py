@@ -142,7 +142,7 @@ class Chabrier(IMF):
         if m <= 1:
             return 0.086*math.exp(-((math.log10(m) - math.log10(0.22))**2)/(2*(0.57**2)))
         else:
-            return m*0.043*(m**-2.35)
+            return m*0.0443*(m**(-2.3))
 
     def description(self):
         return "IMF from Chabrier 2003"
