@@ -143,6 +143,9 @@ Structure of each row should be:
 
 This data will be used internally to interpolate/extrapolate values for all the mass range of the model.
 
+There is a special case: When using the combination of yields from Cristallo et al. 2011 (for low mass stars) + Limongi & Chieffi 2012 (for massive stars)
+data needs to be corrected because for non solar metalicities they don't follow solar scale. Starmatrix will perform this correction automatically if the name of the file with the ejected data includes 'CRI-LIM' or 'CRI_LIM'.
+
 Yield corrections
 -----------------
 
