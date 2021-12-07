@@ -12,7 +12,7 @@ from starmatrix.functions import max_mass_allowed
 default = {
     "z": 0.02,
     "sol_ab": "as09",
-    "imf": "kroupa",
+    "imf": "kroupa2002",
     "imf_alpha": 2.35,
     "imf_m_low": 0.15,
     "imf_m_up": 100,
@@ -32,7 +32,7 @@ default = {
 }
 
 valid_values = {
-    "imf": ["salpeter", "starburst", "chabrier", "ferrini", "kroupa", "miller_scalo", "maschberger"],
+    "imf": ["salpeter", "starburst", "chabrier", "ferrini", "kroupa2001", "kroupa2002", "miller_scalo", "maschberger"],
     "dtd_sn": ["rlp", "maoz", "castrillo", "greggio", "chen", "greggio-CDD04", "greggio-CDD1",
                "greggio-WDD04", "greggio-WDD1", "greggio-SDCH", "greggio-SDSCH",
                "strolger-fit1", "strolger-fit2", "strolger-fit3", "strolger-fit4", "strolger-fit5", "strolger-optimized"],

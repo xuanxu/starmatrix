@@ -7,7 +7,7 @@ Contains some predefined IMFs from different papers/authors:
 * Miller & Scalo 1979
 * Ferrini, Palla & Penco 1998
 * Starburst 1999
-* Kroupa 2002
+* Kroupa 2001 & 2002
 * Chabrier 2003
 * Maschberger 2012
 
@@ -25,7 +25,8 @@ def select_imf(name, params={}):
         "starburst": Starburst,
         "chabrier": Chabrier,
         "ferrini": Ferrini,
-        "kroupa": Kroupa,
+        "kroupa2002": Kroupa2002,
+        "kroupa2001": Kroupa2001,
         "miller_scalo": MillerScalo,
         "maschberger": Maschberger
     }
@@ -120,7 +121,7 @@ class Ferrini(IMF):
         return "IMF Ferrini, Palla & Penco 1998"
 
 
-class Kroupa(IMF):
+class Kroupa2002(IMF):
     def m_phi(self, m):
         if 0.015 <= m < 0.08:
             return m * (m ** -0.35)
@@ -135,6 +136,21 @@ class Kroupa(IMF):
 
     def description(self):
         return "IMF from Kroupa 2002"
+
+
+class Kroupa2001(IMF):
+    def m_phi(self, m):
+        if 0.015 <= m < 0.08:
+            return m * (m ** -0.35)
+        elif 0.08 <= m < 0.5:
+            return m * 0.08 * (m ** -1.3)
+        elif 0.5 <= m:
+            return m * 0.04 * (m ** -2.3)
+        else:
+            return 0
+
+    def description(self):
+        return "IMF from Kroupa 2001"
 
 
 class Chabrier(IMF):

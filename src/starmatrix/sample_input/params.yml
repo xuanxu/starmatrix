@@ -1,7 +1,7 @@
 # All configurable parameters:
 # z                           -> Metallicity. Default value: 0.02
 # sol_ab                      -> Solar abundances data (*). Default value: as09
-# imf                         -> Initial Mass function to use (*). Default value: kroupa
+# imf                         -> Initial Mass function to use (*). Default value: kroupa2002
 # imf_alpha                   -> If IMF is salpeter/starburst, this extra param is needed. Defaults to 2.35
 # imf_m_low                   -> Lower limit (in solar masses) for the IMF. Default value: 0.15
 # imf_m_up                    -> Upper limit (in solar masses) for the IMF. Default value: 100
@@ -28,7 +28,8 @@
 #         starburst    = Starburst 1999 (special case of Salpeter in [1, 120])
 #         chabrier     = Chabrier 2003
 #         ferrini      = Ferrini, Palla & Penco 1998
-#         kroupa       = Kroupa 2002 (default)
+#         kroupa2001   = Kroupa 2001
+#         kroupa2002   = Kroupa 2002 (default)
 #         miller_scalo = Miller & Scalo 1979
 #         maschberger  = Maschberger 2012
 #       ]
@@ -79,7 +80,7 @@
 
 z: 0.02
 sol_ab: as09
-imf: kroupa
+imf: kroupa2002
 m_max: 40.0
 dtd_sn: rlp
 expelled_elements_filename: ejections.dat

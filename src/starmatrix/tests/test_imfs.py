@@ -3,7 +3,7 @@ import math
 import numpy as np
 import starmatrix.settings as settings
 from starmatrix.imfs import select_imf, IMF
-from starmatrix.imfs import Salpeter, Starburst, Chabrier, Ferrini, Kroupa, MillerScalo, Maschberger
+from starmatrix.imfs import Salpeter, Starburst, Chabrier, Ferrini, Kroupa2001, Kroupa2002, MillerScalo, Maschberger
 
 
 @pytest.fixture
@@ -15,8 +15,8 @@ def available_imfs():
 
 
 def test_select_imf():
-    strings = ["salpeter", "starburst", "chabrier", "ferrini", "kroupa", "miller_scalo", "maschberger"]
-    classes = [Salpeter, Starburst, Chabrier, Ferrini, Kroupa, MillerScalo, Maschberger]
+    strings = ["salpeter", "starburst", "chabrier", "ferrini", "kroupa2001", "kroupa2002", "miller_scalo", "maschberger"]
+    classes = [Salpeter, Starburst, Chabrier, Ferrini, Kroupa2001, Kroupa2002, MillerScalo, Maschberger]
 
     for i in range(len(strings)):
         imf_instance = select_imf(strings[i])
@@ -47,9 +47,11 @@ def test_imf_is_zero_if_no_positive_mass(available_imfs):
             assert select_imf(imf).for_mass(mass) > 0.0
 
 
-def test_minimum_mass_value_for_kroupa_imf():
-    assert select_imf("kroupa").for_mass(0.014) == 0.0
-    assert select_imf("kroupa").for_mass(0.015) > 0.0
+def test_minimum_mass_value_for_kroupa_imfs():
+    assert select_imf("kroupa2001").for_mass(0.014) == 0.0
+    assert select_imf("kroupa2001").for_mass(0.015) > 0.0
+    assert select_imf("kroupa2002").for_mass(0.014) == 0.0
+    assert select_imf("kroupa2002").for_mass(0.015) > 0.0
 
 
 def test_for_mass_is_normalized(available_imfs):

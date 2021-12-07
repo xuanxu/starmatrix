@@ -68,7 +68,7 @@ Starmatrix reads a config file where several options can be set in yaml format::
 
         z: 0.0200               # metallicity
         sol_ab: as09            # solar abundances
-        imf: kroupa             # initial mass function (IMF)
+        imf: kroupa2002         # initial mass function (IMF)
         imf_m_low: 0.15         # lower mass limit for the IMF
         imf_m_up: 100           # upper mass limit for the IMF
         total_time_steps: 300   # number of time steps (will result in a Q Matrix per step)
@@ -99,11 +99,12 @@ The ``imf`` param in the config file can be set to use any of the predefined IMF
 :starburst: Starburst 1999 (a Salpeter with mass limits in [1, 120])
 :miller_scalo: Miller & Scalo 1979
 :ferrini: Ferrini, Palla & Penco 1998
-:kroupa: Kroupa 2002
+:kroupa2001: Kroupa 2001
+:kroupa2002: Kroupa 2002
 :chabrier: Chabrier 2003
 :maschberger: Maschberger 2012
 
-The default value is ``kroupa``. If you want to use your own IMF you can do so subclassing the `IMF class`_.
+The default value is ``kroupa2002``. If you want to use your own IMF you can do so subclassing the `IMF class`_.
 
 .. _`IMF class`: https://github.com/xuanxu/starmatrix/blob/main/src/starmatrix/imfs.py#L35-L68
 
