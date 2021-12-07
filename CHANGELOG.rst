@@ -4,6 +4,12 @@
 Changelog
 =========
 
+1.7.0 (2021-12-07)
+==================
+- Added Kroupa 2001 IMF
+- Changed Kroupa IMF to Kroupa2002
+- Documented CRI-LIM data correction
+
 1.6.4 (2021-11-22)
 ==================
 - Tweak Chabrier IMF
