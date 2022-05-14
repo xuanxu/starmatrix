@@ -33,7 +33,7 @@ Using explicit (and configurable) values for *solar abundances*, *metallicity (z
 
 Calculating the contributions of chemical elements from different stars in several mass ranges is a necessary step for galactic chemical evolution models [@molla2017]. Usually this is done internally and the chemical yields are convoluted with a star formation history (SFH) inside the model, making it difficult to find reusable opensourced code for calculating the yield for a simple stellar population. The central module in Chempy [@rybizki2017] and the SYGMA module from the NUPYCEE framework [@sygma2018] are exceptions, but being part of bigger codebases they are not available as standalone libraries, not listed in the official Python Package Index and learning how to install and use them is not simple.
 
-`Starmatrix` isolates the SSP yield calculation step as a open source permissively licensed Python implementation, in a modular an flexible way that can be used to provide detailed datasets to be used as input for galactic chemical evolution models, and also to compare the validity of different yield sets from the literature.
+`Starmatrix` isolates the SSP yield calculation step as a open source permissively licensed Python implementation, in a modular an flexible way that can be used to provide detailed datasets to be used as input for galactic chemical evolution models, to compare the validity of different yield sets from the literature or to assess different nucleosynthesis modeling assumptions [@bazan2003].
 
 # Features
 
@@ -46,6 +46,6 @@ All quantities in the $Q$ matrix are calculated on the base of the ejected mass 
 
 Configurable parameters include metallicity, mass range for $Q$ matrices, fraction of binary systems, lower and upper mass limits for the IMF, total time steps for integration and yield correction factors. The code also includes a variety of options for `IMFs`, `solar abundances` data, Supernovae `yields` and `Delay Time Distributions` from the literature to choose from. A complete list of available options can be found in the documentation. To make the code more reusable and to allow it to be integrated in or called by other codebases, Starmatrix defines a base class for each of these parameters to be subclassed if needed so custom options can be easily added programmatically. The code also includes extensive test coverage.
 
-`Starmatrix` depends on `numpy`[@harris2020array] and `scipy` [@scipy2020]. It is released with an open source licence (MIT), available as a public git repository, distributed through the Python Package Index and is easily installable using the standard `pip` package manager.
+`Starmatrix` depends on `numpy` [@harris2020array] and `scipy` [@scipy2020]. It is released with an open source licence (MIT), available as a public git repository, distributed through the Python Package Index and is easily installable using the standard `pip` package manager.
 
 # References
