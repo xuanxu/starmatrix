@@ -27,7 +27,7 @@ One of the key ingredients of galactic chemical evolution models is the nucleosy
 
 `Starmatrix` reads a single configuration file and calculates the combined contributions of chemical elements ejected to the interstellar medium during the lifetime of stars in the provided mass range. For each mass step an ejections matrix is computed for these fifteen elements: $H$, $D$, $^{3}He$, $^{4}He$, $^{12}C$, $^{16}O$, $^{14}N$, $^{13}C$, $^{20}Ne$, $^{24}Mg$, $^{28}Si$, $^{32}S$, $^{40}Ca$, $^{56}Fe$, and neutron-rich elements as only one group.
 
-Using explicit (and configurable) values for *solar abundances*, *metallicity (z)*, *ejection rates* and *Initial Mass Function (IMF)*, `Starmatrix` calculates matrices $Q_{ij}$ of masses of elements `i` ejected to the galactic medium as element `j`, integrating for a given range of stellar masses, and accounting for Supernovae (SNe) of types *I* and *II*. Based on the *Matrices Q formalism* [@ferrini1992], an output file is generated containing matrices linking any ejected species to all its different nucleosynthetic sources.
+Using explicit (and configurable) values for *solar abundances*, *metallicity (z)*, *ejection rates* and *Initial Mass Function (IMF)*, `Starmatrix` calculates matrices $Q_{ij}$ of masses of elements `i` ejected to the galactic medium as element `j`, integrating for a given range of stellar masses, and accounting for Supernovae (SNe) of types *I* and *II*. Based on the *Matrices Q formalism* [@ferrini1992;@portinari1998], an output file is generated containing matrices linking any ejected species to all its different nucleosynthetic sources.
 
 # Statement of need
 
