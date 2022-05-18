@@ -37,5 +37,6 @@ The code for *Starmatrix* is hosted at `GitHub`_ under a MIT license.
    installation
    usage
    configuration
+   output_files
    testing_edge
    credits
