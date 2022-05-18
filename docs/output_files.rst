@@ -11,13 +11,13 @@ Runnign Starmatrix produces three text files:
 Location
 --------
 
-The output files are created in the directory specified in the settings file with the `output_dir` parameter. If empty or non-present a new `results` directory will be created in the working path and the output files will be generated there.
+The output files are created in the directory specified in the settings file with the ``output_dir`` parameter. If empty or non-present a new ``results`` directory will be created in the working path and the output files will be generated there.
 
 
 Qm matrices file
 ----------------
 
-The `qm-matrices` file contains all the Q-matrices of elements, one for each of the intervals in the configured mass range.
+The ``qm-matrices`` file contains all the Q-matrices of elements, one for each of the intervals in the configured mass range.
 Each Q-matrix is 15 rows x 9 columns of data, where every entry represents the stellar mass fraction originally in form of the element in the column which has been processed and ejected as the element in the row.
 
 
@@ -61,7 +61,7 @@ The element production matrix has this structure:
 So, for example, the data in the 14th row and 4th column is the Calcium created from Helium 4.
 
 
-By default every matrix has a header line with the corresponding mass interval. This headers can be disabled via the configuration file setting the value for `matrix_headers` to `false`.
+By default every matrix has a header line with the corresponding mass interval. This headers can be disabled via the configuration file setting the value for ``matrix_headers`` to `false`.
 
 Example of a qm-matrices output file (truncated)::
 
@@ -133,7 +133,7 @@ For a more detailed explanation on the Q-Matrix formalism see  `Ferrini et al. (
 Mass intervals file
 -------------------
 
-Starmatrix also produces a `mass_intervals` file where all the intervals of mass used for the integration and the generation of matrices are listed.
+Starmatrix also produces a ``mass_intervals`` file where all the intervals of mass used for the integration and the generation of matrices are listed.
 
 The structure of the file is as follows:
 
@@ -183,7 +183,7 @@ Example of a mass_intervals output file (truncated)::
 Supernova rates file
 --------------------
 
-The last output generated when running Starmatrix is the `imf_supernova_rates` file. It is a text file with as many lines as mass intervals (i.e. integration steps) and with four columns (4 entries per line):
+The last output generated when running Starmatrix is the ``imf_supernova_rates`` file. It is a text file with as many lines as mass intervals (i.e. integration steps) and with four columns (4 entries per line):
 
     - The value of the initial mass funtion for the corresponding mass
     - The supernova type I rate obtained for the interval
