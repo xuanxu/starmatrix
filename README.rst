@@ -141,7 +141,7 @@ Delay Time Distributions
 
 The ``dtd_sn`` param in the config file can be set to use any of the available Delay Time Distributions for supernova rates from different papers/authors:
 
-:rlp: Supernova rates from Ruiz-Lapuente et al. 2000
+:rlp: Supernova rates from Ruiz-Lapuente et al. (2000)
 :maoz: DTD of Type Ia supernovae from Maoz & Graur (2017)
 :castrillo: DTD of Type Ia supernovae from Castrillo et al. (2020)
 :greggio: DTD of Type Ia supernovae from Greggio, L. (2005)
@@ -152,12 +152,12 @@ The ``dtd_sn`` param in the config file can be set to use any of the available D
 :greggio-WDD1: DTD from model Wide DD 1 Gyr from Greggio, L. (2005)
 :greggio-SDCH: DTD from model SD Chandra from Greggio, L. (2005)
 :greggio-SDSCH: DTD from model SD sub-Chandra from Greggio, L. (2005)
-:strolger-fit1: Phi function from Strolger et al (2020) with (ξ, ω, 𝛼) = (10, 600, 220)
-:strolger-fit2: Phi function from Strolger et al (2020) with (ξ, ω, 𝛼) = (110, 1000, 2)
-:strolger-fit3: Phi function from Strolger et al (2020) with (ξ, ω, 𝛼) = (350, 1200, 20)
-:strolger-fit4: Phi function from Strolger et al (2020) with (ξ, ω, 𝛼) = (6000, 6000, -2)
-:strolger-fit5: Phi function from Strolger et al (2020) with (ξ, ω, 𝛼) = (-650, 2200, 1100)
-:strolger-optimized: Phi function from Strolger et al (2020) with (ξ, ω, 𝛼) = (-1518, 51, 50)
+:strolger-fit1: Phi function from Strolger et al. (2020) with (ξ, ω, 𝛼) = (10, 600, 220)
+:strolger-fit2: Phi function from Strolger et al. (2020) with (ξ, ω, 𝛼) = (110, 1000, 2)
+:strolger-fit3: Phi function from Strolger et al. (2020) with (ξ, ω, 𝛼) = (350, 1200, 20)
+:strolger-fit4: Phi function from Strolger et al. (2020) with (ξ, ω, 𝛼) = (6000, 6000, -2)
+:strolger-fit5: Phi function from Strolger et al. (2020) with (ξ, ω, 𝛼) = (-650, 2200, 1100)
+:strolger-optimized: Phi function from Strolger et al. (2020) with (ξ, ω, 𝛼) = (-1518, 51, 50)
 
 Supernovae yields
 -----------------
@@ -174,8 +174,8 @@ The ``sn_yields`` param in the config file can be set to use any of the availabl
 :br2019-2: Data from Bravo, E. et al., 2019, MNRAS, 482, Issue 4, 4346–4363, Table 4
 :gro2021-1: Data from Gronow, S. et al., 2021, A&A, Tables 3/A10 He+Core detonations
 :gro2021-2: Data from Gronow, S. et al., 2021, A&A, Tables 4/A8 He+Core detonations
-:mor2018-1: Data from Mori, K. et al, 2018, ApJ, 863:176 W7
-:mor2018-2: Data from Mori, K. et al, 2018, ApJ, 863:176 WDD2
+:mor2018-1: Data from Mori, K. et al., 2018, ApJ, 863:176 W7
+:mor2018-2: Data from Mori, K. et al., 2018, ApJ, 863:176 WDD2
 
 Test suite
 ==========
