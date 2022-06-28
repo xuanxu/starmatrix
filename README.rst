@@ -40,7 +40,7 @@ The easiest way to install the package is using pip::
 
     $ pip install starmatrix
 
-This will also install some dependencies if they are not found in the system: *numpy*, *scipy* and *pyyaml*
+This will install the most recent release version and also some dependencies if they are not found in the system: *numpy*, *scipy* and *pyyaml*
 
 A previous installation can be upgraded to the latest version with::
 
