@@ -184,7 +184,7 @@ Starmatrix includes a test suite located in the ``/src/starmatrix/tests`` direct
 
     $ git clone https://github.com/xuanxu/starmatrix.git
     $ cd starmatrix
-    $ pip install -e .[dev]
+    $ pip install -e ".[dev]"
     $ pytest -v --cov=starmatrix
 
 .. _`publicly tracked by GitHub CI`: https://github.com/xuanxu/starmatrix/actions/workflows/tests.yml
