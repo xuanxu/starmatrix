@@ -122,7 +122,7 @@ If you want to use an existent configuration file as template for your own, you 
 
     $ starmatrix --generate-config
 
-That command will create a ``config-example.yml`` file in the current dir.
+That command will create a ``config-example.yml`` file in the current dir containing the default values.
 
 
 Initial mass function
