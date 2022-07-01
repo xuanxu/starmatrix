@@ -4,6 +4,11 @@
 Changelog
 =========
 
+1.7.1 (2021-07-01)
+==================
+- Fix error when running default config file
+- Improve documentation
+
 1.7.0 (2021-12-07)
 ==================
 - Added Kroupa 2001 IMF
