@@ -47,6 +47,10 @@ In the rush of time sometimes things get messy, you can help us cleaning things 
   * Actual response
 * Sometimes it is also helpful if you mention your operating system or shell.
 
+## License
+
+Starmatrix is released under the [MIT license](https://github.com/xuanxu/starmatrix/blob/main/LICENSE).
+
 ## Code of Conduct
 
 Obviously there is very little chance of having fun or creating anything interesting in an environment where people do not feel safe. That's why `starmatrix` has a [Code of Conduct](CODE_OF_CONDUCT.md) every contributor must comply. Please read it if you plan to be part of the `starmatrix` community.
