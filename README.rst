@@ -67,7 +67,7 @@ To test installation worked you can just run Starmatrix with default values runn
     $ starmatrix --generate-config
     $ starmatrix --config config-example.yml
 
-The first command will generate a basic configuration file (named ``config-example.yml``) and the second command will run Starmatrix using that configuration. A folder named ``results``should be created with the output files.
+The first command will generate a basic configuration file (named ``config-example.yml``) and the second command will run Starmatrix using that configuration. A folder named ``results`` should be created with the output files.
 
 Test suite
 ==========
