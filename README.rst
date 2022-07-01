@@ -46,6 +46,15 @@ A previous installation can be upgraded to the latest version with::
 
     $ pip install --upgrade starmatrix
 
+Edge
+----
+
+If you want to play with the latest code present in this repository even if it has not been released yet, you can do it by cloning the repo locally and instructing pip to install it::
+
+    $ git clone https://github.com/xuanxu/starmatrix.git
+    $ cd starmatrix
+    $ pip install -e .
+
 Test installation
 -----------------
 
@@ -55,6 +64,18 @@ To test installation worked you can just run Starmatrix with default values runn
     $ starmatrix --config config-example.yml
 
 The first command will generate a basic configuration file (named ``config-example.yml``) and the second command will run Starmatrix using that configuration. A folder named ``results``should be created with the output files.
+
+Test suite
+==========
+
+Starmatrix includes a test suite located in the ``/src/starmatrix/tests`` directory. The current state of the build is `publicly tracked by GitHub CI`_. You can run the latest tests locally and get information on code coverage if you clone the code to your local machine, install its development dependencies and use ``pytest``::
+
+    $ git clone https://github.com/xuanxu/starmatrix.git
+    $ cd starmatrix
+    $ pip install -e ".[dev]"
+    $ pytest -v --cov=starmatrix
+
+.. _`publicly tracked by GitHub CI`: https://github.com/xuanxu/starmatrix/actions/workflows/tests.yml
 
 Usage
 =====
@@ -176,27 +197,6 @@ The ``sn_yields`` param in the config file can be set to use any of the availabl
 :gro2021-2: Data from Gronow, S. et al., 2021, A&A, Tables 4/A8 He+Core detonations
 :mor2018-1: Data from Mori, K. et al., 2018, ApJ, 863:176 W7
 :mor2018-2: Data from Mori, K. et al., 2018, ApJ, 863:176 WDD2
-
-Test suite
-==========
-
-Starmatrix includes a test suite located in the ``/src/starmatrix/tests`` directory. The current state of the build is `publicly tracked by GitHub CI`_. You can run the latest tests locally and get information on code coverage if you clone the code to your local machine, install its development dependencies and use ``pytest``::
-
-    $ git clone https://github.com/xuanxu/starmatrix.git
-    $ cd starmatrix
-    $ pip install -e ".[dev]"
-    $ pytest -v --cov=starmatrix
-
-.. _`publicly tracked by GitHub CI`: https://github.com/xuanxu/starmatrix/actions/workflows/tests.yml
-
-Edge
-====
-
-If you want to play with the latest code present in this repository even if it has not been released yet, you can do it by cloning the repo locally and instructing pip to install it::
-
-    $ git clone https://github.com/xuanxu/starmatrix.git
-    $ cd starmatrix
-    $ pip install -e .
 
 License
 =======
