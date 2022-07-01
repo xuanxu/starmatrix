@@ -38,7 +38,7 @@ This is the list of all Starmatrix modules::
 
 **Examples:**
 
-Run a model with your own custom parameters from inside your programs::
+Run a model with your own custom parameters (in this example custom_params is a dict object modifying any of the available :doc:`configuration parameters <configuration>`) from inside your programs::
 
     import starmatrix
     import starmatrix.settings as settings

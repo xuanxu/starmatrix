@@ -33,6 +33,8 @@ Starmatrix computes the contribution matrix of 15 elements:
 H D He3 He4 C C13 N O n.r. Ne Mg Si S Ca Fe
 = = === === = === = = ==== == == == = == ==
 
+Starmatrix is a tool for astronomers working with galactic chemical evolution models needing detailed datasets to use as input, wanting to compare the validity of different yield sets or assessing different nucleosynthesis modeling assumptions.
+
 Installation
 ============
 
@@ -46,6 +48,17 @@ A previous installation can be upgraded to the latest version with::
 
     $ pip install --upgrade starmatrix
 
+Edge
+----
+
+If you want to play with the latest code present in this repository even if it has not been released yet, you can do it by cloning the repo locally and instructing pip to install it::
+
+    $ git clone https://github.com/xuanxu/starmatrix.git
+    $ cd starmatrix
+    $ pip install -e .
+
+Python >= 3.7 is required.
+
 Test installation
 -----------------
 
@@ -55,6 +68,18 @@ To test installation worked you can just run Starmatrix with default values runn
     $ starmatrix --config config-example.yml
 
 The first command will generate a basic configuration file (named ``config-example.yml``) and the second command will run Starmatrix using that configuration. A folder named ``results``should be created with the output files.
+
+Test suite
+==========
+
+Starmatrix includes a test suite located in the ``/src/starmatrix/tests`` directory. The current state of the build is `publicly tracked by GitHub CI`_. You can run the latest tests locally and get information on code coverage if you clone the code to your local machine, install its development dependencies and use ``pytest``::
+
+    $ git clone https://github.com/xuanxu/starmatrix.git
+    $ cd starmatrix
+    $ pip install -e ".[dev]"
+    $ pytest -v --cov=starmatrix
+
+.. _`publicly tracked by GitHub CI`: https://github.com/xuanxu/starmatrix/actions/workflows/tests.yml
 
 Usage
 =====
@@ -70,6 +95,10 @@ Running starmatrix will produce a directory with three output files:
 * **mass_intervals**: all the mass intervals used to integrate for all the mass range
 * **imf_supernova_rates**: the initial mass functions for the supernova rates for each mass interval
 * **qm-matrices**: the Q(m) matrices for every mass interval defined in the *mass_intervals* file
+
+You can find the complete documentation at `ReadTheDocs' Starmatrix page`_.
+
+.. _`ReadTheDocs' Starmatrix page`: https://starmatrix.readthedocs.io/
 
 Input params
 ============
@@ -97,7 +126,7 @@ If you want to use an existent configuration file as template for your own, you 
 
     $ starmatrix --generate-config
 
-That command will create a ``config-example.yml`` file in the current dir.
+That command will create a ``config-example.yml`` file in the current dir containing the default values.
 
 
 Initial mass function
@@ -177,26 +206,14 @@ The ``sn_yields`` param in the config file can be set to use any of the availabl
 :mor2018-1: Data from Mori, K. et al., 2018, ApJ, 863:176 W7
 :mor2018-2: Data from Mori, K. et al., 2018, ApJ, 863:176 WDD2
 
-Test suite
-==========
+Contributions
+=============
 
-Starmatrix includes a test suite located in the ``/src/starmatrix/tests`` directory. The current state of the build is `publicly tracked by GitHub CI`_. You can run the latest tests locally and get information on code coverage if you clone the code to your local machine, install its development dependencies and use ``pytest``::
+If you find a bug or have a question, please [open an issue in the project's repo](https://github.com/xuanxu/starmatrix/issues).
 
-    $ git clone https://github.com/xuanxu/starmatrix.git
-    $ cd starmatrix
-    $ pip install -e ".[dev]"
-    $ pytest -v --cov=starmatrix
+Contributions are welcome, please read our `contributing guidelines`_.
 
-.. _`publicly tracked by GitHub CI`: https://github.com/xuanxu/starmatrix/actions/workflows/tests.yml
-
-Edge
-====
-
-If you want to play with the latest code present in this repository even if it has not been released yet, you can do it by cloning the repo locally and instructing pip to install it::
-
-    $ git clone https://github.com/xuanxu/starmatrix.git
-    $ cd starmatrix
-    $ pip install -e .
+.. _`contributing guidelines`: https://github.com/xuanxu/starmatrix/blob/review/CONTRIBUTING.md
 
 License
 =======
