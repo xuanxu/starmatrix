@@ -33,6 +33,8 @@ Starmatrix computes the contribution matrix of 15 elements:
 H D He3 He4 C C13 N O n.r. Ne Mg Si S Ca Fe
 = = === === = === = = ==== == == == = == ==
 
+Starmatrix is a tool for astronomers working with galactic chemical evolution models needing detailed datasets to use as input, wanting to compare the validity of different yield sets or assessing different nucleosynthesis modeling assumptions.
+
 Installation
 ============
 
