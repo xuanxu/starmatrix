@@ -19,7 +19,7 @@ Pull requests are welcome. If you want to contribute code to solve an open issue
 * Create a topic branch based on main.
 * Commit there your code to solve the issue.
 * Make sure all test are passing (and add specs to test any new feature if needed).
-* Follow the code styles and practices already in place.
+* Follow the code styles and practices already in place. Starmatrix follows [PEP8](https://peps.python.org/pep-0008/).
 * Open a *pull request* to the main repository mentioning the issue you are addressing.
 
 ## Cleaning up
