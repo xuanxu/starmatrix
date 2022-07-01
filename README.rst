@@ -55,6 +55,8 @@ If you want to play with the latest code present in this repository even if it h
     $ cd starmatrix
     $ pip install -e .
 
+Python >= 3.7 is required.
+
 Test installation
 -----------------
 
