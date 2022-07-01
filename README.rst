@@ -207,6 +207,8 @@ The ``sn_yields`` param in the config file can be set to use any of the availabl
 Contributions
 =============
 
+If you find a bug or have a question, please [open an issue in the project's repo](https://github.com/xuanxu/starmatrix/issues).
+
 Contributions are welcome, please read our `contributing guidelines`_.
 
 .. _`contributing guidelines`: https://github.com/xuanxu/starmatrix/blob/review/CONTRIBUTING.md
