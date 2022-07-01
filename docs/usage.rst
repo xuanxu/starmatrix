@@ -48,7 +48,6 @@ Run a model with your own custom parameters (in this example custom_params is a 
     context = settings.validate(custom_params)
     Model(context).run()
 
-
 Call Starmatrix utility functions::
 
     import starmatrix.functions as functions
