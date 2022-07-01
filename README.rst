@@ -92,6 +92,10 @@ Running starmatrix will produce a directory with three output files:
 * **imf_supernova_rates**: the initial mass functions for the supernova rates for each mass interval
 * **qm-matrices**: the Q(m) matrices for every mass interval defined in the *mass_intervals* file
 
+You can find the complete documentation at `ReadTheDocs' Starmatrix page`_.
+
+.. _`ReadTheDocs' Starmatrix page`: https://starmatrix.readthedocs.io/
+
 Input params
 ============
 
