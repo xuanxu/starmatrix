@@ -202,6 +202,13 @@ The ``sn_yields`` param in the config file can be set to use any of the availabl
 :mor2018-1: Data from Mori, K. et al., 2018, ApJ, 863:176 W7
 :mor2018-2: Data from Mori, K. et al., 2018, ApJ, 863:176 WDD2
 
+Contributions
+=============
+
+Contributions are welcome, please read our `contributing guidelines`_.
+
+.. _`contributing guidelines`: https://github.com/xuanxu/starmatrix/blob/review/CONTRIBUTING.md
+
 License
 =======
 
