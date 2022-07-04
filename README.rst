@@ -120,7 +120,7 @@ Starmatrix reads a config file where several options can be set in yaml format::
         integration_step: logt  # The integration step can be constant in t, constant in log(t), or custom.
         expelled_elements_filename: ejecta.txt  # Filename of ejected data.
 
-Starmatrix will use its internal default values for all params for which no values are provided.
+Starmatrix will use its internal `default values`_ for all params for which no values are provided.
 
 If you want to use an existent configuration file as template for your own, you can run::
 
@@ -128,6 +128,7 @@ If you want to use an existent configuration file as template for your own, you 
 
 That command will create a ``config-example.yml`` file in the current dir containing the default values.
 
+.. _`default values`: https://starmatrix.readthedocs.io/en/latest/configuration.html#default-values
 
 Initial mass function
 ---------------------
