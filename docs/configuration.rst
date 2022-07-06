@@ -191,4 +191,4 @@ If Starmatrix is run with an empty configuration file or using the file generate
 :expelled_elements_filename: data for z=0.02 from Gavilan et al, and Chieffi & Limongi
 :yield_corrections: # No corrections
 
-This set of values are a mix of solar values were possible and common options from the literature for the Milky Way for star masses from 0.98 to 40 Msun without correcting yields or SN factors.
+This set of values is a mix of solar values were possible and common options from the literature for the Milky Way for star masses from 0.98 to 40 Msun without correcting yields or SN factors.
