@@ -214,7 +214,7 @@ If you find a bug or have a question, please [open an issue in the project's rep
 
 Contributions are welcome, please read our `contributing guidelines`_.
 
-.. _`contributing guidelines`: https://github.com/xuanxu/starmatrix/blob/review/CONTRIBUTING.md
+.. _`contributing guidelines`: https://github.com/xuanxu/starmatrix/blob/main/CONTRIBUTING.md
 
 License
 =======
