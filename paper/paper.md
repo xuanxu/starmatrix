@@ -23,7 +23,7 @@ bibliography: paper.bib
 
 `Starmatrix` is a Python package for computing the chemical contribution to the interstellar medium ejected by simple stellar populations (SSPs).
 
-One of the key ingredients of galactic chemical evolution (GCE) models is the nucleosynthetic contribution returned to the interstellar medium by the evolving stellar populations and supernovae. These yields vary depending on the age and metallicity of the stars and are combined following the mass distribution of stars to represent a simple stellar population, stars formed at the same time and having the same initial element composition. Repeating this process adjusting for the the star formation at each time step is one of the main mechanisms of GCE models.
+One of the key ingredients of galactic chemical evolution (GCE) models is the nucleosynthetic contribution returned to the interstellar medium by the evolving stellar populations and supernovae. These yields vary depending on the age and metallicity of the stars and are combined following the mass distribution of stars to represent a SSP, stars formed at the same time and having the same initial element composition. Repeating this process adjusting for the the star formation at each time step is one of the main mechanisms of GCE models.
 
 `Starmatrix` reads a single configuration file and calculates the combined contributions of chemical elements ejected to the interstellar medium during the lifetime of stars in the provided mass range. For each mass step an ejections matrix is computed for these fifteen elements: $H$, $D$, $^{3}He$, $^{4}He$, $^{12}C$, $^{16}O$, $^{14}N$, $^{13}C$, $^{20}Ne$, $^{24}Mg$, $^{28}Si$, $^{32}S$, $^{40}Ca$, $^{56}Fe$, and also all neutron-rich CNO isotopes as only one group.
 
