@@ -38,7 +38,7 @@ Starmatrix is built upon a long list of previous works from different authors/pa
 * *Bravo, E. et al.*, 2019, MNRAS, 482, Issue 4, 4346–4363
 * *Gronow, S. et al.*, 2021, A&A 656, A94
 * *Mori, K. et al.*, 2018, ApJ, 863:176
-* *Chen, X., Hu, L. & Wang, L.*, 2021, 922, 15
+* *Chen, X., Hu, L. & Wang, L.*, 2021, ApJ, 922, 15
 * *Strolger et al*, 2020, ApJ, Vol 890, 2
 
 License
