@@ -79,7 +79,7 @@ The ``dtd_sn`` param in the config file can be set to use any of the available D
 
 :rlp: Supernova rates from Ruiz-Lapuente et al. 2000
 :maoz: The DTD of Type Ia supernovae from Maoz & Graur (2017)
-:castrillo: DTD of Type Ia supernovae from Castrillo et al. (2020)
+:castrillo: DTD of Type Ia supernovae from Castrillo et al. (2021)
 :greggio: DTD of Type Ia supernovae from Greggio, L. (2005)
 :chen: DTD of Type Ia supernovae from Chen et al. (2021)
 :greggio-CDD04: DTD from model Close DD 0.4 Gyrs from Greggio, L. (2005)

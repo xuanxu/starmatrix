@@ -5,7 +5,7 @@ Contains some predefined DTDs from different papers/authors:
 
 * Ruiz Lapuente & Canal (2000)
 * Maoz & Graur (2017)
-* Castrillo et al (2020)
+* Castrillo et al (2021)
 * Greggio, L. (2005)
 * Strolger et al. (2020)
 
@@ -96,7 +96,7 @@ def dtd_maoz_graur(t):
 
 def dtd_castrillo(t):
     """
-    Delay Time Distribution (DTD) from Castrillo et al (2020, in preparation)
+    Delay Time Distribution (DTD) from Castrillo et al (2021)
 
     """
     if t <= 0.04:

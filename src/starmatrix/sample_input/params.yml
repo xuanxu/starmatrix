@@ -46,7 +46,7 @@
 # dtd_sn = [
 #            rlp  = DTD from Ruiz-Lapuente (default)
 #            maoz = DTD from Maoz & Graur 2017
-#            castrillo = DTD from Castrillo et al. 2020
+#            castrillo = DTD from Castrillo et al. 2021
 #            greggio = DTD from Greggio, L. 2005
 #            chen = DTD from Chen et al. 2021
 #            greggio-CDD04 = DTD from model Close DD 0.4 Gyrs from Greggio, L. (2005)

@@ -102,7 +102,7 @@ Changelog
 - Kroupa, Chabrier and Miller-Scalo IMFs have been slightly corrected
 - Added ``returned_fractions`` setting to generate a file with the masses restored to the ISM
 - Fixed: Maoz & Graur DTD rate corrected by mass
-- Added new DTD: Castrillo et al. 2020
+- Added new DTD: Castrillo et al. 2021
 
 1.1.0 (2019-04-22)
 ==================

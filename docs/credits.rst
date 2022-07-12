@@ -31,12 +31,15 @@ Starmatrix is built upon a long list of previous works from different authors/pa
 * *Raiteri C.M., Villata M. & Navarro J.F.*, 1996, A&A 315, 105-115
 * *Ruiz-Lapuente, P., Canal, R.*, 2000, astro.ph..9312R
 * *Maoz, D. & Graur, O.*, 2017, ApJ, 848, 25M
-* *Castrillo, A. et al.*, 2020, MNRAS
+* *Castrillo, A. et al.*, 2021, MNRAS  V501, 3, 3122–3136
 * *Greggio, L.*, 2005, A&A 441, 1055–1078
 * *Leung & Nomoto*, 2018, ApJ, Vol 861, Issue 2, Id 143
 * *Leung & Nomoto*, 2020, ApJ, Vol 888, Issue 2, Id 80
-* *Chen, X., Hu, L. & Wang, L.*, 2021, ApJ
-* *Strolger et al*, 2020, ApJ, Vol 890, 2. doi: 10.3847/1538-4357/ab6a97
+* *Bravo, E. et al.*, 2019, MNRAS, 482, Issue 4, 4346–4363
+* *Gronow, S. et al.*, 2021, A&A 656, A94
+* *Mori, K. et al.*, 2018, ApJ, 863:176
+* *Chen, X., Hu, L. & Wang, L.*, 2021, 922, 15
+* *Strolger et al*, 2020, ApJ, Vol 890, 2
 
 License
 -------
