@@ -137,13 +137,17 @@ This module groups the functions in charge of defining default settings and chec
 Examples
 ^^^^^^^^
 
-Run a model with your own custom parameters (in this example custom_params is a dict object modifying any of the available :doc:`configuration parameters <configuration>`) from inside your programs::
+Run a model with your own custom parameters (in this example custom_params is a dict object initialized with all the default settings using the **settings.default_settings()** function, we can then modify any of the available :doc:`configuration parameters <configuration>`) from inside your programs::
 
     import starmatrix
     import starmatrix.settings as settings
     from starmatrix.model import Model
 
-    custom_params = { ... }
+    custom_params = settings.default_settings()
+    custom_params['binary_fraction'] = 0.13
+    custom_params['sol_ab'] = 'he10'
+    custom_params['dtd_sn'] = 'chen'
+
     context = settings.validate(custom_params)
     Model(context).run()
 
