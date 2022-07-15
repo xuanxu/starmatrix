@@ -34,6 +34,7 @@ If you want to use an existent configuration file as template for your own, you 
 
 That command will create a ``config-example.yml`` file in the current dir.
 
+Starmatrix uses solar mass (M*) as the reference unit for all quantities, so internally the upper and lower limits for IMF are expressed in solar masses, Delay Time Distributions are expressed as [Supernovae per Year per M*] and the expelled elements file is expected to express data as expelled mass per solar mass, same as the supernova yields.
 
 Initial mass function
 ---------------------

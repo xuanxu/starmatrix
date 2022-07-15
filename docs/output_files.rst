@@ -3,7 +3,7 @@ Output Files
 
 Runnign Starmatrix produces three text files:
 
-:qm-matrices: The main output file containing Q matrices for each mass interval with the ejections for 15 chemical elements.
+:qm-matrices: The main output file containing Q matrices for each mass interval with the ejections for 15 chemical elements. Expressed as stellar mass fractions.
 :mass_intervals: The intervals of mass used for each time step of the integration.
 :imf_supernova_rates: The resulting supernovae rates for each mass interval.
 

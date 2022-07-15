@@ -94,7 +94,7 @@ Running starmatrix will produce a directory with three output files:
 
 * **mass_intervals**: all the mass intervals used to integrate for all the mass range
 * **imf_supernova_rates**: the initial mass functions for the supernova rates for each mass interval
-* **qm-matrices**: the Q(m) matrices for every mass interval defined in the *mass_intervals* file
+* **qm-matrices**: the Q(m) matrices for every mass interval defined in the *mass_intervals* file, expressed as stellar mass fractions.
 
 You can find the complete documentation at `ReadTheDocs' Starmatrix page`_.
 
@@ -129,6 +129,8 @@ If you want to use an existent configuration file as template for your own, you 
 That command will create a ``config-example.yml`` file in the current dir containing the default values.
 
 .. _`default values`: https://starmatrix.readthedocs.io/en/latest/configuration.html#default-values
+
+Starmatrix uses solar mass (M*) as the reference unit for all quantities, so internally the upper and lower limits for IMF are expressed in solar masses, Delay Time Distributions are expressed as [Supernovae per Year per M*] and the expelled elements file is expected to express data as expelled mass per solar mass, same as the supernova yields.
 
 Initial mass function
 ---------------------
