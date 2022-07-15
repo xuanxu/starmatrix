@@ -12,4 +12,4 @@ Testing
 
 You can then run the test suite locally using `pytest`::
 
-    $ pytest -v --cov=starmatrix
+    $ pytest
