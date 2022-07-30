@@ -15,13 +15,15 @@
 .. |version| image:: https://img.shields.io/pypi/v/starmatrix.svg?color=brightgreen
    :target: https://pypi.org/project/starmatrix/
    :alt: starmatrix in PyPi
-
-
+.. |paper-link| image:: https://joss.theoj.org/papers/10.21105/joss.04461/status.svg
+   :target: https://doi.org/10.21105/joss.04461
+   :alt: Paper
+   
 ============
 ✨Starmatrix
 ============
 
-|ci-badge| |docs-badge| |codecov-badge| |license| |version|
+|ci-badge| |docs-badge| |codecov-badge| |license| |version| |paper-link| 
 
 Starmatrix is a Q-Matrices generator.
 
@@ -217,6 +219,27 @@ If you find a bug or have a question, please [open an issue in the project's rep
 Contributions are welcome, please read our `contributing guidelines`_.
 
 .. _`contributing guidelines`: https://github.com/xuanxu/starmatrix/blob/main/CONTRIBUTING.md
+
+
+Citation
+========
+
+If you find Starmatrix helpful, please consider citing:
+
+::
+
+   @article{Bazán2022,
+      doi = {10.21105/joss.04461},
+      url = {https://doi.org/10.21105/joss.04461},
+      year = {2022},
+      publisher = {The Open Journal},
+      volume = {7},
+      number = {75},
+      pages = {4461},
+      author = {Juanjo Bazán and Mercedes Mollá},
+      title = {Starmatrix: Modelling nucleosynthesis of galactic chemical elements},
+      journal = {Journal of Open Source Software}
+   }
 
 License
 =======
