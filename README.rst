@@ -228,7 +228,7 @@ If you find Starmatrix helpful, please consider citing:
 
 ::
 
-   @article{Bazán2022,
+   @article{Bazan2022,
       doi = {10.21105/joss.04461},
       url = {https://doi.org/10.21105/joss.04461},
       year = {2022},
