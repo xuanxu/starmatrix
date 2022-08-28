@@ -12,6 +12,26 @@ Starmatrix was initially developed by `Juanjo Bazán`_ |orcid_jj|
 
 .. _`Juanjo Bazán`: https://twitter.com/xuanxu
 
+Citation
+--------
+
+If you find Starmatrix helpful, please consider citing:
+
+::
+
+   @article{Bazan2022,
+      doi = {10.21105/joss.04461},
+      url = {https://doi.org/10.21105/joss.04461},
+      year = {2022},
+      publisher = {The Open Journal},
+      volume = {7},
+      number = {75},
+      pages = {4461},
+      author = {Juanjo Bazán and Mercedes Mollá},
+      title = {Starmatrix: Modelling nucleosynthesis of galactic chemical elements},
+      journal = {Journal of Open Source Software}
+   }
+
 References
 ----------
 
