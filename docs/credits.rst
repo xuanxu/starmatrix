@@ -5,17 +5,24 @@ Credits
 Authors
 -------
 
-.. |orcid_jj| image:: https://img.shields.io/badge/orcid-0000----0001----7699----3983-brightgreen.svg
+.. |orcid_jj| image:: https://img.shields.io/badge/ORCID-0000----0001----7699----3983-brightgreen.svg
    :target: https://orcid.org/0000-0001-7699-3983
 
-Starmatrix was initially developed by `Juanjo Bazán`_ |orcid_jj|
+|orcid_jj|
+
+Starmatrix was initially developed by `Juanjo Bazán`_
 
 .. _`Juanjo Bazán`: https://twitter.com/xuanxu
 
 Citation
 --------
 
-If you find Starmatrix helpful, please consider citing:
+.. |joss_paper| image:: https://joss.theoj.org/papers/10.21105/joss.04461/status.svg
+   :target: https://doi.org/10.21105/joss.04461
+
+|joss_paper|
+
+If you find Starmatrix helpful, please consider citing the `Starmatrix paper`_:
 
 ::
 
@@ -31,6 +38,9 @@ If you find Starmatrix helpful, please consider citing:
       title = {Starmatrix: Modelling nucleosynthesis of galactic chemical elements},
       journal = {Journal of Open Source Software}
    }
+   
+.. _`Starmatrix paper`: https://joss.theoj.org/papers/10.21105/joss.04461
+
 
 References
 ----------
