@@ -4,6 +4,10 @@
 Changelog
 =========
 
+1.7.2 (2022-07-19)
+==================
+- JOSS paper release with improvements in the docs, the test suite and the paper
+
 1.7.1 (2021-07-01)
 ==================
 - Fix error when running default config file
