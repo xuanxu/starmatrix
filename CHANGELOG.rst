@@ -4,6 +4,10 @@
 Changelog
 =========
 
+1.7.3 (2022-09-22)
+==================
+- All models' SNIa rates are zero for ages < age of a binary-max-mass star (16Msun)
+
 1.7.2 (2022-07-19)
 ==================
 - JOSS paper release with improvements in the docs, the test suite and the paper
