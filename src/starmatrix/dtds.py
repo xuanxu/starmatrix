@@ -14,6 +14,7 @@ Contains some predefined DTDs from different papers/authors:
 import math
 import scipy.integrate
 import starmatrix.constants as constants
+import starmatrix.functions as functions
 from functools import lru_cache
 
 
@@ -38,6 +39,17 @@ def select_dtd(option):
         "strolger-optimized": dtds_strolger["optimized"],
     }
     return dtds[option]
+
+
+def dtd_capped_at_max_mass(dtd, z, max_mass=constants.B_MAX):
+    """
+    Returns a function that is the passed DTD for times
+    bigger than the age of a star with mass max_mass (default: Binary max mass),
+    or 0.0 otherwise.
+
+    """
+    min_age = functions.stellar_lifetime(max_mass, z)
+    return lambda t: 0.0 if t < min_age else dtd(t)
 
 
 def dtd_correction(params):

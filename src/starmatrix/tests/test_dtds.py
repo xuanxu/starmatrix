@@ -1,7 +1,10 @@
 import pytest
 import numpy as np
 import starmatrix.settings as settings
+import starmatrix.functions as functions
+import starmatrix.constants as constants
 from starmatrix.dtds import select_dtd
+from starmatrix.dtds import dtd_capped_at_max_mass
 from starmatrix.dtds import dtd_correction
 from starmatrix.dtds import dtd_ruiz_lapuente
 from starmatrix.dtds import dtd_maoz_graur
@@ -59,3 +62,13 @@ def test_no_negative_time_values():
 def test_dtd_correction_factor():
     assert dtd_correction({}) == 1.0
     assert dtd_correction({'dtd_correction_factor': 3.0}) == 3.0
+
+
+def test_dtd_capped_at_max_mass(available_dtds):
+    min_age = functions.stellar_lifetime(constants.B_MAX, 0.02)
+    lower_mass_age = functions.stellar_lifetime(constants.B_MIN, 0.02)
+    for dtd_name in available_dtds:
+        dtd = select_dtd(dtd_name)
+        dtd_capped = dtd_capped_at_max_mass(dtd, 0.02)
+        assert dtd_capped(min_age - 0.001) == 0.0
+        assert dtd_capped(lower_mass_age) == dtd(lower_mass_age)
