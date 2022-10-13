@@ -71,4 +71,5 @@ def test_dtd_capped_at_max_mass(available_dtds):
         dtd = select_dtd(dtd_name)
         dtd_capped = dtd_capped_at_max_mass(dtd, 0.02)
         assert dtd_capped(min_age - 0.001) == 0.0
+        assert dtd_capped(min_age) == dtd(min_age)
         assert dtd_capped(lower_mass_age) == dtd(lower_mass_age)
