@@ -116,6 +116,7 @@ Starmatrix reads a config file where several options can be set in yaml format::
         m_min: 0.98             # min value for stellar mass
         m_max: 40               # max value for stellar mass
         binary_fraction: 0.15   # rate of binary stars
+        snia_m_max              # Upper mass limit for binaries with SN Ia. Default value: 16 Msun
         dtd_sn: rlp             # delay time distribution for supernovae
         sn_yields: iwa1998      # Dataset for Supernovae yields
         output_dir: results     # Name of the directory where results are written.
