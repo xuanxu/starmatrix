@@ -19,6 +19,7 @@ default = {
     "m_min": 0.98,
     "m_max": 40.0,
     "binary_fraction": constants.BIN_FRACTION,
+    "snia_m_max": constants.B_MAX,
     "dtd_sn": "rlp",
     "dtd_correction_factor": 1.0,
     "sn_yields": "iwa1998",

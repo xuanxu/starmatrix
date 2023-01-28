@@ -30,6 +30,7 @@ def test_model_initialization():
     assert model.mass_intervals == []
     assert model.energies == []
     assert model.sn_Ia_rates == []
+    assert model.snia_m_max == 16
     assert model.z == params["z"]
     assert model.dtd == dtds.dtd_greggio
     assert model.m_min == params["m_min"]

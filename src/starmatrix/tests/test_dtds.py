@@ -65,11 +65,17 @@ def test_dtd_correction_factor():
 
 
 def test_dtd_capped_at_max_mass(available_dtds):
-    min_age = functions.stellar_lifetime(constants.B_MAX, 0.02)
+    min_age = functions.stellar_lifetime(7, 0.02)
+    min_age_default_m_max = functions.stellar_lifetime(constants.B_MAX, 0.02)
     lower_mass_age = functions.stellar_lifetime(constants.B_MIN, 0.02)
+
     for dtd_name in available_dtds:
         dtd = select_dtd(dtd_name)
-        dtd_capped = dtd_capped_at_max_mass(dtd, 0.02)
+        dtd_capped = dtd_capped_at_max_mass(dtd, 0.02, 7)
         assert dtd_capped(min_age - 0.001) == 0.0
         assert dtd_capped(min_age) == dtd(min_age)
         assert dtd_capped(lower_mass_age) == dtd(lower_mass_age)
+        dtd_capped_default_m_max = dtd_capped_at_max_mass(dtd, 0.02)
+        assert dtd_capped_default_m_max(min_age_default_m_max - 0.001) == 0.0
+        assert dtd_capped_default_m_max(min_age_default_m_max) == dtd(min_age_default_m_max)
+        assert dtd_capped_default_m_max(lower_mass_age) == dtd(lower_mass_age)

@@ -25,6 +25,7 @@ class Model:
         self.sn_Ia_rates = []
 
         self.z = self.context["z"]
+        self.snia_m_max = self.context["snia_m_max"]
         self.dtd = select_dtd(self.context["dtd_sn"])
         self.m_min = self.context["m_min"]
         self.m_max = self.context["m_max"]
@@ -129,7 +130,7 @@ class Model:
 
             self.mass_intervals.append([m_inf, m_sup])
             self.energies.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
-            self.sn_Ia_rates.append(newton_cotes(t_inf, t_sup, dtd_capped_at_max_mass(self.dtd, self.z)))
+            self.sn_Ia_rates.append(newton_cotes(t_inf, t_sup, dtd_capped_at_max_mass(self.dtd, self.z, self.snia_m_max)))
 
         mass_intervals_file.close()
 
@@ -153,7 +154,7 @@ class Model:
 
             self.mass_intervals.append([m_inf, m_sup])
             self.energies.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
-            self.sn_Ia_rates.append(newton_cotes(t_inf, t_sup, dtd_capped_at_max_mass(self.dtd, self.z)))
+            self.sn_Ia_rates.append(newton_cotes(t_inf, t_sup, dtd_capped_at_max_mass(self.dtd, self.z, self.snia_m_max)))
 
         mass_intervals_file.close()
 
@@ -185,7 +186,7 @@ class Model:
 
             self.mass_intervals.append([m_inf, m_sup])
             self.energies.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
-            self.sn_Ia_rates.append(newton_cotes(t_inf, t_sup, dtd_capped_at_max_mass(self.dtd, self.z)))
+            self.sn_Ia_rates.append(newton_cotes(t_inf, t_sup, dtd_capped_at_max_mass(self.dtd, self.z, self.snia_m_max)))
 
         for step in range(0, steps_with_delta_t_2):
             t_inf = t_ini_for_delta_2 + (delta_t_2 * step)
@@ -198,7 +199,7 @@ class Model:
 
             self.mass_intervals.append([m_inf, m_sup])
             self.energies.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
-            self.sn_Ia_rates.append(newton_cotes(t_inf, t_sup, dtd_capped_at_max_mass(self.dtd, self.z)))
+            self.sn_Ia_rates.append(newton_cotes(t_inf, t_sup, dtd_capped_at_max_mass(self.dtd, self.z, self.snia_m_max)))
 
         mass_intervals_file.close()
 
@@ -226,7 +227,7 @@ class Model:
 
             self.mass_intervals.append([m_inf, m_sup])
             self.energies.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
-            self.sn_Ia_rates.append(newton_cotes(t_inf, t_sup, dtd_capped_at_max_mass(self.dtd, self.z)))
+            self.sn_Ia_rates.append(newton_cotes(t_inf, t_sup, dtd_capped_at_max_mass(self.dtd, self.z, self.snia_m_max)))
 
         for step in range(0, n_small):
             t_inf = t_limit_massive + (delta_t_2 * step)
@@ -239,7 +240,7 @@ class Model:
 
             self.mass_intervals.append([m_inf, m_sup])
             self.energies.append(total_energy_ejected(t_sup) - total_energy_ejected(t_inf))
-            self.sn_Ia_rates.append(newton_cotes(t_inf, t_sup, dtd_capped_at_max_mass(self.dtd, self.z)))
+            self.sn_Ia_rates.append(newton_cotes(t_inf, t_sup, dtd_capped_at_max_mass(self.dtd, self.z, self.snia_m_max)))
 
         mass_intervals_file.close()
 
