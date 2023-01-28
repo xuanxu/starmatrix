@@ -4,6 +4,10 @@
 Changelog
 =========
 
+1.7.4 (2023-01-28)
+==================
+- New configurable setting for maximum mass (in Msun units) for binaries in Supernovae Ia: snia_m_max (default value: 16Msun)
+
 1.7.3 (2022-09-22)
 ==================
 - All models' SNIa rates are zero for ages < age of a binary-max-mass star (16Msun)
