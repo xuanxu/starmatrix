@@ -74,6 +74,6 @@ Starmatrix is built upon a long list of previous works from different authors/pa
 License
 -------
 
-*Copyright* © 2019-2022 Juanjo Bazán, released under the `MIT license`_.
+*Copyright* © 2019-2023 Juanjo Bazán, released under the `MIT license`_.
 
 .. _`MIT license`: https://github.com/xuanxu/starmatrix/blob/main/LICENSE
