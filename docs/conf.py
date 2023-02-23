@@ -20,7 +20,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Starmatrix'
-copyright = '2020, Juanjo Bazán'
+copyright = 'Juanjo Bazán'
 author = 'Juanjo Bazán'
 
 # The short X.Y version
