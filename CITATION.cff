@@ -1,0 +1,34 @@
+cff-version: "1.2.0"
+authors:
+- family-names: Bazán
+  given-names: Juanjo
+  orcid: "https://orcid.org/0000-0001-7699-3983"
+- family-names: Mollá
+  given-names: Mercedes
+  orcid: "https://orcid.org/0000-0003-0817-581X"
+doi: 10.21105/joss.04461
+message: If you use this software, please cite our article in the
+  Journal of Open Source Software.
+preferred-citation:
+  authors:
+  - family-names: Bazán
+    given-names: Juanjo
+    orcid: "https://orcid.org/0000-0001-7699-3983"
+  - family-names: Mollá
+    given-names: Mercedes
+    orcid: "https://orcid.org/0000-0003-0817-581X"
+  date-published: 2022-05-18
+  doi: 10.21105/joss.04461
+  issn: 2475-9066
+  issue: 75
+  journal: Journal of Open Source Software
+  publisher:
+    name: Open Journals
+  start: 4461
+  title: "Starmatrix: Modelling nucleosynthesis of galactic chemical
+    elements"
+  type: article
+  url: "https://doi.org/10.21105/joss.04461"
+  volume: 7
+title: "Starmatrix: Modelling nucleosynthesis of galactic chemical
+  elements"
