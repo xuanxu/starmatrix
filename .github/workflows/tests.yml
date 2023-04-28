@@ -8,11 +8,11 @@ jobs:
         os:
           - "ubuntu-latest"
         python-version:
-          - 3.7.15
+          - 3.7.16
           - 3.8.16
           - 3.9.16
-          - 3.10.10
-          - 3.11.2
+          - 3.10.11
+          - 3.11.3
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v3
