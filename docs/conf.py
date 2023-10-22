@@ -40,7 +40,10 @@ release = ''
 # ones.
 extensions = [
     'sphinx.ext.autosectionlabel',
+    'sphinx_rtd_theme',
 ]
+
+html_theme = "sphinx_rtd_theme"
 # Make sure the target is unique (autosectionlabel option)
 autosectionlabel_prefix_document = True
 
