@@ -245,7 +245,7 @@ If you find Starmatrix helpful, please consider citing:
 License
 =======
 
-*Copyright* © 2022 Juanjo Bazán, released under the `MIT license`_.
+*Copyright* © Juanjo Bazán, released under the `MIT license`_.
 
 .. _`MIT license`: https://github.com/xuanxu/starmatrix/blob/main/LICENSE
 
