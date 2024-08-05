@@ -1,5 +1,6 @@
 [project]
 name = "starmatrix"
+dynamic = ["version"]
 authors = [
     {name = "Juanjo Bazán", email = "hello@juanjobazan.com"},
 ]
