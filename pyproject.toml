@@ -1,1 +1,35 @@
-
+[project]
+name = "starmatrix"
+authors = [
+    {name = "Juanjo Bazán", email = "hello@juanjobazan.com"},
+]
+maintainers = [
+    {name = "Juanjo Bazán"},
+]
+description = "Modelling nucleosynthesis of galactic chemical elements using Q-Matrices"
+keywords = ["galaxies", "models", "astrophysics"]
+readme = "README.rst"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Astronomy",
+    "Topic :: Scientific/Engineering :: Physics"
+]
+dependencies = [
+    "pyyaml>=5.4.1",
+    "numpy>=1.20",
+    "scipy>=1.7"
+]
