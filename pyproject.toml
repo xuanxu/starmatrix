@@ -50,6 +50,8 @@ dev = [
 "Homepage" = "https://github.com/xuanxu/starmatrix"
 "Bug Reports" = "https://github.com/xuanxu/starmatrix/issues"
 "Source" = "https://github.com/xuanxu/starmatrix"
+"Documentation" = "https://starmatrix.readthedocs.io"
+"CI" = "https://github.com/xuanxu/starmatrix/actions"
 
 [project.scripts]
 starmatrix = "starmatrix.cli:main"
