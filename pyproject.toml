@@ -37,6 +37,15 @@ dependencies = [
     "numpy>=1.20",
     "scipy>=1.7"
 ]
+
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.2",
+    "pytest-mock>=3.6",
+    "pytest-cov>=3.0"
+]
+
 [project.urls]
 "Homepage" = "https://github.com/xuanxu/starmatrix"
 "Bug Reports" = "https://github.com/xuanxu/starmatrix/issues"
