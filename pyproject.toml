@@ -10,6 +10,9 @@ maintainers = [
 description = "Modelling nucleosynthesis of galactic chemical elements using Q-Matrices"
 keywords = ["galaxies", "models", "astrophysics"]
 readme = "README.rst"
+# This is metadata that pip reads to understand what Python versions your package supports
+requires-python = ">=3.7"
+license = { text = "MIT" }
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Science/Research",
