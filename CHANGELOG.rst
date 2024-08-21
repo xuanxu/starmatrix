@@ -104,7 +104,7 @@ Changelog
 ==================
 
 - Added Supernovae II data to the ``imf_supernova_rates`` file
-- Tweak SN total energy function to make it continous
+- Tweak SN total energy function to make it continuous
 - Better docs
 - Added DTD from Maoz & Graur (2017)
 - The DTD from Mannucci, Della Valle & Panagia is deprecated
@@ -168,7 +168,7 @@ New unified integration method
 Bug fixes
 ---------
 
-- Fixed out-of-limits error ocurring when interpolating to 100 stellar masses
+- Fixed out-of-limits error occurring when interpolating to 100 stellar masses
 - Fixed over-adding supernova rates to Q matrix in each integration step
 - Fixed matrix size when mass was invalid
 

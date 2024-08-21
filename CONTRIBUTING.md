@@ -5,7 +5,7 @@ There are several ways you can contribute to this project, here is a not exahust
 
 ## Report an issue
 
-The prefered way to report any bug is [opening an issue in the project's Github repo](https://github.com/xuanxu/starmatrix/issues/new).
+The preferred way to report any bug is [opening an issue in the project's Github repo](https://github.com/xuanxu/starmatrix/issues/new).
 
 For more informal communication, you can contact [@xuanxu via twitter](https://twitter.com/xuanxu) [or mastodon](https://mastodon.social/@xuanxu)
 

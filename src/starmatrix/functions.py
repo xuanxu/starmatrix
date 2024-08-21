@@ -81,7 +81,7 @@ def max_mass_allowed(z):
 def total_energy_ejected(t):
     """
     Thermal and kinetic energy released by each type of SN up to the time t after the explosion
-    where tc is the characteristic cooling time of the shell sorrounding the remnant (53000 yrs)
+    where tc is the characteristic cooling time of the shell surrounding the remnant (53000 yrs)
     from Ferrini & Poggiantti, 1993, ApJ, 410, 44F
 
     """
@@ -130,7 +130,7 @@ def imf_binary_primary(m, imf, binary_fraction=constants.BIN_FRACTION):
 def imf_binary_secondary(m, imf, SNI_events=False, binary_fraction=constants.BIN_FRACTION):
     """
     Initial mass function for secondary stars of binary systems
-    Optionally ocurring Supernova I events
+    Optionally occurring Supernova I events
     Integrated between  m' and m'' using Newton-Cotes
     If SNI_events = False then returns 0 unless m is in (0, 8)
 
