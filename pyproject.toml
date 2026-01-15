@@ -61,6 +61,6 @@ starmatrix = "starmatrix.cli:main"
 ### Tool configuration ###
 
 [tool.pytest]
-python_files = "test_*.py"
-addopts = "-v --cov=starmatrix"
-testpaths = "src/starmatrix/tests"
+python_files = ["test_*.py"]
+addopts = ["-v", "--cov=starmatrix"]
+testpaths = ["src/starmatrix/tests"]
