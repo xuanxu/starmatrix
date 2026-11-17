@@ -3,7 +3,7 @@
 .. |ci-badge| image:: https://github.com/xuanxu/starmatrix/actions/workflows/tests.yml/badge.svg
    :target: https://github.com/xuanxu/starmatrix/actions/workflows/tests.yml
    :alt: Build status
-.. |docs-badge| image:: https://readthedocs.org/projects/starmatrix/badge/?version=latest
+.. |docs-badge| image:: https://app.readthedocs.org/projects/starmatrix/badge/?version=latest
    :target: https://starmatrix.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
 .. |codecov-badge| image:: https://codecov.io/gh/xuanxu/starmatrix/branch/main/graph/badge.svg?token=JRNGFn3SjA
