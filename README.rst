@@ -23,7 +23,7 @@
 ✨Starmatrix
 ============
 
-|ci-badge| |docs-badge| |codecov-badge| |license| |version| |paper-link| 
+|ci-badge| |codecov-badge| |license| |docs-badge| |version| |paper-link| 
 
 Starmatrix is a Q-Matrices generator.
 
